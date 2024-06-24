@@ -32,9 +32,16 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y rsync openssh-client
-      
-      - name: Deploy to Server
+
+      - name: Setup SSH
         run: |
-          rsync -avz -e "ssh -p 777" ./out/ ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:${{ secrets.DEPLOY_DIR }}
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan -p ${{ secrets.SSH_PORT }} ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
+      
+      - name: Deploy to Server with rsync
+        run: |
+          rsync -avz -e "ssh -p ${{ secrets.SSH_PORT }}" ./out/ ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:${{ secrets.DEPLOY_DIR }}
         env:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
