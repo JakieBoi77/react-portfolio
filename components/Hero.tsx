@@ -19,7 +19,7 @@ const Hero = () => {
       <div className="flex justify-center relative my-20 z-10">
         <div className="max-w-[89vw] md:max-w-2xl lg:max-w-[60vw] flex flex-col items-center justify-center">
           <TextGenerateEffect
-            words="Hello, I&apos;m Jake!"
+            words="Hello, I&apos;m Jake"
             className="text-center text-7xl xl:text-8xl"
           />
           <p className="text-center md:tracking-wider mb-4 text-xl xl:text-2xl">
