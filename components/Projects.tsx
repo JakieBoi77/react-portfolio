@@ -1,0 +1,75 @@
+import React from 'react'
+import { Tabs } from './ui/Tabs'
+import { projectCollections } from '@/data';
+import { CardBody, CardContainer, CardItem } from './ui/FloatingCard';
+import Link from 'next/link';
+import { BackgroundGradient } from './ui/BackgroundGradient';
+
+const Projects = () => {
+  return (
+    <div className="py-20 flex flex-col items-center justify-center" id="projects">
+      <h1 className="heading">
+        Recent Projects
+      </h1>
+      <div className="flex flex-wrap flex-row items-center justify-center px-4 py-16 gap-32 mt-10 max-w-[1600px] w-[80vw]">
+        {projectCollections.map(({ id, collectionTitle, folder, des, projects, iconLists }) => (
+          <BackgroundGradient key={id} className="flex items-center justify-center flex-col max-w-[600px] w-[80vw] rounded-[22px] p-4 sm:p-10 bg-zinc-900">
+            <p className="text-base sm:text-xl mt-4 mb-2 text-neutral-200">
+              {collectionTitle}
+            </p>
+            <p className="text-sm text-neutral-400">
+              {des}
+            </p>
+            <div className="[perspective:1000px] relative flex flex-col mx-auto w-full items-start justify-start mt-40">
+              <Tabs tabs={projects.map(({ title, value, pic }) => {
+                return {
+                  title: title,
+                  value: value,
+                  content: (
+                    <Link href={`/${folder}/${value}`} className="cursor-pointer">
+                      <CardContainer className="inter-var w-full relative rounded-2xl p-4 text-xl md:text-4xl font-bold text-white bg-gradient-to-br from-blue-500 to-green-500">
+                        <CardBody className="relative group/card w-auto sm:w-[30rem] h-auto rounded-xl p-6">
+                          <div className="flex flex-col items-center justify-items">
+                            <CardItem
+                              translateZ="100"
+                              className="text-xl font-bold text-white"
+                            >
+                              {title}
+                            </CardItem>
+                            <CardItem translateZ="75" className="w-full mt-4">
+                              <img
+                                className="rounded-2xl"
+                                src={`/project-pics${pic}`}
+                                alt={`${title} Project Picture`}
+                              />
+                            </CardItem>
+                          </div>
+                        </CardBody>
+                      </CardContainer>
+                    </Link>  
+                  )
+                }
+              })} />
+            </div>
+            <div className="flex items-center justify-center mt-7 mb-3">
+              <div className="flex items-center">
+                {iconLists.map((icon, index) => (
+                  <div key={icon} className="flex items-center justify-center border border-white/[0.2] bg-zinc-900 rounded-full w-10 h-10 sm:w-12 sm:h-12">
+                    <img
+                      src={`/dev-icons${icon}`}
+                      alt={icon}
+                      className="p-2"
+                    />
+                  </div>
+                ))}
+              </div>
+            </div>
+          </BackgroundGradient>
+        ))}
+      </div>
+    </div>
+    
+  );
+}
+
+export default Projects
