@@ -1,3 +1,5 @@
+"use client"
+
 import React from 'react'
 import { Spotlight } from './ui/Spotlight'
 import { TextGenerateEffect } from './ui/TextGenerateEffect'
@@ -12,7 +14,7 @@ const Hero = () => {
         <Spotlight className="top-28 left-80 h-[80vh] w-[50vw]" fill="blue"/>
       </div>
       
-      <div className="h-screen w-full bg-black-100 bg-grid-white/[0.03] flex items-center justify-center absolute top-0 left-0">
+      <div className="h-screen w-full bg-transparent bg-grid-white/[0.03] flex items-center justify-center absolute top-0 left-0">
         <div className="absolute pointer-events-none inset-0 flex items-center justify-center bg-black-100 [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]"></div>
       </div>
       
@@ -26,17 +28,6 @@ const Hero = () => {
             Welcome to my portfolio.
           </p>
         </div>
-      </div>
-      <div className="w-full absolute inset-0">
-        <SparklesCore
-          id="tsparticlesfullpage"
-          background="transparent"
-          minSize={0.6}
-          maxSize={1.4}
-          particleDensity={10}
-          className="w-full h-full"
-          particleColor="#FFFFFF"
-        />
       </div>
     </div>
   )

@@ -143,6 +143,81 @@ export const projectCollections = [
   },
 ];
 
+export const technologies = [
+  {
+    name: "HTML 5",
+    icon: "/html.svg",
+  },
+  {
+    name: "CSS 3",
+    icon: "/css.svg",
+  },
+  {
+    name: "JavaScript",
+    icon: "/js.svg",
+  },
+  {
+    name: "TypeScript",
+    icon: "/ts.svg",
+  },
+  {
+    name: "React JS",
+    icon: "/re.svg",
+  },
+  {
+    name: "Redux Toolkit",
+    icon: "/redux.svg",
+  },
+  {
+    name: "Tailwind CSS",
+    icon: "/tail.svg",
+  },
+  {
+    name: "Node JS",
+    icon: "/node.svg",
+  },
+  {
+    name: "MongoDB",
+    icon: "/mongodb.svg",
+  },
+  {
+    name: "Three JS",
+    icon: "/three.svg",
+  },
+  {
+    name: "Git",
+    icon: "/git.svg",
+  },
+  {
+    name: "Java",
+    icon: "/java.svg",
+  },
+  {
+    name: "Bash",
+    icon: "/bash.svg",
+  },
+  {
+    name: "Express",
+    icon: "/express.svg",
+  },
+  {
+    name: "Mongoose",
+    icon: "/mongoose.svg",
+  },
+  {
+    name: "PostgreSQL",
+    icon: "/postgresql.svg",
+  },
+  {
+    name: "Linux",
+    icon: "/linux.svg",
+  },
+  {
+    name: "NPM",
+    icon: "/npm.svg",
+  },
+]
+
 export const socialMedia = [
   {
     id: 1,
