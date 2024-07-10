@@ -1,8 +1,10 @@
 import React, { useMemo, useRef } from "react";
 import { Canvas } from "@react-three/fiber";
 import { View, PerspectiveCamera, OrbitControls, useTexture, Float, Decal } from "@react-three/drei";
+import { motion } from "framer-motion";
+import { fadeIn, slideIn, zoomIn } from "@/utils/motion";
 
-const Ball = ({ decalTexture }) => {
+const Ball = ({ decalTexture }: any) => {
   const [decal] = useTexture([decalTexture]);
 
   return (
@@ -21,17 +23,16 @@ const Ball = ({ decalTexture }) => {
           position={[0, 0, 1]}
           rotation={[2 * Math.PI, 0, 6.25]}
           map={decal}
-          flatShading
         />
       </mesh>
     </Float>
   );
 };
 
-const Views = ({ views, technologies }) => {
+const Views = ({ views, technologies }: any) => {
   return (
     <>
-      {views.map((view, i) => {
+      {views.map((view: any, i: any) => {
         return (
           <View key={i} track={view}>
             <Ball decalTexture={`/dev-icons${technologies[i].icon}`} />
@@ -44,36 +45,23 @@ const Views = ({ views, technologies }) => {
   );
 };
 
-const BallCanvas = ({ technologies }) => {
+const BallCanvas = ({ technologies }: any) => {
   const views = useMemo(() => technologies.map(() => React.createRef()), []);
-  const containerRef = useRef();
+  const containerRef = useRef<any>();
 
   return (
-    <div
-      ref={containerRef}
-      style={{
-        position: "relative",
-        width: "100%",
-        display: "flex",
-        flexWrap: "wrap",
-        gap: "1rem",
-        alignItems: "center",
-        justifyContent: "center",
-        overflow: "auto",
-        margin: "16px"
-      }}
-    >
-      {views.map((view, i) => {
+    <div ref={containerRef} className="relative w-full flex flex-wrap gap-4 items-center justify-center overflow-auto m-4">
+      {views.map((view: any, i: any) => {
         return (
-          <div
-            key={i}
+          <motion.div
+            variants={zoomIn(0.1 * i, 0.75)}
+            key={technologies[i].name}
             ref={view}
-            style={{ flex: "1 0 200px", height: "15vh", overflow: "hidden" }}
+            className="basis-24 h-24 sm:basis-52 sm:h-52 overflow-hidden"
           />
         );
       })}
       <Canvas
-        camera={{ position: [0, 0, 2] }}
         eventSource={containerRef.current}
         shadows
         style={{

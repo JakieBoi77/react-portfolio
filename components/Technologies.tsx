@@ -9,9 +9,9 @@ import SectionWrapper from './wrappers/SectionWrapper'
 
 const Technologies = () => {
   return (
-    <div className="w-full h-full">
+    <div className="w-full h-full flex flex-col items-center justify-center mb-24">
       <motion.h1
-        variants={textVariant(0)}
+        variants={textVariant(0.5)}
         className="heading"
       >
         Technologies
@@ -21,4 +21,4 @@ const Technologies = () => {
   )
 }
 
-export default SectionWrapper(Technologies)
+export default Technologies

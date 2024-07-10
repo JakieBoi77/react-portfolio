@@ -25,11 +25,11 @@ const Projects = () => {
             variants={fadeIn("right", "spring", 0.5, 0.75)}
             key={id}
           >
-            <BackgroundGradient className="flex items-center justify-center flex-col max-w-[600px] w-[80vw] rounded-[22px] p-4 sm:p-10 bg-zinc-900">
+            <BackgroundGradient className="flex items-center justify-center flex-col max-w-[600px] w-[80vw] rounded-[22px] p-4 sm:p-10 bg-zinc-900 sm:min-h-[1200px]">
               <p className="text-base sm:text-xl mt-4 mb-2 text-neutral-200">
                 {collectionTitle}
               </p>
-              <p className="text-sm text-neutral-400">
+              <p className="text-sm text-neutral-400 p-4">
                 {des}
               </p>
               <div className="[perspective:1000px] relative flex flex-col mx-auto w-full items-start justify-start mt-40">
@@ -39,7 +39,7 @@ const Projects = () => {
                     value: value,
                     content: (
                       <Link href={`/${folder}/${value}`} className="cursor-pointer">
-                        <CardContainer className="inter-var w-full relative rounded-2xl p-4 text-xl md:text-4xl font-bold text-white bg-gradient-to-br from-blue-500 to-green-500">
+                        <CardContainer className="inter-var w-full relative rounded-2xl sm:p-4 text-xl md:text-4xl font-bold text-white bg-gradient-to-br from-blue-500 to-green-500 sm:min-h-[600px]">
                           <CardBody className="relative group/card w-auto sm:w-[30rem] h-auto rounded-xl p-6">
                             <div className="flex flex-col items-center justify-items">
                               <CardItem
@@ -85,4 +85,4 @@ const Projects = () => {
   );
 }
 
-export default SectionWrapper(Projects)
+export default Projects

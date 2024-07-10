@@ -18,6 +18,7 @@
     "@tsparticles/slim": "^3.4.0",
     "@types/dompurify": "^3.0.5",
     "@types/geojson": "^7946.0.14",
+    "@types/three": "^0.166.0",
     "@types/topojson-client": "^3.1.4",
     "clsx": "^2.1.1",
     "d3": "^7.9.0",
@@ -47,7 +48,7 @@
   "devDependencies": {
     "@types/d3": "^7.4.3",
     "@types/node": "^20",
-    "@types/react": "^18",
+    "@types/react": "^18.3.3",
     "@types/react-dom": "^18",
     "@types/topojson": "^3.2.6",
     "eslint": "^8",
