@@ -13,6 +13,7 @@ import {
   VerticalTimelineElement
 } from 'react-vertical-timeline-component';
 
+import 'react-vertical-timeline-component/style.min.css';
 
 const ExperienceCard = ({ experience }: any) => {
   const { ref, inView } = useInView({
@@ -70,13 +71,11 @@ const Experience = () => {
         Work Experience
       </motion.div>
       <div className="my-20 flex flex-col">
-        <TimelineStyles>
-          <VerticalTimeline>
-            {experiences.map((experience, index) => (
-              <ExperienceCard key={index} experience={experience} />
-            ))}
-          </VerticalTimeline>
-        </TimelineStyles>
+        <VerticalTimeline>
+          {experiences.map((experience, index) => (
+            <ExperienceCard key={index} experience={experience} />
+          ))}
+        </VerticalTimeline>
       </div>
     </>
   )
