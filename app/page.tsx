@@ -4,11 +4,14 @@ import Footer from "@/components/Footer";
 import Hero from "@/components/Hero";
 import Projects from "@/components/Projects";
 import Technologies from "@/components/Technologies";
+import Experience from "@/components/Experience";
+
 import { FloatingNav } from "@/components/ui/FloatingNav";
 import { navItems } from "@/data";
 import { Inter } from "next/font/google";
 import { LoadingProvider } from "./loading-provider";
 import { SparklesCore } from "@/components/ui/Sparkles";
+
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -32,6 +35,7 @@ const AppContent = () => {
           <Hero />
           <Projects />
           <Technologies />
+          <Experience />
           <Footer />
         </div>
       </main>

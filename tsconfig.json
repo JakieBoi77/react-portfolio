@@ -1,6 +1,10 @@
 {
   "compilerOptions": {
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -18,9 +22,24 @@
       }
     ],
     "paths": {
-      "@/*": ["./*"]
-    }
+      "@/*": [
+        "./*"
+      ]
+    },
+    "forceConsistentCasingInFileNames": true
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "components/canvas/Ball.jsx", "components/canvas/Loader.jsx", "components/wrappers/SectionWrapper.tsx", "utils/motion.ts"],
-  "exclude": ["node_modules"]
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    "components/canvas/Ball.jsx",
+    "components/canvas/Loader.tsx",
+    "components/wrappers/SectionWrapper.tsx",
+    "utils/motion.ts",
+    "components/Experience.tsx"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
 }

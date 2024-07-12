@@ -1,7 +1,9 @@
 export const navItems = [
   { name: "Home", link: "/" },
   { name: "Projects", link: "#projects" },
-  { name: "Contact", link: "#contact" }
+  { name: "Technologies", link: "#technologies" },
+  { name: "Experience", link: "#experience" },
+  { name: "Contact", link: "#contact" },
 ];
 
 export const projectCollections = [
@@ -215,6 +217,36 @@ export const technologies = [
   {
     name: "NPM",
     icon: "/npm.svg",
+  },
+]
+
+export const experiences = [
+  {
+    title: "Warehouse Assistant",
+    companyName: "Stoney Creek Furniture",
+    icon: "/scf.png",
+    iconBg: "#ffffff",
+    date: "July 2020 - September 2022",
+    points: [
+      "A weekend job where I was responsible for fulfilling customer pick-ups, organizing furniture for delivery, and keeping the warehouse clean.",
+      "Gained valuable experience working with my co-workers to deliver the best possible experience for customers picking up furniture from the warehouse.",
+      "Became certified on a Class 2 Forklift (also known as an Orderpicker) to access furniture stored within the racks of the warehouse.",
+      "Operated various compactors to control the waste created from opening products in the warehouse.",
+      "Learned how to use Storis, the furniture inventory management system, in order to complete my assigned tasks while still maintaining inventory accuracy."
+    ]
+  },
+  {
+    title: "System Engineering Intern",
+    companyName: "Superior Boiler Works and Welding Limited",
+    icon: "/sbww.png",
+    iconBg: "#ffffff",
+    date: "May 2023 - August 2023",
+    points: [
+      "My first co-op position where I was responsible for providing IT support and mainting the IT infrastructure.",
+      "Implemented IT support strategies to resolve user technical issues, utilizing M365 Exchange Servers and PowerShell scripts.",
+      "Managed Active Directory accounts for a team of 100 employees and reduced account setup time through streamlined GPO management processes.",
+      "Collaborated with my team to implement security protocols and improve system efficiency.",
+    ]
   },
 ]
 
