@@ -242,7 +242,7 @@ export const experiences = [
     iconBg: "#ffffff",
     date: "May 2023 - August 2023",
     points: [
-      "My first co-op position where I was responsible for providing IT support and mainting the IT infrastructure.",
+      "My first co-op position where I was responsible for providing IT support and maintaining IT infrastructure.",
       "Implemented IT support strategies to resolve user technical issues, utilizing M365 Exchange Servers and PowerShell scripts.",
       "Managed Active Directory accounts for a team of 100 employees and reduced account setup time through streamlined GPO management processes.",
       "Collaborated with my team to implement security protocols and improve system efficiency.",
