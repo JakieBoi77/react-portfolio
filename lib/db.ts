@@ -1,4 +1,7 @@
 import mongoose from "mongoose";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 const MONGODB_URI = process.env.MONGODB_URI as string;
 
@@ -17,12 +20,12 @@ const connect = async () => {
 
   try {
     mongoose.connect(MONGODB_URI, {
-      dbName: "fcc-mongodb-and-mongoose",
+      dbName: "portfolio-services",
       bufferCommands: true
     });
     console.log("Database Connected")
   } catch (err) {
-    console.error("Error Connected to Database:", err);
+    console.error("Error Connecting to Database:", err);
   }
 }
 
