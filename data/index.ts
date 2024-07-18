@@ -47,30 +47,30 @@ export const projectCollections = [
     folder: "back-end-dev",
     des: "Interact with some of my recent back-end projects and APIs. While making these projects, I learned package management, RESTful API design, and database integration.",
     projects: [
-      { 
-        title: "Timestamp Microservice",
-        value: "timestamp-microservice",
-        pic: "/under-construction.png",
-      },
-      {
-        title: "Request Header Parser Microservice",
-        value: "request-header-parser-microservice",
-        pic: "/under-construction.png",
-      },
       {
         title: "URL Shortener Microservice",
         value: "url-shortener-microservice",
-        pic: "/under-construction.png",
+        pic: "/url-shortener.png",
       },
       {
         title: "Exercise Tracker Microservice",
         value: "exercise-tracker-microservice",
-        pic: "/under-construction.png",
+        pic: "/exercise-tracker.png",
       },
       {
         title: "File Metadata Microservice",
         value: "file-metadata-microservice",
-        pic: "/under-construction.png",
+        pic: "/file-metadata.png",
+      },
+      { 
+        title: "Timestamp Microservice",
+        value: "timestamp-microservice",
+        pic: "/timestamp.png",
+      },
+      {
+        title: "Request Header Parser Microservice",
+        value: "request-header-parser-microservice",
+        pic: "/request-header-parser.png",
       },
     ],
     iconLists: ["/npm.svg", "/express.svg", "/node.svg", "/mongodb.svg", "/mongoose.svg"],
@@ -113,7 +113,7 @@ export const projectCollections = [
     id: 4,
     collectionTitle: "Legacy Web Design Projects",
     folder: "legacy-web-design",
-    des: "A collection of my initial web projects where I learned web design basics and some responsive web design.",
+    des: "A collection of my initial web projects where I learned the basics of web design.",
     projects: [
       {
         title: "Legacy Portfolio",

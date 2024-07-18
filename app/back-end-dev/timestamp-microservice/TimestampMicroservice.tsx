@@ -1,46 +1,74 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 const TimestampMicroservice = () => {
+  const [response, setResponse] = useState<string | null>(null);
+
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    const date = (event.target as HTMLFormElement).date.value;
+
+    if (!date) {
+      alert("Please enter a date first!");
+      return;
+    }
+
+    try {
+      const response = await fetch(`/api/timestamp/${date}`, {
+        method: "GET"
+      });
+
+      if (response.ok) {
+        const result = await response.json();
+        setResponse(result);
+
+      } else {
+        alert("Failed to submit.");
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      alert("Error submitting data.");
+    }
+  };
+
   return (
-    <div className="tw-class flex items-center justify-center flex-col h-screen w-screen">
-      <h1 className="text-2xl font-bold">Timestamp Microservice</h1>
-      <div>
-        <h2 className="mt-8">Usage:</h2>
-        
-        <ul className="list-disc ml-8">
-          <li>
-            <code>{`GET https://finlaytech.ca/api/timestamp/{date}`}</code>
-          </li>
-          <li>
-            <p><code>date</code> can be:</p>
+    <div className="tw-class flex items-center justify-center flex-col h-screen w-screen bg-gray-100">
+      <h1 className="text-2xl font-bold text-center">Timestamp Microservice</h1>
+      <div className="mt-4 border p-5 w-[80%] min-w-64 max-w-[500px] bg-white rounded-lg shadow-md">
+        <form onSubmit={handleSubmit} className="flex flex-col items-center">
+          <label className="mb-4 w-full" htmlFor="inputfield">Enter a date below:
             <ul className="list-disc ml-8">
               <li>
-                The date in the form YYYY-MM-DD.
+                YYYY-MM-DD
               </li>
               <li>
-                The number of milliseconds.
+                Can also be the number of milliseconds.
               </li>
             </ul>
-          </li>
-        </ul>
-        <h2 className="mt-8">Example Usage:</h2>
-        <ul className="list-disc ml-8">
-          <li>
-            <a href="/api/timestamp/2015-12-25" className="text-blue-500 hover:text-blue-600 visited:text-purple-500">
-              https://finlaytech.ca/api/timestamp/2015-12-25
-            </a>
-          </li>
-          <li>
-            <a href="/api/timestamp/1451001600000" className="text-blue-500 hover:text-blue-600 visited:text-purple-500">
-              https://finlaytech.ca/api/timestamp/1451001600000
-            </a>
-          </li>
-        </ul>
-
-        <h2 className="mt-8">Example Output:</h2>
-        <p>
-          <code>{`{"unix":1451001600000, "utc":"Fri, 25 Dec 2015 00:00:00 GMT"}`}</code>
-        </p>
+          </label>
+         <input 
+            id="inputfield" 
+            type="text" 
+            name="date"
+            placeholder="YYYY-MM-DD"
+            className="px-4 py-2 w-full border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
+          />
+          <input 
+            id="button" 
+            type="submit" 
+            value="Submit" 
+            className="mt-4 px-4 py-2 bg-blue-500 text-white text-sm font-medium rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-300"
+          />
+        </form>
+        <p className="text-gray-600 my-4 w-full text-center"><code>GET /api/timestamp/[date]</code></p>
+        {response && (
+          <div className="mt-4 p-4 bg-gray-100 rounded-lg shadow-inner">
+            <h2 className="text-lg font-semibold">Response:</h2>
+            <pre className="whitespace-pre-wrap">
+              {JSON.stringify(response, null, 2)}
+            </pre>
+          </div>
+        )}
       </div>
     </div>
   )
