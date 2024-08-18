@@ -6,7 +6,6 @@ import { motion } from 'framer-motion';
 import { textVariant } from '@/utils/motion';
 import { experiences } from '@/data';
 import SectionWrapper from './wrappers/SectionWrapper';
-import TimelineStyles from './wrappers/TimelineStyles';
 
 import {
   VerticalTimeline,
@@ -64,6 +63,9 @@ const Experience = () => {
       <motion.div
         variants={textVariant(0)}
         className="heading"
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true, amount: 1 }}
       >
         Work Experience
       </motion.div>

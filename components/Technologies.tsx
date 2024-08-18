@@ -9,10 +9,13 @@ import SectionWrapper from './wrappers/SectionWrapper'
 
 const Technologies = () => {
   return (
-    <div className="w-full h-full flex flex-col items-center justify-center mb-24">
+    <div className="w-full h-full flex flex-col items-center justify-center">
       <motion.h1
-        variants={textVariant(0.5)}
+        variants={textVariant(0)}
         className="heading"
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true, amount: 1 }}
       >
         Technologies
       </motion.h1>

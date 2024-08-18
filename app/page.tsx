@@ -1,16 +1,18 @@
 "use client"
 
-import Footer from "@/components/Footer";
+import About from "@/components/About";
 import Hero from "@/components/Hero";
 import Projects from "@/components/Projects";
 import Technologies from "@/components/Technologies";
 import Experience from "@/components/Experience";
+import Footer from "@/components/Footer";
 
 import { FloatingNav } from "@/components/ui/FloatingNav";
 import { navItems } from "@/data";
 import { Inter } from "next/font/google";
 import { LoadingProvider } from "./loading-provider";
 import { SparklesCore } from "@/components/ui/Sparkles";
+
 
 
 const inter = Inter({ subsets: ["latin"] });
@@ -30,9 +32,10 @@ const AppContent = () => {
             particleColor="#FFFFFF"
           />
         </div>
-        <div className="max-w-7xl w-full">
+        <div className="max-w-[1600px] w-full">
           <FloatingNav navItems={navItems} />
           <Hero />
+          <About />
           <Projects />
           <Technologies />
           <Experience />

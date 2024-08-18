@@ -12,20 +12,26 @@ import SectionWrapper from './wrappers/SectionWrapper';
 
 const Projects = () => {
   return (
-    <div className="py-20 flex flex-col items-center justify-center" id="projects">
+    <>
       <motion.h1
         variants={textVariant(0)}
         className="heading"
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true, amount: 1 }}
       >
         Recent Projects
       </motion.h1>
-      <div className="flex flex-wrap flex-row items-center justify-center px-4 py-16 gap-32 mt-10 max-w-[1600px] w-[80vw]">
+      <div className="flex flex-wrap flex-row items-center justify-center px-4 py-16 gap-32 mt-10">
         {projectCollections.map(({ id, collectionTitle, folder, des, projects, iconLists }, index) => (
           <motion.div
-            variants={fadeIn("right", "spring", 0.5, 0.75)}
+            variants={fadeIn("right", "spring", 0.3, 1)}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, amount: 0.05 }}
             key={id}
           >
-            <BackgroundGradient className="flex items-center justify-center flex-col max-w-[600px] w-[80vw] rounded-[22px] p-4 sm:p-10 bg-zinc-900 sm:min-h-[1200px]">
+            <BackgroundGradient className="flex items-center justify-center flex-col max-w-[600px] w-[80vw] rounded-[22px] p-4 sm:p-10 bg-zinc-900">
               <p className="text-base sm:text-xl mt-4 mb-2 text-neutral-200">
                 {collectionTitle}
               </p>
@@ -39,7 +45,7 @@ const Projects = () => {
                     value: value,
                     content: (
                       <Link href={`/${folder}/${value}`} className="cursor-pointer">
-                        <CardContainer className="inter-var w-full relative rounded-2xl sm:p-4 text-xl md:text-4xl font-bold text-white bg-gradient-to-br from-blue-500 to-green-500 sm:min-h-[600px]">
+                        <CardContainer className="inter-var w-full relative rounded-2xl sm:p-4 text-xl md:text-4xl font-bold text-white bg-gradient-to-br from-blue-500 to-green-500 sm:min-h-[600px]" containerClassName="pb-20">
                           <CardBody className="relative group/card w-auto sm:w-[30rem] h-auto rounded-xl p-6">
                             <div className="flex flex-col items-center justify-items">
                               <CardItem
@@ -80,9 +86,9 @@ const Projects = () => {
           </motion.div>
         ))}
       </div>
-    </div>
+    </>
     
   );
 }
 
-export default Projects
+export default SectionWrapper(Projects, "projects");

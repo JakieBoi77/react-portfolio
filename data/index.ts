@@ -1,9 +1,33 @@
 export const navItems = [
   { name: "Home", link: "/" },
+  { name: "About", link: "#about" },
   { name: "Projects", link: "#projects" },
   { name: "Technologies", link: "#technologies" },
   { name: "Experience", link: "#experience" },
   { name: "Contact", link: "#contact" },
+];
+
+export const aboutParagraph = `I'm a skilled software developer with experience in TypeScript and JavaScript, and expertise in frameworks like React, Node.js, and Three.js.
+  I'm a quick learner and collaborate closely with clients to create efficient, scalable, and user-friendly solutions that solve real-world problems.
+  Let's work together to bring your ideas to life!`;
+
+export const skills = [
+  {
+    title: "Full-Stack Development",
+    icon: "/ball1.png",
+  },
+  {
+    title: "Responsive Web Design",
+    icon: "/ball2.png",
+  },
+  {
+    title: "API Integration and Development",
+    icon: "/ball3.png",
+  },
+  {
+    title: "Database Mangement",
+    icon: "/ball4.png",
+  },
 ];
 
 export const projectCollections = [
