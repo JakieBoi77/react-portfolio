@@ -1,15 +1,14 @@
 export const navItems = [
   { name: "Home", link: "/" },
   { name: "About", link: "#about" },
-  { name: "Projects", link: "#projects" },
   { name: "Technologies", link: "#technologies" },
   { name: "Experience", link: "#experience" },
+  { name: "Projects", link: "#projects" },
   { name: "Contact", link: "#contact" },
 ];
 
-export const aboutParagraph = `I'm a skilled software developer with experience in TypeScript and JavaScript, and expertise in frameworks like React, Node.js, and Three.js.
-  I'm a quick learner and collaborate closely with clients to create efficient, scalable, and user-friendly solutions that solve real-world problems.
-  Let's work together to bring your ideas to life!`;
+export const aboutParagraph = `I'm a skilled software developer with experience in TypeScript and JavaScript, and expertise in frameworks like React, Node.js, and Next.js.
+  I'm a quick learner and collaborate closely with clients to create efficient, scalable, and user-friendly solutions that solve real-world problems.`;
 
 export const skills = [
   {
@@ -30,7 +29,18 @@ export const skills = [
   },
 ];
 
-export const projectCollections = [
+export const fullStackProjects = [
+  {
+    id: 1,
+    projectTitle: "Money Manager",
+    link: "https://banking.finlaytech.ca",
+    des: "",
+    picList: [],
+    iconList: [],
+  }
+]
+
+export const learningProjectCollections = [
   {
     id: 1,
     collectionTitle: "Front End Development Projects",
@@ -137,7 +147,7 @@ export const projectCollections = [
     id: 4,
     collectionTitle: "Legacy Web Design Projects",
     folder: "legacy-web-design",
-    des: "A collection of my initial web projects where I learned the basics of web design.",
+    des: "A collection of my initial web projects where I learned the basics of web design. Even through my initial projects are not very impressive, I keep them here to remeber how far I have come as a developer.",
     projects: [
       {
         title: "Legacy Portfolio",

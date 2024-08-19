@@ -36,9 +36,9 @@ const AppContent = () => {
           <FloatingNav navItems={navItems} />
           <Hero />
           <About />
-          <Projects />
           <Technologies />
           <Experience />
+          <Projects />
           <Footer />
         </div>
       </main>

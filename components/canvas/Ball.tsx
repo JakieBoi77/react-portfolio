@@ -50,7 +50,7 @@ const BallCanvas = ({ technologies }: any) => {
   const containerRef = useRef<any>();
 
   return (
-    <div ref={containerRef} className="relative w-full flex flex-wrap gap-4 items-center justify-center overflow-auto m-4">
+    <div ref={containerRef} className="relative max-w-[1200px] w-full flex flex-wrap gap-4 items-center justify-center overflow-auto m-4">
       {views.map((view: any, i: any) => {
         return (
           <motion.div

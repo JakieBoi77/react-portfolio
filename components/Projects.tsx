@@ -2,7 +2,7 @@
 
 import React from 'react'
 import { Tabs } from './ui/Tabs'
-import { projectCollections } from '@/data';
+import { learningProjectCollections } from '@/data';
 import { CardBody, CardContainer, CardItem } from './ui/FloatingCard';
 import Link from 'next/link';
 import { BackgroundGradient } from './ui/BackgroundGradient';
@@ -13,6 +13,16 @@ import SectionWrapper from './wrappers/SectionWrapper';
 const Projects = () => {
   return (
     <>
+      {/* Not ready yet */}
+      {/* <FullStackProjects /> */}
+      <MicroProjects />
+    </>
+  );
+}
+
+const FullStackProjects = () => {
+  return (
+    <section>
       <motion.h1
         variants={textVariant(0)}
         className="heading"
@@ -20,10 +30,26 @@ const Projects = () => {
         whileInView="show"
         viewport={{ once: true, amount: 1 }}
       >
-        Recent Projects
+        Full Stack Projects
+      </motion.h1>
+    </section>
+  );
+}
+
+const MicroProjects = () => {
+  return (
+    <section>
+      <motion.h1
+        variants={textVariant(0)}
+        className="heading"
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true, amount: 1 }}
+      >
+        Learning Projects
       </motion.h1>
       <div className="flex flex-wrap flex-row items-center justify-center px-4 py-16 gap-32 mt-10">
-        {projectCollections.map(({ id, collectionTitle, folder, des, projects, iconLists }, index) => (
+        {learningProjectCollections.map(({ id, collectionTitle, folder, des, projects, iconLists }, index) => (
           <motion.div
             variants={fadeIn("right", "spring", 0.3, 1)}
             initial="hidden"
@@ -86,9 +112,8 @@ const Projects = () => {
           </motion.div>
         ))}
       </div>
-    </>
-    
-  );
+    </section>
+  )
 }
 
 export default SectionWrapper(Projects, "projects");
