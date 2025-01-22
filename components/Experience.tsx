@@ -28,11 +28,10 @@ const ExperienceCard = ({ experience }: any) => {
         iconStyle={{ background: experience.iconBg }}
         icon={
           <div className="flex justify-center items-center w-full h-full">
-            
             <img 
               src={`/work-icons${experience.icon}`}
               alt={experience.company_name}
-              className="w-[60%] h-[60%] object-contain"
+              className="w-[80%] h-[80%] object-contain"
             />
           </div>
         }
@@ -69,8 +68,8 @@ const Experience = () => {
       >
         Work Experience
       </motion.div>
-      <div className="my-20 flex flex-col">
-        <VerticalTimeline>
+      <div className="pt-10 flex flex-col">
+        <VerticalTimeline layout="1-column-left">
           {experiences.map((experience, index) => (
             <ExperienceCard key={index} experience={experience} />
           ))}

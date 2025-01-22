@@ -1,5 +1,6 @@
 "use client"
 
+import Header from "@/components/Header";
 import About from "@/components/About";
 import Hero from "@/components/Hero";
 import Projects from "@/components/Projects";
@@ -14,7 +15,6 @@ import { LoadingProvider } from "./loading-provider";
 import { SparklesCore } from "@/components/ui/Sparkles";
 
 
-
 const inter = Inter({ subsets: ["latin"] });
 
 const AppContent = () => {
@@ -27,15 +27,16 @@ const AppContent = () => {
             background="transparent"
             minSize={0.6}
             maxSize={1.4}
-            particleDensity={10}
+            particleDensity={5}
             className="w-full h-full"
             particleColor="#FFFFFF"
           />
         </div>
-        <div className="max-w-[1600px] w-full">
-          <FloatingNav navItems={navItems} />
+        <div className="max-w-4xl w-full flex flex-col gap-12">
+          {/* <FloatingNav navItems={navItems} /> */}
+          <Header />
           <Hero />
-          <About />
+          {/* <About /> */}
           <Technologies />
           <Experience />
           <Projects />

@@ -3,7 +3,7 @@
 import React from 'react'
 import MagicButton from './ui/MagicButton'
 import { FaLocationArrow } from 'react-icons/fa'
-import { socialMedia } from '@/data'
+import { links } from '@/data'
 
 const Footer = () => {
   return (
@@ -24,7 +24,7 @@ const Footer = () => {
       <div className="flex mt-16 md:flex-row flex-col justify-between items-center gap-6">
         <p className="md:text-base text-sm md:font-normal font-light">Copyright © {new Date().getFullYear()} Jake Finlay</p>
         <div className="flex items-center md:gap-3 gap-6">
-          {socialMedia.map((profile) => (
+          {links.map((profile) => (
             <a key={profile.id} href={profile.link} target="_blank" rel="noreferrer" className="w-10 h-10 cursor-pointer flex justify-center items-center backdrop-filter backdrop-blur-lg saturate-180 bg-opacity-75 bg-black-200 rounded-lg border-black-300">
               <img
                 src={`/social-icons${profile.img}`}
