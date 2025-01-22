@@ -18,9 +18,9 @@ const Header = () => {
 
       </div>
       <nav className="flex flex-row gap-3 p-2">
-        {navItems.map((navItem) => {
+        {navItems.map((navItem, index) => {
           return (
-            <Link href={navItem.link} className="font-bold font-mono text-xs sm:text-xl">
+            <Link key={index} href={navItem.link} className="font-bold font-mono text-xs sm:text-xl">
               {navItem.name.toUpperCase()}
             </Link>
           );

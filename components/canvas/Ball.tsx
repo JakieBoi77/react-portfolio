@@ -46,7 +46,7 @@ const Views = ({ views, technologies }: any) => {
 };
 
 const BallCanvas = ({ technologies }: any) => {
-  const views = useMemo(() => technologies.map(() => React.createRef()), []);
+  const views = useMemo(() => technologies.map(() => React.createRef()), [technologies]);
   const containerRef = useRef<any>();
 
   return (
