@@ -1,5 +1,6 @@
 "use client"
 
+import Intro from "@/components/Intro";
 import Header from "@/components/Header";
 import About from "@/components/About";
 import Hero from "@/components/Hero";
@@ -13,7 +14,6 @@ import { navItems } from "@/data";
 import { Inter } from "next/font/google";
 import { LoadingProvider } from "./loading-provider";
 import { SparklesCore } from "@/components/ui/Sparkles";
-
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -34,6 +34,7 @@ const AppContent = () => {
         </div>
         <div className="max-w-4xl w-full flex flex-col gap-12">
           {/* <FloatingNav navItems={navItems} /> */}
+          <Intro />
           <Header />
           <Hero />
           {/* <About /> */}

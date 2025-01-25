@@ -57,7 +57,7 @@ const BallCanvas = ({ technologies }: any) => {
             variants={zoomIn(0.1 * i, 0.75)}
             key={technologies[i].name}
             ref={view}
-            className="basis-24 h-24 sm:basis-52 sm:h-52 overflow-hidden"
+            className="basis-24 h-24 sm:basis-48 sm:h-48 overflow-hidden"
           />
         );
       })}

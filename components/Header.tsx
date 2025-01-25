@@ -15,7 +15,6 @@ const Header = () => {
             JF
           </HyperText>
         </Link>
-
       </div>
       <nav className="flex flex-row gap-3 p-2">
         {navItems.map((navItem, index) => {

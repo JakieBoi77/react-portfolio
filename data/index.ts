@@ -6,7 +6,7 @@ export const navItems = [
   { name: "Contact", link: "#contact" },
 ];
 
-export const aboutParagraph = `I'm a software engineer who is just starting out in the industry. I have a passion for learning and experience in full stack development.`;
+export const aboutParagraph = `I'm a software engineer who is just starting out in the industry. I have a passion for learning and experience in full stack development. I'm currently looking for co-op opportunities for this upcoming summer.`;
 
 export const skills = [
   {
@@ -30,12 +30,22 @@ export const skills = [
 export const fullStackProjects = [
   {
     id: 1,
-    projectTitle: "Money Manager",
-    link: "https://banking.finlaytech.ca",
-    des: "",
+    projectTitle: "Link Ripple",
+    link: "https://link-ripple-nextjs.vercel.app",
+    github: "https://github.com/JakieBoi77/link-ripple-nextjs",
+    des: "A modern banking platform with support for accounts, transcations, and real-time updates.",
     picList: [],
-    iconList: [],
-  }
+    iconList: ["/next.svg", "/re.svg", "/ts.svg", "/tail.svg", "/mongodb.svg"],
+  },
+  {
+    id: 2,
+    projectTitle: "Bankler",
+    link: "https://banking.finlaytech.ca",
+    github: "https://github.com/JakieBoi77/banking-app",
+    des: "A modern banking platform with support for accounts, transcations, and real-time updates.",
+    picList: [],
+    iconList: ["/next.svg", "/re.svg", "/ts.svg", "/tail.svg"]
+  },
 ]
 
 export const learningProjectCollections = [
@@ -92,25 +102,25 @@ export const learningProjectCollections = [
       },
       {
         title: "File Metadata",
-        des: "This one is cool, it tells you some stuff about any file you upload to it.",
+        des: "This one is cool, it tells you some stuff about any file you upload to it using an API.",
         value: "file-metadata-microservice",
         pic: "/file-metadata.png",
       },
       { 
         title: "Timestamp",
-        des: "Enter a date and it will tell you how many miliseconds have passed since January 1st, 1970.",
+        des: "Enter a date and it will tell you how many miliseconds have passed since January 1st, 1970. Using an API of course.",
         value: "timestamp-microservice",
         pic: "/timestamp.png",
       },
       {
         title: "Request Header Parser",
-        des: "Tells you some stuff about the device your using.",
+        des: "Tells you some stuff about the device your using. But with an API.",
         value: "request-header-parser-microservice",
         pic: "/request-header-parser.png",
       },
       {
         title: "Exercise Tracker",
-        des: "Tracks exercises. Trust me its useful.",
+        des: "Tracks exercises (with an API). Trust me its useful.",
         value: "exercise-tracker-microservice",
         pic: "/exercise-tracker.png",
       },
