@@ -15,12 +15,12 @@ const Hero = () => {
         <Spotlight className="top-10 left-full h-[80vh] w-[50vw]" fill="purple" />
         <Spotlight className="top-28 left-80 h-[80vh] w-[50vw]" fill="blue" />
       </div>
-      <div className="flex justify-center relative mt-20 z-10 bg-white/10 backdrop-filter p-6 rounded-xl shadow-lg ring-1 ring-black/5">
+      <div className="flex justify-center relative mt-20 z-10 bg-black-200/50 backdrop-filter p-6 rounded-xl shadow-lg ring-1 ring-black/5">
         <div className="w-full flex flex-col items-center justify-center">
           <div className="w-full flex flex-col justify-between">
             <div className="flex gap-5">
               <motion.div
-                variants={fadeIn("right", "spring", 2.5, 1)}
+                variants={fadeIn("right", "spring", 0.5, 1)}
                 initial="hidden"
                 whileInView="show"
                 viewport={{ once: true, amount: 0 }}
@@ -35,7 +35,7 @@ const Hero = () => {
               </motion.div>
               <div className="flex items-left justify-center flex-col">
                 <motion.h1
-                  variants={textVariant(2.5)}
+                  variants={textVariant(0.5)}
                   className="font-semibold text-left text-xl sm:text-2xl"
                   initial="hidden"
                   whileInView="show"
@@ -77,7 +77,7 @@ const Hero = () => {
               {links.map((profile, index) => (
                 <motion.div
                   key={profile.id}
-                  variants={fadeIn("left", "spring", 2.5 + 0.3 * index, 1)}
+                  variants={fadeIn("left", "spring", 0.5 + 0.3 * index, 1)}
                   initial="hidden"
                   whileInView="show"
                   viewport={{ once: true, amount: 0 }}

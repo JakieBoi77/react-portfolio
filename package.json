@@ -14,7 +14,7 @@
     "@react-three/flex": "^1.0.1",
     "@sentry/cli": "^2.41.1",
     "@sentry/nextjs": "^8.51.0",
-    "@tabler/icons-react": "^3.26.0",
+    "@tabler/icons-react": "^3.29.0",
     "@tsparticles/engine": "^3.4.0",
     "@tsparticles/react": "^3.0.0",
     "@tsparticles/slim": "^3.4.0",

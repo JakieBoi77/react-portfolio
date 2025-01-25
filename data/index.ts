@@ -33,8 +33,8 @@ export const fullStackProjects = [
     projectTitle: "Link Ripple",
     link: "https://link-ripple-nextjs.vercel.app",
     github: "https://github.com/JakieBoi77/link-ripple-nextjs",
-    des: "A modern banking platform with support for accounts, transcations, and real-time updates.",
-    picList: [],
+    des: "An application for managing personalized landing pages with links to social profiles and online resources. Check out my link ripple at https://link-ripple-nextjs.vercel.app/JakieBoi77.",
+    picList: ["/link-ripple-landing.png", "/link-ripple-dashboard.png", "/link-ripple-links.png"],
     iconList: ["/next.svg", "/re.svg", "/ts.svg", "/tail.svg", "/mongodb.svg"],
   },
   {
@@ -43,7 +43,7 @@ export const fullStackProjects = [
     link: "https://banking.finlaytech.ca",
     github: "https://github.com/JakieBoi77/banking-app",
     des: "A modern banking platform with support for accounts, transcations, and real-time updates.",
-    picList: [],
+    picList: ["/bankler-dashboard.png", "/bankler-my-banks.png", "/bankler-payment-transfer.png", "/bankler-transaction-history.png", "/bankler-sign-in.png"],
     iconList: ["/next.svg", "/re.svg", "/ts.svg", "/tail.svg"]
   },
 ]
