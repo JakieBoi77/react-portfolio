@@ -14,4 +14,4 @@ jobs:
 
             - name: Check server connectivity
               run: |
-                  ssh -o StrictHostKeyChecking=no ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_IP }} "echo 'Hello from $(hostname)' && uptime"
+                  ssh -o StrictHostKeyChecking=no -p ${{ secrets.SSH_PORT }} ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "echo 'Hello from $(hostname)' && uptime"
