@@ -1,0 +1,17 @@
+name: Test SSH Connectivity
+
+on:
+    workflow_dispatch: # runs manually from GitHub Actions tab
+
+jobs:
+    ping:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Setup SSH
+              uses: webfactory/ssh-agent@v0.7.0
+              with:
+                  ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+            - name: Check server connectivity
+              run: |
+                  ssh -o StrictHostKeyChecking=no ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_IP }} "echo 'Hello from $(hostname)' && uptime"
