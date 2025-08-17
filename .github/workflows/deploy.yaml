@@ -8,18 +8,21 @@ on:
 jobs:
     deploy:
         runs-on: self-hosted
-        defaults:
-            run:
-                working-directory: ${{ secrets.DEPLOY_DIR }}
         steps:
             - name: Pull latest code
-              run: git pull
+              run: |
+                  cd ${{ secrets.DEPLOY_DIR }}
+                  git pull
 
             - name: Install dependencies
-              run: npm install
+              run: |
+                  cd ${{ secrets.DEPLOY_DIR }}
+                  npm install
 
             - name: Build Next.js app
-              run: npm run build
+              run: |
+                  cd ${{ secrets.DEPLOY_DIR }}
+                  npm run build
 
             - name: Restart PM2
               run: pm2 restart all
