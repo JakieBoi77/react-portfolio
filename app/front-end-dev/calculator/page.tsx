@@ -1,3 +1,3 @@
 "use client";
 
-export { default } from "./Calculator";
+export { default } from "./_components/Calculator";

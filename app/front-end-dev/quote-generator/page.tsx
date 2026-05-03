@@ -1,3 +1,3 @@
 "use client";
 
-export { default } from "./QuoteGenerator";
+export { default } from "./_components/QuoteGenerator";

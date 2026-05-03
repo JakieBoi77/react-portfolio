@@ -2,7 +2,7 @@ import connect from "@/lib/db";
 import ShortURL from "@/lib/models/shorturl";
 
 export const GET = async (
-    request: Request,
+    _request: Request,
     { params }: { params: { url: string } },
 ) => {
     try {

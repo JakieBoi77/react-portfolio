@@ -1,3 +1,3 @@
 "use client";
 
-export { default } from "./LegacyPortfolio";
+export { default } from "./_components/LegacyPortfolio";

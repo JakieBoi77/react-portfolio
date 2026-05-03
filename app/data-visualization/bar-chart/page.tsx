@@ -1,3 +1,3 @@
 "use client";
 
-export { default } from "./BarChart";
+export { default } from "./_components/BarChart";

@@ -63,7 +63,10 @@ export const POST = async (request: Request) => {
                     short_url: record.shortId,
                 });
             } else {
-                return new Error("Record not found after saving");
+                return Response.json(
+                    { error: "Record not found after saving" },
+                    { status: 500 },
+                );
             }
         } else {
             throw new Error("Invalid URL Protocol");

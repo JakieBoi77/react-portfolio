@@ -1,3 +1,3 @@
 "use client";
 
-export { default } from "./TechnicalDocumentation";
+export { default } from "./_components/TechnicalDocumentation";

@@ -1,3 +1,3 @@
 "use client";
 
-export { default } from "./SurveyForm";
+export { default } from "./_components/SurveyForm";

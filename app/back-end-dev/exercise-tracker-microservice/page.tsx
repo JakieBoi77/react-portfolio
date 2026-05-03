@@ -1,3 +1,3 @@
 "use client";
 
-export { default } from "./ExerciseTrackerMicroservice";
+export { default } from "./_components/ExerciseTrackerMicroservice";

@@ -1,3 +1,3 @@
 "use client";
 
-export { default } from "./MemeSoundboard";
+export { default } from "./_components/MemeSoundboard";

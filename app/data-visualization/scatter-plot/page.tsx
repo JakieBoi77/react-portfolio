@@ -1,3 +1,3 @@
 "use client";
 
-export { default } from "./ScatterPlot";
+export { default } from "./_components/ScatterPlot";

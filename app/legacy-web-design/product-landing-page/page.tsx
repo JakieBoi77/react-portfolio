@@ -1,3 +1,3 @@
 "use client";
 
-export { default } from "./ProductLandingPage";
+export { default } from "./_components/ProductLandingPage";

@@ -1,3 +1,3 @@
 "use client";
 
-export { default } from "./FileMetadataMicroservice";
+export { default } from "./_components/FileMetadataMicroservice";

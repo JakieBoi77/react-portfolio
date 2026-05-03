@@ -1,3 +1,3 @@
 "use client";
 
-export { default } from "./TributePage";
+export { default } from "./_components/TributePage";

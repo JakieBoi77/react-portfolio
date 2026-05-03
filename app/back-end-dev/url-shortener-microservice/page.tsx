@@ -1,3 +1,3 @@
 "use client";
 
-export { default } from "./UrlShortenerMicroservice";
+export { default } from "./_components/UrlShortenerMicroservice";

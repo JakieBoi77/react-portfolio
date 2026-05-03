@@ -1,3 +1,3 @@
 "use client";
 
-export { default } from "./MarkdownPreviewer";
+export { default } from "./_components/MarkdownPreviewer";

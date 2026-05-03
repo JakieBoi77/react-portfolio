@@ -1,3 +1,3 @@
 "use client";
 
-export { default } from "./ChoroplethMap";
+export { default } from "./_components/ChoroplethMap";

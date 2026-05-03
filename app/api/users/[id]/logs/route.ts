@@ -46,12 +46,12 @@ export const POST = async (
                 const logLimit = parseInt(limit);
                 exercises = await Exercise.find({
                     userId,
-                    date: { $gte: from, $lte: to },
+                    date: { $gte: fromDate, $lte: toDate },
                 }).limit(logLimit);
             } else {
                 exercises = await Exercise.find({
                     userId,
-                    date: { $gte: from, $lte: to },
+                    date: { $gte: fromDate, $lte: toDate },
                 });
             }
         } else if (limit) {

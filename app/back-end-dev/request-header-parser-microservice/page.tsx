@@ -1,3 +1,3 @@
 "use client";
 
-export { default } from "./RequestHeaderParserMicroservice";
+export { default } from "./_components/RequestHeaderParserMicroservice";

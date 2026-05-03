@@ -1,3 +1,3 @@
 "use client";
 
-export { default } from "./TreemapDiagram";
+export { default } from "./_components/TreemapDiagram";

@@ -1,5 +1,5 @@
 export const GET = async (
-    req: Request,
+    _req: Request,
     { params }: { params: { date: string } },
 ) => {
     const date = params.date;

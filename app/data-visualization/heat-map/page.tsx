@@ -1,3 +1,3 @@
 "use client";
 
-export { default } from "./HeatMap";
+export { default } from "./_components/HeatMap";

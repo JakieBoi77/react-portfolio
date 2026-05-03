@@ -1,3 +1,3 @@
 "use client";
 
-export { default } from "./PomodoroClock";
+export { default } from "./_components/PomodoroClock";

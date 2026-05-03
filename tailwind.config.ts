@@ -7,7 +7,6 @@ import {
 
 const svgToDataUri = require("mini-svg-data-uri");
 
-const colors = require("tailwindcss/colors");
 const {
     default: flattenColorPalette,
 } = require("tailwindcss/lib/util/flattenColorPalette");
@@ -19,7 +18,6 @@ const config = {
         "./components/**/*.{ts,tsx}",
         "./app/**/*.{ts,tsx}",
         "./src/**/*.{ts,tsx}",
-        "./data/**/*.{ts,tsx}",
     ],
     prefix: "",
     theme: {
