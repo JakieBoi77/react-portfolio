@@ -1,3 +1,7 @@
+import { assets } from "./assets";
+
+const { devIcons, fullstackPics, projectPics, socialIcons, workIcons } = assets;
+
 export const navItems = [
   { name: "Home", link: "/" },
   { name: "Tech", link: "#technologies" },
@@ -22,11 +26,17 @@ export const fullStackProjects = [
     github: "https://github.com/JakieBoi77/link-ripple-nextjs",
     des: "An application for managing personalized landing pages with links to social profiles and online resources. Check out my link ripple at https://link-ripple-nextjs.vercel.app/JakieBoi77.",
     picList: [
-      "/link-ripple-landing.png",
-      "/link-ripple-dashboard.png",
-      "/link-ripple-links.png",
+      fullstackPics.linkRippleLanding,
+      fullstackPics.linkRippleDashboard,
+      fullstackPics.linkRippleLinks,
     ],
-    iconList: ["/next.svg", "/re.svg", "/ts.svg", "/tail.svg", "/mongodb.svg"],
+    iconList: [
+      devIcons.next,
+      devIcons.react,
+      devIcons.typescript,
+      devIcons.tailwind,
+      devIcons.mongodb,
+    ],
   },
   {
     id: 2,
@@ -35,13 +45,18 @@ export const fullStackProjects = [
     github: "https://github.com/JakieBoi77/banking-app",
     des: "A modern banking platform with support for accounts, transactions, and real-time updates.",
     picList: [
-      "/bankler-dashboard.png",
-      "/bankler-my-banks.png",
-      "/bankler-payment-transfer.png",
-      "/bankler-transaction-history.png",
-      "/bankler-sign-in.png",
+      fullstackPics.banklerDashboard,
+      fullstackPics.banklerMyBanks,
+      fullstackPics.banklerPaymentTransfer,
+      fullstackPics.banklerTransactionHistory,
+      fullstackPics.banklerSignIn,
     ],
-    iconList: ["/next.svg", "/re.svg", "/ts.svg", "/tail.svg"],
+    iconList: [
+      devIcons.next,
+      devIcons.react,
+      devIcons.typescript,
+      devIcons.tailwind,
+    ],
   },
 ];
 
@@ -56,34 +71,39 @@ export const learningProjectCollections = [
         title: "Quote Generator",
         des: "Generates a random inspirational quote. Try out the Fortnite mode!",
         value: "quote-generator",
-        pic: "/quote-generator.png",
+        pic: projectPics.quoteGenerator,
       },
       {
         title: "Markdown Previewer",
         des: "A tool that converts Markdown into formatted text in real time.",
         value: "markdown-previewer",
-        pic: "/markdown-previewer.png",
+        pic: projectPics.markdownPreviewer,
       },
       {
         title: "Meme Soundboard",
         des: "An app for listening to your favorite memes at specific volumes. Yes, its as useful as it sounds.",
         value: "meme-soundboard",
-        pic: "/meme-soundboard.png",
+        pic: projectPics.memeSoundboard,
       },
       {
         title: "Calculator",
         des: "The project of all time. Every developer must make one at some point.",
         value: "calculator",
-        pic: "/calculator.png",
+        pic: projectPics.calculator,
       },
       {
         title: "Pomodoro Clock",
         des: "A Pomodoro Clock for studying. Plays the Vine boom sound when its time lock in.",
         value: "pomodoro-clock",
-        pic: "/pomodoro-clock.png",
+        pic: projectPics.pomodoroClock,
       },
     ],
-    iconLists: ["/re.svg", "/js.svg", "/html.svg", "/css.svg"],
+    iconLists: [
+      devIcons.react,
+      devIcons.javascript,
+      devIcons.html,
+      devIcons.css,
+    ],
   },
   {
     id: 2,
@@ -95,39 +115,39 @@ export const learningProjectCollections = [
         title: "URL Shortener",
         des: "Its a URL shortner. My API route is long so it might make your URL longer (my bad).",
         value: "url-shortener-microservice",
-        pic: "/url-shortener.png",
+        pic: projectPics.urlShortener,
       },
       {
         title: "File Metadata",
         des: "This one is cool, it tells you some stuff about any file you upload to it using an API.",
         value: "file-metadata-microservice",
-        pic: "/file-metadata.png",
+        pic: projectPics.fileMetadata,
       },
       {
         title: "Timestamp",
         des: "Enter a date and it will tell you how many miliseconds have passed since January 1st, 1970. Using an API of course.",
         value: "timestamp-microservice",
-        pic: "/timestamp.png",
+        pic: projectPics.timestamp,
       },
       {
         title: "Request Header Parser",
         des: "Tells you some stuff about the device your using. But with an API.",
         value: "request-header-parser-microservice",
-        pic: "/request-header-parser.png",
+        pic: projectPics.requestHeaderParser,
       },
       {
         title: "Exercise Tracker",
         des: "Tracks exercises (with an API). Trust me its useful.",
         value: "exercise-tracker-microservice",
-        pic: "/exercise-tracker.png",
+        pic: projectPics.exerciseTracker,
       },
     ],
     iconLists: [
-      "/npm.svg",
-      "/express.svg",
-      "/node.svg",
-      "/mongodb.svg",
-      "/mongoose.svg",
+      devIcons.npm,
+      devIcons.express,
+      devIcons.node,
+      devIcons.mongodb,
+      devIcons.mongoose,
     ],
   },
   {
@@ -140,34 +160,34 @@ export const learningProjectCollections = [
         title: "Choropleth Map",
         des: "A chorpleth map created from the percentages of adults who have a bachelor's degree or higher in the United States.",
         value: "choropleth-map",
-        pic: "/choropleth-map.png",
+        pic: projectPics.choroplethMap,
       },
       {
         title: "Treemap Diagram",
         des: "A treemap diagram which shows the 100 most sold video games grouped by console. Use the dropdown menu at the top to see other datasets.",
         value: "treemap-diagram",
-        pic: "/treemap-diagram.png",
+        pic: projectPics.treemapDiagram,
       },
       {
         title: "Heat Map",
         des: "A heat map of the monthly global land-surface temperature from 1753 to 2015. This is proof that global warming exists, assuming that the data I used is legitimate.",
         value: "heat-map",
-        pic: "/heat-map.png",
+        pic: projectPics.heatMap,
       },
       {
         title: "Bar Chart",
         des: "A bar chart which shows the United States GDP froom 1947 to 2015. Shows the effects of the Great Recession of 2009.",
         value: "bar-chart",
-        pic: "/bar-chart.png",
+        pic: projectPics.barChart,
       },
       {
         title: "Scatterplot",
         des: "A scatter plot of the 35 fastest times to race up Alpe d'Heuz. There seems to be a correlation between doping alegations and faster times.",
         value: "scatter-plot",
-        pic: "/scatter-plot.png",
+        pic: projectPics.scatterPlot,
       },
     ],
-    iconLists: ["/js.svg", "/re.svg", "/d3.svg"],
+    iconLists: [devIcons.javascript, devIcons.react, devIcons.d3],
   },
   {
     id: 4,
@@ -179,109 +199,109 @@ export const learningProjectCollections = [
         title: "Legacy Portfolio",
         des: "The OG portfolio. Press F to pay respects.",
         value: "legacy-portfolio",
-        pic: "/legacy-portfolio.png",
+        pic: projectPics.legacyPortfolio,
       },
       {
         title: "Survey Form",
         des: "My first web development project. Dont judge, you gotta start somewhere you know. Its a recreation of the freeCodeCamp survey form.",
         value: "survey-form",
-        pic: "/survey-form.png",
+        pic: projectPics.surveyForm,
       },
       {
         title: "Tribute Page",
         des: "My second web deveopment project. Arguably worse than the first one. Showcases the legendary Obama Prism.",
         value: "tribute-page",
-        pic: "/tribute-page.png",
+        pic: projectPics.tributePage,
       },
       {
         title: "Technical Documentation",
         des: "My third web development project. Now I was getting somewhere. Understood how to make things responsive on this one. Shows some technical documentation for HTML.",
         value: "technical-documentation",
-        pic: "/technical-documentation.png",
+        pic: projectPics.technicalDocumentation,
       },
       {
         title: "Product Landing Page",
         des: "My fourth web development project. Not visually appealing but at least its responsive. This is where I sell Obamium. Don't forget to sign up for the newsletter!",
         value: "product-landing-page",
-        pic: "/product-landing-page.png",
+        pic: projectPics.productLandingPage,
       },
     ],
-    iconLists: ["/html.svg", "/css.svg"],
+    iconLists: [devIcons.html, devIcons.css],
   },
 ];
 
 export const technologies = [
   {
     name: "HTML 5",
-    icon: "/html.svg",
+    icon: devIcons.html,
   },
   {
     name: "CSS 3",
-    icon: "/css.svg",
+    icon: devIcons.css,
   },
   {
     name: "JavaScript",
-    icon: "/js.svg",
+    icon: devIcons.javascript,
   },
   {
     name: "TypeScript",
-    icon: "/ts.svg",
+    icon: devIcons.typescript,
   },
   {
     name: "React JS",
-    icon: "/re.svg",
+    icon: devIcons.react,
   },
   {
     name: "Redux Toolkit",
-    icon: "/redux.svg",
+    icon: devIcons.redux,
   },
   {
     name: "Tailwind CSS",
-    icon: "/tail.svg",
+    icon: devIcons.tailwind,
   },
   {
     name: "Node JS",
-    icon: "/node.svg",
+    icon: devIcons.node,
   },
   {
     name: "MongoDB",
-    icon: "/mongodb.svg",
+    icon: devIcons.mongodb,
   },
   {
     name: "Three JS",
-    icon: "/three.svg",
+    icon: devIcons.three,
   },
   {
     name: "Git",
-    icon: "/git.svg",
+    icon: devIcons.git,
   },
   {
     name: "Java",
-    icon: "/java.svg",
+    icon: devIcons.java,
   },
   {
     name: "Bash",
-    icon: "/bash.svg",
+    icon: devIcons.bash,
   },
   {
     name: "Express",
-    icon: "/express.svg",
+    icon: devIcons.express,
   },
   {
     name: "Mongoose",
-    icon: "/mongoose.svg",
+    icon: devIcons.mongoose,
   },
   {
     name: "PostgreSQL",
-    icon: "/postgresql.svg",
+    icon: devIcons.postgresql,
   },
   {
     name: "Linux",
-    icon: "/linux.svg",
+    icon: devIcons.linux,
   },
   {
     name: "NPM",
-    icon: "/npm.svg",
+    icon: devIcons.npm,
   },
 ];
 
@@ -289,7 +309,7 @@ export const experiences = [
   {
     title: "Software Design Engineer Intern",
     companyName: "Evertz Microsystems",
-    icon: "/evertz.svg",
+    icon: workIcons.evertz,
     iconBg: "#ffffff",
     date: "May 2025 - Present",
     points: [
@@ -302,7 +322,7 @@ export const experiences = [
   {
     title: "Systems Engineer Intern",
     companyName: "Superior Boiler Works and Welding Limited",
-    icon: "/sbww.png",
+    icon: workIcons.sbww,
     iconBg: "#ffffff",
     date: "May 2023 - August 2023",
     points: [
@@ -315,7 +335,7 @@ export const experiences = [
   {
     title: "Warehouse Assistant",
     companyName: "Stoney Creek Furniture",
-    icon: "/scf.png",
+    icon: workIcons.scf,
     iconBg: "#ffffff",
     date: "July 2020 - September 2022",
     points: [
@@ -331,22 +351,22 @@ export const experiences = [
 export const links = [
   {
     id: 1,
-    img: "/git.svg",
+    img: socialIcons.git,
     link: "https://github.com/JakieBoi77",
   },
   {
     id: 2,
-    img: "/mail.svg",
+    img: socialIcons.mail,
     link: "mailto:jakef7@icloud.com",
   },
   {
     id: 3,
-    img: "/link.svg",
+    img: socialIcons.link,
     link: "https://www.linkedin.com/in/jake-finlay-54145a253",
   },
   {
     id: 4,
-    img: "/document.svg",
-    link: "/resume/Jake Finlay Resume.pdf",
+    img: socialIcons.document,
+    link: assets.resume,
   },
 ];

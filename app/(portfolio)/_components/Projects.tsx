@@ -5,6 +5,7 @@ import {
     fullStackProjects,
     learningProjectCollections,
 } from "../_data/portfolio";
+import { assets } from "../_data/assets";
 import Link from "next/link";
 import { BackgroundGradient } from "@components";
 import { motion } from "framer-motion";
@@ -72,7 +73,7 @@ const FullStackProjects = () => {
                                     >
                                         <div className="flex flex-row gap-2">
                                             <img
-                                                src="/misc/arrow.svg"
+                                                src={assets.misc.arrow}
                                                 className="text-black"
                                                 alt="arrow"
                                             />
@@ -85,7 +86,7 @@ const FullStackProjects = () => {
                                     >
                                         <div className="flex flex-row gap-2">
                                             <img
-                                                src="/social-icons/git2.svg"
+                                                src={assets.socialIcons.githubButton}
                                                 className="text-black"
                                                 alt="git"
                                             />
@@ -101,7 +102,7 @@ const FullStackProjects = () => {
                                                 className="flex items-center justify-center border border-white/[0.2] bg-zinc-900 rounded-full w-10 h-10 sm:w-12 sm:h-12"
                                             >
                                                 <img
-                                                    src={`/dev-icons${icon}`}
+                                                    src={icon}
                                                     alt={icon}
                                                     className="p-2"
                                                 />
@@ -171,7 +172,7 @@ const MicroProjects = () => {
                                                 className="flex items-center justify-center border border-white/[0.2] bg-zinc-900 rounded-full w-10 h-10 sm:w-12 sm:h-12"
                                             >
                                                 <img
-                                                    src={`/dev-icons${icon}`}
+                                                    src={icon}
                                                     alt={icon}
                                                     className="p-2"
                                                 />

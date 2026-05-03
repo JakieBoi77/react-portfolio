@@ -3,6 +3,7 @@
 import React from "react";
 import { Spotlight } from "@components";
 import { aboutParagraph, availableToWork, links } from "../_data/portfolio";
+import { assets } from "../_data/assets";
 import { motion } from "framer-motion";
 import { fadeIn, textVariant } from "@/utils/motion";
 
@@ -39,7 +40,7 @@ const Hero = () => {
                                             <img
                                                 className="size-full rounded-full bg-muted-foreground/30 object-cover ring-2 ring-muted-foreground/50 ring-offset-2 ring-offset-background"
                                                 alt="Profile Picture"
-                                                src="/pfp.jpg"
+                                                src={assets.profile}
                                             />
                                         </div>
                                     </div>
@@ -61,7 +62,7 @@ const Hero = () => {
                                 <div className="flex flex-row gap-4 pt-1">
                                     <div className="flex flex-row gap-2">
                                         <img
-                                            src="/misc/location.svg"
+                                            src={assets.misc.location}
                                             alt="Location Symbol"
                                             width={10}
                                             height={10}
@@ -139,7 +140,7 @@ const Hero = () => {
                                         className="w-10 h-10 sm:w-11 sm:h-11 cursor-pointer flex justify-center items-center backdrop-filter backdrop-blur-lg saturate-180 bg-opacity-75 bg-black-200 rounded-lg border-black-300 transition-transform transform hover:scale-110"
                                     >
                                         <img
-                                            src={`/social-icons${profile.img}`}
+                                            src={profile.img}
                                             alt={`${profile.id}`}
                                             className="w-[55%] h-[55%]"
                                         />

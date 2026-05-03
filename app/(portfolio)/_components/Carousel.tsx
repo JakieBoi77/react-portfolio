@@ -72,7 +72,7 @@ const Slide = ({ src, index, current, handleSlideClick }: SlideProps) => {
                             opacity: current === index ? 1 : 0.5,
                         }}
                         alt={src}
-                        src={`/fullstack-pics${src}`}
+                        src={src}
                         onLoad={imageLoaded}
                         loading="eager"
                         decoding="sync"

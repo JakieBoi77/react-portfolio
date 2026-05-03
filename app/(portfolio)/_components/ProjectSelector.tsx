@@ -99,7 +99,7 @@ export const ProjectSelector = ({
                                             </p>
                                             <img
                                                 className="rounded-2xl"
-                                                src={`/project-pics${pic}`}
+                                                src={pic}
                                                 alt={`${title} Project Picture`}
                                             />
                                         </Link>

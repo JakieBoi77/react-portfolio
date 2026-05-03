@@ -42,9 +42,7 @@ const Views = ({ views, technologies }: any) => {
             {views.map((view: any, i: any) => {
                 return (
                     <View key={i} track={view}>
-                        <Ball
-                            decalTexture={`/dev-icons${technologies[i].icon}`}
-                        />
+                        <Ball decalTexture={technologies[i].icon} />
                         <PerspectiveCamera makeDefault position={[0, 0, 3]} />
                         <OrbitControls makeDefault enableZoom={false} />
                     </View>
