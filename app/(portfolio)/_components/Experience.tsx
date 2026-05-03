@@ -5,6 +5,13 @@ import { motion } from "framer-motion";
 import { textVariant } from "@/utils/motion";
 import { experiences } from "../_data/portfolio";
 import SectionWrapper from "./SectionWrapper";
+import {
+    TypographyH2,
+    TypographyH3,
+    TypographyList,
+    TypographyListItem,
+    TypographyMuted,
+} from "@components";
 
 import {
     VerticalTimeline,
@@ -37,23 +44,23 @@ const ExperienceCard = ({ experience }: any) => {
                 visible={inView}
             >
                 <div>
-                    <h3 className="text-white text-[24px] font-bold">
+                    <TypographyH3 className="text-2xl font-bold text-white">
                         {experience.title}
-                    </h3>
-                    <p className="text-secondary text-[16px] font-semibold m-0">
+                    </TypographyH3>
+                    <TypographyMuted className="m-0 text-base font-semibold text-white-200">
                         {experience.companyName}
-                    </p>
+                    </TypographyMuted>
                 </div>
-                <ul className="mt-5 list-disc ml-5 space-y-2">
+                <TypographyList className="mt-5 mb-0 ml-5">
                     {experience.points.map((point: any, index: any) => (
-                        <li
+                        <TypographyListItem
                             key={`experience-point-${index}`}
-                            className="text-white-100 text-[14px] pl-1 tracking-wider"
+                            className="text-sm text-white-100"
                         >
                             {point}
-                        </li>
+                        </TypographyListItem>
                     ))}
-                </ul>
+                </TypographyList>
             </VerticalTimelineElement>
         </div>
     );
@@ -64,12 +71,12 @@ const Experience = () => {
         <>
             <motion.div
                 variants={textVariant(0)}
-                className="heading"
+                className="text-center"
                 initial="hidden"
                 whileInView="show"
                 viewport={{ once: true, amount: 1 }}
             >
-                Work Experience
+                <TypographyH2>Work Experience</TypographyH2>
             </motion.div>
             <div className="pt-10 flex flex-col">
                 <VerticalTimeline layout="1-column-left">

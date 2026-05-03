@@ -1,5 +1,5 @@
 import React from "react";
-import { HyperText } from "@components";
+import { HyperText, TypographySmall } from "@components";
 import Link from "next/link";
 import { navItems } from "../_data/portfolio";
 
@@ -10,14 +10,14 @@ const Header = () => {
                 <Link href="https://finlaytech.ca">
                     <HyperText
                         startOnView={true}
-                        className="hidden sm:inline text-xl"
+                        className="hidden text-lg font-semibold leading-7 tracking-normal sm:inline"
                     >
                         Jake Finlay
                     </HyperText>
                     <HyperText
                         startOnView={true}
                         animateOnHover={false}
-                        className="sm:hidden text-xl"
+                        className="text-lg font-semibold leading-7 tracking-normal sm:hidden"
                     >
                         JF
                     </HyperText>
@@ -29,9 +29,14 @@ const Header = () => {
                         <Link
                             key={index}
                             href={navItem.link}
-                            className="font-bold font-mono text-xs sm:text-xl"
+                            className="font-mono"
                         >
-                            {navItem.name.toUpperCase()}
+                            <TypographySmall
+                                as="span"
+                                className="font-mono text-xs font-bold text-white sm:text-base"
+                            >
+                                {navItem.name.toUpperCase()}
+                            </TypographySmall>
                         </Link>
                     );
                 })}

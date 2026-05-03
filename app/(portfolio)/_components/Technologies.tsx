@@ -6,19 +6,20 @@ import BallCanvas from "./BallCanvas";
 import { motion } from "framer-motion";
 import { textVariant } from "@/utils/motion";
 import SectionWrapper from "./SectionWrapper";
+import { TypographyH2 } from "@components";
 
 const Technologies = () => {
     return (
         <div className="w-full h-full flex flex-col items-center justify-center">
-            <motion.h1
+            <motion.div
                 variants={textVariant(0)}
-                className="heading"
+                className="text-center"
                 initial="hidden"
                 whileInView="show"
                 viewport={{ once: true, amount: 1 }}
             >
-                Technologies
-            </motion.h1>
+                <TypographyH2>Technologies</TypographyH2>
+            </motion.div>
             <BallCanvas technologies={technologies} />
         </div>
     );

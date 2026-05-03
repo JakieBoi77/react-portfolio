@@ -1,7 +1,12 @@
 "use client";
 
 import React from "react";
-import { Spotlight } from "@components";
+import {
+    Spotlight,
+    TypographyH1,
+    TypographyLead,
+    TypographySmall,
+} from "@components";
 import { aboutParagraph, availableToWork, links } from "../_data/portfolio";
 import { assets } from "../_data/assets";
 import { motion } from "framer-motion";
@@ -47,18 +52,19 @@ const Hero = () => {
                                 </div>
                             </motion.div>
                             <div className="flex items-left justify-center flex-col">
-                                <motion.h1
+                                <motion.div
                                     variants={textVariant(0.5)}
-                                    className="font-semibold text-left text-xl sm:text-2xl"
                                     initial="hidden"
                                     whileInView="show"
                                     viewport={{ once: true, amount: 1 }}
                                 >
-                                    Hey I&apos;m Jake Finlay{" "}
-                                    <span className="inline-block origin-bottom-right hover:animate-wave">
-                                        👋
-                                    </span>
-                                </motion.h1>
+                                    <TypographyH1 className="text-left text-xl font-semibold sm:text-2xl">
+                                        Hey I&apos;m Jake Finlay{" "}
+                                        <span className="inline-block origin-bottom-right hover:animate-wave">
+                                            👋
+                                        </span>
+                                    </TypographyH1>
+                                </motion.div>
                                 <div className="flex flex-row gap-4 pt-1">
                                     <div className="flex flex-row gap-2">
                                         <img
@@ -67,11 +73,14 @@ const Hero = () => {
                                             width={10}
                                             height={10}
                                         />
-                                        <p className="py-2 text-xs sm:text-lg">
+                                        <TypographySmall
+                                            as="p"
+                                            className="py-2 text-xs text-white-100 sm:text-base"
+                                        >
                                             Hamilton, ON
-                                        </p>
+                                        </TypographySmall>
                                     </div>
-                                    {availableToWork && 
+                                    {availableToWork && (
                                         <a
                                             href="mailto:jakef7@icloud.com"
                                             rel="noopener noreferrer"
@@ -80,15 +89,18 @@ const Hero = () => {
                                         >
                                             <div className="size-2 rounded-full bg-green-500"></div>
                                             <div className="relative cursor-pointer overflow-hidden">
-                                                <p className="group">
-                                                    <span className="group-hover:-translate-y-full flex flex-col transition-all duration-1000 ease-slow text-xs sm:text-lg">
+                                                <TypographySmall
+                                                    as="p"
+                                                    className="group text-xs text-white-100 sm:text-base"
+                                                >
+                                                    <span className="group-hover:-translate-y-full flex flex-col transition-all duration-1000 ease-slow">
                                                         Available for work
                                                         <span className="invisible h-0">
                                                             {" "}
                                                             Reach out
                                                         </span>
                                                     </span>
-                                                    <span className="group-hover:-translate-y-full absolute top-full flex items-center transition-all duration-1000 ease-slow text-xs sm:text-lg">
+                                                    <span className="group-hover:-translate-y-full absolute top-full flex items-center transition-all duration-1000 ease-slow">
                                                         Reach out
                                                         <svg
                                                             xmlns="http://www.w3.org/2000/svg"
@@ -112,10 +124,10 @@ const Hero = () => {
                                                             <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
                                                         </svg>
                                                     </span>
-                                                </p>
+                                                </TypographySmall>
                                             </div>
                                         </a>
-                                    }
+                                    )}
                                 </div>
                             </div>
                         </div>
@@ -149,15 +161,16 @@ const Hero = () => {
                             ))}
                         </div>
 
-                        <motion.p
+                        <motion.div
                             variants={fadeIn("right", "spring", 0.1, 1)}
                             initial="hidden"
                             whileInView="show"
                             viewport={{ once: true, amount: 0.25 }}
-                            className="py-4 text-xs sm:text-lg leading-relaxed text-left"
                         >
-                            {aboutParagraph}
-                        </motion.p>
+                            <TypographyLead className="py-4 text-left text-sm sm:text-lg">
+                                {aboutParagraph}
+                            </TypographyLead>
+                        </motion.div>
                     </div>
                 </div>
             </div>

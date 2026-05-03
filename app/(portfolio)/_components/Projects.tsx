@@ -7,7 +7,12 @@ import {
 } from "../_data/portfolio";
 import { assets } from "../_data/assets";
 import Link from "next/link";
-import { BackgroundGradient } from "@components";
+import {
+    BackgroundGradient,
+    TypographyH2,
+    TypographyH3,
+    TypographyMuted,
+} from "@components";
 import { motion } from "framer-motion";
 import { fadeIn, textVariant } from "@/utils/motion";
 import SectionWrapper from "./SectionWrapper";
@@ -26,15 +31,15 @@ const Projects = () => {
 const FullStackProjects = () => {
     return (
         <section>
-            <motion.h1
+            <motion.div
                 variants={textVariant(0)}
-                className="heading"
+                className="text-center"
                 initial="hidden"
                 whileInView="show"
                 viewport={{ once: true, amount: 1 }}
             >
-                Full Stack Projects
-            </motion.h1>
+                <TypographyH2>Full Stack Projects</TypographyH2>
+            </motion.div>
             <div className="flex flex-wrap flex-row items-center justify-center w-full py-16 gap-8">
                 {fullStackProjects.map(
                     (
@@ -57,15 +62,15 @@ const FullStackProjects = () => {
                             className="w-full"
                         >
                             <BackgroundGradient className="flex items-center justify-center flex-col w-full rounded-[22px] p-4 bg-zinc-900">
-                                <p className="text-xl sm:text-3xl mt-4 mb-2 text-neutral-200">
+                                <TypographyH3 className="mt-4 mb-2 text-center text-xl text-neutral-200 sm:text-3xl">
                                     {projectTitle}
-                                </p>
+                                </TypographyH3>
                                 <div className="overflow-hidden w-full pt-5 pb-20">
                                     <Carousel slides={picList} />
                                 </div>
-                                <p className="text-center text-md text-neutral-400 p-4 sm:px-14 pb-6">
+                                <TypographyMuted className="p-4 pb-6 text-center text-base text-neutral-400 sm:px-14">
                                     {des}
-                                </p>
+                                </TypographyMuted>
                                 <div className="flex flex-row gap-4">
                                     <Link
                                         href={link}
@@ -122,15 +127,15 @@ const FullStackProjects = () => {
 const MicroProjects = () => {
     return (
         <section>
-            <motion.h1
+            <motion.div
                 variants={textVariant(0)}
-                className="heading"
+                className="text-center"
                 initial="hidden"
                 whileInView="show"
                 viewport={{ once: true, amount: 1 }}
             >
-                Mini Projects
-            </motion.h1>
+                <TypographyH2>Mini Projects</TypographyH2>
+            </motion.div>
             <div className="flex flex-wrap flex-row items-center justify-center w-full py-16 gap-8">
                 {learningProjectCollections.map(
                     (
@@ -152,12 +157,12 @@ const MicroProjects = () => {
                             className="w-full"
                         >
                             <BackgroundGradient className="flex items-center justify-center flex-col w-full rounded-[22px] p-4 bg-zinc-900">
-                                <p className="text-base sm:text-xl mt-4 mb-2 text-neutral-200">
+                                <TypographyH3 className="mt-4 mb-2 text-center text-lg text-neutral-200 sm:text-xl">
                                     {collectionTitle}
-                                </p>
-                                <p className="text-md text-neutral-400 p-4">
+                                </TypographyH3>
+                                <TypographyMuted className="p-4 text-base text-neutral-400">
                                     {des}
-                                </p>
+                                </TypographyMuted>
                                 <div className="flex flex-col mx-auto w-full items-center justify-center pt-10 md:pb-20">
                                     <ProjectSelector
                                         projects={projects}

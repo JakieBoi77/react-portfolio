@@ -1,6 +1,7 @@
 "use client";
 
 import { IconArrowLeft, IconArrowRight } from "@tabler/icons-react";
+import { TypographyH3, TypographyLarge, TypographyMuted } from "@components";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -94,9 +95,12 @@ export const ProjectSelector = ({
                                             href={`/${folder}/${value}`}
                                             className="flex flex-col items-center justify-items w-full relative rounded-2xl p-6 bg-gradient-to-br from-blue-500 to-green-500"
                                         >
-                                            <p className="font-bold pb-4">
+                                            <TypographyLarge
+                                                as="p"
+                                                className="pb-4 text-center font-bold"
+                                            >
                                                 {title}
-                                            </p>
+                                            </TypographyLarge>
                                             <img
                                                 className="rounded-2xl"
                                                 src={pic}
@@ -129,11 +133,14 @@ export const ProjectSelector = ({
                             ease: "easeInOut",
                         }}
                     >
-                        <h3 className="text-2xl font-bold">
+                        <TypographyH3 className="text-2xl font-bold">
                             {projects[active].title}
-                        </h3>
+                        </TypographyH3>
 
-                        <motion.p className="py-5 text-md text-neutral-400">
+                        <TypographyMuted
+                            as={motion.p}
+                            className="py-5 text-base text-neutral-400"
+                        >
                             {projects[active].des
                                 .split(" ")
                                 .map((word, index) => (
@@ -159,7 +166,7 @@ export const ProjectSelector = ({
                                         {word}&nbsp;
                                     </motion.span>
                                 ))}
-                        </motion.p>
+                        </TypographyMuted>
                     </motion.div>
                     <div className="flex gap-4 justify-center pt-12 md:pt-0">
                         <button

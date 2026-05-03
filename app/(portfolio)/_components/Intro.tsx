@@ -36,11 +36,11 @@ const Intro = () => {
                 <div className="max-w-[89vw] md:max-w-2xl lg:max-w-[60vw] flex flex-col items-center justify-center">
                     <TextGenerateEffect
                         words="Hello, I'm Jake!"
-                        className="text-center text-7xl xl:text-8xl"
+                        className="text-center text-6xl leading-tight tracking-normal sm:text-7xl xl:text-8xl"
                     />
                     <TextGenerateEffect
                         words="Welcome to my portfolio."
-                        className="text-center md:tracking-wider mb-4 text-xl xl:text-2xl"
+                        className="mb-4 text-center text-xl leading-8 tracking-normal xl:text-2xl"
                     />
                 </div>
             </div>
