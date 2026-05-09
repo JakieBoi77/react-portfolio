@@ -13,8 +13,8 @@ export const navItems = [
 export const availableToWork = false;
 
 export const aboutParagraph = `
-    I'm a software engineer currently building my career in the tech industry.
-    I have a passion for learning and experience in full stack development.
+    I'm a software engineer building my career in the tech industry.
+    I specialize in full stack development.
     I am currently working as a Software Design Engineer Intern at Evertz Microsystems.
 `;
 
@@ -234,76 +234,219 @@ export const technologies = [
     {
         name: "HTML 5",
         icon: devIcons.html,
+        category: "Interface",
+        homepage: "https://developer.mozilla.org/en-US/docs/Web/HTML",
+        description: "Structures pages and content.",
     },
     {
         name: "CSS 3",
         icon: devIcons.css,
+        category: "Interface",
+        homepage: "https://developer.mozilla.org/en-US/docs/Web/CSS",
+        description: "Styles layouts and motion.",
     },
     {
         name: "JavaScript",
         icon: devIcons.javascript,
+        category: "Language",
+        homepage: "https://developer.mozilla.org/en-US/docs/Web/JavaScript",
+        description: "Adds browser behavior.",
     },
     {
         name: "TypeScript",
         icon: devIcons.typescript,
+        category: "Language",
+        homepage: "https://www.typescriptlang.org/",
+        description: "Adds types to JavaScript.",
     },
     {
         name: "React JS",
         icon: devIcons.react,
+        category: "Interface",
+        homepage: "https://react.dev/",
+        description: "Builds reusable UI.",
     },
     {
         name: "Redux Toolkit",
         icon: devIcons.redux,
+        category: "State",
+        homepage: "https://redux-toolkit.js.org/",
+        description: "Manages shared app state.",
     },
     {
         name: "Tailwind CSS",
         icon: devIcons.tailwind,
+        category: "Interface",
+        homepage: "https://tailwindcss.com/",
+        description: "Styles components quickly.",
     },
     {
         name: "Node JS",
         icon: devIcons.node,
+        category: "Runtime",
+        homepage: "https://nodejs.org/",
+        description: "Runs JavaScript on the server.",
+    },
+    {
+        name: "GraphQL",
+        icon: devIcons.graphql,
+        category: "API",
+        homepage: "https://graphql.org/",
+        description: "Queries APIs with typed schemas.",
+    },
+    {
+        name: "Apollo GraphQL",
+        icon: devIcons.apollo,
+        category: "API",
+        homepage: "https://www.apollographql.com/",
+        description: "Builds GraphQL clients and servers.",
+    },
+    {
+        name: "Python",
+        icon: devIcons.python,
+        category: "Language",
+        homepage: "https://www.python.org/",
+        description: "Builds backend tools and scripts.",
     },
     {
         name: "MongoDB",
         icon: devIcons.mongodb,
+        category: "Data",
+        homepage: "https://www.mongodb.com/",
+        description: "Stores flexible documents.",
     },
     {
         name: "Three JS",
         icon: devIcons.three,
+        category: "Graphics",
+        homepage: "https://threejs.org/",
+        description: "Renders 3D web graphics.",
+    },
+    {
+        name: "D3",
+        icon: devIcons.d3,
+        category: "Graphics",
+        homepage: "https://d3js.org/",
+        description: "Builds data visualizations.",
+    },
+    {
+        name: "Framer Motion",
+        icon: devIcons.fm,
+        category: "Motion",
+        homepage: "https://motion.dev/",
+        description: "Animates React interfaces.",
     },
     {
         name: "Git",
         icon: devIcons.git,
+        category: "Tooling",
+        homepage: "https://git-scm.com/",
+        description: "Tracks code changes.",
+    },
+    {
+        name: "Nx",
+        icon: devIcons.nx,
+        category: "Tooling",
+        homepage: "https://nx.dev/",
+        description: "Manages monorepos and builds.",
+    },
+    {
+        name: "pnpm",
+        icon: devIcons.pnpm,
+        category: "Tooling",
+        homepage: "https://pnpm.io/",
+        description: "Installs packages efficiently.",
     },
     {
         name: "Java",
         icon: devIcons.java,
+        category: "Language",
+        homepage: "https://dev.java/",
+        description: "Builds typed backend apps.",
+    },
+    {
+        name: "C#",
+        icon: devIcons.csharp,
+        category: "Language",
+        homepage: "https://dotnet.microsoft.com/en-us/languages/csharp",
+        description: "Builds .NET applications.",
     },
     {
         name: "Bash",
         icon: devIcons.bash,
-    },
-    {
-        name: "Express",
-        icon: devIcons.express,
-    },
-    {
-        name: "Mongoose",
-        icon: devIcons.mongoose,
+        category: "Tooling",
+        homepage: "https://www.gnu.org/software/bash/",
+        description: "Automates terminal tasks.",
     },
     {
         name: "PostgreSQL",
         icon: devIcons.postgresql,
+        category: "Data",
+        homepage: "https://www.postgresql.org/",
+        description: "Stores relational data.",
     },
     {
         name: "Linux",
         icon: devIcons.linux,
-    },
-    {
-        name: "NPM",
-        icon: devIcons.npm,
+        category: "Platform",
+        homepage: "https://www.kernel.org/",
+        description: "Runs dev and server environments.",
     },
 ];
+
+export const technologySkillTree = {
+    root: {
+        title: "Fullstack Development",
+        quote: "A jack of all trades is a master of none, but oftentimes better than a master of one.",
+    },
+    branches: [
+        {
+            id: "frontend",
+            title: "Frontend",
+            summary: "UI and browser apps.",
+            technologies: [
+                "HTML 5",
+                "CSS 3",
+                "JavaScript",
+                "TypeScript",
+                "React JS",
+                "Redux Toolkit",
+                "Tailwind CSS",
+            ],
+        },
+        {
+            id: "backend",
+            title: "Backend",
+            summary: "APIs, services, and storage.",
+            technologies: [
+                "GraphQL",
+                "Apollo GraphQL",
+                "Node JS",
+                "MongoDB",
+                "PostgreSQL",
+            ],
+        },
+        {
+            id: "tooling",
+            title: "Tooling",
+            summary: "Git, scripts, packages, and Linux.",
+            technologies: ["Git", "Nx", "pnpm", "Bash", "Linux"],
+        },
+        {
+            id: "misc",
+            title: "Misc",
+            summary: "Additional experience.",
+            technologies: [
+                "Python",
+                "Java",
+                "C#",
+                "Three JS",
+                "D3",
+                "Framer Motion",
+            ],
+        },
+    ],
+};
 
 export const experiences = [
     {

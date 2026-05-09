@@ -12,11 +12,11 @@ type IconButtonProps = Omit<
 };
 
 const glassyIconStyle = {
-    "--glass-bg": "rgba(17, 25, 40, 0.5)",
-    "--glass-bg-strong": "rgba(17, 25, 40, 0.66)",
-    "--glass-noise": "0.2",
+    "--glass-bg": "rgba(10, 15, 31, 0.56)",
+    "--glass-bg-strong": "rgba(12, 18, 38, 0.7)",
+    "--glass-noise": "0.15",
     "--glass-shadow":
-        "inset 0 1px 0 rgba(255, 255, 255, 0.065), 0 1px 3px rgba(0, 0, 0, 0.16), 0 10px 26px rgba(0, 0, 0, 0.3)",
+        "inset 0 1px 0 rgba(255, 255, 255, 0.052), 0 1px 3px rgba(0, 0, 0, 0.16), 0 10px 26px rgba(0, 0, 0, 0.3)",
 } as React.CSSProperties;
 
 const IconButton = React.forwardRef<HTMLAnchorElement, IconButtonProps>(
