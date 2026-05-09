@@ -4,6 +4,7 @@ export { SparklesCore } from "./aceternity-ui/Sparkles";
 export { Spotlight } from "./aceternity-ui/Spotlight";
 export { TextGenerateEffect } from "./aceternity-ui/TextGenerateEffect";
 export { default as HyperText } from "./magic-ui/hyper-text";
+export { IconButton } from "./ui/icon-button";
 export {
     TypographyBlockquote,
     TypographyH1,

@@ -2,6 +2,7 @@
 
 import React from "react";
 import {
+    IconButton,
     MagicButton,
     TypographyH2,
     TypographyLead,
@@ -49,18 +50,11 @@ const Footer = () => {
                             whileInView="show"
                             viewport={{ once: true, amount: 0 }}
                         >
-                            <a
+                            <IconButton
                                 href={profile.link}
-                                target="_blank"
-                                rel="noreferrer"
-                                className="w-10 h-10 sm:w-11 sm:h-11 cursor-pointer flex justify-center items-center backdrop-filter backdrop-blur-lg saturate-180 bg-opacity-75 bg-black-200 rounded-lg border-black-300 transition-transform transform hover:scale-110"
-                            >
-                                <img
-                                    src={profile.img}
-                                    alt={`${profile.id}`}
-                                    className="w-[55%] h-[55%]"
-                                />
-                            </a>
+                                icon={profile.img}
+                                label={profile.label}
+                            />
                         </motion.div>
                     ))}
                 </div>

@@ -109,6 +109,109 @@
     }
 }
 
+@layer components {
+    .glassy {
+        --glass-bg: rgba(17, 25, 40, 0.54);
+        --glass-bg-strong: rgba(17, 25, 40, 0.74);
+        --glass-noise: 0.22;
+        --glass-shadow:
+            inset 0 1px 0 rgba(255, 255, 255, 0.065),
+            0 2px 6px rgba(0, 0, 0, 0.18),
+            0 18px 36px rgba(0, 0, 0, 0.32),
+            0 36px 90px rgba(0, 0, 0, 0.38);
+        position: relative;
+        isolation: isolate;
+        overflow: hidden;
+        border-radius: var(--glass-radius, 0.75rem);
+        border: 1px solid transparent;
+        background:
+            radial-gradient(
+                circle at 18% 16%,
+                rgba(255, 255, 255, 0.045),
+                transparent 28%
+            )
+                padding-box,
+            radial-gradient(
+                circle at 78% 72%,
+                rgba(203, 172, 249, 0.08),
+                transparent 34%
+            )
+                padding-box,
+            radial-gradient(
+                circle at 14% 86%,
+                rgba(96, 165, 250, 0.055),
+                transparent 36%
+            )
+                padding-box,
+            linear-gradient(
+                135deg,
+                rgba(255, 255, 255, 0.038),
+                rgba(255, 255, 255, 0.008) 38%,
+                rgba(255, 255, 255, 0.018) 100%
+            )
+                padding-box,
+            linear-gradient(
+                var(--glass-bg),
+                var(--glass-bg-strong)
+            )
+                padding-box,
+            linear-gradient(
+                135deg,
+                rgba(255, 255, 255, 0.08),
+                rgba(255, 255, 255, 0.014) 28%,
+                rgba(203, 172, 249, 0.075) 64%,
+                rgba(255, 255, 255, 0.025)
+            )
+                border-box;
+        box-shadow: var(--glass-shadow);
+        backdrop-filter: blur(22px) saturate(180%) contrast(1.08);
+        -webkit-backdrop-filter: blur(22px) saturate(180%) contrast(1.08);
+    }
+
+    .glassy::before,
+    .glassy::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+        pointer-events: none;
+        border-radius: inherit;
+    }
+
+    .glassy::before {
+        padding: 1px;
+        background: linear-gradient(
+            135deg,
+            rgba(255, 255, 255, 0.18),
+            rgba(255, 255, 255, 0.035) 28%,
+            transparent 52%,
+            rgba(203, 172, 249, 0.08) 78%,
+            rgba(255, 255, 255, 0.03)
+        );
+        opacity: 0.72;
+        -webkit-mask:
+            linear-gradient(#000 0 0) content-box,
+            linear-gradient(#000 0 0);
+        -webkit-mask-composite: xor;
+        mask:
+            linear-gradient(#000 0 0) content-box,
+            linear-gradient(#000 0 0);
+        mask-composite: exclude;
+    }
+
+    .glassy::after {
+        opacity: var(--glass-noise);
+        mix-blend-mode: overlay;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180' viewBox='0 0 180 180'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.72' numOctaves='5' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='.72'/%3E%3C/svg%3E");
+        background-size: 180px 180px;
+    }
+
+    .glassy > * {
+        position: relative;
+        z-index: 2;
+    }
+}
+
 @layer base {
     * {
         @apply border-border;

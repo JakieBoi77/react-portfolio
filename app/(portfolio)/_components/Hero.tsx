@@ -2,6 +2,7 @@
 
 import React from "react";
 import {
+    IconButton,
     Spotlight,
     TypographyH1,
     TypographyLead,
@@ -10,7 +11,7 @@ import {
 import { aboutParagraph, availableToWork, links } from "../_data/portfolio";
 import { assets } from "../_data/assets";
 import { motion } from "framer-motion";
-import { fadeIn, textVariant } from "@/utils/motion";
+import { fadeIn } from "@/utils/motion";
 
 const Hero = () => {
     return (
@@ -29,7 +30,7 @@ const Hero = () => {
                     fill="blue"
                 />
             </div>
-            <div className="flex justify-center relative mt-20 z-10 bg-black-200/50 backdrop-filter p-6 rounded-xl shadow-lg ring-1 ring-black/5">
+            <div className="glassy flex justify-center relative mt-20 z-10 p-6 rounded-xl">
                 <div className="w-full flex flex-col items-center justify-center">
                     <div className="w-full flex flex-col justify-between">
                         <div className="flex gap-5">
@@ -51,20 +52,13 @@ const Hero = () => {
                                     </div>
                                 </div>
                             </motion.div>
-                            <div className="flex items-left justify-center flex-col">
-                                <motion.div
-                                    variants={textVariant(0.5)}
-                                    initial="hidden"
-                                    whileInView="show"
-                                    viewport={{ once: true, amount: 1 }}
-                                >
-                                    <TypographyH1 className="text-left text-xl font-semibold sm:text-2xl">
-                                        Hey I&apos;m Jake Finlay{" "}
-                                        <span className="inline-block origin-bottom-right hover:animate-wave">
-                                            👋
-                                        </span>
-                                    </TypographyH1>
-                                </motion.div>
+                            <div className="flex items-start justify-center flex-col">
+                                <TypographyH1 className="text-left text-xl font-semibold leading-tight text-white sm:text-2xl">
+                                    Hey I&apos;m Jake Finlay{" "}
+                                    <span className="inline-block origin-bottom-right hover:animate-wave">
+                                        👋
+                                    </span>
+                                </TypographyH1>
                                 <div className="flex flex-row gap-4 pt-1">
                                     <div className="flex flex-row gap-2">
                                         <img
@@ -145,18 +139,11 @@ const Hero = () => {
                                     whileInView="show"
                                     viewport={{ once: true, amount: 0 }}
                                 >
-                                    <a
+                                    <IconButton
                                         href={profile.link}
-                                        target="_blank"
-                                        rel="noreferrer"
-                                        className="w-10 h-10 sm:w-11 sm:h-11 cursor-pointer flex justify-center items-center backdrop-filter backdrop-blur-lg saturate-180 bg-opacity-75 bg-black-200 rounded-lg border-black-300 transition-transform transform hover:scale-110"
-                                    >
-                                        <img
-                                            src={profile.img}
-                                            alt={`${profile.id}`}
-                                            className="w-[55%] h-[55%]"
-                                        />
-                                    </a>
+                                        icon={profile.img}
+                                        label={profile.label}
+                                    />
                                 </motion.div>
                             ))}
                         </div>
