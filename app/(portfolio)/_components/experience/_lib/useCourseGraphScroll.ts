@@ -11,6 +11,7 @@ export const useCourseGraphScroll = (graphWidth: number) => {
     const scrollThumbRef = useRef<HTMLDivElement | null>(null);
     const dragCleanupRef = useRef<(() => void) | null>(null);
     const scrollbarDragCleanupRef = useRef<(() => void) | null>(null);
+    const scrollbarFrameRef = useRef(0);
     const suppressClickRef = useRef(false);
     const dragState = useRef({
         active: false,
@@ -54,6 +55,17 @@ export const useCourseGraphScroll = (graphWidth: number) => {
         thumbElement.style.transform = `translate3d(${thumbLeft}px, 0, 0)`;
     }, []);
 
+    const scheduleGraphScrollbarUpdate = useCallback(() => {
+        if (scrollbarFrameRef.current) {
+            return;
+        }
+
+        scrollbarFrameRef.current = window.requestAnimationFrame(() => {
+            scrollbarFrameRef.current = 0;
+            updateGraphScrollbar();
+        });
+    }, [updateGraphScrollbar]);
+
     useEffect(() => {
         updateGraphScrollbar();
 
@@ -72,6 +84,10 @@ export const useCourseGraphScroll = (graphWidth: number) => {
         return () => {
             dragCleanupRef.current?.();
             scrollbarDragCleanupRef.current?.();
+            if (scrollbarFrameRef.current) {
+                window.cancelAnimationFrame(scrollbarFrameRef.current);
+                scrollbarFrameRef.current = 0;
+            }
             resizeObserver?.disconnect();
             window.removeEventListener("resize", updateGraphScrollbar);
         };
@@ -84,7 +100,11 @@ export const useCourseGraphScroll = (graphWidth: number) => {
     const handleGraphPointerDown = (
         event: ReactPointerEvent<HTMLDivElement>,
     ) => {
-        if (event.button !== 0 || !scrollContainerRef.current) {
+        if (
+            event.pointerType !== "mouse" ||
+            event.button !== 0 ||
+            !scrollContainerRef.current
+        ) {
             return;
         }
 
@@ -229,7 +249,7 @@ export const useCourseGraphScroll = (graphWidth: number) => {
 
     const handleGraphScroll = () => {
         dismissGraphScrollHint();
-        updateGraphScrollbar();
+        scheduleGraphScrollbarUpdate();
     };
 
     return {

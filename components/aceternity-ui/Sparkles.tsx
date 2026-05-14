@@ -41,7 +41,6 @@ export const SparklesCore = (props: ParticlesProps) => {
 
     const particlesLoaded = async (container?: Container) => {
         if (container) {
-            console.log(container);
             controls.start({
                 opacity: 1,
                 transition: {
@@ -69,7 +68,7 @@ export const SparklesCore = (props: ParticlesProps) => {
                             zIndex: 1,
                         },
 
-                        fpsLimit: 120,
+                        fpsLimit: 60,
                         interactivity: {
                             events: {
                                 onClick: {

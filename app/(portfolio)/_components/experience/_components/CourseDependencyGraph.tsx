@@ -59,7 +59,11 @@ const CourseDependencyGraph = ({ levels }: CourseDependencyGraphProps) => {
                 onWheel={handleGraphScroll}
                 onClickCapture={handleGraphClickCapture}
                 className="course-graph-scroll relative cursor-grab overflow-x-auto rounded-2xl border border-white/10 p-3 pb-6 shadow-[inset_0_1px_0_rgba(255,255,255,0.06)] select-none overscroll-x-contain"
-                style={{ scrollBehavior: "auto", touchAction: "pan-y" }}
+                style={{
+                    scrollBehavior: "auto",
+                    touchAction: "pan-x pan-y pinch-zoom",
+                    WebkitOverflowScrolling: "touch",
+                }}
             >
                 <div style={graphSurfaceStyle}>
                     <CourseGraphSvg

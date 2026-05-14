@@ -1,19 +1,28 @@
 import { useEffect, useState } from "react";
 import { Spotlight, TextGenerateEffect } from "@components";
 
-const Intro = () => {
+type IntroProps = {
+    skipAnimation?: boolean;
+};
+
+const Intro = ({ skipAnimation = false }: IntroProps) => {
     const [show, setShow] = useState(true);
 
     useEffect(() => {
         const timer = setTimeout(() => {
             setShow(false);
-        }, 2000);
+        }, skipAnimation ? 0 : 2000);
+
         return () => clearTimeout(timer);
-    }, []);
+    }, [skipAnimation]);
+
+    if (skipAnimation && !show) {
+        return null;
+    }
 
     return (
         <div
-            className={`z-20 bg-black-100 fixed inset-0 h-screen flex items-center justify-center transition-all duration-1000 ease-in-out ${show ? "opacity-100" : "translate-y-[-100%]"}`}
+            className={`z-20 bg-black-100 fixed inset-0 h-screen flex items-center justify-center transition-all ${skipAnimation ? "duration-0" : "duration-1000 ease-in-out"} ${show ? "opacity-100" : "pointer-events-none -translate-y-full opacity-0"}`}
         >
             <div>
                 <Spotlight
