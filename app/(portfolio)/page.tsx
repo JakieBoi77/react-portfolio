@@ -2,7 +2,7 @@
 
 import { Inter } from "next/font/google";
 import { SparklesCore } from "@components";
-import Experience from "./_components/Experience";
+import Experience from "./_components/experience";
 import Footer from "./_components/Footer";
 import Header from "./_components/Header";
 import Hero from "./_components/Hero";
@@ -31,8 +31,8 @@ const AppContent = () => {
                     <Intro />
                     <Header />
                     <Hero />
-                    <Technologies />
                     <Experience />
+                    <Technologies />
                     <Projects />
                     <Footer />
                 </div>

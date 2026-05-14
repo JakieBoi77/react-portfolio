@@ -2,10 +2,20 @@ import { assets } from "./assets";
 
 const { devIcons, fullstackPics, projectPics, socialIcons, workIcons } = assets;
 
+const mcmasterSoftwareEngineeringProgramUrl =
+    "https://academiccalendars.romcmaster.ca/preview_program.php?catoid=65&poid=33033";
+const mcmasterSoftwareEngineeringCoursesUrl =
+    "https://academiccalendars.romcmaster.ca/content.php?catoid=65&navoid=14802";
+
+const mcmasterCourseDescriptionUrl = (courseId: number) =>
+    `https://academiccalendars.romcmaster.ca/preview_course_nopop.php?catoid=65&coid=${courseId}`;
+
+export const educationVisibleThroughSemester = "2026-winter";
+
 export const navItems = [
     { name: "Home", link: "/" },
-    { name: "Tech", link: "#technologies" },
     { name: "Experience", link: "#experience" },
+    { name: "Tech", link: "#technologies" },
     { name: "Projects", link: "#projects" },
     { name: "Contact", link: "#contact" },
 ];
@@ -234,161 +244,138 @@ export const technologies = [
     {
         name: "HTML 5",
         icon: devIcons.html,
-        category: "Interface",
         homepage: "https://developer.mozilla.org/en-US/docs/Web/HTML",
         description: "Structures pages and content.",
     },
     {
         name: "CSS 3",
         icon: devIcons.css,
-        category: "Interface",
         homepage: "https://developer.mozilla.org/en-US/docs/Web/CSS",
         description: "Styles layouts and motion.",
     },
     {
         name: "JavaScript",
         icon: devIcons.javascript,
-        category: "Language",
         homepage: "https://developer.mozilla.org/en-US/docs/Web/JavaScript",
         description: "Adds browser behavior.",
     },
     {
         name: "TypeScript",
         icon: devIcons.typescript,
-        category: "Language",
         homepage: "https://www.typescriptlang.org/",
         description: "Adds types to JavaScript.",
     },
     {
         name: "React JS",
         icon: devIcons.react,
-        category: "Interface",
         homepage: "https://react.dev/",
         description: "Builds reusable UI.",
     },
     {
         name: "Redux Toolkit",
         icon: devIcons.redux,
-        category: "State",
         homepage: "https://redux-toolkit.js.org/",
         description: "Manages shared app state.",
     },
     {
         name: "Tailwind CSS",
         icon: devIcons.tailwind,
-        category: "Interface",
         homepage: "https://tailwindcss.com/",
         description: "Styles components quickly.",
     },
     {
         name: "Node JS",
         icon: devIcons.node,
-        category: "Runtime",
         homepage: "https://nodejs.org/",
         description: "Runs JavaScript on the server.",
     },
     {
         name: "GraphQL",
         icon: devIcons.graphql,
-        category: "API",
         homepage: "https://graphql.org/",
         description: "Queries APIs with typed schemas.",
     },
     {
         name: "Apollo GraphQL",
         icon: devIcons.apollo,
-        category: "API",
         homepage: "https://www.apollographql.com/",
         description: "Builds GraphQL clients and servers.",
     },
     {
         name: "Python",
         icon: devIcons.python,
-        category: "Language",
         homepage: "https://www.python.org/",
         description: "Builds backend tools and scripts.",
     },
     {
         name: "MongoDB",
         icon: devIcons.mongodb,
-        category: "Data",
         homepage: "https://www.mongodb.com/",
         description: "Stores flexible documents.",
     },
     {
         name: "Three JS",
         icon: devIcons.three,
-        category: "Graphics",
         homepage: "https://threejs.org/",
         description: "Renders 3D web graphics.",
     },
     {
         name: "D3",
         icon: devIcons.d3,
-        category: "Graphics",
         homepage: "https://d3js.org/",
         description: "Builds data visualizations.",
     },
     {
         name: "Framer Motion",
         icon: devIcons.fm,
-        category: "Motion",
         homepage: "https://motion.dev/",
         description: "Animates React interfaces.",
     },
     {
         name: "Git",
         icon: devIcons.git,
-        category: "Tooling",
         homepage: "https://git-scm.com/",
         description: "Tracks code changes.",
     },
     {
         name: "Nx",
         icon: devIcons.nx,
-        category: "Tooling",
         homepage: "https://nx.dev/",
         description: "Manages monorepos and builds.",
     },
     {
         name: "pnpm",
         icon: devIcons.pnpm,
-        category: "Tooling",
         homepage: "https://pnpm.io/",
         description: "Installs packages efficiently.",
     },
     {
         name: "Java",
         icon: devIcons.java,
-        category: "Language",
         homepage: "https://dev.java/",
         description: "Builds typed backend apps.",
     },
     {
         name: "C#",
         icon: devIcons.csharp,
-        category: "Language",
         homepage: "https://dotnet.microsoft.com/en-us/languages/csharp",
         description: "Builds .NET applications.",
     },
     {
         name: "Bash",
         icon: devIcons.bash,
-        category: "Tooling",
         homepage: "https://www.gnu.org/software/bash/",
         description: "Automates terminal tasks.",
     },
     {
         name: "PostgreSQL",
         icon: devIcons.postgresql,
-        category: "Data",
         homepage: "https://www.postgresql.org/",
         description: "Stores relational data.",
     },
     {
         name: "Linux",
         icon: devIcons.linux,
-        category: "Platform",
         homepage: "https://www.kernel.org/",
         description: "Runs dev and server environments.",
     },
@@ -454,6 +441,7 @@ export const experiences = [
         companyName: "Evertz Microsystems",
         icon: workIcons.evertz,
         iconBg: "#ffffff",
+        timelineAccent: "250 204 21",
         date: "May 2025 - Present",
         points: [
             "Currently working on MAGNUM OS, a full stack software that provides control, orchestration, monitoring, and analytics for customer's Evertz equipment.",
@@ -467,6 +455,7 @@ export const experiences = [
         companyName: "Superior Boiler Works and Welding Limited",
         icon: workIcons.sbww,
         iconBg: "#ffffff",
+        timelineAccent: "34 197 94",
         date: "May 2023 - August 2023",
         points: [
             "My first co-op position where I was responsible for providing IT support and maintaining IT infrastructure.",
@@ -480,6 +469,7 @@ export const experiences = [
         companyName: "Stoney Creek Furniture",
         icon: workIcons.scf,
         iconBg: "#ffffff",
+        timelineAccent: "30 64 175",
         date: "July 2020 - September 2022",
         points: [
             "A weekend job where I was responsible for fulfilling customer pick-ups, organizing furniture for delivery, and keeping the warehouse clean.",
@@ -487,6 +477,467 @@ export const experiences = [
             "Became certified on a Class 2 Forklift (also known as an Orderpicker) to access furniture stored within the racks of the warehouse.",
             "Operated various compactors to control the waste created from opening products in the warehouse.",
             "Learned how to use Storis, the furniture inventory management system, in order to complete my assigned tasks while still maintaining inventory accuracy.",
+        ],
+    },
+];
+
+export const education = [
+    {
+        school: "McMaster University",
+        program: "Bachelor of Engineering, Software Engineering",
+        location: "Hamilton, Ontario",
+        status: "in-progress",
+        summary:
+            "Software Engineering at McMaster with coursework in software design, systems, algorithms, databases, testing, mathematics, and engineering practice.",
+        links: [
+            {
+                label: "Program",
+                href: mcmasterSoftwareEngineeringProgramUrl,
+            },
+            {
+                label: "Courses",
+                href: mcmasterSoftwareEngineeringCoursesUrl,
+            },
+        ],
+        levels: [
+            {
+                level: "Level I",
+                terms: [
+                    {
+                        term: "Term 1",
+                        session: "Fall 2022",
+                        semesterId: "2022-fall",
+                        courses: [
+                            {
+                                code: "ENGINEER 1P13 A/B",
+                                name: "Integrated Cornerstone Design Projects in Engineering",
+                                href: mcmasterCourseDescriptionUrl(322754),
+                                prerequisites: [],
+                                learned:
+                                    "Built design projects with team workflow, prototyping, programming, and engineering communication.",
+                                spansTerms: true,
+                            },
+                            {
+                                code: "PHYSICS 1D03",
+                                name: "Introductory Mechanics",
+                                href: mcmasterCourseDescriptionUrl(321331),
+                                prerequisites: [],
+                                learned:
+                                    "Modeled motion, forces, energy, momentum, and mechanics problems.",
+                            },
+                            {
+                                code: "MATH 1ZA3",
+                                name: "Engineering Mathematics I",
+                                href: mcmasterCourseDescriptionUrl(320291),
+                                prerequisites: [],
+                                learned:
+                                    "Built calculus fundamentals for rates of change, integration, and engineering models.",
+                            },
+                            {
+                                code: "CHEM 1E03",
+                                name: "General Chemistry for Engineering I",
+                                href: mcmasterCourseDescriptionUrl(321696),
+                                prerequisites: [],
+                                learned:
+                                    "Applied chemistry fundamentals to materials, reactions, energy, and engineering problem solving.",
+                            },
+                            {
+                                code: "ECON 1B03",
+                                name: "Introductory Microeconomics",
+                                href: mcmasterCourseDescriptionUrl(320935),
+                                prerequisites: [],
+                                learned:
+                                    "Learned supply, demand, markets, incentives, and how economic choices shape systems.",
+                            },
+                        ],
+                    },
+                    {
+                        term: "Term 2",
+                        session: "Winter 2023",
+                        semesterId: "2023-winter",
+                        courses: [
+                            {
+                                code: "PHYSICS 1E03",
+                                name: "Waves, Electricity and Magnetic Fields",
+                                href: mcmasterCourseDescriptionUrl(321332),
+                                prerequisites: [],
+                                learned:
+                                    "Learned waves, electric fields, magnetic fields, and circuit fundamentals.",
+                            },
+                            {
+                                code: "MATH 1ZC3",
+                                name: "Engineering Mathematics II-B",
+                                href: mcmasterCourseDescriptionUrl(320293),
+                                prerequisites: ["MATH 1ZA3"],
+                                learned:
+                                    "Worked with vectors, matrices, linear algebra, and multivariable calculus foundations.",
+                            },
+                            {
+                                code: "MATH 1ZB3",
+                                name: "Engineering Mathematics II-A",
+                                href: mcmasterCourseDescriptionUrl(320292),
+                                prerequisites: ["MATH 1ZA3"],
+                                learned:
+                                    "Extended calculus into integration techniques, sequences, series, and differential-equation foundations.",
+                            },
+                            {
+                                code: "ECON 1BB3",
+                                name: "Introductory Macroeconomics",
+                                href: mcmasterCourseDescriptionUrl(320936),
+                                prerequisites: [],
+                                learned:
+                                    "Studied inflation, growth, employment, interest rates, and fiscal and monetary policy.",
+                            },
+                        ],
+                    },
+                ],
+            },
+            {
+                level: "Level II",
+                terms: [
+                    {
+                        term: "Term 1",
+                        session: "Fall 2023",
+                        semesterId: "2023-fall",
+                        courses: [
+                            {
+                                code: "SFWRENG 2DM3",
+                                name: "Discrete Mathematics with Applications I",
+                                href: mcmasterCourseDescriptionUrl(321601),
+                                prerequisites: ["MATH 1ZC3"],
+                                learned:
+                                    "Learned logic, proof techniques, sets, relations, counting, and graph foundations.",
+                            },
+                            {
+                                code: "SFWRENG 2OP3",
+                                name: "Object-Oriented Programming",
+                                href: mcmasterCourseDescriptionUrl(322792),
+                                prerequisites: ["ENGINEER 1P13 A/B"],
+                                learned:
+                                    "Built object-oriented programs with encapsulation, inheritance, interfaces, and testing.",
+                            },
+                            {
+                                code: "SFWRENG 2XC3",
+                                name: "Software Engineering Practice and Experience: Development Basics",
+                                href: mcmasterCourseDescriptionUrl(322793),
+                                prerequisites: ["ENGINEER 1P13 A/B"],
+                                learned:
+                                    "Practiced Git, command-line tooling, Linux workflows, and team development habits.",
+                            },
+                            {
+                                code: "MATH 2Z03",
+                                name: "Engineering Mathematics III",
+                                href: mcmasterCourseDescriptionUrl(320297),
+                                prerequisites: ["MATH 1ZB3"],
+                                learned:
+                                    "Used differential equations, transforms, and modelling tools for engineering systems.",
+                            },
+                            {
+                                code: "SFWRENG 2DA4",
+                                name: "Digital Systems and Interfacing",
+                                href: mcmasterCourseDescriptionUrl(321600),
+                                prerequisites: [],
+                                learned:
+                                    "Connected memory, binary arithmetic, hierarchical design, hardware/software co-design, and device interfaces.",
+                            },
+                        ],
+                    },
+                    {
+                        term: "Term 2",
+                        session: "Winter 2024",
+                        semesterId: "2024-winter",
+                        courses: [
+                            {
+                                code: "SFWRENG 2C03",
+                                name: "Data Structures and Algorithms",
+                                href: mcmasterCourseDescriptionUrl(321599),
+                                prerequisites: ["SFWRENG 2DM3"],
+                                learned:
+                                    "Implemented core data structures and analyzed algorithms for efficient software.",
+                            },
+                            {
+                                code: "SFWRENG 2FA3",
+                                name: "Discrete Mathematics and Applications II",
+                                href: mcmasterCourseDescriptionUrl(321602),
+                                prerequisites: ["SFWRENG 2DM3"],
+                                learned:
+                                    "Strengthened formal reasoning with predicate logic, grammars, automata, modular arithmetic, and proofs.",
+                            },
+                            {
+                                code: "SFWRENG 2AA4",
+                                name: "Software Design I - Introduction to Software Development",
+                                href: mcmasterCourseDescriptionUrl(321598),
+                                prerequisites: [
+                                    "SFWRENG 2DM3",
+                                    "SFWRENG 2OP3",
+                                    "SFWRENG 2XC3",
+                                ],
+                                learned:
+                                    "Learned requirements, design patterns, interfaces, implementation reviews, and verification.",
+                            },
+                            {
+                                code: "SFWRENG 2GA3",
+                                name: "Computer Architecture",
+                                href: mcmasterCourseDescriptionUrl(321809),
+                                prerequisites: ["SFWRENG 2DA4", "SFWRENG 2XC3"],
+                                learned:
+                                    "Studied CPU organization, assembly, memory, caches, and low-level program execution.",
+                            },
+                            {
+                                code: "ENGINEER 2PX3",
+                                name: "Engineering: Communications and Social Impact",
+                                href: mcmasterCourseDescriptionUrl(322787),
+                                prerequisites: [],
+                                learned:
+                                    "Practiced technical communication, design reporting, presentations, and social impact analysis.",
+                            },
+                            {
+                                code: "SUSTAIN 1S03",
+                                name: "Introduction to Sustainability",
+                                href: mcmasterCourseDescriptionUrl(321811),
+                                prerequisites: [],
+                                learned:
+                                    "Explored sustainability tradeoffs, climate impacts, and systems-level decision making.",
+                            },
+                        ],
+                    },
+                ],
+            },
+            {
+                level: "Level III",
+                terms: [
+                    {
+                        term: "Term 1",
+                        session: "Fall 2024",
+                        semesterId: "2024-fall",
+                        courses: [
+                            {
+                                code: "SFWRENG 3O03",
+                                name: "Linear Optimization",
+                                href: mcmasterCourseDescriptionUrl(321890),
+                                prerequisites: ["SFWRENG 2C03"],
+                                learned:
+                                    "Formulated optimization models and solved linear programs with constraints and sensitivity analysis.",
+                            },
+                            {
+                                code: "SFWRENG 3DB3",
+                                name: "Databases",
+                                href: mcmasterCourseDescriptionUrl(321888),
+                                prerequisites: ["SFWRENG 2C03", "SFWRENG 2DM3"],
+                                learned:
+                                    "Designed relational schemas, SQL queries, normalization, transactions, and database-backed apps.",
+                            },
+                            {
+                                code: "SFWRENG 3RA3",
+                                name: "Software Requirements and Security Considerations",
+                                href: mcmasterCourseDescriptionUrl(321612),
+                                prerequisites: ["SFWRENG 2AA4", "SFWRENG 2FA3"],
+                                learned:
+                                    "Worked through requirements, threat modeling, security considerations, and stakeholder analysis.",
+                            },
+                            {
+                                code: "SFWRENG 3BB4",
+                                name: "Software Design II - Concurrent System Design",
+                                href: mcmasterCourseDescriptionUrl(321605),
+                                prerequisites: ["SFWRENG 2AA4", "SFWRENG 2FA3"],
+                                learned:
+                                    "Built concurrent designs with threads, synchronization, scheduling, and correctness tradeoffs.",
+                            },
+                            {
+                                code: "SFWRENG 3MX3",
+                                name: "Signals and Systems",
+                                href: mcmasterCourseDescriptionUrl(321810),
+                                prerequisites: ["MATH 2Z03"],
+                                learned:
+                                    "Modeled signals and linear systems across time and frequency domains.",
+                            },
+                            {
+                                code: "STATS 3Y03",
+                                name: "Probability and Statistics for Engineering",
+                                href: mcmasterCourseDescriptionUrl(321643),
+                                prerequisites: [],
+                                learned:
+                                    "Applied probability, random variables, estimation, confidence intervals, and hypothesis testing.",
+                            },
+                        ],
+                    },
+                    {
+                        term: "Term 2",
+                        session: "Winter 2025",
+                        semesterId: "2025-winter",
+                        courses: [
+                            {
+                                code: "SFWRENG 3SH3",
+                                name: "Operating Systems",
+                                href: mcmasterCourseDescriptionUrl(321614),
+                                prerequisites: ["SFWRENG 2AA4", "SFWRENG 2C03"],
+                                learned:
+                                    "Studied processes, threads, memory management, file systems, and OS-level concurrency.",
+                            },
+                            {
+                                code: "SFWRENG 3DX4",
+                                name: "Dynamic Systems and Control",
+                                href: mcmasterCourseDescriptionUrl(321606),
+                                prerequisites: ["SFWRENG 3MX3"],
+                                learned:
+                                    "Analyzed dynamic systems, feedback, stability, and control design.",
+                            },
+                            {
+                                code: "SFWRENG 3A04",
+                                name: "Software Design III - Large System Design",
+                                href: mcmasterCourseDescriptionUrl(321604),
+                                prerequisites: ["SFWRENG 3BB4"],
+                                learned:
+                                    "Designed larger systems with architecture, modularity, maintainability, and documentation.",
+                            },
+                            {
+                                code: "SFWRENG 3S03",
+                                name: "Software Testing",
+                                href: mcmasterCourseDescriptionUrl(321613),
+                                prerequisites: ["SFWRENG 3BB4"],
+                                learned:
+                                    "Practiced test design, coverage, unit and integration testing, and quality assurance strategy.",
+                            },
+                            {
+                                code: "ENGINEER 3PX3",
+                                name: "Engineering Economics",
+                                href: mcmasterCourseDescriptionUrl(322788),
+                                prerequisites: ["ENGINEER 2PX3"],
+                                learned:
+                                    "Studied cost estimation, project valuation, risk, and economic decision making for engineers.",
+                            },
+                        ],
+                    },
+                ],
+            },
+            {
+                level: "Level IV",
+                terms: [
+                    {
+                        term: "Term 0",
+                        session: "Summer 2025 - Winter 2026",
+                        semesterId: "2026-winter",
+                        courses: [
+                            {
+                                code: "ENGINEER 2EC0",
+                                name: "Engineering Work Term",
+                                href: mcmasterCourseDescriptionUrl(321884),
+                                prerequisites: ["ENGINEER 1EE0"],
+                                learned:
+                                    "Completed a 16-month software engineering co-op and applied engineering practice in industry.",
+                            },
+                            {
+                                code: "MUSIC 2MT3",
+                                name: "Introduction to the Practice of Music Therapy",
+                                href: mcmasterCourseDescriptionUrl(321158),
+                                prerequisites: [],
+                                learned:
+                                    "Explored music therapy practice, clinical applications, and how music supports care and rehabilitation.",
+                            },
+                            {
+                                code: "SFWRENG 4C03",
+                                name: "Computer Networks and Security",
+                                href: mcmasterCourseDescriptionUrl(321617),
+                                prerequisites: ["SFWRENG 3BB4", "SFWRENG 3SH3"],
+                                learned:
+                                    "Learned network layering, TCP/IP, switching, services, security threats, defensive techniques, and encryption.",
+                            },
+                            {
+                                code: "ENGINEER 4A03",
+                                name: "Ethics, Equity and Law in Engineering",
+                                href: mcmasterCourseDescriptionUrl(321003),
+                                prerequisites: [],
+                                learned:
+                                    "Studied engineering ethics, equity, professional responsibility, legal duties, contracts, and liability.",
+                            },
+                        ],
+                    },
+                    {
+                        term: "Term 1",
+                        session: "Fall 2026",
+                        semesterId: "2026-fall",
+                        courses: [
+                            {
+                                code: "SFWRENG 4G06 A/B",
+                                name: "Software Design IV - Capstone Design Project",
+                                href: mcmasterCourseDescriptionUrl(321621),
+                                prerequisites: [],
+                                learned:
+                                    "Planned capstone project work covering requirements, design, documentation, implementation, testing, project management, and engineering constraints.",
+                                spansTerms: true,
+                                spanTermsCount: 2,
+                            },
+                            {
+                                code: "SFWRENG 4AA4",
+                                name: "Real-Time Systems and Control Applications",
+                                href: mcmasterCourseDescriptionUrl(321616),
+                                prerequisites: [
+                                    "SFWRENG 3BB4",
+                                    "SFWRENG 3SH3",
+                                    "SFWRENG 3DX4",
+                                ],
+                                learned:
+                                    "Planned coursework in real-time scheduling, safety classification, hazard analysis, clock synchronization, data acquisition, and control applications.",
+                            },
+                            {
+                                code: "SFWRENG 4AL3",
+                                name: "Applications of Machine Learning",
+                                href: mcmasterCourseDescriptionUrl(323367),
+                                prerequisites: [
+                                    "SFWRENG 2C03",
+                                    "SFWRENG 2AA4",
+                                    "STATS 3Y03",
+                                ],
+                                learned:
+                                    "Planned coursework in data engineering, supervised and unsupervised learning, neural networks, topic modelling, and reinforcement learning.",
+                            },
+                            {
+                                code: "SFWRENG 4HC3",
+                                name: "Human Computer Interfaces",
+                                href: mcmasterCourseDescriptionUrl(321622),
+                                prerequisites: [],
+                                learned:
+                                    "Planned coursework in interface design, user experience, inclusive design, cognition, graphics, mode awareness, help systems, and design tools.",
+                            },
+                            {
+                                code: "SFWRENG 4X03",
+                                name: "Scientific Computation",
+                                href: mcmasterCourseDescriptionUrl(321893),
+                                prerequisites: [
+                                    "MATH 1ZB3",
+                                    "MATH 1ZC3",
+                                    "SFWRENG 2C03",
+                                ],
+                                learned:
+                                    "Planned coursework in numerical methods, roundoff error, interpolation, integration, linear and nonlinear systems, eigenvalues, SVD, and ODEs.",
+                            },
+                        ],
+                    },
+                    {
+                        term: "Term 2",
+                        session: "Winter 2027",
+                        semesterId: "2027-winter",
+                        courses: [
+                            {
+                                code: "SFWRENG 4E03",
+                                name: "Performance Analysis of Computer Systems",
+                                href: mcmasterCourseDescriptionUrl(321619),
+                                prerequisites: ["STATS 3Y03"],
+                                learned:
+                                    "Planned coursework in queueing models, simulation, Markov models, bottleneck analysis, storage and network modelling, and reliability.",
+                            },
+                            {
+                                code: "ASTRON 2B03",
+                                name: "The Big Questions",
+                                href: mcmasterCourseDescriptionUrl(320461),
+                                prerequisites: [],
+                                learned:
+                                    "Planned coursework surveying space-time, the Big Bang, black holes, elements, stars, planets, galaxies, and the structure of the cosmos.",
+                            },
+                        ],
+                    },
+                ],
+            },
         ],
     },
 ];
