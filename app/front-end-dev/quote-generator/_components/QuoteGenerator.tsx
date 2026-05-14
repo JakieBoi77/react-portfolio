@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import { regular, fortnite } from "@/public/quotes";
 
@@ -23,17 +23,32 @@ const COLORS = [
     "#73A857",
 ];
 
-const getRandomQuoteState = (quoteType: QuoteType) => {
-    const quotesArray =
-        quoteType === "regular" ? regular.quotes : fortnite.quotes;
-    const quoteObject = quotesArray[Math.floor(Math.random() * quotesArray.length)];
+const getQuotesArray = (quoteType: QuoteType) =>
+    quoteType === "regular" ? regular.quotes : fortnite.quotes;
+
+const getQuoteState = (quoteType: QuoteType, quoteIndex = 0, colorIndex = 0) => {
+    const quotesArray = getQuotesArray(quoteType);
+    const quoteObject = quotesArray[quoteIndex % quotesArray.length];
 
     return {
-        color: COLORS[Math.floor(Math.random() * COLORS.length)],
+        color: COLORS[colorIndex % COLORS.length],
         quote: quoteObject.quote,
         author: quoteObject.author,
     };
 };
+
+const getRandomQuoteState = (quoteType: QuoteType) => {
+    const quotesArray = getQuotesArray(quoteType);
+
+    return getQuoteState(
+        quoteType,
+        Math.floor(Math.random() * quotesArray.length),
+        Math.floor(Math.random() * COLORS.length),
+    );
+};
+
+const getInitialQuoteState = (quoteType: QuoteType) =>
+    getQuoteState(quoteType);
 
 const StyledDiv = styled.div`
     #quote-generator {
@@ -182,7 +197,15 @@ export default function QuoteGenerator() {
 const UnstyledQuoteGenerator = () => {
     const [quoteType, setQuoteType] = useState<QuoteType>("regular");
     const [{ color: currentColor, quote: currentQuote, author: currentAuthor }, setQuoteState] =
-        useState(() => getRandomQuoteState("regular"));
+        useState(() => getInitialQuoteState("regular"));
+
+    useEffect(() => {
+        const timeout = setTimeout(() => {
+            setQuoteState(getRandomQuoteState("regular"));
+        }, 0);
+
+        return () => clearTimeout(timeout);
+    }, []);
 
     const displayNewQuote = (type = quoteType) => {
         setQuoteState(getRandomQuoteState(type));

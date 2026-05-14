@@ -320,6 +320,8 @@ function UnstyledPortfolio() {
                         <Link
                             className="project-tile"
                             href="/front-end-dev/quote-generator"
+                            target="_blank"
+                            rel="noopener noreferrer"
                         >
                             <img
                                 className="project-image"
@@ -334,6 +336,8 @@ function UnstyledPortfolio() {
                         <Link
                             className="project-tile"
                             href="/front-end-dev/markdown-previewer"
+                            target="_blank"
+                            rel="noopener noreferrer"
                         >
                             <img
                                 className="project-image"
@@ -348,6 +352,8 @@ function UnstyledPortfolio() {
                         <Link
                             className="project-tile"
                             href="/front-end-dev/meme-soundboard"
+                            target="_blank"
+                            rel="noopener noreferrer"
                         >
                             <img
                                 className="project-image"
@@ -362,6 +368,8 @@ function UnstyledPortfolio() {
                         <Link
                             className="project-tile"
                             href="/front-end-dev/calculator"
+                            target="_blank"
+                            rel="noopener noreferrer"
                         >
                             <img
                                 className="project-image"
@@ -375,6 +383,8 @@ function UnstyledPortfolio() {
                         <Link
                             className="project-tile"
                             href="/front-end-dev/pomodoro-clock"
+                            target="_blank"
+                            rel="noopener noreferrer"
                         >
                             <img
                                 className="project-image"
@@ -404,6 +414,8 @@ function UnstyledPortfolio() {
                         <Link
                             className="project-tile"
                             href="/legacy-web-design/survey-form"
+                            target="_blank"
+                            rel="noopener noreferrer"
                         >
                             <img
                                 className="project-image"
@@ -417,6 +429,8 @@ function UnstyledPortfolio() {
                         <Link
                             className="project-tile"
                             href="/legacy-web-design/tribute-page"
+                            target="_blank"
+                            rel="noopener noreferrer"
                         >
                             <img
                                 className="project-image"
@@ -430,6 +444,8 @@ function UnstyledPortfolio() {
                         <Link
                             className="project-tile"
                             href="/legacy-web-design/technical-documentation"
+                            target="_blank"
+                            rel="noopener noreferrer"
                         >
                             <img
                                 className="project-image"
@@ -444,6 +460,8 @@ function UnstyledPortfolio() {
                         <Link
                             className="project-tile"
                             href="/legacy-web-design/product-landing-page"
+                            target="_blank"
+                            rel="noopener noreferrer"
                         >
                             <img
                                 className="project-image"

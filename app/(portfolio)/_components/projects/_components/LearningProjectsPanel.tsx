@@ -101,6 +101,8 @@ const LearningProjectShowcase = ({
                         >
                             <Link
                                 href={`/${collection.folder}/${activeProject.value}`}
+                                target="_blank"
+                                rel="noopener noreferrer"
                                 className="group block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300"
                             >
                                 <span className="block aspect-[16/10] overflow-hidden bg-black-100">
