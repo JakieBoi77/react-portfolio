@@ -568,6 +568,10 @@
       display: none;
     }
 
+    .animate-spotlight {
+      display: none;
+    }
+
     .course-graph-scroll {
       cursor: auto;
       touch-action: pan-x pan-y pinch-zoom;

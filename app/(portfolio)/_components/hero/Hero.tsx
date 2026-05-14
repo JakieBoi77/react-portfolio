@@ -39,7 +39,7 @@ const Hero = () => {
                                     variants={fadeIn("right", "spring", 0.5, 1)}
                                     initial="hidden"
                                     whileInView="show"
-                                    viewport={{ once: true, amount: 0 }}
+                                    viewport={{ once: true, amount: 0.01 }}
                                 >
                                     <div className="relative inline-block">
                                         <div className="relative size-[88px] sm:size-[100px]">
@@ -144,7 +144,7 @@ const Hero = () => {
                             variants={fadeIn("right", "spring", 0.1, 1)}
                             initial="hidden"
                             whileInView="show"
-                            viewport={{ once: true, amount: 0.25 }}
+                            viewport={{ once: true, amount: 0.01 }}
                         >
                             <TypographyLead className="text-center text-sm leading-6 text-white-100 sm:text-left sm:text-base sm:leading-7 md:text-lg md:leading-8">
                                 {aboutParagraph}

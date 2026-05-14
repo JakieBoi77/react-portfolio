@@ -42,7 +42,7 @@ const CourseDependencyGraph = ({ levels }: CourseDependencyGraphProps) => {
             variants={floatInFromRightVariants}
             initial="hidden"
             whileInView="show"
-            viewport={{ once: true, amount: 0.2 }}
+            viewport={{ once: true, amount: 0.01 }}
             className="glassy-node p-2 sm:p-3"
             style={style}
         >

@@ -10,10 +10,10 @@ const SectionWrapper = <Props extends object>(
     const MotionSection = (props: Props) => {
         return (
             <motion.section
-                variants={staggerContainer(0.5)}
+                variants={staggerContainer(0)}
                 initial="hidden"
                 whileInView="show"
-                viewport={{ once: true, amount: 0 }}
+                viewport={{ once: true, amount: 0.01 }}
                 className="w-full mx-auto relative z-0"
             >
                 <span className="hash-span" id={idName}>

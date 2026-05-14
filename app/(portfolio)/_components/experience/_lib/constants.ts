@@ -70,14 +70,14 @@ export const floatInFromRightVariants: Variants = {
         x: 52,
         opacity: 0,
     },
-    show: (index = 0) => ({
+    show: () => ({
         x: 0,
         opacity: 1,
         transition: {
             type: "spring",
             duration: 0.78,
             bounce: 0.16,
-            delay: Math.min(Number(index) * 0.07, 0.35),
+            delay: 0,
         },
     }),
 };

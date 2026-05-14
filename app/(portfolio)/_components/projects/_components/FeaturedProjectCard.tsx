@@ -26,7 +26,7 @@ const FeaturedProjectCard = ({ project, index }: FeaturedProjectCardProps) => {
             variants={projectCardVariants}
             initial="hidden"
             whileInView="show"
-            viewport={{ once: true, amount: 0.1 }}
+            viewport={{ once: true, amount: 0.01 }}
         >
             <article
                 className="glassy-node grid gap-4 p-3 transition duration-300 hover:-translate-y-0.5 hover:border-white/20 sm:p-4 lg:grid-cols-[minmax(0,1.18fr)_minmax(18rem,0.82fr)]"

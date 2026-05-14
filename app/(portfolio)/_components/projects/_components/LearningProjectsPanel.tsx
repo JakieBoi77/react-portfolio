@@ -38,7 +38,7 @@ const LearningProjectShowcase = ({
             variants={projectCardVariants}
             initial="hidden"
             whileInView="show"
-            viewport={{ once: true, amount: 0.1 }}
+            viewport={{ once: true, amount: 0.01 }}
             className="glassy-node p-3 sm:p-4"
             style={style}
         >

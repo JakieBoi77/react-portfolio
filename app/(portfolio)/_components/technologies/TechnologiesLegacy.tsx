@@ -14,7 +14,7 @@ const TechnologiesLegacy = () => {
                 className="text-center"
                 initial="hidden"
                 whileInView="show"
-                viewport={{ once: true, amount: 1 }}
+                viewport={{ once: true, amount: 0.01 }}
             >
                 <TypographyH2>Technologies</TypographyH2>
             </motion.div>

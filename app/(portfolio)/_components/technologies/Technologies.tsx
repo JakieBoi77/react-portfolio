@@ -134,7 +134,7 @@ const Technologies = () => {
                 variants={fadeIn("up", "spring", 0.1, 1)}
                 initial="hidden"
                 whileInView="show"
-                viewport={{ once: true, amount: 0.15 }}
+                viewport={{ once: true, amount: 0.01 }}
             >
                 <SectionHeading
                     title="Technologies"

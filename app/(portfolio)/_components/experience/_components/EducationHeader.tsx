@@ -26,7 +26,7 @@ const EducationHeader = ({ educationItem, index }: EducationHeaderProps) => {
             variants={floatInFromRightVariants}
             initial="hidden"
             whileInView="show"
-            viewport={{ once: true, amount: 0.35 }}
+            viewport={{ once: true, amount: 0.01 }}
             className="glassy-node p-4 sm:p-5"
             style={style}
         >

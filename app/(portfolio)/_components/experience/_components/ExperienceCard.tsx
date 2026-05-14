@@ -24,18 +24,19 @@ const ExperienceCard = ({ experience, index, isLast }: ExperienceCardProps) => {
             className="relative grid grid-cols-[3.25rem_minmax(0,1fr)] gap-3 pb-7 last:pb-0 sm:grid-cols-[4rem_minmax(0,1fr)] sm:gap-5"
             initial="hidden"
             whileInView="show"
-            viewport={{ once: true, amount: 0.35 }}
+            viewport={{ once: true, amount: 0.01 }}
         >
             <div className="relative flex justify-center">
-                {!isLast && (
-                    <span
-                        aria-hidden="true"
-                        className="absolute bottom-[-1.75rem] top-16 w-px rounded-full"
-                        style={{
-                            background: `linear-gradient(to bottom, rgb(${accent} / 0.72), rgb(${accent} / 0.18), transparent)`,
-                        }}
-                    />
-                )}
+                <span
+                    aria-hidden="true"
+                    className={cn(
+                        "absolute top-14 w-px rounded-full sm:top-16",
+                        isLast ? "bottom-0" : "bottom-[-1.75rem]",
+                    )}
+                    style={{
+                        background: `linear-gradient(to bottom, rgb(${accent} / 0.72), rgb(${accent} / 0.18), transparent)`,
+                    }}
+                />
 
                 <div
                     className="glassy-node grid size-14 shrink-0 place-items-center rounded-2xl p-1.5 shadow-[0_0_28px_rgb(var(--node-accent)/0.2)] sm:size-16"
