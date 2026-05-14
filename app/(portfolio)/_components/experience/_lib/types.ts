@@ -1,10 +1,8 @@
-import type { CSSProperties } from "react";
+import type { CSSVariableStyle } from "@components";
 
 import { education, experiences } from "../../../_data/portfolio";
 
-export type CSSVariableStyle = CSSProperties & {
-    [key: `--${string}`]: string | number | undefined;
-};
+export type { CSSVariableStyle };
 
 export type ExperienceItem = (typeof experiences)[number];
 export type EducationItem = (typeof education)[number];

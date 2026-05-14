@@ -1,7 +1,6 @@
-import React from "react";
 import { HyperText, TypographySmall } from "@components";
 import Link from "next/link";
-import { navItems } from "../_data/portfolio";
+import { navItems } from "../../_data/portfolio";
 
 const Header = () => {
     return (

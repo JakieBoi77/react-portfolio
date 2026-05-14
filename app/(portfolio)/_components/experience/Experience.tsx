@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 
+import { SectionHeading, SectionWrapper } from "@components";
 import { cn } from "@/lib/utils";
 import { fadeIn } from "@/utils/motion";
 import {
@@ -14,7 +15,6 @@ import {
 import EducationPanel from "./_components/EducationPanel";
 import type { CSSVariableStyle } from "./_lib/types";
 import WorkPanel from "./_components/WorkPanel";
-import SectionWrapper from "../SectionWrapper";
 
 const Experience = () => {
     const [activeTab, setActiveTab] = useState<ExperienceTab>("work");
@@ -28,14 +28,10 @@ const Experience = () => {
                 whileInView="show"
                 viewport={{ once: true, amount: 0.15 }}
             >
-                <div className="mx-auto mb-7 max-w-4xl text-left">
-                    <h2 className="text-2xl font-bold leading-tight tracking-normal text-white sm:text-3xl">
-                        Experience
-                    </h2>
-                    <p className="mt-2 max-w-xl text-sm leading-6 tracking-normal text-white-100">
-                        A collection of my work history and eduction.
-                    </p>
-
+                <SectionHeading
+                    title="Experience"
+                    description="A collection of my work history and education."
+                >
                     <div
                         role="tablist"
                         aria-label="Experience sections"
@@ -84,7 +80,7 @@ const Experience = () => {
                             );
                         })}
                     </div>
-                </div>
+                </SectionHeading>
 
                 <AnimatePresence mode="wait">
                     <motion.div

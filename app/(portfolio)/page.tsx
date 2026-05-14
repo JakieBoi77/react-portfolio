@@ -2,13 +2,13 @@
 
 import { Inter } from "next/font/google";
 import { SparklesCore } from "@components";
+import Connect from "./_components/connect";
 import Experience from "./_components/experience";
-import Footer from "./_components/Footer";
-import Header from "./_components/Header";
-import Hero from "./_components/Hero";
-import Intro from "./_components/Intro";
-import Projects from "./_components/Projects";
-import Technologies from "./_components/Technologies";
+import Header from "./_components/header";
+import Hero from "./_components/hero";
+import Intro from "./_components/intro";
+import Projects from "./_components/projects";
+import Technologies from "./_components/technologies";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -34,7 +34,7 @@ const AppContent = () => {
                     <Experience />
                     <Technologies />
                     <Projects />
-                    <Footer />
+                    <Connect />
                 </div>
             </main>
         </div>

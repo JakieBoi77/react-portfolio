@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useMemo, useState } from "react";
 import { Canvas } from "@react-three/fiber";
 import {
@@ -52,7 +54,7 @@ const Views = ({ views, technologies }: any) => {
     );
 };
 
-const BallCanvas = ({ technologies }: any) => {
+const TechnologyBallCanvas = ({ technologies }: any) => {
     const views = useMemo(
         () => technologies.map(() => React.createRef()),
         [technologies],
@@ -94,4 +96,4 @@ const BallCanvas = ({ technologies }: any) => {
     );
 };
 
-export default BallCanvas;
+export default TechnologyBallCanvas;

@@ -1,12 +1,9 @@
 "use client";
 
-import { technologies } from "../_data/portfolio";
-import React from "react";
-import BallCanvas from "./BallCanvas";
+import { technologies } from "../../_data/portfolio";
 import { motion } from "framer-motion";
 import { textVariant } from "@/utils/motion";
-import SectionWrapper from "./SectionWrapper";
-import { TypographyH2 } from "@components";
+import { SectionWrapper, TechnologyBallCanvas, TypographyH2 } from "@components";
 
 const TechnologiesLegacy = () => {
     return (
@@ -20,7 +17,7 @@ const TechnologiesLegacy = () => {
             >
                 <TypographyH2>Technologies</TypographyH2>
             </motion.div>
-            <BallCanvas technologies={technologies} />
+            <TechnologyBallCanvas technologies={technologies} />
         </div>
     );
 };

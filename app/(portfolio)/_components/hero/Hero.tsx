@@ -1,6 +1,5 @@
 "use client";
 
-import React from "react";
 import {
     IconButton,
     Spotlight,
@@ -8,8 +7,8 @@ import {
     TypographyLead,
     TypographySmall,
 } from "@components";
-import { aboutParagraph, availableToWork, links } from "../_data/portfolio";
-import { assets } from "../_data/assets";
+import { aboutParagraph, availableToWork, links } from "../../_data/portfolio";
+import { assets } from "../../_data/assets";
 import { motion } from "framer-motion";
 import { fadeIn } from "@/utils/motion";
 

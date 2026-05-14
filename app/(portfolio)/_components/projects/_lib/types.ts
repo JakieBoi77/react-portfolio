@@ -1,13 +1,11 @@
-import type { CSSProperties } from "react";
+import type { CSSVariableStyle } from "@components";
 
 import {
     fullStackProjects,
     learningProjectCollections,
 } from "../../../_data/portfolio";
 
-export type CSSVariableStyle = CSSProperties & {
-    [key: `--${string}`]: string | number | undefined;
-};
+export type { CSSVariableStyle };
 
 export type FeaturedProject = (typeof fullStackProjects)[number];
 export type LearningProjectCollection =

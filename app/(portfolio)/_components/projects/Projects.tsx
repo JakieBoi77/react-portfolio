@@ -3,9 +3,9 @@
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 
+import { SectionHeading, SectionWrapper } from "@components";
 import { cn } from "@/lib/utils";
 import { fadeIn } from "@/utils/motion";
-import SectionWrapper from "../SectionWrapper";
 import FeaturedProjectsPanel from "./_components/FeaturedProjectsPanel";
 import LearningProjectsPanel from "./_components/LearningProjectsPanel";
 import {
@@ -29,15 +29,10 @@ const Projects = () => {
                 whileInView="show"
                 viewport={{ once: true, amount: 0.15 }}
             >
-                <div className="mx-auto mb-7 max-w-4xl text-left">
-                    <h2 className="text-2xl font-bold leading-tight tracking-normal text-white sm:text-3xl">
-                        Projects
-                    </h2>
-                    <p className="mt-2 max-w-xl text-sm leading-6 tracking-normal text-white-100">
-                        Featured full-stack builds and smaller projects from my
-                        learning path.
-                    </p>
-
+                <SectionHeading
+                    title="Projects"
+                    description="Featured full-stack builds and smaller projects from my learning path."
+                >
                     <div
                         role="tablist"
                         aria-label="Project sections"
@@ -86,7 +81,7 @@ const Projects = () => {
                             );
                         })}
                     </div>
-                </div>
+                </SectionHeading>
 
                 <AnimatePresence mode="wait">
                     <motion.div
