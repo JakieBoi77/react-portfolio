@@ -17,6 +17,9 @@ const ExerciseTrackerMicroservice = () => {
         try {
             const response = await fetch("/api/users", {
                 method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
                 body: JSON.stringify({ username }),
             });
 
@@ -47,6 +50,9 @@ const ExerciseTrackerMicroservice = () => {
         try {
             const response = await fetch(`/api/users/${_id}/exercises`, {
                 method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
                 body: JSON.stringify({ _id, description, duration, date }),
             });
 

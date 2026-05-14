@@ -1,24 +1,35 @@
 import connect from "@/lib/db";
 import User from "@/lib/models/user";
+import {
+    checkRateLimit,
+    jsonError,
+    parseJsonObject,
+    readRequiredString,
+} from "@/lib/api-security";
 
 export const POST = async (request: Request) => {
     try {
+        const rateLimitResponse = checkRateLimit(request, {
+            keyPrefix: "users:create",
+            limit: 20,
+            windowMs: 60_000,
+        });
+        if (rateLimitResponse) return rateLimitResponse;
+
         // Conenct to database
         await connect();
 
         // Get request body
-        const body = await request.json();
+        const body = await parseJsonObject(request);
 
         // Get username
-        const username = body.username;
-
-        // Username is required
-        if (username === "") {
-            return Response.json({ error: "The username field is required." });
-        }
+        const username = readRequiredString(body, "username", {
+            label: "Username",
+            maxLength: 64,
+        });
 
         // Look in the database for the user
-        let user = await User.findOne({ username });
+        let user = await User.findOne({ username: { $eq: username } });
 
         // Add user if not found
         if (!user) {
@@ -31,6 +42,6 @@ export const POST = async (request: Request) => {
         return Response.json({ username: user.username, _id: user._id });
     } catch (err) {
         console.error("Error in POST /api/users:", err);
-        return Response.json({ error: "Internal server error" });
+        return jsonError(err, "Internal server error");
     }
 };

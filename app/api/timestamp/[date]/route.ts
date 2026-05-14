@@ -1,8 +1,8 @@
 export const GET = async (
     _req: Request,
-    { params }: { params: { date: string } },
+    { params }: { params: Promise<{ date: string }> },
 ) => {
-    const date = params.date;
+    const { date } = await params;
 
     // If input is a date string
     if (!isNaN(new Date(date).getTime())) {

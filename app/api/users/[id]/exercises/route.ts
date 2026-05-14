@@ -1,20 +1,43 @@
 import connect from "@/lib/db";
 import Exercise from "@/lib/models/exercise";
 import User from "@/lib/models/user";
+import {
+    ApiRequestError,
+    checkRateLimit,
+    jsonError,
+    parseDateString,
+    parseJsonObject,
+    parseObjectId,
+    readOptionalString,
+    readRequiredInteger,
+    readRequiredString,
+} from "@/lib/api-security";
 
-export const POST = async (request: Request) => {
+type RouteContext = { params: Promise<{ id: string }> };
+
+export const POST = async (request: Request, { params }: RouteContext) => {
     try {
+        const rateLimitResponse = checkRateLimit(request, {
+            keyPrefix: "exercises:create",
+            limit: 30,
+            windowMs: 60_000,
+        });
+        if (rateLimitResponse) return rateLimitResponse;
+
         // Conenct to database
         await connect();
 
         // Get Info
-        const body = await request.json();
-        let { _id, description, duration, date } = body;
-        const userId = _id;
+        const body = await parseJsonObject(request);
+        const { id } = await params;
+        const userId = parseObjectId(id, "User ID");
+        const bodyUserId = readOptionalString(body, "_id", {
+            label: "User ID",
+            maxLength: 24,
+        });
 
-        // UserID is required
-        if (userId === "") {
-            return Response.json({ error: "The ID field is required." });
+        if (bodyUserId && bodyUserId !== userId) {
+            throw new ApiRequestError("Request body ID must match route ID");
         }
 
         // Verify id and get username
@@ -24,26 +47,22 @@ export const POST = async (request: Request) => {
         }
         const username = user.username;
 
-        // Description is required
-        if (description === "") {
-            return Response.json({
-                error: "The description field is required.",
-            });
-        }
-
-        // Duration is required
-        if (duration === "") {
-            return Response.json({ error: "The duration field is required." });
-        }
-
-        // Verify and convert duration
-        if (isNaN(parseInt(duration))) {
-            return Response.json({ error: "Duration is not a number." });
-        }
-        duration = Number(duration);
+        const description = readRequiredString(body, "description", {
+            label: "Description",
+            maxLength: 280,
+        });
+        const duration = readRequiredInteger(body, "duration", {
+            label: "Duration",
+            min: 1,
+            max: 100_000,
+        });
+        const dateInput = readOptionalString(body, "date", {
+            label: "Date",
+            maxLength: 10,
+        });
 
         // Convert date string to date obj
-        date = convertDate(date);
+        const date = dateInput ? parseDateString(dateInput, "Date") : new Date();
 
         // Add exercise to the database
         const newExercise = new Exercise({
@@ -65,21 +84,6 @@ export const POST = async (request: Request) => {
         });
     } catch (err) {
         console.error("Error in POST /api/users/[id]/excercises:", err);
-        return Response.json({ error: "Interal server error" });
+        return jsonError(err, "Internal server error");
     }
 };
-
-// Convert date string to date obj (time zone issue if conversion is not done manually)
-function convertDate(date: string) {
-    let convertedDate;
-    if (date === "" || date === undefined) {
-        convertedDate = new Date();
-    } else {
-        const dateParts = date.split("-");
-        const year = parseInt(dateParts[0], 10);
-        const month = parseInt(dateParts[1], 10) - 1; // Months are zero-based
-        const day = parseInt(dateParts[2], 10);
-        convertedDate = new Date(year, month, day);
-    }
-    return convertedDate;
-}

@@ -1,21 +1,35 @@
 import connect from "@/lib/db";
 import Exercise from "@/lib/models/exercise";
 import User from "@/lib/models/user";
+import {
+    ApiRequestError,
+    checkRateLimit,
+    jsonError,
+    parseDateString,
+    parseObjectId,
+} from "@/lib/api-security";
 import { NextRequest } from "next/server";
 
-export const POST = async (
+type RouteContext = { params: Promise<{ id: string }> };
+
+const getExerciseLog = async (
     request: NextRequest,
-    { params }: { params: { id: string } },
+    { params }: RouteContext,
 ) => {
     try {
+        const rateLimitResponse = checkRateLimit(request, {
+            keyPrefix: "exercises:logs",
+            limit: 60,
+            windowMs: 60_000,
+        });
+        if (rateLimitResponse) return rateLimitResponse;
+
         // Conenct to database
         await connect();
 
         // UserID is required
-        let userId = params.id;
-        if (userId === "") {
-            return Response.json({ error: "The ID field is required." });
-        }
+        const { id } = await params;
+        const userId = parseObjectId(id, "User ID");
 
         // Verify id and get username
         const user = await User.findById(userId);
@@ -29,6 +43,7 @@ export const POST = async (
         const from = searchParams.get("from");
         const to = searchParams.get("to");
         const limit = searchParams.get("limit");
+        const logLimit = parseLogLimit(limit);
 
         // Must have both from and to
         if ((from && !to) || (to && !from)) {
@@ -38,25 +53,16 @@ export const POST = async (
         }
 
         // Get requested exercises
-        let exercises = await Exercise.find({ userId });
+        let exercises = await Exercise.find({ userId: { $eq: userId } }).limit(
+            logLimit,
+        );
         if (from && to) {
-            const fromDate = convertDate(from);
-            const toDate = convertDate(to);
-            if (limit) {
-                const logLimit = parseInt(limit);
-                exercises = await Exercise.find({
-                    userId,
-                    date: { $gte: fromDate, $lte: toDate },
-                }).limit(logLimit);
-            } else {
-                exercises = await Exercise.find({
-                    userId,
-                    date: { $gte: fromDate, $lte: toDate },
-                });
-            }
-        } else if (limit) {
-            const logLimit = parseInt(limit);
-            exercises = await Exercise.find({ userId }).limit(logLimit);
+            const fromDate = parseDateString(from, "From date");
+            const toDate = parseDateString(to, "To date");
+            exercises = await Exercise.find({
+                userId: { $eq: userId },
+                date: { $gte: fromDate, $lte: toDate },
+            }).limit(logLimit);
         }
 
         // Format exercise objects
@@ -77,21 +83,23 @@ export const POST = async (
         });
     } catch (err) {
         console.error("Error in GET /api/users/:_id/logs:", err);
-        return Response.json({ error: "Interal server error" });
+        return jsonError(err, "Internal server error");
     }
 };
 
-// Convert date string to date obj (time zone issue if conversion is not done manually)
-function convertDate(date: string) {
-    let convertedDate;
-    if (date === "" || date === undefined) {
-        convertedDate = new Date();
-    } else {
-        const dateParts = date.split("-");
-        const year = parseInt(dateParts[0], 10);
-        const month = parseInt(dateParts[1], 10) - 1; // Months are zero-based
-        const day = parseInt(dateParts[2], 10);
-        convertedDate = new Date(year, month, day);
+export const GET = getExerciseLog;
+export const POST = getExerciseLog;
+
+const parseLogLimit = (limit: string | null) => {
+    if (!limit) {
+        return 1000;
     }
-    return convertedDate;
-}
+
+    const parsedLimit = Number(limit);
+
+    if (!Number.isInteger(parsedLimit) || parsedLimit < 1 || parsedLimit > 1000) {
+        throw new ApiRequestError("Limit must be an integer between 1 and 1000");
+    }
+
+    return parsedLimit;
+};

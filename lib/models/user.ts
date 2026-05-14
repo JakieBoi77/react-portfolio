@@ -5,6 +5,10 @@ const userSchema = new Schema(
         username: {
             type: String,
             required: true,
+            trim: true,
+            minlength: 1,
+            maxlength: 64,
+            index: true,
         },
     },
     { versionKey: false },
