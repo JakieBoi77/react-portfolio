@@ -11,6 +11,7 @@ import Hero from "./_components/hero"
 import Intro from "./_components/intro"
 import Projects from "./_components/projects"
 import Technologies from "./_components/technologies"
+import { ACTIVE_THEME } from "./_styles/theme"
 
 const inter = Inter({ subsets: ["latin"] })
 const mobilePerformanceQuery =
@@ -44,7 +45,7 @@ const AppContent = () => {
             >
                 <main className="relative bg-surface flex justify-center items-center flex-col mx-auto sm:px-10 px-5 overflow-clip text-white tw-class">
                     <div className="w-full absolute inset-0">
-                        {!mobilePerformanceMode && (
+                        {ACTIVE_THEME.flags.sparkles && !mobilePerformanceMode && (
                             <SparklesCore
                                 id="tsparticlesfullpage"
                                 background="transparent"

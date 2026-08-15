@@ -1,9 +1,6 @@
 import type { Metadata } from "next"
+import { themeAttributes } from "./(portfolio)/_styles/theme"
 import "./globals.css"
-
-// The active color theme, defined in app/globals.css as `[data-theme="..."]`.
-// This is a developer-only switch — there is no end-user theme picker.
-const ACTIVE_THEME = "default"
 
 export const metadata: Metadata = {
     title: "Jake's Portfolio",
@@ -16,7 +13,7 @@ export default function RootLayout({
     children: React.ReactNode
 }>) {
     return (
-        <html lang="en" data-theme={ACTIVE_THEME}>
+        <html lang="en" {...themeAttributes}>
             <body>{children}</body>
         </html>
     )

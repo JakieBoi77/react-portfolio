@@ -102,3 +102,16 @@
         display: none;
     }
 }
+
+/* THEME_FLAGS.glassy toggle (app/(portfolio)/_styles/theme.ts) — same flat
+   fallback as .glassy/.glassy-node (see ../../_styles/glassy.css). */
+[data-fx-glassy="false"] .technology-card,
+[data-fx-glassy="false"] .technology-card:hover {
+    border-color: rgba(255, 255, 255, 0.1);
+    background: rgb(var(--glass-panel-strong) / 0.92);
+}
+
+[data-fx-glassy="false"] .technology-card::before,
+[data-fx-glassy="false"] .technology-card::after {
+    content: none;
+}
