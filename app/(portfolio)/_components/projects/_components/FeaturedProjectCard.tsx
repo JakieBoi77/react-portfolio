@@ -32,8 +32,8 @@ const FeaturedProjectCard = ({ project, index }: FeaturedProjectCardProps) => {
                 className="glassy-node grid gap-4 p-3 transition duration-300 hover:-translate-y-0.5 hover:border-white/20 sm:p-4 lg:grid-cols-[minmax(0,1.18fr)_minmax(18rem,0.82fr)]"
                 style={style}
             >
-                <div className="overflow-hidden rounded-xl border border-white/10 bg-black-100/45">
-                    <div className="aspect-[16/10] w-full overflow-hidden bg-black-100">
+                <div className="overflow-hidden rounded-xl border border-white/10 bg-surface/45">
+                    <div className="aspect-[16/10] w-full overflow-hidden bg-surface">
                         <img
                             src={primaryImage}
                             alt={`${project.projectTitle} screen`}
@@ -54,7 +54,7 @@ const FeaturedProjectCard = ({ project, index }: FeaturedProjectCardProps) => {
                             {supportingImages.map((image) => (
                                 <div
                                     key={image}
-                                    className="aspect-[16/10] overflow-hidden bg-black-100"
+                                    className="aspect-[16/10] overflow-hidden bg-surface"
                                 >
                                     <img
                                         src={image}
@@ -79,7 +79,7 @@ const FeaturedProjectCard = ({ project, index }: FeaturedProjectCardProps) => {
                         <h3 className="mt-1 text-xl font-bold leading-tight tracking-normal text-white sm:text-2xl">
                             {project.projectTitle}
                         </h3>
-                        <p className="mt-3 break-words text-sm leading-6 tracking-normal text-white-100">
+                        <p className="mt-3 break-words text-sm leading-6 tracking-normal text-ink-muted">
                             {project.des}
                         </p>
                     </div>

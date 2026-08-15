@@ -33,6 +33,37 @@ const graphLinkTransitionStyle = {
     transition: "opacity 160ms ease, stroke 160ms ease, stroke-width 160ms ease",
 };
 
+// Fixed (non-accent) colors reused across the graph's SVG primitives, kept
+// in one place so the tooltip/label/edge palette stays consistent.
+const courseGraphColors = {
+    edgeDefault: "rgba(190, 193, 221, 0.42)",
+    edgeArrow: "rgba(190, 193, 221, 0.72)",
+    columnTerm: "rgba(255, 255, 255, 0.68)",
+    columnSession: "rgba(255, 255, 255, 0.52)",
+    nodeLabel: "rgba(255, 255, 255, 0.88)",
+    nodeIcon: "rgba(255, 255, 255, 0.86)",
+    nodeShadow: "rgba(0, 0, 0, 0.42)",
+    tooltipBg: "rgba(8, 13, 28, 0.96)",
+    tooltipName: "rgba(255, 255, 255, 0.9)",
+    tooltipBody: "rgba(226, 232, 240, 0.88)",
+} as const;
+
+// Shared text props for the graph's monospace labels (level headers, node
+// codes, tooltip codes) — callers still set their own fontSize/fill.
+const monoLabelTextProps = {
+    fontFamily: "monospace",
+    fontWeight: 700,
+} as const;
+
+// The "open in new tab" glyph is drawn identically on every node.
+const nodeIconStrokeProps = {
+    fill: "none",
+    stroke: courseGraphColors.nodeIcon,
+    strokeLinecap: "round",
+    strokeLinejoin: "round",
+    strokeWidth: 1.8,
+} as const;
+
 const getCourseGraphLinkPath = ({ source, target }: CourseGraphEdge) => {
     const { nodeHeight } = courseGraphMetrics;
     const startX = source.x + source.width;
@@ -62,7 +93,7 @@ const CourseGraphSvg = ({
     const hoveredNode = hoveredCourseCode
         ? nodeMap.get(hoveredCourseCode)
         : undefined;
-    const activeEdgeAccent = hoveredNode?.accent ?? "56 189 248";
+    const activeEdgeAccent = hoveredNode?.accent ?? "var(--accent-sky)";
     const { nodeHeight, nodeWidth } = courseGraphMetrics;
     const { courseGraphLinks, linksByCourseCode } = useMemo(() => {
         const nextLinks = edges.map((edge, index) => ({
@@ -165,10 +196,7 @@ const CourseGraphSvg = ({
                     markerHeight="5"
                     orient="auto-start-reverse"
                 >
-                    <path
-                        d="M 0 0 L 10 5 L 0 10 z"
-                        fill="rgba(190, 193, 221, 0.72)"
-                    />
+                    <path d="M 0 0 L 10 5 L 0 10 z" fill={courseGraphColors.edgeArrow} />
                 </marker>
                 <marker
                     id="course-arrow-active"
@@ -195,7 +223,7 @@ const CourseGraphSvg = ({
                         dx="0"
                         dy="10"
                         stdDeviation="10"
-                        floodColor="rgba(0, 0, 0, 0.42)"
+                        floodColor={courseGraphColors.nodeShadow}
                     />
                 </filter>
             </defs>
@@ -208,8 +236,7 @@ const CourseGraphSvg = ({
                     textAnchor="middle"
                     fill={`rgb(${levelLabel.accent})`}
                     fontSize="12"
-                    fontFamily="monospace"
-                    fontWeight="700"
+                    {...monoLabelTextProps}
                 >
                     {levelLabel.label}
                 </text>
@@ -220,17 +247,16 @@ const CourseGraphSvg = ({
                     <text
                         x={column.x}
                         y="54"
-                        fill="rgba(255, 255, 255, 0.68)"
+                        fill={courseGraphColors.columnTerm}
                         fontSize="10"
-                        fontFamily="monospace"
-                        fontWeight="700"
+                        {...monoLabelTextProps}
                     >
                         {column.term.toUpperCase()}
                     </text>
                     <text
                         x={column.x}
                         y="70"
-                        fill="rgba(255, 255, 255, 0.52)"
+                        fill={courseGraphColors.columnSession}
                         fontSize="10"
                         fontFamily="monospace"
                         fontWeight="600"
@@ -248,7 +274,7 @@ const CourseGraphSvg = ({
                         key={link.id}
                         d={link.path}
                         fill="none"
-                        stroke="rgba(190, 193, 221, 0.42)"
+                        stroke={courseGraphColors.edgeDefault}
                         strokeWidth="1.2"
                         markerEnd="url(#course-arrow)"
                         opacity={
@@ -289,7 +315,7 @@ const CourseGraphSvg = ({
                                 width={node.width}
                                 height={nodeHeight}
                                 rx="10"
-                                fill="rgba(10, 15, 31, 0.84)"
+                                fill="rgb(var(--glass-panel) / 0.84)"
                                 stroke={`rgb(${node.accent} / ${isHovered ? 0.78 : 0.4})`}
                                 strokeWidth={isHovered ? "1.8" : "1.1"}
                             />
@@ -306,8 +332,7 @@ const CourseGraphSvg = ({
                                 y="18"
                                 fill={`rgb(${node.accent})`}
                                 fontSize="10"
-                                fontFamily="monospace"
-                                fontWeight="700"
+                                {...monoLabelTextProps}
                             >
                                 {node.code}
                             </text>
@@ -324,37 +349,16 @@ const CourseGraphSvg = ({
                                     fill={`rgb(${node.accent} / 0.18)`}
                                     stroke={`rgb(${node.accent} / 0.58)`}
                                 />
-                                <path
-                                    d="M7 9.5V17h7.5"
-                                    fill="none"
-                                    stroke="rgba(255, 255, 255, 0.86)"
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                    strokeWidth="1.8"
-                                />
-                                <path
-                                    d="M12 7h5v5"
-                                    fill="none"
-                                    stroke="rgba(255, 255, 255, 0.86)"
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                    strokeWidth="1.8"
-                                />
-                                <path
-                                    d="M17 7 10.25 13.75"
-                                    fill="none"
-                                    stroke="rgba(255, 255, 255, 0.86)"
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                    strokeWidth="1.8"
-                                />
+                                <path d="M7 9.5V17h7.5" {...nodeIconStrokeProps} />
+                                <path d="M12 7h5v5" {...nodeIconStrokeProps} />
+                                <path d="M17 7 10.25 13.75" {...nodeIconStrokeProps} />
                             </g>
                             {labelLines.map((line, lineIndex) => (
                                 <text
                                     key={`${node.code}-${lineIndex}`}
                                     x="12"
                                     y={34 + lineIndex * 12}
-                                    fill="rgba(255, 255, 255, 0.88)"
+                                    fill={courseGraphColors.nodeLabel}
                                     fontSize="10"
                                     fontWeight="600"
                                 >
@@ -418,7 +422,7 @@ const CourseGraphSvg = ({
                                 width={tooltipWidth}
                                 height={tooltipHeight}
                                 rx="12"
-                                fill="rgba(8, 13, 28, 0.96)"
+                                fill={courseGraphColors.tooltipBg}
                                 stroke={`rgb(${hoveredNode.accent} / 0.52)`}
                             />
                             <rect
@@ -434,8 +438,7 @@ const CourseGraphSvg = ({
                                 y="20"
                                 fill={`rgb(${hoveredNode.accent})`}
                                 fontSize="10"
-                                fontFamily="monospace"
-                                fontWeight="700"
+                                {...monoLabelTextProps}
                             >
                                 {hoveredNode.code}
                             </text>
@@ -444,7 +447,7 @@ const CourseGraphSvg = ({
                                     key={`${hoveredNode.code}-name-${lineIndex}`}
                                     x="14"
                                     y={40 + lineIndex * 14}
-                                    fill="rgba(255, 255, 255, 0.9)"
+                                    fill={courseGraphColors.tooltipName}
                                     fontSize="11"
                                     fontWeight="700"
                                 >
@@ -460,7 +463,7 @@ const CourseGraphSvg = ({
                                         nameLines.length * 14 +
                                         lineIndex * 14
                                     }
-                                    fill="rgba(226, 232, 240, 0.88)"
+                                    fill={courseGraphColors.tooltipBody}
                                     fontSize="11"
                                 >
                                     {line}

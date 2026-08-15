@@ -440,8 +440,8 @@ export const experiences = [
         title: "Software Design Engineer Intern",
         companyName: "Evertz Microsystems",
         icon: workIcons.evertz,
-        iconBg: "#ffffff",
-        timelineAccent: "250 204 21",
+        iconBg: "var(--ink)",
+        timelineAccent: "var(--accent-yellow)",
         date: "May 2025 - Present",
         points: [
             "Currently working on MAGNUM OS, a full stack software that provides control, orchestration, monitoring, and analytics for customer's Evertz equipment.",
@@ -454,8 +454,8 @@ export const experiences = [
         title: "Systems Engineer Intern",
         companyName: "Superior Boiler Works and Welding Limited",
         icon: workIcons.sbww,
-        iconBg: "#ffffff",
-        timelineAccent: "34 197 94",
+        iconBg: "var(--ink)",
+        timelineAccent: "var(--accent-green)",
         date: "May 2023 - August 2023",
         points: [
             "My first co-op position where I was responsible for providing IT support and maintaining IT infrastructure.",
@@ -468,8 +468,8 @@ export const experiences = [
         title: "Warehouse Assistant",
         companyName: "Stoney Creek Furniture",
         icon: workIcons.scf,
-        iconBg: "#ffffff",
-        timelineAccent: "30 64 175",
+        iconBg: "var(--ink)",
+        timelineAccent: "var(--accent-blue)",
         date: "July 2020 - September 2022",
         points: [
             "A weekend job where I was responsible for fulfilling customer pick-ups, organizing furniture for delivery, and keeping the warehouse clean.",

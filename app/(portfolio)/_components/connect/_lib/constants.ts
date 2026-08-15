@@ -1,11 +1,11 @@
 import { links } from "../../../_data/portfolio";
 import type { ContactProfile, CSSVariableStyle } from "./types";
 
-export const connectAccent = "56 189 248";
+export const connectAccent = "var(--accent-sky)";
 
 const profileMeta = {
     GitHub: {
-        accent: "203 172 249",
+        accent: "var(--accent-violet)",
         cta: "View code",
         description: "Browse active projects, experiments, and source code.",
     },
@@ -16,13 +16,13 @@ const profileMeta = {
             "Feel free to send me a message about projects, software roles, collaboration ideas, or anything else worth talking about.",
     },
     LinkedIn: {
-        accent: "34 197 94",
+        accent: "var(--accent-green)",
         cta: "Connect",
         description:
             "Follow career updates and connect through my LinkedIn profile.",
     },
     Resume: {
-        accent: "251 191 36",
+        accent: "var(--accent-amber)",
         cta: "Open PDF",
         description: "View a concise summary of my experience and skills.",
     },
@@ -36,7 +36,7 @@ const profileMeta = {
 >;
 
 const fallbackProfileMeta = {
-    accent: "148 163 184",
+    accent: "var(--accent-slate)",
     cta: "Open link",
     description: "Open this profile link.",
 };
@@ -100,8 +100,8 @@ export const getConnectCardStyle = (index: number, accent: string) => {
     return {
         ...texture,
         "--node-accent": accent,
-        "--node-bg": "rgba(10, 15, 31, 0.66)",
-        "--node-bg-strong": "rgba(12, 18, 38, 0.84)",
+        "--node-bg": "rgb(var(--glass-panel) / 0.66)",
+        "--node-bg-strong": "rgb(var(--glass-panel-strong) / 0.84)",
         "--node-noise": "0.2",
         borderColor: `rgb(${accent} / 0.24)`,
     } as CSSVariableStyle;
@@ -109,8 +109,8 @@ export const getConnectCardStyle = (index: number, accent: string) => {
 
 export const connectPrimaryStyle = {
     "--node-accent": primaryContactProfile.accent,
-    "--node-bg": "rgba(10, 15, 31, 0.7)",
-    "--node-bg-strong": "rgba(12, 18, 38, 0.88)",
+    "--node-bg": "rgb(var(--glass-panel) / 0.7)",
+    "--node-bg-strong": "rgb(var(--glass-panel-strong) / 0.88)",
     "--node-noise": "0.2",
     "--node-sheen-position": "14% 16%",
     "--node-accent-position": "86% 74%",

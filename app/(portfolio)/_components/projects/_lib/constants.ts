@@ -4,7 +4,7 @@ import { FaCode, FaLayerGroup } from "react-icons/fa";
 
 import type { CSSVariableStyle } from "./types";
 
-export const projectShellAccent = "56 189 248";
+export const projectShellAccent = "var(--accent-sky)";
 
 export const projectTabs = [
     {
@@ -17,7 +17,7 @@ export const projectTabs = [
         id: "mini",
         label: "Mini",
         Icon: FaCode,
-        accent: "34 197 94",
+        accent: "var(--accent-green)",
     },
 ] satisfies Array<{
     id: string;
@@ -30,10 +30,10 @@ export type ProjectTab = (typeof projectTabs)[number]["id"];
 
 export const projectAccents = [
     projectShellAccent,
-    "34 197 94",
-    "244 63 94",
-    "251 191 36",
-    "168 85 247",
+    "var(--accent-green)",
+    "var(--accent-rose)",
+    "var(--accent-amber)",
+    "var(--accent-purple)",
 ];
 
 const projectGlassTextures: CSSVariableStyle[] = [
@@ -89,8 +89,8 @@ export const getProjectGlassStyle = (
         style: {
             ...texture,
             "--node-accent": accent,
-            "--node-bg": "rgba(10, 15, 31, 0.68)",
-            "--node-bg-strong": "rgba(12, 18, 38, 0.84)",
+            "--node-bg": "rgb(var(--glass-panel) / 0.68)",
+            "--node-bg-strong": "rgb(var(--glass-panel-strong) / 0.84)",
             "--node-noise": "0.19",
             borderColor: `rgb(${accent} / 0.24)`,
         } as CSSVariableStyle,

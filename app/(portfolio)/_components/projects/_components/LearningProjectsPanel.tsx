@@ -53,7 +53,7 @@ const LearningProjectShowcase = ({
                     <h3 className="text-xl font-semibold leading-tight tracking-normal text-white">
                         {collection.collectionTitle}
                     </h3>
-                    <p className="mt-2 max-w-2xl text-sm leading-6 tracking-normal text-white-100">
+                    <p className="mt-2 max-w-2xl text-sm leading-6 tracking-normal text-ink-muted">
                         {collection.des}
                     </p>
                 </div>
@@ -71,22 +71,22 @@ const LearningProjectShowcase = ({
                     id={`mini-project-preview-${collection.folder}`}
                     role="tabpanel"
                     aria-live="polite"
-                    className="overflow-hidden rounded-xl border border-white/10 bg-black-100/45"
+                    className="overflow-hidden rounded-xl border border-white/10 bg-surface/45"
                 >
                     <div className="flex h-9 items-center gap-2 border-b border-white/10 bg-white/[0.035] px-3">
                         <span
                             aria-hidden="true"
-                            className="size-2.5 rounded-full bg-[rgb(244,63,94)]"
+                            className="size-2.5 rounded-full bg-accent-rose"
                         />
                         <span
                             aria-hidden="true"
-                            className="size-2.5 rounded-full bg-[rgb(251,191,36)]"
+                            className="size-2.5 rounded-full bg-accent-amber"
                         />
                         <span
                             aria-hidden="true"
-                            className="size-2.5 rounded-full bg-[rgb(34,197,94)]"
+                            className="size-2.5 rounded-full bg-accent-green"
                         />
-                        <span className="ml-2 truncate font-mono text-[0.68rem] uppercase leading-none tracking-normal text-white-100">
+                        <span className="ml-2 truncate font-mono text-[0.68rem] uppercase leading-none tracking-normal text-ink-muted">
                             /{collection.folder}/{activeProject.value}
                         </span>
                     </div>
@@ -105,7 +105,7 @@ const LearningProjectShowcase = ({
                                 rel="noopener noreferrer"
                                 className="group block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300"
                             >
-                                <span className="block aspect-[16/10] overflow-hidden bg-black-100">
+                                <span className="block aspect-[16/10] overflow-hidden bg-surface">
                                     <img
                                         src={activeProject.pic}
                                         alt={`${activeProject.title} preview`}
@@ -118,7 +118,7 @@ const LearningProjectShowcase = ({
                                         <span className="line-clamp-2 block text-lg font-semibold leading-tight tracking-normal text-white">
                                             {activeProject.title}
                                         </span>
-                                        <span className="mt-2 line-clamp-3 block min-h-[4.5rem] text-sm leading-6 tracking-normal text-white-100">
+                                        <span className="mt-2 line-clamp-3 block min-h-[4.5rem] text-sm leading-6 tracking-normal text-ink-muted">
                                             {activeProject.des}
                                         </span>
                                     </span>
@@ -158,7 +158,7 @@ const LearningProjectShowcase = ({
                                 aria-controls={`mini-project-preview-${collection.folder}`}
                                 onClick={() => setActiveIndex(projectIndex)}
                                 className={cn(
-                                    "group grid min-h-[4.75rem] grid-cols-[4.25rem_minmax(0,1fr)] items-center overflow-hidden rounded-xl border bg-black-100/45 text-left transition duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300",
+                                    "group grid min-h-[4.75rem] grid-cols-[4.25rem_minmax(0,1fr)] items-center overflow-hidden rounded-xl border bg-surface/45 text-left transition duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300",
                                     isActive
                                         ? "border-white/20"
                                         : "border-white/10 opacity-70 hover:opacity-100",
@@ -171,7 +171,7 @@ const LearningProjectShowcase = ({
                                     } as CSSVariableStyle
                                 }
                             >
-                                <span className="block h-full min-h-[4.75rem] w-full overflow-hidden bg-black-100">
+                                <span className="block h-full min-h-[4.75rem] w-full overflow-hidden bg-surface">
                                     <img
                                         src={project.pic}
                                         alt=""

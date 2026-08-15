@@ -25,7 +25,7 @@ const SectionHeading = ({
             {description ? (
                 <p
                     className={cn(
-                        "mt-2 max-w-xl text-sm leading-6 tracking-normal text-white-100",
+                        "mt-2 max-w-xl text-sm leading-6 tracking-normal text-ink-muted",
                         descriptionClassName,
                     )}
                 >

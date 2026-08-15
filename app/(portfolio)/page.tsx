@@ -42,7 +42,7 @@ const AppContent = () => {
                 className={inter.className}
                 data-mobile-performance-mode={mobilePerformanceMode}
             >
-                <main className="relative bg-black-100 flex justify-center items-center flex-col mx-auto sm:px-10 px-5 overflow-clip text-white tw-class">
+                <main className="relative bg-surface flex justify-center items-center flex-col mx-auto sm:px-10 px-5 overflow-clip text-white tw-class">
                     <div className="w-full absolute inset-0">
                         {!mobilePerformanceMode && (
                             <SparklesCore

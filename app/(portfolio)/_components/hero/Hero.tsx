@@ -45,7 +45,7 @@ const Hero = () => {
                                         <div className="relative size-[88px] sm:size-[100px]">
                                             <div className="absolute inset-1">
                                                 <img
-                                                    className="size-full rounded-full bg-muted-foreground/30 object-cover ring-2 ring-muted-foreground/50 ring-offset-2 ring-offset-background"
+                                                    className="size-full rounded-full bg-ink/30 object-cover ring-2 ring-ink/70 ring-offset-2 ring-offset-surface"
                                                     alt="Profile Picture"
                                                     src={assets.profile}
                                                 />
@@ -60,7 +60,7 @@ const Hero = () => {
                                             👋
                                         </span>
                                     </TypographyH1>
-                                    <div className="mt-2 flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-white-100 sm:justify-start">
+                                    <div className="mt-2 flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-ink-muted sm:justify-start">
                                         <div className="flex min-w-0 flex-row items-center gap-2">
                                             <img
                                                 src={assets.misc.location}
@@ -70,7 +70,7 @@ const Hero = () => {
                                             />
                                             <TypographySmall
                                                 as="p"
-                                                className="text-xs text-white-100 sm:text-sm"
+                                                className="text-xs text-ink-muted sm:text-sm"
                                             >
                                                 Hamilton, ON
                                             </TypographySmall>
@@ -80,13 +80,13 @@ const Hero = () => {
                                                 href="mailto:jakef7@icloud.com"
                                                 rel="noopener noreferrer"
                                                 target="_blank"
-                                                className="group flex items-center gap-1.5 text-white-100"
+                                                className="group flex items-center gap-1.5 text-ink-muted"
                                             >
                                                 <div className="size-2 shrink-0 rounded-full bg-green-500"></div>
                                                 <div className="relative cursor-pointer overflow-hidden">
                                                     <TypographySmall
                                                         as="p"
-                                                        className="text-xs text-white-100 sm:text-sm"
+                                                        className="text-xs text-ink-muted sm:text-sm"
                                                     >
                                                         <span className="group-hover:-translate-y-full flex flex-col transition-all duration-1000 ease-slow">
                                                             Available for work
@@ -146,7 +146,7 @@ const Hero = () => {
                             whileInView="show"
                             viewport={{ once: true, amount: 0.01 }}
                         >
-                            <TypographyLead className="text-center text-sm leading-6 text-white-100 sm:text-left sm:text-base sm:leading-7 md:text-lg md:leading-8">
+                            <TypographyLead className="text-center text-sm leading-6 text-ink-muted sm:text-left sm:text-base sm:leading-7 md:text-lg md:leading-8">
                                 {aboutParagraph}
                             </TypographyLead>
                         </motion.div>

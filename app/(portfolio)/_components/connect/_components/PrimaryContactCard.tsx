@@ -29,12 +29,12 @@ const PrimaryContactCard = ({ profile, style }: PrimaryContactCardProps) => {
                 <span className="block text-2xl font-bold leading-tight tracking-normal text-white sm:text-3xl">
                     Start a conversation
                 </span>
-                <span className="mt-3 block max-w-xl text-sm leading-6 tracking-normal text-white-100">
+                <span className="mt-3 block max-w-xl text-sm leading-6 tracking-normal text-ink-muted">
                     {profile.description}
                 </span>
             </span>
 
-            <span className="mt-8 flex flex-col gap-3 rounded-xl border border-white/10 bg-black-100/30 p-3 sm:flex-row sm:items-center sm:justify-between">
+            <span className="mt-8 flex flex-col gap-3 rounded-xl border border-white/10 bg-surface/30 p-3 sm:flex-row sm:items-center sm:justify-between">
                 <span className="min-w-0 truncate text-sm font-semibold leading-5 tracking-normal text-white">
                     {emailAddress}
                 </span>

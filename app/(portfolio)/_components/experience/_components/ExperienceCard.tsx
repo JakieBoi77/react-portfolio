@@ -76,7 +76,7 @@ const ExperienceCard = ({ experience, index, isLast }: ExperienceCardProps) => {
                         <h3 className="text-xl font-bold leading-tight tracking-normal text-white sm:text-2xl">
                             {experience.title}
                         </h3>
-                        <p className="mt-1 text-sm font-semibold leading-6 tracking-normal text-white-200 sm:text-base">
+                        <p className="mt-1 text-sm font-semibold leading-6 tracking-normal text-ink-subtle sm:text-base">
                             {experience.companyName}
                         </p>
                     </div>
@@ -92,7 +92,7 @@ const ExperienceCard = ({ experience, index, isLast }: ExperienceCardProps) => {
                     {experience.points.map((point, pointIndex) => (
                         <li
                             key={`experience-point-${index}-${pointIndex}`}
-                            className="flex gap-3 text-sm leading-6 tracking-normal text-white-100"
+                            className="flex gap-3 text-sm leading-6 tracking-normal text-ink-muted"
                         >
                             <span
                                 aria-hidden="true"

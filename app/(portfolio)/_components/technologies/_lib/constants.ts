@@ -4,9 +4,9 @@ import { FaCode, FaPuzzlePiece, FaServer, FaTerminal } from "react-icons/fa";
 import type { CSSVariableStyle } from "@components";
 
 export const rootGlassStyle: CSSVariableStyle = {
-    "--node-accent": "203 172 249",
-    "--node-bg": "rgba(10, 15, 31, 0.78)",
-    "--node-bg-strong": "rgba(12, 18, 38, 0.88)",
+    "--node-accent": "var(--accent-violet)",
+    "--node-bg": "rgb(var(--glass-panel) / 0.78)",
+    "--node-bg-strong": "rgb(var(--glass-panel-strong) / 0.88)",
     "--node-noise": "0.2",
     "--node-sheen-position": "18% 12%",
     "--node-accent-position": "82% 78%",
@@ -18,8 +18,8 @@ export const rootGlassStyle: CSSVariableStyle = {
 };
 
 export const branchGlassStyle: CSSVariableStyle = {
-    "--node-bg": "rgba(10, 15, 31, 0.72)",
-    "--node-bg-strong": "rgba(12, 18, 38, 0.82)",
+    "--node-bg": "rgb(var(--glass-panel) / 0.72)",
+    "--node-bg-strong": "rgb(var(--glass-panel-strong) / 0.82)",
     "--node-noise": "0.19",
     "--node-shadow":
         "inset 0 1px 0 rgba(255, 255, 255, 0.045), 0 1px 3px rgba(0, 0, 0, 0.16), 0 12px 30px rgba(0, 0, 0, 0.3)",
@@ -33,10 +33,10 @@ export const branchIcons = {
 } satisfies Record<string, IconType>;
 
 export const branchAccents = {
-    frontend: "56 189 248",
-    backend: "244 63 94",
-    tooling: "34 197 94",
-    misc: "168 85 247",
+    frontend: "var(--accent-sky)",
+    backend: "var(--accent-rose)",
+    tooling: "var(--accent-green)",
+    misc: "var(--accent-purple)",
 } satisfies Record<string, string>;
 
 export const branchGlassTextures: Record<string, CSSVariableStyle> = {

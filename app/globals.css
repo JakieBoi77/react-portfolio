@@ -1,98 +1,182 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@layer theme, base, components, utilities;
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+@import "tailwindcss/theme" layer(theme);
+@import "tailwindcss/utilities" layer(utilities);
+@import "tw-animate-css";
+
+/* Feature-level component styles live next to the feature that owns them;
+   the frosted-glass system is shared across the whole portfolio route. */
+@import "./(portfolio)/_styles/glassy.css";
+@import "./(portfolio)/_components/technologies/technology-card.css";
+@import "./(portfolio)/_components/experience/_components/course-graph.css";
+
+@plugin "tailwindcss-scoped-preflight" {
+  isolation-strategy: inside;
+  selector: .tw-class, #tw-id;
 }
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 @layer base {
-  :root {
-    --background: 0 0% 100%;
-    --foreground: 0 0% 3.9%;
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+}
 
-    --card: 0 0% 100%;
-    --card-foreground: 0 0% 3.9%;
+/*
+ * Theme tokens. Everything the site renders resolves to a variable defined
+ * here. To retint the whole site, edit this block (or add a sibling
+ * `[data-theme="name"]` block with its own values and point `ACTIVE_THEME`
+ * in app/layout.tsx at it — see that file for the switch).
+ */
+:root,
+[data-theme="default"] {
+  /* brand + surface + text tiers */
+  --surface: #000319;
+  --ink: #ffffff;
+  --ink-muted: #bec1dd;
+  --ink-subtle: #c1c2d3;
+  --brand: 203 172 249;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 3.9%;
+  /* data/accent palette (timeline dots, tech legend, contact cards).
+     Kept as space-separated RGB triplets so call sites can composite
+     alpha via rgb(var(--accent-x) / <alpha>). */
+  --accent-sky: 56 189 248;
+  --accent-green: 34 197 94;
+  --accent-rose: 244 63 94;
+  --accent-amber: 251 191 36;
+  --accent-slate: 148 163 184;
+  --accent-violet: var(--brand);
+  --accent-purple: 168 85 247;
+  --accent-blue: 30 64 175;
+  --accent-yellow: 250 204 21;
 
-    --primary: 0 0% 9%;
-    --primary-foreground: 0 0% 98%;
+  /* glass/panel surface pair, shared by every frosted-glass card */
+  --glass-panel: 10 15 31;
+  --glass-panel-strong: 12 18 38;
 
-    --secondary: 0 0% 96.1%;
-    --secondary-foreground: 0 0% 9%;
+  /* shadcn/ui semantic tokens (used by a handful of shadcn primitives) */
+  --background: var(--surface);
+  --foreground: var(--ink);
+  --card: hsl(0 0% 100%);
+  --card-foreground: hsl(0 0% 3.9%);
+  --popover: hsl(0 0% 100%);
+  --popover-foreground: hsl(0 0% 3.9%);
+  --primary: hsl(0 0% 9%);
+  --primary-foreground: hsl(0 0% 98%);
+  --secondary: hsl(0 0% 96.1%);
+  --secondary-foreground: hsl(0 0% 9%);
+  --muted: hsl(0 0% 96.1%);
+  --muted-foreground: hsl(0 0% 45.1%);
+  --accent: hsl(0 0% 96.1%);
+  --accent-foreground: hsl(0 0% 9%);
+  --destructive: hsl(0 84.2% 60.2%);
+  --destructive-foreground: hsl(0 0% 98%);
+  --border: hsl(0 0% 89.8%);
+  --input: hsl(0 0% 89.8%);
+  --ring: hsl(0 0% 3.9%);
+  --radius: 0.5rem;
+  --chart-1: hsl(12 76% 61%);
+  --chart-2: hsl(173 58% 39%);
+  --chart-3: hsl(197 37% 24%);
+  --chart-4: hsl(43 74% 66%);
+  --chart-5: hsl(27 87% 67%);
+}
 
-    --muted: 0 0% 96.1%;
-    --muted-foreground: 0 0% 45.1%;
+@theme inline {
+  --color-surface: var(--surface);
+  --color-ink: var(--ink);
+  --color-ink-muted: var(--ink-muted);
+  --color-ink-subtle: var(--ink-subtle);
+  --color-brand: rgb(var(--brand));
 
-    --accent: 0 0% 96.1%;
-    --accent-foreground: 0 0% 9%;
+  --color-accent-sky: rgb(var(--accent-sky));
+  --color-accent-green: rgb(var(--accent-green));
+  --color-accent-rose: rgb(var(--accent-rose));
+  --color-accent-amber: rgb(var(--accent-amber));
+  --color-accent-slate: rgb(var(--accent-slate));
+  --color-accent-violet: rgb(var(--accent-violet));
+  --color-accent-purple: rgb(var(--accent-purple));
+  --color-accent-blue: rgb(var(--accent-blue));
+  --color-accent-yellow: rgb(var(--accent-yellow));
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 98%;
+  --color-glass-panel: rgb(var(--glass-panel));
+  --color-glass-panel-strong: rgb(var(--glass-panel-strong));
 
-    --border: 0 0% 89.8%;
-    --input: 0 0% 89.8%;
-    --ring: 0 0% 3.9%;
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
 
-    --radius: 0.5rem;
+  --radius-lg: var(--radius);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-sm: calc(var(--radius) - 4px);
 
-    --chart-1: 12 76% 61%;
+  --animate-spotlight: spotlight 2s ease 0s 1 forwards;
+  --animate-wave: wave 0.6s ease-in-out 3 alternate;
 
-    --chart-2: 173 58% 39%;
-
-    --chart-3: 197 37% 24%;
-
-    --chart-4: 43 74% 66%;
-
-    --chart-5: 27 87% 67%;
+  @keyframes spotlight {
+    0% {
+      opacity: 0;
+      transform: translate(-72%, -62%) scale(0.5);
+    }
+    100% {
+      opacity: 1;
+      transform: translate(-50%, -40%) scale(1);
+    }
   }
 
-  .dark {
-    --background: 0 0% 3.9%;
-    --foreground: 0 0% 98%;
-
-    --card: 0 0% 3.9%;
-    --card-foreground: 0 0% 98%;
-
-    --popover: 0 0% 3.9%;
-    --popover-foreground: 0 0% 98%;
-
-    --primary: 0 0% 98%;
-    --primary-foreground: 0 0% 9%;
-
-    --secondary: 0 0% 14.9%;
-    --secondary-foreground: 0 0% 98%;
-
-    --muted: 0 0% 14.9%;
-    --muted-foreground: 0 0% 63.9%;
-
-    --accent: 0 0% 14.9%;
-    --accent-foreground: 0 0% 98%;
-
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 0 0% 98%;
-
-    --border: 0 0% 14.9%;
-    --input: 0 0% 14.9%;
-    --ring: 0 0% 83.1%;
-    --chart-1: 220 70% 50%;
-    --chart-2: 160 60% 45%;
-    --chart-3: 30 80% 55%;
-    --chart-4: 280 65% 60%;
-    --chart-5: 340 75% 55%;
+  @keyframes wave {
+    0% {
+      transform: rotate(0deg);
+    }
+    50% {
+      transform: rotate(20deg);
+    }
   }
 }
 
 @layer base {
   * {
-    @apply border-border !scroll-smooth;
+    @apply border-border scroll-smooth;
   }
-  body {
-    @apply bg-background text-foreground;
+  /* tailwindcss-scoped-preflight re-injects Tailwind's own preflight (which
+     resets border-color to currentColor) scoped under .tw-class/#tw-id, and
+     since that reset has the same zero specificity as the rule above but
+     comes later in the cascade, it wins. Give this one real specificity so
+     bordered elements in the mini-project pages get the intended hairline
+     instead of a currentColor (black) border. */
+  .tw-class,
+  .tw-class *,
+  #tw-id,
+  #tw-id * {
+    @apply border-border;
+  }
+  button,
+  [role="button"] {
+    cursor: pointer;
   }
   button {
     @apply active:outline-none;
@@ -104,441 +188,17 @@
     @apply font-bold text-4xl md:text-5xl text-center;
   }
 
-  .black-gradient {
-    background: linear-gradient(90deg, #161a31 0%, #06091f 100%);
+  .bg-grid-white {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' width='100' height='100' fill='none' stroke='rgba(255,255,255,0.03)'%3E%3Cpath d='M0 .5H31.5V32'/%3E%3C/svg%3E");
   }
 }
 
-@layer components {
-  .glassy {
-    --glass-accent: 203 172 249;
-    --glass-accent-secondary: 96 165 250;
-    --glass-bg: rgba(10, 15, 31, 0.62);
-    --glass-bg-strong: rgba(12, 18, 38, 0.78);
-    --glass-noise: 0.18;
-    --glass-shadow:
-      inset 0 1px 0 rgba(255, 255, 255, 0.052), 0 2px 6px rgba(0, 0, 0, 0.18),
-      0 18px 36px rgba(0, 0, 0, 0.32), 0 36px 90px rgba(0, 0, 0, 0.38);
-    position: relative;
-    isolation: isolate;
-    overflow: hidden;
-    border-radius: var(--glass-radius, 0.75rem);
-    border: 1px solid transparent;
-    background:
-      radial-gradient(
-          circle at 18% 16%,
-          rgba(255, 255, 255, 0.032),
-          transparent 28%
-        )
-        padding-box,
-      radial-gradient(
-          circle at 78% 72%,
-          rgb(var(--glass-accent) / 0.075),
-          transparent 34%
-        )
-        padding-box,
-      radial-gradient(
-          circle at 14% 86%,
-          rgb(var(--glass-accent-secondary) / 0.048),
-          transparent 36%
-        )
-        padding-box,
-      linear-gradient(
-          135deg,
-          rgba(255, 255, 255, 0.028),
-          rgba(255, 255, 255, 0.006) 38%,
-          rgba(255, 255, 255, 0.014) 100%
-        )
-        padding-box,
-      linear-gradient(var(--glass-bg), var(--glass-bg-strong)) padding-box,
-      linear-gradient(
-          135deg,
-          rgba(255, 255, 255, 0.068),
-          rgba(255, 255, 255, 0.012) 28%,
-          rgb(var(--glass-accent) / 0.066) 64%,
-          rgba(255, 255, 255, 0.02)
-        )
-        border-box;
-    box-shadow: var(--glass-shadow);
-    backdrop-filter: blur(22px) saturate(180%) contrast(1.08);
-    -webkit-backdrop-filter: blur(22px) saturate(180%) contrast(1.08);
-  }
-
-  .glassy::before,
-  .glassy::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    z-index: 0;
-    pointer-events: none;
-    border-radius: inherit;
-  }
-
-  .glassy::before {
-    padding: 1px;
-    background: linear-gradient(
-      135deg,
-      rgba(255, 255, 255, 0.13),
-      rgba(255, 255, 255, 0.028) 28%,
-      transparent 52%,
-      rgb(var(--glass-accent) / 0.07) 78%,
-      rgba(255, 255, 255, 0.024)
-    );
-    opacity: 0.66;
-    -webkit-mask:
-      linear-gradient(#000 0 0) content-box,
-      linear-gradient(#000 0 0);
-    -webkit-mask-composite: xor;
-    mask:
-      linear-gradient(#000 0 0) content-box,
-      linear-gradient(#000 0 0);
-    mask-composite: exclude;
-  }
-
-  .glassy::after {
-    opacity: var(--glass-noise);
-    mix-blend-mode: overlay;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180' viewBox='0 0 180 180'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.66' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='.6'/%3E%3C/svg%3E");
-    background-size: 180px 180px;
-  }
-
-  .glassy > * {
-    position: relative;
-    z-index: 2;
-  }
-
-  .glassy-node {
-    --node-accent: 203 172 249;
-    --node-bg: rgba(10, 15, 31, 0.72);
-    --node-bg-strong: rgba(12, 18, 38, 0.82);
-    --node-noise: 0.19;
-    --node-shadow:
-      inset 0 1px 0 rgba(255, 255, 255, 0.045),
-      inset 0 -14px 28px rgb(var(--node-accent) / 0.018),
-      0 10px 32px rgba(0, 0, 0, 0.28);
-    --node-sheen-position: 20% 10%;
-    --node-accent-position: 85% 75%;
-    --node-bg-angle: 145deg;
-    --node-border-angle: 135deg;
-    --node-rim-angle: 140deg;
-    --node-noise-size: 160px 160px;
-    --node-noise-position: 0 0;
-    position: relative;
-    isolation: isolate;
-    overflow: hidden;
-    border: 1px solid transparent;
-    border-radius: var(--node-radius, 1rem);
-    background:
-      radial-gradient(
-          circle at var(--node-sheen-position),
-          rgba(255, 255, 255, 0.022),
-          transparent 30%
-        )
-        padding-box,
-      radial-gradient(
-          circle at var(--node-accent-position),
-          rgb(var(--node-accent) / 0.14),
-          transparent 42%
-        )
-        padding-box,
-      linear-gradient(
-          var(--node-bg-angle),
-          var(--node-bg),
-          var(--node-bg-strong)
-        )
-        padding-box,
-      linear-gradient(
-          var(--node-border-angle),
-          rgb(var(--node-accent) / 0.24),
-          rgba(255, 255, 255, 0.022) 38%,
-          rgb(var(--node-accent) / 0.12)
-        )
-        border-box;
-    box-shadow: var(--node-shadow);
-    backdrop-filter: blur(18px) saturate(145%);
-    -webkit-backdrop-filter: blur(18px) saturate(145%);
-  }
-
-  .glassy-node::before,
-  .glassy-node::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    z-index: 0;
-    pointer-events: none;
-    border-radius: inherit;
-  }
-
-  .glassy-node::before {
-    padding: 1px;
-    background: linear-gradient(
-      var(--node-rim-angle),
-      rgba(255, 255, 255, 0.065),
-      transparent 36%,
-      rgb(var(--node-accent) / 0.11) 72%,
-      rgba(255, 255, 255, 0.018)
-    );
-    opacity: 0.66;
-    -webkit-mask:
-      linear-gradient(#000 0 0) content-box,
-      linear-gradient(#000 0 0);
-    -webkit-mask-composite: xor;
-    mask:
-      linear-gradient(#000 0 0) content-box,
-      linear-gradient(#000 0 0);
-    mask-composite: exclude;
-  }
-
-  .glassy-node::after {
-    opacity: var(--node-noise);
-    mix-blend-mode: screen;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160' viewBox='0 0 160 160'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.58' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='.55'/%3E%3C/svg%3E");
-    background-position: var(--node-noise-position);
-    background-size: var(--node-noise-size);
-  }
-
-  .glassy-node > * {
-    position: relative;
-    z-index: 2;
-  }
-
-  .course-graph-scroll {
-    -webkit-overflow-scrolling: touch;
-    scroll-behavior: auto !important;
-    scrollbar-width: none;
-    touch-action: pan-x pan-y pinch-zoom;
-  }
-
-  .course-graph-scroll::-webkit-scrollbar {
-    display: none;
-    width: 0;
-    height: 0;
-  }
-
-  .course-graph-scroll::-webkit-scrollbar-button {
-    display: none !important;
-    width: 0 !important;
-    min-width: 0 !important;
-    height: 0 !important;
-    min-height: 0 !important;
-    border: 0 !important;
-    background: transparent !important;
-    -webkit-appearance: none;
-  }
-
-  .course-graph-scroll::-webkit-scrollbar-button:single-button,
-  .course-graph-scroll::-webkit-scrollbar-button:horizontal,
-  .course-graph-scroll::-webkit-scrollbar-button:horizontal:start,
-  .course-graph-scroll::-webkit-scrollbar-button:horizontal:end,
-  .course-graph-scroll::-webkit-scrollbar-button:horizontal:decrement,
-  .course-graph-scroll::-webkit-scrollbar-button:horizontal:increment,
-  .course-graph-scroll::-webkit-scrollbar-button:start,
-  .course-graph-scroll::-webkit-scrollbar-button:end,
-  .course-graph-scroll::-webkit-scrollbar-button:decrement,
-  .course-graph-scroll::-webkit-scrollbar-button:increment {
-    display: none !important;
-    width: 0 !important;
-    min-width: 0 !important;
-    height: 0 !important;
-    min-height: 0 !important;
-    border: 0 !important;
-    background: transparent !important;
-    -webkit-appearance: none;
-  }
-
-  .course-graph-scroll::-webkit-scrollbar-track {
-    border-radius: 999px;
-    background: transparent !important;
-    -webkit-appearance: none;
-  }
-
-  .course-graph-scroll::-webkit-scrollbar-corner {
-    background: transparent !important;
-  }
-
-  .course-graph-scroll::-webkit-scrollbar-thumb {
-    border: 2px solid transparent;
-    border-radius: 999px;
-    background: rgb(var(--node-accent) / 0.52);
-    background-clip: padding-box;
-  }
-
-  .course-graph-scroll::-webkit-scrollbar-thumb:hover {
-    background: rgb(var(--node-accent) / 0.72);
-    background-clip: padding-box;
-  }
-
-  .course-graph-scroll.is-dragging {
-    cursor: grabbing;
-  }
-
-  .course-graph-custom-scrollbar {
-    pointer-events: none;
-  }
-
-  .course-graph-scroll-thumb {
-    position: absolute;
-    left: 0;
-    top: 0.25rem;
-    height: 0.375rem;
-    min-width: 3rem;
-    cursor: grab;
-    border-radius: 999px;
-    background: rgb(var(--node-accent) / 0.58);
-    box-shadow:
-      0 0 18px rgb(var(--node-accent) / 0.18),
-      inset 0 1px 0 rgba(255, 255, 255, 0.16);
-    pointer-events: auto;
-    transition: background 160ms ease;
-  }
-
-  .course-graph-scroll-thumb:hover,
-  .course-graph-scroll-thumb.is-dragging {
-    background: rgb(var(--node-accent) / 0.76);
-    cursor: grabbing;
-  }
-
-  .course-graph-node-link:focus {
-    outline: none;
-  }
-
-  .course-graph-drag-hint {
-    transition:
-      opacity 180ms ease,
-      visibility 180ms ease;
-  }
-
-  .course-graph-drag-hint svg {
-    transform-origin: center;
-    animation: course-graph-drag-hint 1.45s ease-in-out infinite;
-  }
-
-  .course-graph-drag-hint.has-interacted {
-    opacity: 0;
-    visibility: hidden;
-  }
-
-  .course-graph-drag-hint.has-interacted svg {
-    animation: none;
-  }
-
-  @keyframes course-graph-drag-hint {
-    0%,
-    100% {
-      transform: scaleX(1);
-      opacity: 0.72;
-    }
-
-    38% {
-      transform: scaleX(1.34);
-      opacity: 1;
-    }
-
-    72% {
-      transform: scaleX(0.82);
-      opacity: 0.84;
-    }
-  }
-
-  .technology-card {
-    --tech-accent: 203 172 249;
-    --tech-sheen-position: 92% 14%;
-    --tech-accent-position: 8% 88%;
-    --tech-bg-angle: 145deg;
-    --tech-wash-angle: 90deg;
-    --tech-noise-size: 140px 140px;
-    --tech-noise-position: 0 0;
-    position: relative;
-    isolation: isolate;
-    overflow: hidden;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 0.75rem;
-    background:
-      radial-gradient(
-        circle at var(--tech-sheen-position),
-        rgb(var(--tech-accent) / 0.16),
-        transparent 34%
-      ),
-      radial-gradient(
-        circle at var(--tech-accent-position),
-        rgb(var(--tech-accent) / 0.06),
-        transparent 40%
-      ),
-      linear-gradient(
-        var(--tech-wash-angle),
-        rgb(var(--tech-accent) / 0.1),
-        transparent 42%
-      ),
-      linear-gradient(
-        var(--tech-bg-angle),
-        rgba(10, 15, 31, 0.56),
-        rgba(12, 18, 38, 0.72)
-      );
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
-  }
-
-  .technology-card:hover {
-    border-color: rgb(var(--tech-accent) / 0.42);
-    background:
-      radial-gradient(
-        circle at var(--tech-sheen-position),
-        rgb(var(--tech-accent) / 0.22),
-        transparent 34%
-      ),
-      radial-gradient(
-        circle at var(--tech-accent-position),
-        rgb(var(--tech-accent) / 0.08),
-        transparent 40%
-      ),
-      linear-gradient(
-        var(--tech-wash-angle),
-        rgb(var(--tech-accent) / 0.16),
-        transparent 42%
-      ),
-      linear-gradient(
-        var(--tech-bg-angle),
-        rgba(10, 15, 31, 0.62),
-        rgba(12, 18, 38, 0.78)
-      );
-  }
-
-  .technology-card::before,
-  .technology-card::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    z-index: 0;
-    pointer-events: none;
-    border-radius: inherit;
-  }
-
-  .technology-card::before {
-    opacity: 0.32;
-    mix-blend-mode: screen;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140' viewBox='0 0 140 140'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.62' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='.48'/%3E%3C/svg%3E");
-    background-position: var(--tech-noise-position);
-    background-size: var(--tech-noise-size);
-  }
-
-  .technology-card::after {
-    border: 1px solid rgb(var(--tech-accent) / 0.16);
-  }
-
-  .technology-card > * {
-    position: relative;
-    z-index: 1;
-  }
-
-  .technology-card-title,
-  .technology-card-arrow {
-    transition: color 200ms ease;
-  }
-
-  .technology-card:hover .technology-card-title,
-  .technology-card:hover .technology-card-arrow {
-    color: rgb(var(--tech-accent));
-  }
-
+@layer base {
+  /* Backdrop blur, noise textures, and long animations are expensive on
+     low-power/touch devices and unwanted for prefers-reduced-motion, so
+     kill transitions/animations globally here. Component-specific glass
+     and course-graph overrides for this same query live next to their
+     component definitions (see the imports above). */
   @media (max-width: 767px), (pointer: coarse), (prefers-reduced-motion: reduce) {
     *,
     *::before,
@@ -550,44 +210,8 @@
       transition-duration: 1ms !important;
     }
 
-    .glassy,
-    .glassy-node {
-      --glass-shadow:
-        inset 0 1px 0 rgba(255, 255, 255, 0.04),
-        0 10px 28px rgba(0, 0, 0, 0.28);
-      --node-shadow:
-        inset 0 1px 0 rgba(255, 255, 255, 0.04),
-        0 8px 24px rgba(0, 0, 0, 0.24);
-      -webkit-backdrop-filter: none;
-      backdrop-filter: none;
-    }
-
-    .glassy::after,
-    .glassy-node::after,
-    .technology-card::before {
-      display: none;
-    }
-
     .animate-spotlight {
       display: none;
     }
-
-    .course-graph-scroll {
-      cursor: auto;
-      touch-action: pan-x pan-y pinch-zoom;
-    }
-
-    .course-graph-drag-hint svg {
-      animation: none;
-    }
-  }
-}
-
-@layer base {
-  * {
-    @apply border-border;
-  }
-  body {
-    @apply bg-background text-foreground;
   }
 }

@@ -12,14 +12,14 @@ const typographyClassNames = {
     h3: "scroll-m-20 text-balance text-2xl font-semibold leading-snug tracking-normal",
     h4: "scroll-m-20 text-xl font-semibold leading-snug tracking-normal",
     p: "text-base leading-7 tracking-normal",
-    lead: "text-lg leading-8 tracking-normal text-white-100 sm:text-xl",
+    lead: "text-lg leading-8 tracking-normal text-ink-muted sm:text-xl",
     large: "text-lg font-semibold leading-7 tracking-normal",
     small: "text-sm font-medium leading-5 tracking-normal",
-    muted: "text-sm leading-6 tracking-normal text-white-200",
-    list: "my-6 ml-6 list-disc space-y-2 marker:text-purple",
-    listItem: "pl-1 text-sm leading-6 tracking-normal text-white-100",
+    muted: "text-sm leading-6 tracking-normal text-ink-subtle",
+    list: "my-6 ml-6 list-disc space-y-2 marker:text-brand",
+    listItem: "pl-1 text-sm leading-6 tracking-normal text-ink-muted",
     blockquote:
-        "mt-6 border-l-2 border-purple/70 pl-6 text-base italic leading-7 text-white-100",
+        "mt-6 border-l-2 border-brand/70 pl-6 text-base italic leading-7 text-ink-muted",
     inlineCode:
         "relative rounded bg-white/10 px-[0.3rem] py-[0.2rem] font-mono text-sm font-semibold text-white",
 } as const;

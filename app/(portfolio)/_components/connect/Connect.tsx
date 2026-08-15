@@ -49,7 +49,7 @@ const Connect = () => {
             </motion.div>
 
             <div className="mx-auto mt-12 flex max-w-4xl flex-col items-center justify-between gap-3 border-t border-white/10 pt-6 text-center md:flex-row md:text-left">
-                <TypographyMuted className="text-sm font-light text-white-200 md:text-base md:font-normal">
+                <TypographyMuted className="text-sm font-light text-ink-subtle md:text-base md:font-normal">
                     Copyright © {new Date().getFullYear()} Jake Finlay
                 </TypographyMuted>
             </div>

@@ -23,16 +23,16 @@ export const experienceTabs = [
 
 export type ExperienceTab = (typeof experienceTabs)[number]["id"];
 
-export const experienceShellAccent = "56 189 248";
+export const experienceShellAccent = "var(--accent-sky)";
 export const educationIconAccent = experienceShellAccent;
-export const educationPanelAccent = "148 163 184";
-export const educationStatusAccent = "34 197 94";
+export const educationPanelAccent = "var(--accent-slate)";
+export const educationStatusAccent = "var(--accent-green)";
 
 export const timelineAccents = [
-    "56 189 248",
-    "34 197 94",
-    "244 63 94",
-    "251 191 36",
+    "var(--accent-sky)",
+    "var(--accent-green)",
+    "var(--accent-rose)",
+    "var(--accent-amber)",
 ];
 
 const timelineGlassTextures: CSSVariableStyle[] = [
@@ -115,8 +115,8 @@ export const getTimelineStyle = (index: number, preferredAccent?: string) => {
         style: {
             ...texture,
             "--node-accent": accent,
-            "--node-bg": "rgba(10, 15, 31, 0.66)",
-            "--node-bg-strong": "rgba(12, 18, 38, 0.84)",
+            "--node-bg": "rgb(var(--glass-panel) / 0.66)",
+            "--node-bg-strong": "rgb(var(--glass-panel-strong) / 0.84)",
             "--node-noise": "0.2",
             borderColor: `rgb(${accent} / 0.28)`,
         } as CSSVariableStyle,
@@ -131,8 +131,8 @@ export const getGlassPanelStyle = (index: number) => {
         style: {
             ...texture,
             "--node-accent": experienceShellAccent,
-            "--node-bg": "rgba(10, 15, 31, 0.66)",
-            "--node-bg-strong": "rgba(12, 18, 38, 0.84)",
+            "--node-bg": "rgb(var(--glass-panel) / 0.66)",
+            "--node-bg-strong": "rgb(var(--glass-panel-strong) / 0.84)",
             "--node-noise": "0.2",
             borderColor: `rgb(${experienceShellAccent} / 0.24)`,
         } as CSSVariableStyle,
@@ -144,7 +144,7 @@ export const getWorkPanelStyle = (
     preferredAccent?: string,
 ) => {
     const texture =
-        preferredAccent === "30 64 175"
+        preferredAccent === "var(--accent-blue)"
             ? {
                   ...timelineGlassTextures[index % timelineGlassTextures.length],
                   "--node-accent-position": "88% 82%",
@@ -157,8 +157,8 @@ export const getWorkPanelStyle = (
         style: {
             ...texture,
             "--node-accent": experienceShellAccent,
-            "--node-bg": "rgba(10, 15, 31, 0.66)",
-            "--node-bg-strong": "rgba(12, 18, 38, 0.84)",
+            "--node-bg": "rgb(var(--glass-panel) / 0.66)",
+            "--node-bg-strong": "rgb(var(--glass-panel-strong) / 0.84)",
             "--node-noise": "0.2",
             borderColor: `rgb(${experienceShellAccent} / 0.24)`,
         } as CSSVariableStyle,
@@ -176,7 +176,7 @@ export const getEducationPanelStyle = (index: number) => {
             "--node-bg": "rgba(5, 10, 22, 0.78)",
             "--node-bg-strong": "rgba(7, 12, 25, 0.9)",
             "--node-noise": "0.12",
-            borderColor: "rgba(148, 163, 184, 0.18)",
+            borderColor: `rgb(${educationPanelAccent} / 0.18)`,
         } as CSSVariableStyle,
     };
 };

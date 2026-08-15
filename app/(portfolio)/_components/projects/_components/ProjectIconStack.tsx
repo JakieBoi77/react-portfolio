@@ -21,7 +21,7 @@ const ProjectIconStack = ({
             {icons.map((icon) => (
                 <span
                     key={icon}
-                    className="grid size-9 place-items-center rounded-lg border bg-black-100/35 sm:size-10"
+                    className="grid size-9 place-items-center rounded-lg border bg-surface/35 sm:size-10"
                     style={{
                         borderColor: `rgb(${accent} / 0.26)`,
                         backgroundColor: `rgb(${accent} / 0.065)`,

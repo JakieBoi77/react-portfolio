@@ -30,13 +30,13 @@ const SocialProfileCard = ({ profile, style }: SocialProfileCardProps) => {
                 <span className="block text-sm font-semibold leading-5 tracking-normal text-white">
                     {profile.label}
                 </span>
-                <span className="mt-1 block text-xs leading-5 tracking-normal text-white-100">
+                <span className="mt-1 block text-xs leading-5 tracking-normal text-ink-muted">
                     {profile.description}
                 </span>
             </span>
             <span
                 aria-hidden="true"
-                className="grid size-8 place-items-center rounded-md border border-white/10 bg-white/[0.035] text-white-200 transition group-hover:text-[rgb(var(--node-accent))]"
+                className="grid size-8 place-items-center rounded-md border border-white/10 bg-white/[0.035] text-ink-subtle transition group-hover:text-[rgb(var(--node-accent))]"
             >
                 <FaArrowRight className="size-3" />
             </span>

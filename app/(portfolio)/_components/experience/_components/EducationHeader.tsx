@@ -47,10 +47,10 @@ const EducationHeader = ({ educationItem, index }: EducationHeaderProps) => {
                         <h3 className="text-xl font-bold leading-tight tracking-normal text-white sm:text-2xl">
                             {educationItem.school}
                         </h3>
-                        <p className="mt-1 text-sm font-semibold leading-6 tracking-normal text-white-200 sm:text-base">
+                        <p className="mt-1 text-sm font-semibold leading-6 tracking-normal text-ink-subtle sm:text-base">
                             {educationItem.program}
                         </p>
-                        <p className="mt-2 max-w-2xl text-sm leading-6 tracking-normal text-white-100">
+                        <p className="mt-2 max-w-2xl text-sm leading-6 tracking-normal text-ink-muted">
                             {educationItem.summary}
                         </p>
                     </div>
@@ -62,7 +62,7 @@ const EducationHeader = ({ educationItem, index }: EducationHeaderProps) => {
                     >
                         {educationStatus}
                     </p>
-                    <p className="text-xs leading-5 tracking-normal text-white-200">
+                    <p className="text-xs leading-5 tracking-normal text-ink-subtle">
                         {educationItem.location}
                     </p>
                 </div>
@@ -75,7 +75,7 @@ const EducationHeader = ({ educationItem, index }: EducationHeaderProps) => {
                         href={link.href}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 rounded-lg border border-white/10 bg-white/[0.035] px-3 py-2 text-xs font-semibold leading-none tracking-normal text-white-100 transition hover:border-[rgb(var(--node-accent)/0.36)] hover:text-[rgb(var(--node-accent))] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300"
+                        className="inline-flex items-center gap-2 rounded-lg border border-white/10 bg-white/[0.035] px-3 py-2 text-xs font-semibold leading-none tracking-normal text-ink-muted transition hover:border-[rgb(var(--node-accent)/0.36)] hover:text-[rgb(var(--node-accent))] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300"
                     >
                         {link.label}
                         <FaExternalLinkAlt

@@ -100,7 +100,7 @@ const Technologies = () => {
                 const controlY = startY + distanceY * 0.55;
                 const accent =
                     branchAccents[branch.id as keyof typeof branchAccents] ??
-                    "203 172 249";
+                    "var(--accent-violet)";
 
                 connector.setAttribute(
                     "d",
@@ -126,7 +126,7 @@ const Technologies = () => {
 
     const selectedAccent =
         branchAccents[selectedBranch.id as keyof typeof branchAccents] ??
-        "203 172 249";
+        "var(--accent-violet)";
 
     return (
         <div className="w-full">
@@ -155,7 +155,7 @@ const Technologies = () => {
                                         "--branch-accent":
                                             branchAccents[
                                                 branch.id as keyof typeof branchAccents
-                                            ] ?? "203 172 249",
+                                            ] ?? "var(--accent-violet)",
                                     } as CSSVariableStyle
                                 }
                                 className={cn(
@@ -184,15 +184,15 @@ const Technologies = () => {
                             aria-hidden="true"
                         >
                             <FaLayerGroup className="size-6" />
-                            <span className="absolute left-2 top-2 size-2 rounded-full bg-[rgb(56,189,248)] shadow-[0_0_12px_rgba(56,189,248,0.65)]" />
-                            <span className="absolute right-2 top-2 size-2 rounded-full bg-[rgb(244,63,94)] shadow-[0_0_12px_rgba(244,63,94,0.65)]" />
-                            <span className="absolute bottom-2 left-2 size-2 rounded-full bg-[rgb(34,197,94)] shadow-[0_0_12px_rgba(34,197,94,0.65)]" />
-                            <span className="absolute bottom-2 right-2 size-2 rounded-full bg-[rgb(168,85,247)] shadow-[0_0_12px_rgba(168,85,247,0.65)]" />
+                            <span className="absolute left-2 top-2 size-2 rounded-full bg-accent-sky shadow-[0_0_12px_rgb(var(--accent-sky)/0.65)]" />
+                            <span className="absolute right-2 top-2 size-2 rounded-full bg-accent-rose shadow-[0_0_12px_rgb(var(--accent-rose)/0.65)]" />
+                            <span className="absolute bottom-2 left-2 size-2 rounded-full bg-accent-green shadow-[0_0_12px_rgb(var(--accent-green)/0.65)]" />
+                            <span className="absolute bottom-2 right-2 size-2 rounded-full bg-accent-purple shadow-[0_0_12px_rgb(var(--accent-purple)/0.65)]" />
                         </span>
                         <h3 className="text-xl font-bold leading-tight tracking-normal text-white sm:text-2xl">
                             {technologySkillTree.root.title}
                         </h3>
-                        <p className="mx-auto mt-2 max-w-sm text-xs leading-5 tracking-normal text-white-100 sm:text-sm">
+                        <p className="mx-auto mt-2 max-w-sm text-xs leading-5 tracking-normal text-ink-muted sm:text-sm">
                             &ldquo;{technologySkillTree.root.quote}&rdquo;
                         </p>
                     </div>
@@ -207,7 +207,7 @@ const Technologies = () => {
                             const branchAccent =
                                 branchAccents[
                                     branch.id as keyof typeof branchAccents
-                                ] ?? "203 172 249";
+                                ] ?? "var(--accent-violet)";
 
                             return (
                                 <button
@@ -247,7 +247,7 @@ const Technologies = () => {
                                             <span className="block text-sm font-semibold leading-5 tracking-normal text-white">
                                                 {branch.title}
                                             </span>
-                                            <span className="mt-0.5 block text-xs leading-5 tracking-normal text-white-100">
+                                            <span className="mt-0.5 block text-xs leading-5 tracking-normal text-ink-muted">
                                                 {branch.summary}
                                             </span>
                                         </span>
@@ -294,7 +294,7 @@ const Technologies = () => {
                                         } as CSSVariableStyle
                                     }
                                 >
-                                    <span className="grid size-10 place-items-center rounded-lg border border-white/10 bg-black-100/35">
+                                    <span className="grid size-10 place-items-center rounded-lg border border-white/10 bg-surface/35">
                                         <img
                                             src={technology.icon}
                                             alt=""
@@ -309,7 +309,7 @@ const Technologies = () => {
                                     </span>
                                     <span
                                         aria-hidden="true"
-                                        className="technology-card-arrow grid size-7 place-items-center rounded-md border border-white/10 bg-white/[0.035] text-white-200"
+                                        className="technology-card-arrow grid size-7 place-items-center rounded-md border border-white/10 bg-white/[0.035] text-ink-subtle"
                                     >
                                         <FaExternalLinkAlt className="size-3" />
                                     </span>

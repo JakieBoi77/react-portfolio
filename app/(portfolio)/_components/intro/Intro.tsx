@@ -22,7 +22,7 @@ const Intro = ({ skipAnimation = false }: IntroProps) => {
 
     return (
         <div
-            className={`z-20 bg-black-100 fixed inset-0 h-screen flex items-center justify-center transition-all ${skipAnimation ? "duration-0" : "duration-1000 ease-in-out"} ${show ? "opacity-100" : "pointer-events-none -translate-y-full opacity-0"}`}
+            className={`z-20 bg-surface fixed inset-0 h-screen flex items-center justify-center transition-all ${skipAnimation ? "duration-0" : "duration-1000 ease-in-out"} ${show ? "opacity-100" : "pointer-events-none -translate-y-full opacity-0"}`}
         >
             <div>
                 <Spotlight
@@ -38,8 +38,8 @@ const Intro = ({ skipAnimation = false }: IntroProps) => {
                     fill="blue"
                 />
             </div>
-            <div className="h-screen w-full bg-transparent bg-grid-white/[0.03] flex items-center justify-center absolute top-0 left-0">
-                <div className="absolute pointer-events-none inset-0 flex items-center justify-center bg-black-100 [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]"></div>
+            <div className="h-screen w-full bg-transparent bg-grid-white flex items-center justify-center absolute top-0 left-0">
+                <div className="absolute pointer-events-none inset-0 flex items-center justify-center bg-surface [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]"></div>
             </div>
             <div className="flex justify-center relative my-20">
                 <div className="max-w-[89vw] md:max-w-2xl lg:max-w-[60vw] flex flex-col items-center justify-center">

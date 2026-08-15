@@ -39,8 +39,8 @@ const Experience = () => {
                         style={
                             {
                                 ...switcherShell.style,
-                                "--node-bg": "rgba(10, 15, 31, 0.6)",
-                                "--node-bg-strong": "rgba(12, 18, 38, 0.78)",
+                                "--node-bg": "rgb(var(--glass-panel) / 0.6)",
+                                "--node-bg-strong": "rgb(var(--glass-panel-strong) / 0.78)",
                                 "--node-radius": "0.75rem",
                             } as CSSVariableStyle
                         }
@@ -61,7 +61,7 @@ const Experience = () => {
                                         "inline-flex h-10 flex-1 items-center justify-center gap-2 rounded-lg px-3 text-center text-sm font-semibold leading-none tracking-normal transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300",
                                         isActive
                                             ? "border border-white/10 bg-white/[0.08] text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.06)]"
-                                            : "text-white-100 hover:bg-white/[0.035] hover:text-white",
+                                            : "text-ink-muted hover:bg-white/[0.035] hover:text-white",
                                     )}
                                     style={
                                         isActive
