@@ -1,6 +1,6 @@
-import CourseDependencyGraph from "./CourseDependencyGraph";
-import EducationHeader from "./EducationHeader";
-import { visibleEducation } from "../_lib/educationData";
+import { visibleEducation } from "../_lib/educationData"
+import CourseDependencyGraph from "./CourseDependencyGraph"
+import EducationHeader from "./EducationHeader"
 
 const EducationPanel = () => {
     return (
@@ -10,15 +10,12 @@ const EducationPanel = () => {
                     key={`${educationItem.school}-${educationItem.program}`}
                     className="space-y-4"
                 >
-                    <EducationHeader
-                        educationItem={educationItem}
-                        index={educationIndex}
-                    />
+                    <EducationHeader educationItem={educationItem} index={educationIndex} />
                     <CourseDependencyGraph levels={educationItem.levels} />
                 </section>
             ))}
         </div>
-    );
-};
+    )
+}
 
-export default EducationPanel;
+export default EducationPanel

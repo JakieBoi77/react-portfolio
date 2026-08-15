@@ -1,7 +1,5 @@
-const publicAsset = <TFolder extends string, TFile extends string>(
-    folder: TFolder,
-    file: TFile,
-) => `/${folder}/${file}` as const;
+const publicAsset = <TFolder extends string, TFile extends string>(folder: TFolder, file: TFile) =>
+    `/${folder}/${file}` as const
 
 export const assets = {
     profile: "/pfp.jpg",
@@ -40,28 +38,13 @@ export const assets = {
     },
 
     fullstackPics: {
-        banklerDashboard: publicAsset(
-            "fullstack-pics",
-            "bankler-dashboard.png",
-        ),
+        banklerDashboard: publicAsset("fullstack-pics", "bankler-dashboard.png"),
         banklerMyBanks: publicAsset("fullstack-pics", "bankler-my-banks.png"),
-        banklerPaymentTransfer: publicAsset(
-            "fullstack-pics",
-            "bankler-payment-transfer.png",
-        ),
+        banklerPaymentTransfer: publicAsset("fullstack-pics", "bankler-payment-transfer.png"),
         banklerSignIn: publicAsset("fullstack-pics", "bankler-sign-in.png"),
-        banklerTransactionHistory: publicAsset(
-            "fullstack-pics",
-            "bankler-transaction-history.png",
-        ),
-        linkRippleDashboard: publicAsset(
-            "fullstack-pics",
-            "link-ripple-dashboard.png",
-        ),
-        linkRippleLanding: publicAsset(
-            "fullstack-pics",
-            "link-ripple-landing.png",
-        ),
+        banklerTransactionHistory: publicAsset("fullstack-pics", "bankler-transaction-history.png"),
+        linkRippleDashboard: publicAsset("fullstack-pics", "link-ripple-dashboard.png"),
+        linkRippleLanding: publicAsset("fullstack-pics", "link-ripple-landing.png"),
         linkRippleLinks: publicAsset("fullstack-pics", "link-ripple-links.png"),
     },
 
@@ -102,34 +85,19 @@ export const assets = {
         heatMap: publicAsset("project-pics", "heat-map.png"),
         legacyPortfolio: publicAsset("project-pics", "legacy-portfolio.png"),
         logo: publicAsset("project-pics", "logo.png"),
-        markdownPreviewer: publicAsset(
-            "project-pics",
-            "markdown-previewer.png",
-        ),
+        markdownPreviewer: publicAsset("project-pics", "markdown-previewer.png"),
         memeSoundboard: publicAsset("project-pics", "meme-soundboard.png"),
         pomodoroClock: publicAsset("project-pics", "pomodoro-clock.png"),
-        productLandingPage: publicAsset(
-            "project-pics",
-            "product-landing-page.png",
-        ),
+        productLandingPage: publicAsset("project-pics", "product-landing-page.png"),
         quoteGenerator: publicAsset("project-pics", "quote-generator.png"),
-        requestHeaderParser: publicAsset(
-            "project-pics",
-            "request-header-parser.png",
-        ),
+        requestHeaderParser: publicAsset("project-pics", "request-header-parser.png"),
         scatterPlot: publicAsset("project-pics", "scatter-plot.png"),
         surveyForm: publicAsset("project-pics", "survey-form.png"),
-        technicalDocumentation: publicAsset(
-            "project-pics",
-            "technical-documentation.png",
-        ),
+        technicalDocumentation: publicAsset("project-pics", "technical-documentation.png"),
         timestamp: publicAsset("project-pics", "timestamp.png"),
         treemapDiagram: publicAsset("project-pics", "treemap-diagram.png"),
         tributePage: publicAsset("project-pics", "tribute-page.png"),
-        underConstruction: publicAsset(
-            "project-pics",
-            "under-construction.png",
-        ),
+        underConstruction: publicAsset("project-pics", "under-construction.png"),
         urlShortener: publicAsset("project-pics", "url-shortener.png"),
     },
 
@@ -149,4 +117,4 @@ export const assets = {
         sbww: publicAsset("work-icons", "sbww.png"),
         scf: publicAsset("work-icons", "scf.png"),
     },
-} as const;
+} as const

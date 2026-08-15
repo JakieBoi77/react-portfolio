@@ -1,5 +1,5 @@
-import type { CSSProperties } from "react";
+import type { CSSProperties } from "react"
 
 export type CSSVariableStyle = CSSProperties & {
-    [key: `--${string}`]: string | number | undefined;
-};
+    [key: `--${string}`]: string | number | undefined
+}

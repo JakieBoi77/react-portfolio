@@ -1,5 +1,5 @@
-import { experiences } from "../../../_data/portfolio";
-import ExperienceCard from "./ExperienceCard";
+import { experiences } from "../../../_data/portfolio"
+import ExperienceCard from "./ExperienceCard"
 
 const WorkPanel = () => {
     return (
@@ -13,7 +13,7 @@ const WorkPanel = () => {
                 />
             ))}
         </ol>
-    );
-};
+    )
+}
 
-export default WorkPanel;
+export default WorkPanel

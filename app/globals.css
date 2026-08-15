@@ -11,18 +11,18 @@
 @import "./(portfolio)/_components/experience/_components/course-graph.css";
 
 @plugin "tailwindcss-scoped-preflight" {
-  isolation-strategy: inside;
-  selector: .tw-class, #tw-id;
+    isolation-strategy: inside;
+    selector: .tw-class, #tw-id;
 }
 
 @custom-variant dark (&:where(.dark, .dark *));
 
 @layer base {
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
 }
 
 /*
@@ -33,185 +33,185 @@
  */
 :root,
 [data-theme="default"] {
-  /* brand + surface + text tiers */
-  --surface: #000319;
-  --ink: #ffffff;
-  --ink-muted: #bec1dd;
-  --ink-subtle: #c1c2d3;
-  --brand: 203 172 249;
+    /* brand + surface + text tiers */
+    --surface: #000319;
+    --ink: #ffffff;
+    --ink-muted: #bec1dd;
+    --ink-subtle: #c1c2d3;
+    --brand: 203 172 249;
 
-  /* data/accent palette (timeline dots, tech legend, contact cards).
-     Kept as space-separated RGB triplets so call sites can composite
-     alpha via rgb(var(--accent-x) / <alpha>). */
-  --accent-sky: 56 189 248;
-  --accent-green: 34 197 94;
-  --accent-rose: 244 63 94;
-  --accent-amber: 251 191 36;
-  --accent-slate: 148 163 184;
-  --accent-violet: var(--brand);
-  --accent-purple: 168 85 247;
-  --accent-blue: 30 64 175;
-  --accent-yellow: 250 204 21;
+    /* data/accent palette (timeline dots, tech legend, contact cards).
+       Kept as space-separated RGB triplets so call sites can composite
+       alpha via rgb(var(--accent-x) / <alpha>). */
+    --accent-sky: 56 189 248;
+    --accent-green: 34 197 94;
+    --accent-rose: 244 63 94;
+    --accent-amber: 251 191 36;
+    --accent-slate: 148 163 184;
+    --accent-violet: var(--brand);
+    --accent-purple: 168 85 247;
+    --accent-blue: 30 64 175;
+    --accent-yellow: 250 204 21;
 
-  /* glass/panel surface pair, shared by every frosted-glass card */
-  --glass-panel: 10 15 31;
-  --glass-panel-strong: 12 18 38;
+    /* glass/panel surface pair, shared by every frosted-glass card */
+    --glass-panel: 10 15 31;
+    --glass-panel-strong: 12 18 38;
 
-  /* shadcn/ui semantic tokens (used by a handful of shadcn primitives) */
-  --background: var(--surface);
-  --foreground: var(--ink);
-  --card: hsl(0 0% 100%);
-  --card-foreground: hsl(0 0% 3.9%);
-  --popover: hsl(0 0% 100%);
-  --popover-foreground: hsl(0 0% 3.9%);
-  --primary: hsl(0 0% 9%);
-  --primary-foreground: hsl(0 0% 98%);
-  --secondary: hsl(0 0% 96.1%);
-  --secondary-foreground: hsl(0 0% 9%);
-  --muted: hsl(0 0% 96.1%);
-  --muted-foreground: hsl(0 0% 45.1%);
-  --accent: hsl(0 0% 96.1%);
-  --accent-foreground: hsl(0 0% 9%);
-  --destructive: hsl(0 84.2% 60.2%);
-  --destructive-foreground: hsl(0 0% 98%);
-  --border: hsl(0 0% 89.8%);
-  --input: hsl(0 0% 89.8%);
-  --ring: hsl(0 0% 3.9%);
-  --radius: 0.5rem;
-  --chart-1: hsl(12 76% 61%);
-  --chart-2: hsl(173 58% 39%);
-  --chart-3: hsl(197 37% 24%);
-  --chart-4: hsl(43 74% 66%);
-  --chart-5: hsl(27 87% 67%);
+    /* shadcn/ui semantic tokens (used by a handful of shadcn primitives) */
+    --background: var(--surface);
+    --foreground: var(--ink);
+    --card: hsl(0 0% 100%);
+    --card-foreground: hsl(0 0% 3.9%);
+    --popover: hsl(0 0% 100%);
+    --popover-foreground: hsl(0 0% 3.9%);
+    --primary: hsl(0 0% 9%);
+    --primary-foreground: hsl(0 0% 98%);
+    --secondary: hsl(0 0% 96.1%);
+    --secondary-foreground: hsl(0 0% 9%);
+    --muted: hsl(0 0% 96.1%);
+    --muted-foreground: hsl(0 0% 45.1%);
+    --accent: hsl(0 0% 96.1%);
+    --accent-foreground: hsl(0 0% 9%);
+    --destructive: hsl(0 84.2% 60.2%);
+    --destructive-foreground: hsl(0 0% 98%);
+    --border: hsl(0 0% 89.8%);
+    --input: hsl(0 0% 89.8%);
+    --ring: hsl(0 0% 3.9%);
+    --radius: 0.5rem;
+    --chart-1: hsl(12 76% 61%);
+    --chart-2: hsl(173 58% 39%);
+    --chart-3: hsl(197 37% 24%);
+    --chart-4: hsl(43 74% 66%);
+    --chart-5: hsl(27 87% 67%);
 }
 
 @theme inline {
-  --color-surface: var(--surface);
-  --color-ink: var(--ink);
-  --color-ink-muted: var(--ink-muted);
-  --color-ink-subtle: var(--ink-subtle);
-  --color-brand: rgb(var(--brand));
+    --color-surface: var(--surface);
+    --color-ink: var(--ink);
+    --color-ink-muted: var(--ink-muted);
+    --color-ink-subtle: var(--ink-subtle);
+    --color-brand: rgb(var(--brand));
 
-  --color-accent-sky: rgb(var(--accent-sky));
-  --color-accent-green: rgb(var(--accent-green));
-  --color-accent-rose: rgb(var(--accent-rose));
-  --color-accent-amber: rgb(var(--accent-amber));
-  --color-accent-slate: rgb(var(--accent-slate));
-  --color-accent-violet: rgb(var(--accent-violet));
-  --color-accent-purple: rgb(var(--accent-purple));
-  --color-accent-blue: rgb(var(--accent-blue));
-  --color-accent-yellow: rgb(var(--accent-yellow));
+    --color-accent-sky: rgb(var(--accent-sky));
+    --color-accent-green: rgb(var(--accent-green));
+    --color-accent-rose: rgb(var(--accent-rose));
+    --color-accent-amber: rgb(var(--accent-amber));
+    --color-accent-slate: rgb(var(--accent-slate));
+    --color-accent-violet: rgb(var(--accent-violet));
+    --color-accent-purple: rgb(var(--accent-purple));
+    --color-accent-blue: rgb(var(--accent-blue));
+    --color-accent-yellow: rgb(var(--accent-yellow));
 
-  --color-glass-panel: rgb(var(--glass-panel));
-  --color-glass-panel-strong: rgb(var(--glass-panel-strong));
+    --color-glass-panel: rgb(var(--glass-panel));
+    --color-glass-panel-strong: rgb(var(--glass-panel-strong));
 
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --color-card: var(--card);
-  --color-card-foreground: var(--card-foreground);
-  --color-popover: var(--popover);
-  --color-popover-foreground: var(--popover-foreground);
-  --color-primary: var(--primary);
-  --color-primary-foreground: var(--primary-foreground);
-  --color-secondary: var(--secondary);
-  --color-secondary-foreground: var(--secondary-foreground);
-  --color-muted: var(--muted);
-  --color-muted-foreground: var(--muted-foreground);
-  --color-accent: var(--accent);
-  --color-accent-foreground: var(--accent-foreground);
-  --color-destructive: var(--destructive);
-  --color-destructive-foreground: var(--destructive-foreground);
-  --color-border: var(--border);
-  --color-input: var(--input);
-  --color-ring: var(--ring);
-  --color-chart-1: var(--chart-1);
-  --color-chart-2: var(--chart-2);
-  --color-chart-3: var(--chart-3);
-  --color-chart-4: var(--chart-4);
-  --color-chart-5: var(--chart-5);
+    --color-background: var(--background);
+    --color-foreground: var(--foreground);
+    --color-card: var(--card);
+    --color-card-foreground: var(--card-foreground);
+    --color-popover: var(--popover);
+    --color-popover-foreground: var(--popover-foreground);
+    --color-primary: var(--primary);
+    --color-primary-foreground: var(--primary-foreground);
+    --color-secondary: var(--secondary);
+    --color-secondary-foreground: var(--secondary-foreground);
+    --color-muted: var(--muted);
+    --color-muted-foreground: var(--muted-foreground);
+    --color-accent: var(--accent);
+    --color-accent-foreground: var(--accent-foreground);
+    --color-destructive: var(--destructive);
+    --color-destructive-foreground: var(--destructive-foreground);
+    --color-border: var(--border);
+    --color-input: var(--input);
+    --color-ring: var(--ring);
+    --color-chart-1: var(--chart-1);
+    --color-chart-2: var(--chart-2);
+    --color-chart-3: var(--chart-3);
+    --color-chart-4: var(--chart-4);
+    --color-chart-5: var(--chart-5);
 
-  --radius-lg: var(--radius);
-  --radius-md: calc(var(--radius) - 2px);
-  --radius-sm: calc(var(--radius) - 4px);
+    --radius-lg: var(--radius);
+    --radius-md: calc(var(--radius) - 2px);
+    --radius-sm: calc(var(--radius) - 4px);
 
-  --animate-spotlight: spotlight 2s ease 0s 1 forwards;
-  --animate-wave: wave 0.6s ease-in-out 3 alternate;
+    --animate-spotlight: spotlight 2s ease 0s 1 forwards;
+    --animate-wave: wave 0.6s ease-in-out 3 alternate;
 
-  @keyframes spotlight {
-    0% {
-      opacity: 0;
-      transform: translate(-72%, -62%) scale(0.5);
+    @keyframes spotlight {
+        0% {
+            opacity: 0;
+            transform: translate(-72%, -62%) scale(0.5);
+        }
+        100% {
+            opacity: 1;
+            transform: translate(-50%, -40%) scale(1);
+        }
     }
-    100% {
-      opacity: 1;
-      transform: translate(-50%, -40%) scale(1);
-    }
-  }
 
-  @keyframes wave {
-    0% {
-      transform: rotate(0deg);
+    @keyframes wave {
+        0% {
+            transform: rotate(0deg);
+        }
+        50% {
+            transform: rotate(20deg);
+        }
     }
-    50% {
-      transform: rotate(20deg);
-    }
-  }
 }
 
 @layer base {
-  * {
-    @apply border-border scroll-smooth;
-  }
-  /* tailwindcss-scoped-preflight re-injects Tailwind's own preflight (which
-     resets border-color to currentColor) scoped under .tw-class/#tw-id, and
-     since that reset has the same zero specificity as the rule above but
-     comes later in the cascade, it wins. Give this one real specificity so
-     bordered elements in the mini-project pages get the intended hairline
-     instead of a currentColor (black) border. */
-  .tw-class,
-  .tw-class *,
-  #tw-id,
-  #tw-id * {
-    @apply border-border;
-  }
-  button,
-  [role="button"] {
-    cursor: pointer;
-  }
-  button {
-    @apply active:outline-none;
-  }
+    * {
+        @apply border-border scroll-smooth;
+    }
+    /* tailwindcss-scoped-preflight re-injects Tailwind's own preflight (which
+       resets border-color to currentColor) scoped under .tw-class/#tw-id, and
+       since that reset has the same zero specificity as the rule above but
+       comes later in the cascade, it wins. Give this one real specificity so
+       bordered elements in the mini-project pages get the intended hairline
+       instead of a currentColor (black) border. */
+    .tw-class,
+    .tw-class *,
+    #tw-id,
+    #tw-id * {
+        @apply border-border;
+    }
+    button,
+    [role="button"] {
+        cursor: pointer;
+    }
+    button {
+        @apply active:outline-none;
+    }
 }
 
 @layer utilities {
-  .heading {
-    @apply font-bold text-4xl md:text-5xl text-center;
-  }
+    .heading {
+        @apply font-bold text-4xl md:text-5xl text-center;
+    }
 
-  .bg-grid-white {
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' width='100' height='100' fill='none' stroke='rgba(255,255,255,0.03)'%3E%3Cpath d='M0 .5H31.5V32'/%3E%3C/svg%3E");
-  }
+    .bg-grid-white {
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' width='100' height='100' fill='none' stroke='rgba(255,255,255,0.03)'%3E%3Cpath d='M0 .5H31.5V32'/%3E%3C/svg%3E");
+    }
 }
 
 @layer base {
-  /* Backdrop blur, noise textures, and long animations are expensive on
-     low-power/touch devices and unwanted for prefers-reduced-motion, so
-     kill transitions/animations globally here. Component-specific glass
-     and course-graph overrides for this same query live next to their
-     component definitions (see the imports above). */
-  @media (max-width: 767px), (pointer: coarse), (prefers-reduced-motion: reduce) {
-    *,
-    *::before,
-    *::after {
-      animation-duration: 1ms !important;
-      animation-iteration-count: 1 !important;
-      scroll-behavior: auto !important;
-      transition-delay: 0ms !important;
-      transition-duration: 1ms !important;
-    }
+    /* Backdrop blur, noise textures, and long animations are expensive on
+       low-power/touch devices and unwanted for prefers-reduced-motion, so
+       kill transitions/animations globally here. Component-specific glass
+       and course-graph overrides for this same query live next to their
+       component definitions (see the imports above). */
+    @media (max-width: 767px), (pointer: coarse), (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+            animation-duration: 1ms !important;
+            animation-iteration-count: 1 !important;
+            scroll-behavior: auto !important;
+            transition-delay: 0ms !important;
+            transition-duration: 1ms !important;
+        }
 
-    .animate-spotlight {
-      display: none;
+        .animate-spotlight {
+            display: none;
+        }
     }
-  }
 }

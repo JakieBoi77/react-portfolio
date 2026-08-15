@@ -1,3 +1,3 @@
-"use client";
+"use client"
 
-export { default } from "./_components/TimestampMicroservice";
+export { default } from "./_components/TimestampMicroservice"

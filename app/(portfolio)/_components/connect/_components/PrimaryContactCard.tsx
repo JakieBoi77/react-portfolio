@@ -1,14 +1,14 @@
-import { FaArrowRight, FaEnvelope } from "react-icons/fa";
+import { FaArrowRight, FaEnvelope } from "react-icons/fa"
 
-import type { ContactProfile, CSSVariableStyle } from "../_lib/types";
+import type { ContactProfile, CSSVariableStyle } from "../_lib/types"
 
 type PrimaryContactCardProps = {
-    profile: ContactProfile;
-    style: CSSVariableStyle;
-};
+    profile: ContactProfile
+    style: CSSVariableStyle
+}
 
 const PrimaryContactCard = ({ profile, style }: PrimaryContactCardProps) => {
-    const emailAddress = profile.link.replace("mailto:", "");
+    const emailAddress = profile.link.replace("mailto:", "")
 
     return (
         <a
@@ -47,7 +47,7 @@ const PrimaryContactCard = ({ profile, style }: PrimaryContactCardProps) => {
                 </span>
             </span>
         </a>
-    );
-};
+    )
+}
 
-export default PrimaryContactCard;
+export default PrimaryContactCard

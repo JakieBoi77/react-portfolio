@@ -1,6 +1,6 @@
-import styled from "styled-components";
-import React, { useState } from "react";
-import { evaluate } from "mathjs";
+import { evaluate } from "mathjs"
+import { useState } from "react"
+import styled from "styled-components"
 
 const StyledDiv = styled.div`
     position: fixed;
@@ -80,106 +80,103 @@ const StyledDiv = styled.div`
         cursor: pointer;
         background-color: #e3e3e3;
     }
-`;
+`
 
 export default function Calculator() {
     return (
         <StyledDiv>
             <UnstyledCalculator />
         </StyledDiv>
-    );
+    )
 }
 
 const UnstyledCalculator = () => {
-    const [currentOutput, setCurrentOutput] = useState("0");
-    const [currentEquation, setCurrentEquation] = useState("");
-    const [firstChar, setFirstChar] = useState(true);
-    const [previousInput, setPreviousInput] = useState("number");
-    const [decimal, setDecimal] = useState(false);
+    const [currentOutput, setCurrentOutput] = useState("0")
+    const [currentEquation, setCurrentEquation] = useState("")
+    const [firstChar, setFirstChar] = useState(true)
+    const [previousInput, setPreviousInput] = useState("number")
+    const [decimal, setDecimal] = useState(false)
 
     const handleClear = () => {
-        setCurrentOutput("0");
-        setCurrentEquation("");
-        setFirstChar(true);
-        setPreviousInput("number");
-        setDecimal(false);
-    };
+        setCurrentOutput("0")
+        setCurrentEquation("")
+        setFirstChar(true)
+        setPreviousInput("number")
+        setDecimal(false)
+    }
 
-    const handleNumber = (input: any) => {
+    const handleNumber = (input: string) => {
         if (previousInput === "operator") {
             // If the previous input was an operator then add to the equation and start a new number
-            setCurrentEquation(currentEquation + currentOutput);
-            setCurrentOutput(input);
+            setCurrentEquation(currentEquation + currentOutput)
+            setCurrentOutput(input)
             if (input === "0") {
-                setFirstChar(true);
+                setFirstChar(true)
             }
         } else if (previousInput === "evaluate") {
-            setCurrentEquation("");
-            setCurrentOutput(input);
+            setCurrentEquation("")
+            setCurrentOutput(input)
             if (input === "0") {
-                setFirstChar(true);
+                setFirstChar(true)
             }
         } else {
             if (firstChar) {
                 if (input !== "0") {
                     // If the first character is not 0 then change the output to the input
-                    setFirstChar(false);
-                    setCurrentOutput(input);
+                    setFirstChar(false)
+                    setCurrentOutput(input)
                 }
             } else {
                 // If its not the first character add to the output
-                setCurrentOutput(currentOutput + input);
+                setCurrentOutput(currentOutput + input)
             }
         }
         // Set the previous input
-        setPreviousInput("number");
-    };
+        setPreviousInput("number")
+    }
 
-    const handleOperator = (input: any) => {
+    const handleOperator = (input: string) => {
         if (previousInput === "number") {
             // If previous input is a number then add the number to the equation
-            setCurrentEquation(currentEquation + currentOutput);
-            setCurrentOutput(input);
+            setCurrentEquation(currentEquation + currentOutput)
+            setCurrentOutput(input)
         } else if (previousInput === "decimal") {
             // If previous input is a decimal then add the number to the equation without the decimal
-            setCurrentEquation(
-                currentEquation +
-                    currentOutput.slice(0, currentOutput.length - 1),
-            );
-            setCurrentOutput(input);
+            setCurrentEquation(currentEquation + currentOutput.slice(0, currentOutput.length - 1))
+            setCurrentOutput(input)
         } else if (previousInput === "operator") {
             if (input === "-") {
-                setCurrentOutput(currentOutput + input);
+                setCurrentOutput(currentOutput + input)
             } else {
-                setCurrentOutput(input);
+                setCurrentOutput(input)
             }
         } else if (previousInput === "evaluate") {
-            setCurrentEquation(currentOutput);
-            setCurrentOutput(input);
+            setCurrentEquation(currentOutput)
+            setCurrentOutput(input)
         }
 
         // Reset decimal
-        setDecimal(false);
+        setDecimal(false)
 
         // Set previous input
-        setPreviousInput("operator");
-    };
+        setPreviousInput("operator")
+    }
 
-    const handleDecimal = (input: any) => {
+    const handleDecimal = (input: string) => {
         if (!decimal && previousInput === "number") {
-            setCurrentOutput(currentOutput + input);
-            setFirstChar(false);
-            setPreviousInput("decimal");
-            setDecimal(true);
+            setCurrentOutput(currentOutput + input)
+            setFirstChar(false)
+            setPreviousInput("decimal")
+            setDecimal(true)
         }
-    };
+    }
 
-    const handleEvaluate = (input: any) => {
-        const result = evaluate(currentEquation + currentOutput);
-        setCurrentEquation(currentEquation + currentOutput + input + result);
-        setCurrentOutput(result);
-        setPreviousInput("evaluate");
-    };
+    const handleEvaluate = (input: string) => {
+        const result = String(evaluate(currentEquation + currentOutput))
+        setCurrentEquation(currentEquation + currentOutput + input + result)
+        setCurrentOutput(result)
+        setPreviousInput("evaluate")
+    }
 
     return (
         <div id="calculator">
@@ -192,35 +189,56 @@ const UnstyledCalculator = () => {
                 evaluate={handleEvaluate}
             />
         </div>
-    );
-};
+    )
+}
 
-function Display(props: any) {
+type DisplayProps = {
+    equation: string
+    output: string
+}
+
+function Display(props: DisplayProps) {
     return (
         <div id="display-box">
             <Equation equation={props.equation} />
             <Output output={props.output} />
         </div>
-    );
+    )
 }
 
-function Equation(props: any) {
+type EquationProps = {
+    equation: string
+}
+
+function Equation(props: EquationProps) {
     return (
         <div id="equation-box">
             <p id="equation">{props.equation}</p>
         </div>
-    );
+    )
 }
 
-function Output(props: any) {
+type OutputProps = {
+    output: string
+}
+
+function Output(props: OutputProps) {
     return (
         <div id="output-box">
             <p id="display">{props.output}</p>
         </div>
-    );
+    )
 }
 
-function ButtonPanel(props: any) {
+type ButtonPanelProps = {
+    clear: () => void
+    number: (input: string) => void
+    operator: (input: string) => void
+    decimal: (input: string) => void
+    evaluate: (input: string) => void
+}
+
+function ButtonPanel(props: ButtonPanelProps) {
     return (
         <div id="button-panel-box">
             <Button id="clear" value="AC" click={props.clear} />
@@ -245,12 +263,19 @@ function ButtonPanel(props: any) {
             <Button id="zero" value="0" click={props.number} />
             <Button id="decimal" value="." click={props.decimal} />
         </div>
-    );
+    )
 }
 
-function Button(props: any) {
+type ButtonProps = {
+    id: string
+    value: string
+    click: (value: string) => void
+}
+
+function Button(props: ButtonProps) {
     return (
         <button
+            type="button"
             id={props.id}
             className="button"
             value={props.value}
@@ -258,5 +283,5 @@ function Button(props: any) {
         >
             {props.value}
         </button>
-    );
+    )
 }

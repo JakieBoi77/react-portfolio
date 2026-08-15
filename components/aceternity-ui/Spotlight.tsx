@@ -1,14 +1,14 @@
-import React from "react";
-import { cn } from "@/utils/cn";
+import { cn } from "@/utils/cn"
 
 type SpotlightProps = {
-    className?: string;
-    fill?: string;
-};
+    className?: string
+    fill?: string
+}
 
 export const Spotlight = ({ className, fill }: SpotlightProps) => {
     return (
         <svg
+            aria-hidden="true"
             className={cn(
                 "animate-spotlight pointer-events-none absolute z-[1]  h-[169%] w-[138%] lg:w-[84%] opacity-0",
                 className,
@@ -38,10 +38,7 @@ export const Spotlight = ({ className, fill }: SpotlightProps) => {
                     filterUnits="userSpaceOnUse"
                     colorInterpolationFilters="sRGB"
                 >
-                    <feFlood
-                        floodOpacity="0"
-                        result="BackgroundImageFix"
-                    ></feFlood>
+                    <feFlood floodOpacity="0" result="BackgroundImageFix"></feFlood>
                     <feBlend
                         mode="normal"
                         in="SourceGraphic"
@@ -55,5 +52,5 @@ export const Spotlight = ({ className, fill }: SpotlightProps) => {
                 </filter>
             </defs>
         </svg>
-    );
-};
+    )
+}

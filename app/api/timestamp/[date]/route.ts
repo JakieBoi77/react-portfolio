@@ -1,40 +1,37 @@
-export const GET = async (
-    _req: Request,
-    { params }: { params: Promise<{ date: string }> },
-) => {
-    const { date } = await params;
+export const GET = async (_req: Request, { params }: { params: Promise<{ date: string }> }) => {
+    const { date } = await params
 
     // If input is a date string
-    if (!isNaN(new Date(date).getTime())) {
-        const parsedDate = new Date(date);
+    if (!Number.isNaN(new Date(date).getTime())) {
+        const parsedDate = new Date(date)
         return Response.json({
             unix: parsedDate.getTime(),
             utc: parsedDate.toUTCString(),
-        });
+        })
     }
 
     // If input is a numeric string
-    else if (!isNaN(parseInt(date))) {
-        const parsedDate = new Date(parseInt(date));
+    else if (!Number.isNaN(parseInt(date, 10))) {
+        const parsedDate = new Date(parseInt(date, 10))
         return Response.json({
             unix: parsedDate.getTime(),
             utc: parsedDate.toUTCString(),
-        });
+        })
     }
 
     // If there is no input
     else if (date === null) {
-        const parsedDate = new Date();
+        const parsedDate = new Date()
         return Response.json({
             unix: parsedDate.getTime(),
             utc: parsedDate.toUTCString(),
-        });
+        })
     }
 
     // Invalid input
     else {
         return Response.json({
             error: "Invalid Date",
-        });
+        })
     }
-};
+}

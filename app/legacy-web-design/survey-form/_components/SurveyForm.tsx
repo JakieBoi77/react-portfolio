@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from "styled-components"
 
 const StyledDiv = styled.div`
     #survey-form {
@@ -68,23 +68,21 @@ const StyledDiv = styled.div`
     #description {
         margin-bottom: 10px;
     }
-`;
+`
 
 export default function SurveyForm() {
     return (
         <StyledDiv>
             <UnstyledSurveyForm />
         </StyledDiv>
-    );
+    )
 }
 
 function UnstyledSurveyForm() {
     return (
         <div id="survey-form">
             <h1 id="title">freeCodeCamp Survey Form</h1>
-            <p id="description">
-                Thank you for taking the time to help us improve the platform.
-            </p>
+            <p id="description">Thank you for taking the time to help us improve the platform.</p>
             <form id="form">
                 <fieldset>
                     <label id="name-label" htmlFor="name">
@@ -129,7 +127,7 @@ function UnstyledSurveyForm() {
                             <option value="5">Other</option>
                         </select>
                     </label>
-                    <label>Would you recommend freeCodeCamp to a friend?</label>
+                    <legend>Would you recommend freeCodeCamp to a friend?</legend>
                     <label className="radio" htmlFor="definitely">
                         <input
                             id="definitely"
@@ -172,89 +170,41 @@ function UnstyledSurveyForm() {
                             <option value="4">Open Source</option>
                         </select>
                     </label>
-                    <label>
-                        What would you like to see improved? (Check all that
-                        apply)
-                    </label>
+                    <legend>What would you like to see improved? (Check all that apply)</legend>
                     <label className="check" htmlFor="fep">
-                        <input
-                            id="fep"
-                            value="fep"
-                            className="checkbox-input"
-                            type="checkbox"
-                        />
+                        <input id="fep" value="fep" className="checkbox-input" type="checkbox" />
                         Front-end Projects
                     </label>
                     <label className="check" htmlFor="bep">
-                        <input
-                            id="bep"
-                            value="bep"
-                            className="checkbox-input"
-                            type="checkbox"
-                        />
+                        <input id="bep" value="bep" className="checkbox-input" type="checkbox" />
                         Back-end Projects
                     </label>
                     <label className="check" htmlFor="dv">
-                        <input
-                            id="dv"
-                            value="dv"
-                            className="checkbox-input"
-                            type="checkbox"
-                        />
+                        <input id="dv" value="dv" className="checkbox-input" type="checkbox" />
                         Data Visualization
                     </label>
                     <label className="check" htmlFor="ch">
-                        <input
-                            id="ch"
-                            value="ch"
-                            className="checkbox-input"
-                            type="checkbox"
-                        />
+                        <input id="ch" value="ch" className="checkbox-input" type="checkbox" />
                         Challenges
                     </label>
                     <label className="check" htmlFor="osc">
-                        <input
-                            id="osc"
-                            value="osc"
-                            className="checkbox-input"
-                            type="checkbox"
-                        />
+                        <input id="osc" value="osc" className="checkbox-input" type="checkbox" />
                         Open Source Community
                     </label>
                     <label className="check" htmlFor="ghr">
-                        <input
-                            id="ghr"
-                            value="ghr"
-                            className="checkbox-input"
-                            type="checkbox"
-                        />
+                        <input id="ghr" value="ghr" className="checkbox-input" type="checkbox" />
                         Gitter help rooms
                     </label>
                     <label className="check" htmlFor="vid">
-                        <input
-                            id="vid"
-                            value="vid"
-                            className="checkbox-input"
-                            type="checkbox"
-                        />
+                        <input id="vid" value="vid" className="checkbox-input" type="checkbox" />
                         Videos
                     </label>
                     <label className="check" htmlFor="cm">
-                        <input
-                            id="cm"
-                            value="cm"
-                            className="checkbox-input"
-                            type="checkbox"
-                        />
+                        <input id="cm" value="cm" className="checkbox-input" type="checkbox" />
                         City Meetups
                     </label>
                     <label className="check" htmlFor="wiki">
-                        <input
-                            id="wiki"
-                            value="wiki"
-                            className="checkbox-input"
-                            type="checkbox"
-                        />
+                        <input id="wiki" value="wiki" className="checkbox-input" type="checkbox" />
                         Wiki
                     </label>
                     <label className="check" htmlFor="forum">
@@ -267,24 +217,16 @@ function UnstyledSurveyForm() {
                         Forum
                     </label>
                     <label className="check" htmlFor="ac">
-                        <input
-                            id="ac"
-                            value="ac"
-                            className="checkbox-input"
-                            type="checkbox"
-                        />
+                        <input id="ac" value="ac" className="checkbox-input" type="checkbox" />
                         Additional Courses
                     </label>
                 </fieldset>
                 <fieldset>
-                    <label>Any comments or suggestions?</label>
-                    <textarea
-                        rows={4}
-                        placeholder="Enter your comment here..."
-                    />
+                    <label htmlFor="comments">Any comments or suggestions?</label>
+                    <textarea id="comments" rows={4} placeholder="Enter your comment here..." />
                 </fieldset>
                 <input id="submit" type="submit" value="Submit" />
             </form>
         </div>
-    );
+    )
 }

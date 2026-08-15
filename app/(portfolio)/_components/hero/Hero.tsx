@@ -1,16 +1,10 @@
-"use client";
+"use client"
 
-import {
-    IconButton,
-    Spotlight,
-    TypographyH1,
-    TypographyLead,
-    TypographySmall,
-} from "@components";
-import { aboutParagraph, availableToWork, links } from "../../_data/portfolio";
-import { assets } from "../../_data/assets";
-import { motion } from "framer-motion";
-import { fadeIn } from "@/utils/motion";
+import { IconButton, Spotlight, TypographyH1, TypographyLead, TypographySmall } from "@components"
+import { motion } from "framer-motion"
+import { fadeIn } from "@/utils/motion"
+import { assets } from "../../_data/assets"
+import { aboutParagraph, availableToWork, links } from "../../_data/portfolio"
 
 const Hero = () => {
     return (
@@ -20,14 +14,8 @@ const Hero = () => {
                     className="-top-40 -left-10 md:-left-32 md:-top-20 h-screen"
                     fill="white"
                 />
-                <Spotlight
-                    className="top-10 left-full h-[80vh] w-[50vw]"
-                    fill="purple"
-                />
-                <Spotlight
-                    className="top-28 left-80 h-[80vh] w-[50vw]"
-                    fill="blue"
-                />
+                <Spotlight className="top-10 left-full h-[80vh] w-[50vw]" fill="purple" />
+                <Spotlight className="top-28 left-80 h-[80vh] w-[50vw]" fill="blue" />
             </div>
             <div className="glassy relative z-10 mt-10 flex w-full justify-center rounded-xl p-5 sm:mt-16 sm:p-6 md:p-7">
                 <div className="flex w-full flex-col gap-5">
@@ -46,7 +34,7 @@ const Hero = () => {
                                             <div className="absolute inset-1">
                                                 <img
                                                     className="size-full rounded-full bg-ink/30 object-cover ring-2 ring-ink/70 ring-offset-2 ring-offset-surface"
-                                                    alt="Profile Picture"
+                                                    alt="Jake Finlay"
                                                     src={assets.profile}
                                                 />
                                             </div>
@@ -98,6 +86,7 @@ const Hero = () => {
                                                         <span className="group-hover:-translate-y-full absolute top-full flex items-center transition-all duration-1000 ease-slow">
                                                             Reach out
                                                             <svg
+                                                                aria-hidden="true"
                                                                 xmlns="http://www.w3.org/2000/svg"
                                                                 width="24"
                                                                 height="24"
@@ -154,7 +143,7 @@ const Hero = () => {
                 </div>
             </div>
         </div>
-    );
-};
+    )
+}
 
-export default Hero;
+export default Hero

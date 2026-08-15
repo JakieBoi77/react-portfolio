@@ -1,10 +1,10 @@
-import type { Variants } from "framer-motion";
-import type { IconType } from "react-icons";
-import { FaCode, FaLayerGroup } from "react-icons/fa";
+import type { Variants } from "framer-motion"
+import type { IconType } from "react-icons"
+import { FaCode, FaLayerGroup } from "react-icons/fa"
 
-import type { CSSVariableStyle } from "./types";
+import type { CSSVariableStyle } from "./types"
 
-export const projectShellAccent = "var(--accent-sky)";
+export const projectShellAccent = "var(--accent-sky)"
 
 export const projectTabs = [
     {
@@ -20,13 +20,13 @@ export const projectTabs = [
         accent: "var(--accent-green)",
     },
 ] satisfies Array<{
-    id: string;
-    label: string;
-    Icon: IconType;
-    accent: string;
-}>;
+    id: string
+    label: string
+    Icon: IconType
+    accent: string
+}>
 
-export type ProjectTab = (typeof projectTabs)[number]["id"];
+export type ProjectTab = (typeof projectTabs)[number]["id"]
 
 export const projectAccents = [
     projectShellAccent,
@@ -34,7 +34,7 @@ export const projectAccents = [
     "var(--accent-rose)",
     "var(--accent-amber)",
     "var(--accent-purple)",
-];
+]
 
 const projectGlassTextures: CSSVariableStyle[] = [
     {
@@ -73,16 +73,12 @@ const projectGlassTextures: CSSVariableStyle[] = [
         "--node-noise-size": "188px 188px",
         "--node-noise-position": "38px 16px",
     },
-];
+]
 
-export const getProjectAccent = (index: number) =>
-    projectAccents[index % projectAccents.length];
+export const getProjectAccent = (index: number) => projectAccents[index % projectAccents.length]
 
-export const getProjectGlassStyle = (
-    index: number,
-    accent = getProjectAccent(index),
-) => {
-    const texture = projectGlassTextures[index % projectGlassTextures.length];
+export const getProjectGlassStyle = (index: number, accent = getProjectAccent(index)) => {
+    const texture = projectGlassTextures[index % projectGlassTextures.length]
 
     return {
         accent,
@@ -94,8 +90,8 @@ export const getProjectGlassStyle = (
             "--node-noise": "0.19",
             borderColor: `rgb(${accent} / 0.24)`,
         } as CSSVariableStyle,
-    };
-};
+    }
+}
 
 export const projectCardVariants: Variants = {
     hidden: {
@@ -111,7 +107,7 @@ export const projectCardVariants: Variants = {
             bounce: 0.16,
         },
     },
-};
+}
 
 export const projectPanelVariants: Variants = {
     hidden: {
@@ -134,4 +130,4 @@ export const projectPanelVariants: Variants = {
             ease: "easeIn",
         },
     },
-};
+}

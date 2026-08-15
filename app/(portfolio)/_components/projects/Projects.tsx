@@ -1,25 +1,24 @@
-"use client";
+"use client"
 
-import { useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
-
-import { SectionHeading, SectionWrapper } from "@components";
-import { cn } from "@/lib/utils";
-import { fadeIn } from "@/utils/motion";
-import FeaturedProjectsPanel from "./_components/FeaturedProjectsPanel";
-import LearningProjectsPanel from "./_components/LearningProjectsPanel";
+import { SectionHeading, SectionWrapper } from "@components"
+import { AnimatePresence, motion } from "framer-motion"
+import { useState } from "react"
+import { cn } from "@/lib/utils"
+import { fadeIn } from "@/utils/motion"
+import FeaturedProjectsPanel from "./_components/FeaturedProjectsPanel"
+import LearningProjectsPanel from "./_components/LearningProjectsPanel"
 import {
     getProjectGlassStyle,
+    type ProjectTab,
     projectPanelVariants,
     projectShellAccent,
     projectTabs,
-    type ProjectTab,
-} from "./_lib/constants";
-import type { CSSVariableStyle } from "./_lib/types";
+} from "./_lib/constants"
+import type { CSSVariableStyle } from "./_lib/types"
 
 const Projects = () => {
-    const [activeTab, setActiveTab] = useState<ProjectTab>("featured");
-    const switcherShell = getProjectGlassStyle(0, projectShellAccent);
+    const [activeTab, setActiveTab] = useState<ProjectTab>("featured")
+    const switcherShell = getProjectGlassStyle(0, projectShellAccent)
 
     return (
         <div className="w-full">
@@ -47,7 +46,7 @@ const Projects = () => {
                         }
                     >
                         {projectTabs.map(({ id, label, Icon, accent }) => {
-                            const isActive = activeTab === id;
+                            const isActive = activeTab === id
 
                             return (
                                 <button
@@ -72,13 +71,10 @@ const Projects = () => {
                                             : undefined
                                     }
                                 >
-                                    <Icon
-                                        aria-hidden="true"
-                                        className="size-4"
-                                    />
+                                    <Icon aria-hidden="true" className="size-4" />
                                     {label}
                                 </button>
-                            );
+                            )
                         })}
                     </div>
                 </SectionHeading>
@@ -103,7 +99,7 @@ const Projects = () => {
                 </AnimatePresence>
             </motion.div>
         </div>
-    );
-};
+    )
+}
 
-export default SectionWrapper(Projects, "projects");
+export default SectionWrapper(Projects, "projects")

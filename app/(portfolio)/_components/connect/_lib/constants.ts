@@ -1,7 +1,7 @@
-import { links } from "../../../_data/portfolio";
-import type { ContactProfile, CSSVariableStyle } from "./types";
+import { links } from "../../../_data/portfolio"
+import type { ContactProfile, CSSVariableStyle } from "./types"
 
-export const connectAccent = "var(--accent-sky)";
+export const connectAccent = "var(--accent-sky)"
 
 const profileMeta = {
     GitHub: {
@@ -18,8 +18,7 @@ const profileMeta = {
     LinkedIn: {
         accent: "var(--accent-green)",
         cta: "Connect",
-        description:
-            "Follow career updates and connect through my LinkedIn profile.",
+        description: "Follow career updates and connect through my LinkedIn profile.",
     },
     Resume: {
         accent: "var(--accent-amber)",
@@ -29,17 +28,17 @@ const profileMeta = {
 } satisfies Record<
     string,
     {
-        accent: string;
-        cta: string;
-        description: string;
+        accent: string
+        cta: string
+        description: string
     }
->;
+>
 
 const fallbackProfileMeta = {
     accent: "var(--accent-slate)",
     cta: "Open link",
     description: "Open this profile link.",
-};
+}
 
 const connectGlassTextures: CSSVariableStyle[] = [
     {
@@ -78,24 +77,22 @@ const connectGlassTextures: CSSVariableStyle[] = [
         "--node-noise-size": "188px 188px",
         "--node-noise-position": "38px 16px",
     },
-];
+]
 
 export const contactProfiles = links.map<ContactProfile>((profile) => ({
     ...profile,
-    ...(profileMeta[profile.label as keyof typeof profileMeta] ??
-        fallbackProfileMeta),
-}));
+    ...(profileMeta[profile.label as keyof typeof profileMeta] ?? fallbackProfileMeta),
+}))
 
 export const primaryContactProfile =
-    contactProfiles.find((profile) => profile.label === "Email") ??
-    contactProfiles[0];
+    contactProfiles.find((profile) => profile.label === "Email") ?? contactProfiles[0]
 
 export const secondaryContactProfiles = contactProfiles.filter(
     (profile) => profile.id !== primaryContactProfile.id,
-);
+)
 
 export const getConnectCardStyle = (index: number, accent: string) => {
-    const texture = connectGlassTextures[index % connectGlassTextures.length];
+    const texture = connectGlassTextures[index % connectGlassTextures.length]
 
     return {
         ...texture,
@@ -104,8 +101,8 @@ export const getConnectCardStyle = (index: number, accent: string) => {
         "--node-bg-strong": "rgb(var(--glass-panel-strong) / 0.84)",
         "--node-noise": "0.2",
         borderColor: `rgb(${accent} / 0.24)`,
-    } as CSSVariableStyle;
-};
+    } as CSSVariableStyle
+}
 
 export const connectPrimaryStyle = {
     "--node-accent": primaryContactProfile.accent,
@@ -120,4 +117,4 @@ export const connectPrimaryStyle = {
     "--node-noise-size": "180px 180px",
     "--node-noise-position": "12px 20px",
     borderColor: `rgb(${primaryContactProfile.accent} / 0.28)`,
-} as CSSVariableStyle;
+} as CSSVariableStyle

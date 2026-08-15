@@ -1,14 +1,14 @@
-import * as React from "react";
+import type * as React from "react"
 
-import { cn } from "@/lib/utils";
+import { cn } from "@/lib/utils"
 
 type SectionHeadingProps = {
-    title: React.ReactNode;
-    description?: React.ReactNode;
-    children?: React.ReactNode;
-    className?: string;
-    descriptionClassName?: string;
-};
+    title: React.ReactNode
+    description?: React.ReactNode
+    children?: React.ReactNode
+    className?: string
+    descriptionClassName?: string
+}
 
 const SectionHeading = ({
     title,
@@ -34,7 +34,7 @@ const SectionHeading = ({
             ) : null}
             {children}
         </div>
-    );
-};
+    )
+}
 
-export { SectionHeading };
+export { SectionHeading }

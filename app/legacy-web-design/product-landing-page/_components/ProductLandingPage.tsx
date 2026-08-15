@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import { FaBolt, FaGem, FaTruck, FaInfinity } from "react-icons/fa";
+import { FaBolt, FaGem, FaInfinity, FaTruck } from "react-icons/fa"
+import styled from "styled-components"
 
 const StyledDiv = styled.div`
     #product-landing-page {
@@ -287,14 +287,14 @@ const StyledDiv = styled.div`
         font-family: Lato, sans-serif;
         font-size: small;
     }
-`;
+`
 
 export default function ProductLandingPage() {
     return (
         <StyledDiv>
             <UnstyledProductLandingPage />
         </StyledDiv>
-    );
+    )
 }
 
 function UnstyledProductLandingPage() {
@@ -302,11 +302,7 @@ function UnstyledProductLandingPage() {
         <div id="product-landing-page">
             <header id="header">
                 <div className="img-div">
-                    <img
-                        id="header-img"
-                        src="/project-pics/logo.png"
-                        alt="Prism Logo"
-                    />
+                    <img id="header-img" src="/project-pics/logo.png" alt="Prism Logo" />
                 </div>
                 <nav id="nav-bar">
                     <ul>
@@ -342,9 +338,8 @@ function UnstyledProductLandingPage() {
                         <div className="description">
                             <h2>Powerful</h2>
                             <p>
-                                Prisms are the strongest and most powerful
-                                materials in the world. They can used for just
-                                about anything and should be treated with
+                                Prisms are the strongest and most powerful materials in the world.
+                                They can used for just about anything and should be treated with
                                 respect.
                             </p>
                         </div>
@@ -356,9 +351,8 @@ function UnstyledProductLandingPage() {
                         <div className="description">
                             <h2>Rare</h2>
                             <p>
-                                Prisms are insanley rare. It took ten thousand
-                                years to create the first prism. Even with
-                                modern science, theses prisms still take
+                                Prisms are insanley rare. It took ten thousand years to create the
+                                first prism. Even with modern science, theses prisms still take
                                 thousands of years to synthesize.
                             </p>
                         </div>
@@ -370,9 +364,8 @@ function UnstyledProductLandingPage() {
                         <div className="description">
                             <h2>Secure Shipping</h2>
                             <p>
-                                Because of their power and rarity, all prism
-                                shipments are made using an armoured truck
-                                convoy.
+                                Because of their power and rarity, all prism shipments are made
+                                using an armoured truck convoy.
                             </p>
                         </div>
                     </div>
@@ -396,13 +389,11 @@ function UnstyledProductLandingPage() {
                             />
                             <p className="info">Classic Obama Prism.</p>
                             <p className="info">Has a nice and smooth spin.</p>
-                            <p className="info">
-                                The most powerful of the prisms.
-                            </p>
+                            <p className="info">The most powerful of the prisms.</p>
                             <p className="price">
                                 Price: <FaInfinity />
                             </p>
-                            <button>Buy</button>
+                            <button type="button">Buy</button>
                         </div>
                         <div className="option">
                             <h3>Obama Sphere</h3>
@@ -416,7 +407,7 @@ function UnstyledProductLandingPage() {
                             <p className="price">
                                 Price: <FaInfinity />
                             </p>
-                            <button>Buy</button>
+                            <button type="button">Buy</button>
                         </div>
                     </div>
                     <div className="option-group">
@@ -426,15 +417,13 @@ function UnstyledProductLandingPage() {
                                 src="https://media.tenor.com/Uxeo34AJba0AAAAC/obama-obamium.gif"
                                 alt="Obamahedron"
                             />
-                            <p className="info">
-                                The one and only Obama Icosahedron.
-                            </p>
+                            <p className="info">The one and only Obama Icosahedron.</p>
                             <p className="info">Has a decent spin.</p>
                             <p className="info">Looks like a crystal.</p>
                             <p className="price">
                                 Price: <FaInfinity />
                             </p>
-                            <button>Buy</button>
+                            <button type="button">Buy</button>
                         </div>
                         <div className="option">
                             <h3>Obama Tesseract</h3>
@@ -442,25 +431,18 @@ function UnstyledProductLandingPage() {
                                 src="https://i.kym-cdn.com/photos/images/original/001/606/405/fa6.gif"
                                 alt="Obama Tesseract"
                             />
-                            <p className="info">
-                                The impossible Obama Tesseract.
-                            </p>
+                            <p className="info">The impossible Obama Tesseract.</p>
                             <p className="info">Spins in 4D space.</p>
-                            <p className="info">
-                                Controls the fouth dimension.
-                            </p>
+                            <p className="info">Controls the fouth dimension.</p>
                             <p className="price">
                                 Price: <FaInfinity />
                             </p>
-                            <button>Buy</button>
+                            <button type="button">Buy</button>
                         </div>
                     </div>
                 </section>
                 <section id="newsletter">
-                    <form
-                        id="form"
-                        action="https://www.freecodecamp.com/email-submit"
-                    >
+                    <form id="form" action="https://www.freecodecamp.com/email-submit">
                         <label htmlFor="email">
                             Sign up to recieve updates from us
                             <input
@@ -486,5 +468,5 @@ function UnstyledProductLandingPage() {
                 <p>Copyright 2023, Prism Ltd.</p>
             </footer>
         </div>
-    );
+    )
 }

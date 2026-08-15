@@ -1,4 +1,4 @@
-import { Schema, model, models } from "mongoose";
+import { model, models, Schema } from "mongoose"
 
 const shortUrlSchema = new Schema({
     url: {
@@ -14,8 +14,8 @@ const shortUrlSchema = new Schema({
         unique: true,
         index: true,
     },
-});
+})
 
-const ShortURL = models["short-urls"] || model("short-urls", shortUrlSchema);
+const ShortURL = models["short-urls"] || model("short-urls", shortUrlSchema)
 
-export default ShortURL;
+export default ShortURL

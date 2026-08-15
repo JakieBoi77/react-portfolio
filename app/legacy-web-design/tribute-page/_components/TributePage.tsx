@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from "styled-components"
 
 const StyledDiv = styled.div`
     #tribute-page {
@@ -51,14 +51,14 @@ const StyledDiv = styled.div`
         max-width: 600px;
         margin: 0;
     }
-`;
+`
 
 export default function TechincalDocumentation() {
     return (
         <StyledDiv>
             <UnstyledTributePage />
         </StyledDiv>
-    );
+    )
 }
 
 function UnstyledTributePage() {
@@ -81,23 +81,20 @@ function UnstyledTributePage() {
                     <h3>About</h3>
                     <div className="center-div">
                         <p id="p1">
-                            Obamium, also known as Obama Pyramid and Obama
-                            Prism, refers to a series of memes imagining various
-                            chemical substances and geometric figures consisting
-                            of and named after the former United States
-                            President Barack Obama. Spawned by a GIF circulated
-                            in ironic communities in August 2019, the meme saw
-                            viral spread in the following months.
+                            Obamium, also known as Obama Pyramid and Obama Prism, refers to a series
+                            of memes imagining various chemical substances and geometric figures
+                            consisting of and named after the former United States President Barack
+                            Obama. Spawned by a GIF circulated in ironic communities in August 2019,
+                            the meme saw viral spread in the following months.
                         </p>
                     </div>
                     <h3>Origin</h3>
                     <div className="center-div">
                         <p id="p2">
-                            The exact origin of the GIF is currently
-                            unconfirmed. On July 31st, 2019, iFunny user Barack
-                            posted a GIF of a spinning pyramid with its sides
-                            covered with a stretched photograph of Barack Obama.
-                            The post received over 150 smiles in four months.
+                            The exact origin of the GIF is currently unconfirmed. On July 31st,
+                            2019, iFunny user Barack posted a GIF of a spinning pyramid with its
+                            sides covered with a stretched photograph of Barack Obama. The post
+                            received over 150 smiles in four months.
                         </p>
                     </div>
                     <div className="center-div bottom">
@@ -109,6 +106,7 @@ function UnstyledTributePage() {
                                 href="https://knowyourmeme.com/memes/obamium"
                                 target="_blank"
                                 rel="noreferrer"
+                                aria-label="Know Your Meme page about Obamium"
                             >
                                 link
                             </a>{" "}
@@ -118,5 +116,5 @@ function UnstyledTributePage() {
                 </div>
             </main>
         </div>
-    );
+    )
 }

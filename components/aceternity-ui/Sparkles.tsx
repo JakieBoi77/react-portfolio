@@ -1,43 +1,34 @@
-"use client";
-import React from "react";
-import { useEffect, useState } from "react";
-import Particles, { initParticlesEngine } from "@tsparticles/react";
-import type { Container, SingleOrMultiple } from "@tsparticles/engine";
-import { loadSlim } from "@tsparticles/slim";
-import { cn } from "@/utils/cn";
-import { motion, useAnimation } from "framer-motion";
+"use client"
+import type { Container, SingleOrMultiple } from "@tsparticles/engine"
+import Particles, { initParticlesEngine } from "@tsparticles/react"
+import { loadSlim } from "@tsparticles/slim"
+import { motion, useAnimation } from "framer-motion"
+import { useEffect, useState } from "react"
+import { cn } from "@/utils/cn"
 
 type ParticlesProps = {
-    id?: string;
-    className?: string;
-    background?: string;
-    particleSize?: number;
-    minSize?: number;
-    maxSize?: number;
-    speed?: number;
-    particleColor?: string;
-    particleDensity?: number;
-};
+    id?: string
+    className?: string
+    background?: string
+    particleSize?: number
+    minSize?: number
+    maxSize?: number
+    speed?: number
+    particleColor?: string
+    particleDensity?: number
+}
 export const SparklesCore = (props: ParticlesProps) => {
-    const {
-        id,
-        className,
-        background,
-        minSize,
-        maxSize,
-        speed,
-        particleColor,
-        particleDensity,
-    } = props;
-    const [init, setInit] = useState(false);
+    const { id, className, background, minSize, maxSize, speed, particleColor, particleDensity } =
+        props
+    const [init, setInit] = useState(false)
     useEffect(() => {
         initParticlesEngine(async (engine) => {
-            await loadSlim(engine);
+            await loadSlim(engine)
         }).then(() => {
-            setInit(true);
-        });
-    }, []);
-    const controls = useAnimation();
+            setInit(true)
+        })
+    }, [])
+    const controls = useAnimation()
 
     const particlesLoaded = async (container?: Container) => {
         if (container) {
@@ -46,9 +37,9 @@ export const SparklesCore = (props: ParticlesProps) => {
                 transition: {
                     duration: 1,
                 },
-            });
+            })
         }
-    };
+    }
 
     return (
         <motion.div animate={controls} className={cn("opacity-0", className)}>
@@ -79,7 +70,10 @@ export const SparklesCore = (props: ParticlesProps) => {
                                     enable: false,
                                     mode: "repulse",
                                 },
-                                resize: true as any,
+                                resize: {
+                                    enable: true,
+                                    delay: 0.5,
+                                },
                             },
                             modes: {
                                 push: {
@@ -156,9 +150,7 @@ export const SparklesCore = (props: ParticlesProps) => {
                                 close: true,
                                 fill: true,
                                 options: {},
-                                type: {} as
-                                    | SingleOrMultiple<string>
-                                    | undefined,
+                                type: {} as SingleOrMultiple<string> | undefined,
                             },
                             groups: {},
                             move: {
@@ -431,5 +423,5 @@ export const SparklesCore = (props: ParticlesProps) => {
                 />
             )}
         </motion.div>
-    );
-};
+    )
+}

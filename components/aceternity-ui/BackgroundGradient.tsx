@@ -1,8 +1,8 @@
-"use client";
+"use client"
 
-import { cn } from "@/utils/cn";
-import React from "react";
-import { motion } from "framer-motion";
+import { motion } from "framer-motion"
+import type React from "react"
+import { cn } from "@/utils/cn"
 
 export const BackgroundGradient = ({
     children,
@@ -10,10 +10,10 @@ export const BackgroundGradient = ({
     containerClassName,
     animate = true,
 }: {
-    children?: React.ReactNode;
-    className?: string;
-    containerClassName?: string;
-    animate?: boolean;
+    children?: React.ReactNode
+    className?: string
+    containerClassName?: string
+    animate?: boolean
 }) => {
     const variants = {
         initial: {
@@ -22,7 +22,7 @@ export const BackgroundGradient = ({
         animate: {
             backgroundPosition: ["0, 50%", "100% 50%", "0 50%"],
         },
-    };
+    }
     return (
         <div className={cn("relative p-[4px] group", containerClassName)}>
             <motion.div
@@ -70,5 +70,5 @@ export const BackgroundGradient = ({
 
             <div className={cn("relative z-10", className)}>{children}</div>
         </div>
-    );
-};
+    )
+}

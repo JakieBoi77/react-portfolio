@@ -1,15 +1,13 @@
-import * as React from "react";
+import * as React from "react"
 
-import { cn } from "@/lib/utils";
+import { cn } from "@/lib/utils"
 
-type IconButtonProps = Omit<
-    React.AnchorHTMLAttributes<HTMLAnchorElement>,
-    "children"
-> & {
-    icon: string;
-    label: string;
-    iconClassName?: string;
-};
+type IconButtonProps = Omit<React.AnchorHTMLAttributes<HTMLAnchorElement>, "children"> & {
+    href: string
+    icon: string
+    label: string
+    iconClassName?: string
+}
 
 const glassyIconStyle = {
     "--glass-bg": "rgb(var(--glass-panel) / 0.56)",
@@ -17,24 +15,16 @@ const glassyIconStyle = {
     "--glass-noise": "0.15",
     "--glass-shadow":
         "inset 0 1px 0 rgba(255, 255, 255, 0.052), 0 1px 3px rgba(0, 0, 0, 0.16), 0 10px 26px rgba(0, 0, 0, 0.3)",
-} as React.CSSProperties;
+} as React.CSSProperties
 
 const IconButton = React.forwardRef<HTMLAnchorElement, IconButtonProps>(
     (
-        {
-            icon,
-            label,
-            className,
-            iconClassName,
-            rel,
-            style,
-            target = "_blank",
-            ...props
-        },
+        { href, icon, label, className, iconClassName, rel, style, target = "_blank", ...props },
         ref,
     ) => (
         <a
             ref={ref}
+            href={href}
             target={target}
             rel={rel ?? (target === "_blank" ? "noopener noreferrer" : undefined)}
             aria-label={label}
@@ -46,16 +36,11 @@ const IconButton = React.forwardRef<HTMLAnchorElement, IconButtonProps>(
             style={{ ...glassyIconStyle, ...style }}
             {...props}
         >
-            <img
-                src={icon}
-                alt=""
-                aria-hidden="true"
-                className={cn("size-[55%]", iconClassName)}
-            />
+            <img src={icon} alt="" aria-hidden="true" className={cn("size-[55%]", iconClassName)} />
         </a>
     ),
-);
+)
 
-IconButton.displayName = "IconButton";
+IconButton.displayName = "IconButton"
 
-export { IconButton };
+export { IconButton }

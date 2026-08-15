@@ -1,25 +1,17 @@
-import { cn } from "@/lib/utils";
+import { cn } from "@/lib/utils"
 
 type ProjectIconStackProps = {
-    icons: string[];
-    accent: string;
-    label: string;
-    className?: string;
-};
+    icons: string[]
+    accent: string
+    label: string
+    className?: string
+}
 
-const ProjectIconStack = ({
-    icons,
-    accent,
-    label,
-    className,
-}: ProjectIconStackProps) => {
+const ProjectIconStack = ({ icons, accent, label, className }: ProjectIconStackProps) => {
     return (
-        <div
-            className={cn("flex flex-wrap items-center gap-2", className)}
-            aria-label={label}
-        >
+        <ul className={cn("flex flex-wrap items-center gap-2", className)} aria-label={label}>
             {icons.map((icon) => (
-                <span
+                <li
                     key={icon}
                     className="grid size-9 place-items-center rounded-lg border bg-surface/35 sm:size-10"
                     style={{
@@ -33,10 +25,10 @@ const ProjectIconStack = ({
                         aria-hidden="true"
                         className="size-5 object-contain sm:size-6"
                     />
-                </span>
+                </li>
             ))}
-        </div>
-    );
-};
+        </ul>
+    )
+}
 
-export default ProjectIconStack;
+export default ProjectIconStack

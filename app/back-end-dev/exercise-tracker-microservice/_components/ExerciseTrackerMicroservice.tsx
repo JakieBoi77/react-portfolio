@@ -1,18 +1,15 @@
-import React, { useState } from "react";
+import type React from "react"
+import { useState } from "react"
 
 const ExerciseTrackerMicroservice = () => {
-    const [userResponse, setUserResponse] = useState<string | null>(null);
-    const [exerciseResponse, setExerciseResponse] = useState<string | null>(
-        null,
-    );
-    const [logResponse, setLogResponse] = useState<string | null>(null);
+    const [userResponse, setUserResponse] = useState<string | null>(null)
+    const [exerciseResponse, setExerciseResponse] = useState<string | null>(null)
+    const [logResponse, setLogResponse] = useState<string | null>(null)
 
-    const handleUserSubmit = async (
-        event: React.FormEvent<HTMLFormElement>,
-    ) => {
-        event.preventDefault();
+    const handleUserSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault()
 
-        const username = (event.target as HTMLFormElement).username.value;
+        const username = (event.target as HTMLFormElement).username.value
 
         try {
             const response = await fetch("/api/users", {
@@ -21,31 +18,29 @@ const ExerciseTrackerMicroservice = () => {
                     "Content-Type": "application/json",
                 },
                 body: JSON.stringify({ username }),
-            });
+            })
 
             if (response.ok) {
-                const result = await response.json();
-                setUserResponse(result);
+                const result = await response.json()
+                setUserResponse(result)
             } else {
-                alert("Failed to submit.");
+                alert("Failed to submit.")
             }
         } catch (error) {
-            console.error("Error:", error);
-            alert("Error submitting data.");
+            console.error("Error:", error)
+            alert("Error submitting data.")
         }
-    };
+    }
 
-    const handleExerciseSubmit = async (
-        event: React.FormEvent<HTMLFormElement>,
-    ) => {
-        event.preventDefault();
+    const handleExerciseSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault()
 
-        const form = event.target as HTMLFormElement;
+        const form = event.target as HTMLFormElement
 
-        const _id = form._id.value;
-        const description = form.description.value;
-        const duration = form.duration.value;
-        const date = form.date.value;
+        const _id = form._id.value
+        const description = form.description.value
+        const duration = form.duration.value
+        const date = form.date.value
 
         try {
             const response = await fetch(`/api/users/${_id}/exercises`, {
@@ -54,59 +49,59 @@ const ExerciseTrackerMicroservice = () => {
                     "Content-Type": "application/json",
                 },
                 body: JSON.stringify({ _id, description, duration, date }),
-            });
+            })
 
             if (response.ok) {
-                const result = await response.json();
-                setExerciseResponse(result);
+                const result = await response.json()
+                setExerciseResponse(result)
             } else {
-                alert("Failed to submit.");
+                alert("Failed to submit.")
             }
         } catch (error) {
-            console.error("Error:", error);
-            alert("Error submitting data.");
+            console.error("Error:", error)
+            alert("Error submitting data.")
         }
-    };
+    }
 
     const handleLogSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-        event.preventDefault();
+        event.preventDefault()
 
-        const form = event.target as HTMLFormElement;
+        const form = event.target as HTMLFormElement
 
-        const _id = form._id.value;
-        const from = form.from.value;
-        const to = form.to.value;
-        const limit = form.limit.value;
+        const _id = form._id.value
+        const from = form.from.value
+        const to = form.to.value
+        const limit = form.limit.value
 
-        const url = new URL(`/api/users/${_id}/logs/`, window.location.origin);
+        const url = new URL(`/api/users/${_id}/logs/`, window.location.origin)
         if (from) {
-            url.searchParams.append("from", from);
+            url.searchParams.append("from", from)
         }
         if (to) {
-            url.searchParams.append("to", to);
+            url.searchParams.append("to", to)
         }
         if (limit) {
-            url.searchParams.append("limit", limit);
+            url.searchParams.append("limit", limit)
         }
 
-        console.log(url);
+        console.log(url)
 
         try {
             const response = await fetch(url.toString(), {
                 method: "POST",
-            });
+            })
 
             if (response.ok) {
-                const result = await response.json();
-                setLogResponse(result);
+                const result = await response.json()
+                setLogResponse(result)
             } else {
-                alert("Failed to submit.");
+                alert("Failed to submit.")
             }
         } catch (error) {
-            console.error("Error:", error);
-            alert("Error submitting data.");
+            console.error("Error:", error)
+            alert("Error submitting data.")
         }
-    };
+    }
 
     return (
         <div className="tw-class flex flex-col items-center justify-center min-h-screen w-[100%] p-6 bg-gray-100">
@@ -114,9 +109,7 @@ const ExerciseTrackerMicroservice = () => {
             <div className="flex flex-col justify-center items-center w-full max-w-2xl p-6">
                 <div className="w-full bg-white p-6 m-6 rounded-lg shadow-md">
                     <form onSubmit={handleUserSubmit}>
-                        <h2 className="text-xl font-semibold mb-4">
-                            Create a New User
-                        </h2>
+                        <h2 className="text-xl font-semibold mb-4">Create a New User</h2>
                         <input
                             id="uname"
                             type="text"
@@ -144,9 +137,7 @@ const ExerciseTrackerMicroservice = () => {
                 </div>
                 <div className="w-full bg-white p-6 m-6 rounded-lg shadow-md">
                     <form onSubmit={handleExerciseSubmit}>
-                        <h2 className="text-xl font-semibold mb-4">
-                            Add Exercises
-                        </h2>
+                        <h2 className="text-xl font-semibold mb-4">Add Exercises</h2>
                         <input
                             id="uid"
                             type="text"
@@ -195,9 +186,7 @@ const ExerciseTrackerMicroservice = () => {
                 </div>
                 <div className="w-full bg-white p-6 m-6 rounded-lg shadow-md">
                     <form onSubmit={handleLogSubmit}>
-                        <h2 className="text-xl font-semibold mb-4">
-                            Get Exercises
-                        </h2>
+                        <h2 className="text-xl font-semibold mb-4">Get Exercises</h2>
                         <input
                             id="uid"
                             type="text"
@@ -233,9 +222,7 @@ const ExerciseTrackerMicroservice = () => {
                         />
                     </form>
                     <p className="text-gray-600 mt-4">
-                        <code>
-                            GET /api/users/[id]/logs?[from][&to][&limit]
-                        </code>
+                        <code>GET /api/users/[id]/logs?[from][&to][&limit]</code>
                     </p>
                     {logResponse && (
                         <div className="mt-4 p-4 bg-gray-100 rounded-lg shadow-inner">
@@ -248,7 +235,7 @@ const ExerciseTrackerMicroservice = () => {
                 </div>
             </div>
         </div>
-    );
-};
+    )
+}
 
-export default ExerciseTrackerMicroservice;
+export default ExerciseTrackerMicroservice

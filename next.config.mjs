@@ -1,4 +1,5 @@
-import { withSentryConfig } from "@sentry/nextjs";
+import { withSentryConfig } from "@sentry/nextjs"
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
     compiler: {
@@ -7,7 +8,7 @@ const nextConfig = {
     typescript: {
         ignoreBuildErrors: true,
     },
-};
+}
 
 export default withSentryConfig(nextConfig, {
     // For all available options, see:
@@ -46,4 +47,4 @@ export default withSentryConfig(nextConfig, {
         // https://vercel.com/docs/cron-jobs
         automaticVercelMonitors: true,
     },
-});
+})

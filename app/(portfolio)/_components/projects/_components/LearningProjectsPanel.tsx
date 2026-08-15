@@ -1,36 +1,26 @@
-"use client";
+"use client"
 
-import { useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
-import Link from "next/link";
-import { FaArrowRight } from "react-icons/fa";
+import { AnimatePresence, motion } from "framer-motion"
+import Link from "next/link"
+import { useState } from "react"
+import { FaArrowRight } from "react-icons/fa"
 
-import { cn } from "@/lib/utils";
-import { learningProjectCollections } from "../../../_data/portfolio";
-import {
-    getProjectAccent,
-    getProjectGlassStyle,
-    projectCardVariants,
-} from "../_lib/constants";
-import type {
-    CSSVariableStyle,
-    LearningProjectCollection,
-} from "../_lib/types";
-import ProjectIconStack from "./ProjectIconStack";
+import { cn } from "@/lib/utils"
+import { learningProjectCollections } from "../../../_data/portfolio"
+import { getProjectAccent, getProjectGlassStyle, projectCardVariants } from "../_lib/constants"
+import type { CSSVariableStyle, LearningProjectCollection } from "../_lib/types"
+import ProjectIconStack from "./ProjectIconStack"
 
 type LearningProjectShowcaseProps = {
-    collection: LearningProjectCollection;
-    collectionIndex: number;
-};
+    collection: LearningProjectCollection
+    collectionIndex: number
+}
 
-const LearningProjectShowcase = ({
-    collection,
-    collectionIndex,
-}: LearningProjectShowcaseProps) => {
-    const [activeIndex, setActiveIndex] = useState(0);
-    const accent = getProjectAccent(collectionIndex + 1);
-    const { style } = getProjectGlassStyle(collectionIndex + 1, accent);
-    const activeProject = collection.projects[activeIndex];
+const LearningProjectShowcase = ({ collection, collectionIndex }: LearningProjectShowcaseProps) => {
+    const [activeIndex, setActiveIndex] = useState(0)
+    const accent = getProjectAccent(collectionIndex + 1)
+    const { style } = getProjectGlassStyle(collectionIndex + 1, accent)
+    const activeProject = collection.projects[activeIndex]
 
     return (
         <motion.section
@@ -74,10 +64,7 @@ const LearningProjectShowcase = ({
                     className="overflow-hidden rounded-xl border border-white/10 bg-surface/45"
                 >
                     <div className="flex h-9 items-center gap-2 border-b border-white/10 bg-white/[0.035] px-3">
-                        <span
-                            aria-hidden="true"
-                            className="size-2.5 rounded-full bg-accent-rose"
-                        />
+                        <span aria-hidden="true" className="size-2.5 rounded-full bg-accent-rose" />
                         <span
                             aria-hidden="true"
                             className="size-2.5 rounded-full bg-accent-amber"
@@ -130,10 +117,7 @@ const LearningProjectShowcase = ({
                                         }}
                                     >
                                         Open
-                                        <FaArrowRight
-                                            aria-hidden="true"
-                                            className="size-3"
-                                        />
+                                        <FaArrowRight aria-hidden="true" className="size-3" />
                                     </span>
                                 </span>
                             </Link>
@@ -147,7 +131,7 @@ const LearningProjectShowcase = ({
                     className="grid gap-2 sm:grid-cols-2 lg:grid-cols-1"
                 >
                     {collection.projects.map((project, projectIndex) => {
-                        const isActive = projectIndex === activeIndex;
+                        const isActive = projectIndex === activeIndex
 
                         return (
                             <button
@@ -165,9 +149,7 @@ const LearningProjectShowcase = ({
                                 )}
                                 style={
                                     {
-                                        borderColor: isActive
-                                            ? `rgb(${accent} / 0.44)`
-                                            : undefined,
+                                        borderColor: isActive ? `rgb(${accent} / 0.44)` : undefined,
                                     } as CSSVariableStyle
                                 }
                             >
@@ -190,9 +172,7 @@ const LearningProjectShowcase = ({
                                         <span
                                             className="shrink-0 font-mono text-[0.68rem] uppercase leading-4 tracking-normal"
                                             style={{
-                                                color: isActive
-                                                    ? `rgb(${accent})`
-                                                    : undefined,
+                                                color: isActive ? `rgb(${accent})` : undefined,
                                             }}
                                         >
                                             0{projectIndex + 1}
@@ -203,13 +183,13 @@ const LearningProjectShowcase = ({
                                     </span>
                                 </span>
                             </button>
-                        );
+                        )
                     })}
                 </div>
             </div>
         </motion.section>
-    );
-};
+    )
+}
 
 const LearningProjectsPanel = () => {
     return (
@@ -222,7 +202,7 @@ const LearningProjectsPanel = () => {
                 />
             ))}
         </div>
-    );
-};
+    )
+}
 
-export default LearningProjectsPanel;
+export default LearningProjectsPanel

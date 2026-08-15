@@ -1,10 +1,10 @@
-import { getCourseAccent } from "./constants";
+import { getCourseAccent } from "./constants"
 import {
     getCourseSpanCount,
     getSpanningCoursesCoveringTerm,
     isSpanningCourse,
-} from "./educationData";
-import type { CourseGraphNode, EducationLevel } from "./types";
+} from "./educationData"
+import type { CourseGraphNode, EducationLevel } from "./types"
 
 export const courseGraphMetrics = {
     columnGap: 238,
@@ -15,22 +15,22 @@ export const courseGraphMetrics = {
     horizontalPadding: 52,
     topPadding: 140,
     bottomPadding: 60,
-} as const;
+} as const
 
 export type CourseGraphColumn = {
-    level: string;
-    term: string;
-    session: string;
-    levelIndex: number;
-    termIndex: number;
-    columnIndex: number;
-    x: number;
-};
+    level: string
+    term: string
+    session: string
+    levelIndex: number
+    termIndex: number
+    columnIndex: number
+    x: number
+}
 
 export type CourseGraphEdge = {
-    source: CourseGraphNode;
-    target: CourseGraphNode;
-};
+    source: CourseGraphNode
+    target: CourseGraphNode
+}
 
 export const createCourseGraphLayout = (levels: EducationLevel[]) => {
     const {
@@ -42,7 +42,7 @@ export const createCourseGraphLayout = (levels: EducationLevel[]) => {
         rowGap,
         topPadding,
         bottomPadding,
-    } = courseGraphMetrics;
+    } = courseGraphMetrics
     const columns = levels.flatMap((level, levelIndex) =>
         level.terms.map((term, termIndex) => ({
             level: level.level,
@@ -53,13 +53,10 @@ export const createCourseGraphLayout = (levels: EducationLevel[]) => {
             columnIndex:
                 levels
                     .slice(0, levelIndex)
-                    .reduce(
-                        (total, currentLevel) =>
-                            total + currentLevel.terms.length,
-                        0,
-                    ) + termIndex,
+                    .reduce((total, currentLevel) => total + currentLevel.terms.length, 0) +
+                termIndex,
         })),
-    );
+    )
 
     const columnByLevelAndTerm = new Map(
         columns.map((column) => [
@@ -72,92 +69,62 @@ export const createCourseGraphLayout = (levels: EducationLevel[]) => {
                     column.levelIndex * levelGap,
             },
         ]),
-    );
+    )
 
     const columnRowCounts = levels.flatMap((level) =>
         level.terms.map((term, termIndex) => {
-            const spanningCourseCount = getSpanningCoursesCoveringTerm(
-                level,
-                termIndex,
-            ).length;
-            const courseCount = term.courses.filter(
-                (course) => !isSpanningCourse(course),
-            ).length;
+            const spanningCourseCount = getSpanningCoursesCoveringTerm(level, termIndex).length
+            const courseCount = term.courses.filter((course) => !isSpanningCourse(course)).length
 
-            return spanningCourseCount + courseCount;
+            return spanningCourseCount + courseCount
         }),
-    );
-    const maxRows = Math.max(1, ...columnRowCounts);
+    )
+    const maxRows = Math.max(1, ...columnRowCounts)
     const graphWidth =
         horizontalPadding * 2 +
         nodeWidth +
         Math.max(0, columns.length - 1) * columnGap +
-        Math.max(0, levels.length - 1) * levelGap;
-    const graphHeight =
-        topPadding +
-        bottomPadding +
-        Math.max(0, maxRows - 1) * rowGap +
-        nodeHeight;
+        Math.max(0, levels.length - 1) * levelGap
+    const graphHeight = topPadding + bottomPadding + Math.max(0, maxRows - 1) * rowGap + nodeHeight
 
     const nodes = levels.flatMap((level, levelIndex) => {
-        const spanningNodes: CourseGraphNode[] = level.terms.flatMap(
-            (term, termIndex) => {
-                const column = columnByLevelAndTerm.get(
-                    `${level.level}-${term.term}`,
-                );
-
-                if (!column) {
-                    return [];
-                }
-
-                return term.courses.filter(isSpanningCourse).map((course) => {
-                    const spanCount = getCourseSpanCount(
-                        course,
-                        termIndex,
-                        level,
-                    );
-                    const endTerm =
-                        level.terms[termIndex + spanCount - 1] ?? term;
-                    const coveringSpans = getSpanningCoursesCoveringTerm(
-                        level,
-                        termIndex,
-                    );
-                    const spanRowIndex = Math.max(
-                        0,
-                        coveringSpans.findIndex(
-                            (spanningCourse) =>
-                                spanningCourse.code === course.code,
-                        ),
-                    );
-
-                    return {
-                        ...course,
-                        accent: getCourseAccent(levelIndex),
-                        columnIndex: column.columnIndex,
-                        x: column.x,
-                        y: topPadding + spanRowIndex * rowGap,
-                        width:
-                            spanCount > 1
-                                ? (spanCount - 1) * columnGap + nodeWidth
-                                : nodeWidth,
-                        level: level.level,
-                        term: spanCount > 1 ? "Full year" : term.term,
-                        session:
-                            spanCount > 1
-                                ? `${term.session} - ${endTerm.session}`
-                                : term.session,
-                    };
-                });
-            },
-        );
-
-        const termNodes = level.terms.flatMap((term, termIndex) => {
-            const column = columnByLevelAndTerm.get(
-                `${level.level}-${term.term}`,
-            );
+        const spanningNodes: CourseGraphNode[] = level.terms.flatMap((term, termIndex) => {
+            const column = columnByLevelAndTerm.get(`${level.level}-${term.term}`)
 
             if (!column) {
-                return [];
+                return []
+            }
+
+            return term.courses.filter(isSpanningCourse).map((course) => {
+                const spanCount = getCourseSpanCount(course, termIndex, level)
+                const endTerm = level.terms[termIndex + spanCount - 1] ?? term
+                const coveringSpans = getSpanningCoursesCoveringTerm(level, termIndex)
+                const spanRowIndex = Math.max(
+                    0,
+                    coveringSpans.findIndex(
+                        (spanningCourse) => spanningCourse.code === course.code,
+                    ),
+                )
+
+                return {
+                    ...course,
+                    accent: getCourseAccent(levelIndex),
+                    columnIndex: column.columnIndex,
+                    x: column.x,
+                    y: topPadding + spanRowIndex * rowGap,
+                    width: spanCount > 1 ? (spanCount - 1) * columnGap + nodeWidth : nodeWidth,
+                    level: level.level,
+                    term: spanCount > 1 ? "Full year" : term.term,
+                    session: spanCount > 1 ? `${term.session} - ${endTerm.session}` : term.session,
+                }
+            })
+        })
+
+        const termNodes = level.terms.flatMap((term, termIndex) => {
+            const column = columnByLevelAndTerm.get(`${level.level}-${term.term}`)
+
+            if (!column) {
+                return []
             }
 
             return term.courses
@@ -169,34 +136,32 @@ export const createCourseGraphLayout = (levels: EducationLevel[]) => {
                     x: column.x,
                     y:
                         topPadding +
-                        getSpanningCoursesCoveringTerm(level, termIndex)
-                            .length *
-                            rowGap +
+                        getSpanningCoursesCoveringTerm(level, termIndex).length * rowGap +
                         courseIndex * rowGap,
                     width: nodeWidth,
                     level: level.level,
                     term: term.term,
                     session: term.session,
-                }));
-        });
+                }))
+        })
 
-        return [...spanningNodes, ...termNodes];
-    });
+        return [...spanningNodes, ...termNodes]
+    })
 
-    const nodeMap = new Map(nodes.map((node) => [node.code, node]));
+    const nodeMap = new Map(nodes.map((node) => [node.code, node]))
     const edges = nodes.flatMap((target) =>
         target.prerequisites
             .map((prerequisite) => {
-                const source = nodeMap.get(prerequisite);
+                const source = nodeMap.get(prerequisite)
 
                 if (!source) {
-                    return null;
+                    return null
                 }
 
-                return { source, target };
+                return { source, target }
             })
             .filter((edge): edge is CourseGraphEdge => Boolean(edge)),
-    );
+    )
 
     return {
         columnByLevelAndTerm,
@@ -206,5 +171,5 @@ export const createCourseGraphLayout = (levels: EducationLevel[]) => {
         graphWidth,
         nodes,
         nodeMap,
-    };
-};
+    }
+}

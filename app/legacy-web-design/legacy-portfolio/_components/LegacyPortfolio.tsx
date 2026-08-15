@@ -1,9 +1,9 @@
-import styled from "styled-components";
-import { FaAt, FaFile, FaLinkedin, FaFreeCodeCamp } from "react-icons/fa";
-import Link from "next/link";
+import Link from "next/link"
+import { FaAt, FaFile, FaFreeCodeCamp, FaLinkedin } from "react-icons/fa"
+import styled from "styled-components"
 
-const darkGray = "#292e2e";
-const blueGreen = "#085680";
+const darkGray = "#292e2e"
+const blueGreen = "#085680"
 
 const StyledDiv = styled.div`
     #portfolio {
@@ -272,14 +272,14 @@ const StyledDiv = styled.div`
         padding-right: 20px;
         font-size: 12px;
     }
-`;
+`
 
 export default function StyledPortfolio() {
     return (
         <StyledDiv>
             <UnstyledPortfolio />
         </StyledDiv>
-    );
+    )
 }
 
 function UnstyledPortfolio() {
@@ -538,5 +538,5 @@ function UnstyledPortfolio() {
                 <p>&copy; Jake Finlay, 2024</p>
             </footer>
         </div>
-    );
+    )
 }

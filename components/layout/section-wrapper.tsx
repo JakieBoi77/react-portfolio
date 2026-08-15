@@ -1,12 +1,9 @@
-import type { ComponentType } from "react";
-import { motion } from "framer-motion";
+import { motion } from "framer-motion"
+import type { ComponentType } from "react"
 
-import { staggerContainer } from "@/utils/motion";
+import { staggerContainer } from "@/utils/motion"
 
-const SectionWrapper = <Props extends object>(
-    Component: ComponentType<Props>,
-    idName: string,
-) => {
+const SectionWrapper = <Props extends object>(Component: ComponentType<Props>, idName: string) => {
     const MotionSection = (props: Props) => {
         return (
             <motion.section
@@ -21,12 +18,12 @@ const SectionWrapper = <Props extends object>(
                 </span>
                 <Component {...props} />
             </motion.section>
-        );
-    };
+        )
+    }
 
-    MotionSection.displayName = `SectionWrapper(${Component.displayName ?? Component.name ?? "Component"})`;
+    MotionSection.displayName = `SectionWrapper(${Component.displayName ?? Component.name ?? "Component"})`
 
-    return MotionSection;
-};
+    return MotionSection
+}
 
-export { SectionWrapper };
+export { SectionWrapper }

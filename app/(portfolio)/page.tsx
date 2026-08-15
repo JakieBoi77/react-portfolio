@@ -1,39 +1,39 @@
-"use client";
+"use client"
 
-import { useEffect, useState } from "react";
-import { MotionConfig } from "framer-motion";
-import { Inter } from "next/font/google";
-import { SparklesCore } from "@components";
-import Connect from "./_components/connect";
-import Experience from "./_components/experience";
-import Header from "./_components/header";
-import Hero from "./_components/hero";
-import Intro from "./_components/intro";
-import Projects from "./_components/projects";
-import Technologies from "./_components/technologies";
+import { SparklesCore } from "@components"
+import { MotionConfig } from "framer-motion"
+import { Inter } from "next/font/google"
+import { useEffect, useState } from "react"
+import Connect from "./_components/connect"
+import Experience from "./_components/experience"
+import Header from "./_components/header"
+import Hero from "./_components/hero"
+import Intro from "./_components/intro"
+import Projects from "./_components/projects"
+import Technologies from "./_components/technologies"
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({ subsets: ["latin"] })
 const mobilePerformanceQuery =
-    "(max-width: 767px), (pointer: coarse), (prefers-reduced-motion: reduce)";
+    "(max-width: 767px), (pointer: coarse), (prefers-reduced-motion: reduce)"
 
 const useMobilePerformanceMode = () => {
-    const [isEnabled, setIsEnabled] = useState(false);
+    const [isEnabled, setIsEnabled] = useState(false)
 
     useEffect(() => {
-        const mediaQuery = window.matchMedia(mobilePerformanceQuery);
-        const updateMode = () => setIsEnabled(mediaQuery.matches);
+        const mediaQuery = window.matchMedia(mobilePerformanceQuery)
+        const updateMode = () => setIsEnabled(mediaQuery.matches)
 
-        updateMode();
-        mediaQuery.addEventListener("change", updateMode);
+        updateMode()
+        mediaQuery.addEventListener("change", updateMode)
 
-        return () => mediaQuery.removeEventListener("change", updateMode);
-    }, []);
+        return () => mediaQuery.removeEventListener("change", updateMode)
+    }, [])
 
-    return isEnabled;
-};
+    return isEnabled
+}
 
 const AppContent = () => {
-    const mobilePerformanceMode = useMobilePerformanceMode();
+    const mobilePerformanceMode = useMobilePerformanceMode()
 
     return (
         <MotionConfig reducedMotion={mobilePerformanceMode ? "always" : "user"}>
@@ -68,7 +68,7 @@ const AppContent = () => {
                 </main>
             </div>
         </MotionConfig>
-    );
-};
+    )
+}
 
-export default AppContent;
+export default AppContent

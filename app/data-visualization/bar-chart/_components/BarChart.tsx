@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
-import * as d3 from "d3";
-import styled from "styled-components";
+import * as d3 from "d3"
+import { useEffect, useState } from "react"
+import styled from "styled-components"
 
 const StyledDiv = styled.div`
     min-height: 700px;
@@ -40,85 +40,75 @@ const StyledDiv = styled.div`
         justify-content: center;
         align-items: center;
     }
-`;
+`
 
 const BarChart = () => {
-    const [dataset, setDataset] = useState<Array<[string, number]>>([]);
+    const [dataset, setDataset] = useState<Array<[string, number]>>([])
 
     const dataURL =
-        "https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/master/GDP-data.json";
+        "https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/master/GDP-data.json"
 
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch(dataURL);
-                const json = await response.json();
-                setDataset(json.data);
+                const response = await fetch(dataURL)
+                const json = await response.json()
+                setDataset(json.data)
             } catch (err) {
-                console.error("Error fetching data:", err);
-                setDataset([]);
+                console.error("Error fetching data:", err)
+                setDataset([])
             }
-        };
-        fetchData();
-    }, []);
+        }
+        fetchData()
+    }, [])
 
     useEffect(() => {
-        if (dataset.length === 0) return;
+        if (dataset.length === 0) return
 
         // Chart Properties
-        const margin = { top: 20, right: 30, bottom: 40, left: 60 };
-        const width = 1000 - margin.left - margin.right;
-        const height = 500 - margin.top - margin.bottom;
-        const barWidth = width / dataset.length;
+        const margin = { top: 20, right: 30, bottom: 40, left: 60 }
+        const width = 1000 - margin.left - margin.right
+        const height = 500 - margin.top - margin.bottom
+        const barWidth = width / dataset.length
 
         // Get Date Objects
-        const dates = dataset.map((data) => new Date(data[0]));
+        const dates = dataset.map((data) => new Date(data[0]))
 
         // Process Date Strings into Nicer Strings
         const years = dataset.map((data) => {
-            let quarter = data[0].substring(5, 7);
+            let quarter = data[0].substring(5, 7)
             if (quarter === "01") {
-                quarter = "Q1";
+                quarter = "Q1"
             } else if (quarter === "04") {
-                quarter = "Q2";
+                quarter = "Q2"
             } else if (quarter === "07") {
-                quarter = "Q3";
+                quarter = "Q3"
             } else if (quarter === "10") {
-                quarter = "Q4";
+                quarter = "Q4"
             }
-            return data[0].substring(0, 4) + " " + quarter;
-        });
+            return `${data[0].substring(0, 4)} ${quarter}`
+        })
 
         // Define x-scale
-        const minDate = d3.min(dates) as Date;
-        const maxDate = d3.max(dates) as Date;
-        const xScale = d3
-            .scaleTime()
-            .domain([minDate, maxDate])
-            .range([0, width]);
+        const minDate = d3.min(dates) as Date
+        const maxDate = d3.max(dates) as Date
+        const xScale = d3.scaleTime().domain([minDate, maxDate]).range([0, width])
 
         // Define x-axis
-        const xAxis = d3.axisBottom(xScale);
+        const xAxis = d3.axisBottom(xScale)
 
         // Get GDP
-        const GDP = dataset.map((data) => data[1]);
+        const GDP = dataset.map((data) => data[1])
 
         // Define GDP Scale
-        const maxGDP = d3.max(GDP) as Number;
-        const gdpScale = d3
-            .scaleLinear()
-            .domain([0, maxGDP])
-            .range([height, 0]);
+        const maxGDP = d3.max(GDP) as number
+        const gdpScale = d3.scaleLinear().domain([0, maxGDP]).range([height, 0])
 
         // Define y-axis
-        const yAxis = d3.axisLeft(gdpScale);
+        const yAxis = d3.axisLeft(gdpScale)
 
         // Define Tooltip
-        const tooltip = d3
-            .select(".chart")
-            .append("div")
-            .attr("id", "tooltip")
-            .style("opacity", 0);
+        const tooltip = d3.select(".chart").append("div").attr("id", "tooltip").style("opacity", 0)
 
         // Define the SVG
         const svg = d3
@@ -127,19 +117,16 @@ const BarChart = () => {
             .attr("width", width + margin.left + margin.right)
             .attr("height", height + margin.top + margin.bottom)
             .append("g")
-            .attr(
-                "transform",
-                "translate(" + margin.left + "," + margin.top + ")",
-            );
+            .attr("transform", `translate(${margin.left},${margin.top})`)
 
         // Add the x-axis
         svg.append("g")
             .attr("id", "x-axis")
-            .attr("transform", "translate(0, " + height + ")")
-            .call(xAxis);
+            .attr("transform", `translate(0, ${height})`)
+            .call(xAxis)
 
         // Add the y-axis
-        svg.append("g").attr("id", "y-axis").call(yAxis);
+        svg.append("g").attr("id", "y-axis").call(yAxis)
 
         // Add the bars
         svg.selectAll("rect")
@@ -157,33 +144,33 @@ const BarChart = () => {
             .attr("index", (_d, i) => i)
             .on("mouseover", function () {
                 // Get the Index
-                let i = Number(this.getAttribute("index"));
+                const i = Number(this.getAttribute("index"))
 
                 // Make Rectangle White
-                d3.select(this).attr("fill", "white");
+                d3.select(this).attr("fill", "white")
 
                 // Make Tooltip Visbile
                 tooltip
                     .attr("data-date", dataset[i][0])
                     .style("opacity", 0.9)
-                    .style("left", i * barWidth + margin.left + "px")
-                    .style("top", height + margin.bottom + "px")
+                    .style("left", `${i * barWidth + margin.left}px`)
+                    .style("top", `${height + margin.bottom}px`)
                     .style("transform", "translateX(60px)")
-                    .html(years[i] + "<br /> $" + GDP[i] + " Billion");
+                    .html(`${years[i]}<br /> $${GDP[i]} Billion`)
             })
             .on("mouseout", function () {
                 // Make Rectangle Blue
-                d3.select(this).attr("fill", "blue");
+                d3.select(this).attr("fill", "blue")
 
                 // Make Tooltip Invisbile
-                tooltip.style("opacity", 0);
-            });
+                tooltip.style("opacity", 0)
+            })
 
         // Clean-up function to remove SVG and other D3 elements
         return () => {
-            d3.select(".chart").selectAll("*").remove();
-        };
-    }, [dataset]); // Depend on 'dataset' to re-render the chart when it changes
+            d3.select(".chart").selectAll("*").remove()
+        }
+    }, [dataset]) // Depend on 'dataset' to re-render the chart when it changes
 
     return (
         <StyledDiv>
@@ -198,7 +185,7 @@ const BarChart = () => {
                 </p>
             </div>
         </StyledDiv>
-    );
-};
+    )
+}
 
-export default BarChart;
+export default BarChart

@@ -1,24 +1,20 @@
-import { motion } from "framer-motion";
-import { FaExternalLinkAlt, FaGithub } from "react-icons/fa";
+import { motion } from "framer-motion"
+import { FaExternalLinkAlt, FaGithub } from "react-icons/fa"
 
-import {
-    getProjectAccent,
-    getProjectGlassStyle,
-    projectCardVariants,
-} from "../_lib/constants";
-import type { FeaturedProject } from "../_lib/types";
-import ProjectActionLink from "./ProjectActionLink";
-import ProjectIconStack from "./ProjectIconStack";
+import { getProjectAccent, getProjectGlassStyle, projectCardVariants } from "../_lib/constants"
+import type { FeaturedProject } from "../_lib/types"
+import ProjectActionLink from "./ProjectActionLink"
+import ProjectIconStack from "./ProjectIconStack"
 
 type FeaturedProjectCardProps = {
-    project: FeaturedProject;
-    index: number;
-};
+    project: FeaturedProject
+    index: number
+}
 
 const FeaturedProjectCard = ({ project, index }: FeaturedProjectCardProps) => {
-    const accent = getProjectAccent(index);
-    const { style } = getProjectGlassStyle(index, accent);
-    const [primaryImage, ...supportingImages] = project.picList;
+    const accent = getProjectAccent(index)
+    const { style } = getProjectGlassStyle(index, accent)
+    const [primaryImage, ...supportingImages] = project.picList
 
     return (
         <motion.div
@@ -109,7 +105,7 @@ const FeaturedProjectCard = ({ project, index }: FeaturedProjectCardProps) => {
                 </div>
             </article>
         </motion.div>
-    );
-};
+    )
+}
 
-export default FeaturedProjectCard;
+export default FeaturedProjectCard

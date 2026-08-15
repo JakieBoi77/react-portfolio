@@ -1,6 +1,6 @@
-import { HyperText, TypographySmall } from "@components";
-import Link from "next/link";
-import { navItems } from "../../_data/portfolio";
+import { HyperText, TypographySmall } from "@components"
+import Link from "next/link"
+import { navItems } from "../../_data/portfolio"
 
 const Header = () => {
     return (
@@ -23,13 +23,9 @@ const Header = () => {
                 </Link>
             </div>
             <nav className="flex flex-row gap-3 p-2">
-                {navItems.map((navItem, index) => {
+                {navItems.map((navItem) => {
                     return (
-                        <Link
-                            key={index}
-                            href={navItem.link}
-                            className="font-mono"
-                        >
+                        <Link key={navItem.link} href={navItem.link} className="font-mono">
                             <TypographySmall
                                 as="span"
                                 className="font-mono text-xs font-bold text-white sm:text-base"
@@ -37,11 +33,11 @@ const Header = () => {
                                 {navItem.name.toUpperCase()}
                             </TypographySmall>
                         </Link>
-                    );
+                    )
                 })}
             </nav>
         </div>
-    );
-};
+    )
+}
 
-export default Header;
+export default Header

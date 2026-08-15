@@ -1,7 +1,7 @@
 // This file configures the initialization of Sentry in the browser.
 // https://docs.sentry.io/platforms/javascript/guides/nextjs/manual-setup/
 
-import * as Sentry from "@sentry/nextjs";
+import * as Sentry from "@sentry/nextjs"
 
 Sentry.init({
     dsn: "https://61a8ae8490c2a6c12a0bd074f8fa847f@o4507483071381504.ingest.us.sentry.io/4507483085144064",
@@ -30,6 +30,6 @@ Sentry.init({
             colorScheme: "dark",
         }),
     ],
-});
+})
 
-export const onRouterTransitionStart = Sentry.captureRouterTransitionStart;
+export const onRouterTransitionStart = Sentry.captureRouterTransitionStart

@@ -1,24 +1,23 @@
-import { motion } from "framer-motion";
-import type { CSSProperties } from "react";
-import { FaExternalLinkAlt, FaUniversity } from "react-icons/fa";
+import { motion } from "framer-motion"
+import type { CSSProperties } from "react"
+import { FaExternalLinkAlt, FaUniversity } from "react-icons/fa"
 
 import {
     educationIconAccent,
     educationStatusAccent,
     floatInFromRightVariants,
     getEducationPanelStyle,
-} from "../_lib/constants";
-import type { EducationItem } from "../_lib/types";
+} from "../_lib/constants"
+import type { EducationItem } from "../_lib/types"
 
 type EducationHeaderProps = {
-    educationItem: EducationItem;
-    index: number;
-};
+    educationItem: EducationItem
+    index: number
+}
 
 const EducationHeader = ({ educationItem, index }: EducationHeaderProps) => {
-    const { style } = getEducationPanelStyle(index);
-    const educationStatus =
-        educationItem.status === "completed" ? "Completed" : "In progress";
+    const { style } = getEducationPanelStyle(index)
+    const educationStatus = educationItem.status === "completed" ? "Completed" : "In progress"
 
     return (
         <motion.article
@@ -78,15 +77,12 @@ const EducationHeader = ({ educationItem, index }: EducationHeaderProps) => {
                         className="inline-flex items-center gap-2 rounded-lg border border-white/10 bg-white/[0.035] px-3 py-2 text-xs font-semibold leading-none tracking-normal text-ink-muted transition hover:border-[rgb(var(--node-accent)/0.36)] hover:text-[rgb(var(--node-accent))] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300"
                     >
                         {link.label}
-                        <FaExternalLinkAlt
-                            aria-hidden="true"
-                            className="size-3"
-                        />
+                        <FaExternalLinkAlt aria-hidden="true" className="size-3" />
                     </a>
                 ))}
             </div>
         </motion.article>
-    );
-};
+    )
+}
 
-export default EducationHeader;
+export default EducationHeader

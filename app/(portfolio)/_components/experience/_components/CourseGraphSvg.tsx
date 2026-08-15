@@ -1,37 +1,37 @@
-import { useMemo } from "react";
+import { useMemo } from "react"
 
-import { getCourseAccent, splitGraphLabel } from "../_lib/constants";
+import { getCourseAccent, splitGraphLabel } from "../_lib/constants"
 import {
-    courseGraphMetrics,
     type CourseGraphColumn,
     type CourseGraphEdge,
-} from "../_lib/courseGraphLayout";
-import type { CourseGraphNode, EducationLevel } from "../_lib/types";
+    courseGraphMetrics,
+} from "../_lib/courseGraphLayout"
+import type { CourseGraphNode, EducationLevel } from "../_lib/types"
 
 type CourseGraphSvgProps = {
-    columnByLevelAndTerm: Map<string, CourseGraphColumn>;
-    columns: CourseGraphColumn[];
-    edges: CourseGraphEdge[];
-    graphHeight: number;
-    graphWidth: number;
-    hoveredCourseCode: string | null;
-    levels: EducationLevel[];
-    nodeMap: Map<string, CourseGraphNode>;
-    nodes: CourseGraphNode[];
-    onCourseHover: (courseCode: string | null) => void;
-};
+    columnByLevelAndTerm: Map<string, CourseGraphColumn>
+    columns: CourseGraphColumn[]
+    edges: CourseGraphEdge[]
+    graphHeight: number
+    graphWidth: number
+    hoveredCourseCode: string | null
+    levels: EducationLevel[]
+    nodeMap: Map<string, CourseGraphNode>
+    nodes: CourseGraphNode[]
+    onCourseHover: (courseCode: string | null) => void
+}
 
 type CourseGraphLink = CourseGraphEdge & {
-    id: string;
-    path: string;
-    sourceCode: string;
-    targetCode: string;
-};
+    id: string
+    path: string
+    sourceCode: string
+    targetCode: string
+}
 
-const emptyCourseGraphLinks: CourseGraphLink[] = [];
+const emptyCourseGraphLinks: CourseGraphLink[] = []
 const graphLinkTransitionStyle = {
     transition: "opacity 160ms ease, stroke 160ms ease, stroke-width 160ms ease",
-};
+}
 
 // Fixed (non-accent) colors reused across the graph's SVG primitives, kept
 // in one place so the tooltip/label/edge palette stays consistent.
@@ -46,14 +46,14 @@ const courseGraphColors = {
     tooltipBg: "rgba(8, 13, 28, 0.96)",
     tooltipName: "rgba(255, 255, 255, 0.9)",
     tooltipBody: "rgba(226, 232, 240, 0.88)",
-} as const;
+} as const
 
 // Shared text props for the graph's monospace labels (level headers, node
 // codes, tooltip codes) — callers still set their own fontSize/fill.
 const monoLabelTextProps = {
     fontFamily: "monospace",
     fontWeight: 700,
-} as const;
+} as const
 
 // The "open in new tab" glyph is drawn identically on every node.
 const nodeIconStrokeProps = {
@@ -62,21 +62,21 @@ const nodeIconStrokeProps = {
     strokeLinecap: "round",
     strokeLinejoin: "round",
     strokeWidth: 1.8,
-} as const;
+} as const
 
 const getCourseGraphLinkPath = ({ source, target }: CourseGraphEdge) => {
-    const { nodeHeight } = courseGraphMetrics;
-    const startX = source.x + source.width;
-    const startY = source.y + nodeHeight / 2;
-    const endX = target.x;
-    const endY = target.y + nodeHeight / 2;
-    const controlOffset = Math.max(42, Math.abs(endX - startX) * 0.42);
-    const sameColumn = source.columnIndex === target.columnIndex;
+    const { nodeHeight } = courseGraphMetrics
+    const startX = source.x + source.width
+    const startY = source.y + nodeHeight / 2
+    const endX = target.x
+    const endY = target.y + nodeHeight / 2
+    const controlOffset = Math.max(42, Math.abs(endX - startX) * 0.42)
+    const sameColumn = source.columnIndex === target.columnIndex
 
     return sameColumn
         ? `M ${startX} ${startY} C ${startX + 34} ${startY}, ${startX + 34} ${endY}, ${endX} ${endY}`
-        : `M ${startX} ${startY} C ${startX + controlOffset} ${startY}, ${endX - controlOffset} ${endY}, ${endX} ${endY}`;
-};
+        : `M ${startX} ${startY} C ${startX + controlOffset} ${startY}, ${endX - controlOffset} ${endY}, ${endX} ${endY}`
+}
 
 const CourseGraphSvg = ({
     columnByLevelAndTerm,
@@ -90,11 +90,9 @@ const CourseGraphSvg = ({
     nodes,
     onCourseHover,
 }: CourseGraphSvgProps) => {
-    const hoveredNode = hoveredCourseCode
-        ? nodeMap.get(hoveredCourseCode)
-        : undefined;
-    const activeEdgeAccent = hoveredNode?.accent ?? "var(--accent-sky)";
-    const { nodeHeight, nodeWidth } = courseGraphMetrics;
+    const hoveredNode = hoveredCourseCode ? nodeMap.get(hoveredCourseCode) : undefined
+    const activeEdgeAccent = hoveredNode?.accent ?? "var(--accent-sky)"
+    const { nodeHeight, nodeWidth } = courseGraphMetrics
     const { courseGraphLinks, linksByCourseCode } = useMemo(() => {
         const nextLinks = edges.map((edge, index) => ({
             ...edge,
@@ -102,80 +100,67 @@ const CourseGraphSvg = ({
             path: getCourseGraphLinkPath(edge),
             sourceCode: edge.source.code,
             targetCode: edge.target.code,
-        }));
-        const nextLinksByCourseCode = new Map<string, CourseGraphLink[]>();
+        }))
+        const nextLinksByCourseCode = new Map<string, CourseGraphLink[]>()
 
         nextLinks.forEach((link) => {
             const connectedCourseCodes =
                 link.sourceCode === link.targetCode
                     ? [link.sourceCode]
-                    : [link.sourceCode, link.targetCode];
+                    : [link.sourceCode, link.targetCode]
 
             connectedCourseCodes.forEach((courseCode) => {
-                const linksForCourse = nextLinksByCourseCode.get(courseCode);
+                const linksForCourse = nextLinksByCourseCode.get(courseCode)
 
                 if (linksForCourse) {
-                    linksForCourse.push(link);
+                    linksForCourse.push(link)
                 } else {
-                    nextLinksByCourseCode.set(courseCode, [link]);
+                    nextLinksByCourseCode.set(courseCode, [link])
                 }
-            });
-        });
+            })
+        })
 
         return {
             courseGraphLinks: nextLinks,
             linksByCourseCode: nextLinksByCourseCode,
-        };
-    }, [edges]);
+        }
+    }, [edges])
     const levelLabels = useMemo(
         () =>
             levels
                 .map((level, levelIndex) => {
                     const levelColumns = level.terms
-                        .map((term) =>
-                            columnByLevelAndTerm.get(
-                                `${level.level}-${term.term}`,
-                            ),
-                        )
-                        .filter(Boolean);
-                    const firstColumn = levelColumns[0];
-                    const lastColumn = levelColumns[levelColumns.length - 1];
+                        .map((term) => columnByLevelAndTerm.get(`${level.level}-${term.term}`))
+                        .filter(Boolean)
+                    const firstColumn = levelColumns[0]
+                    const lastColumn = levelColumns[levelColumns.length - 1]
 
                     if (!firstColumn || !lastColumn) {
-                        return null;
+                        return null
                     }
 
                     return {
                         accent: getCourseAccent(levelIndex),
                         label: level.level.toUpperCase(),
                         x: (firstColumn.x + lastColumn.x + nodeWidth) / 2,
-                    };
+                    }
                 })
-                .filter((label): label is NonNullable<typeof label> =>
-                    Boolean(label),
-                ),
-        [columnByLevelAndTerm, levels, nodeWidth],
-    );
+                .filter((label): label is NonNullable<typeof label> => Boolean(label)),
+        [columnByLevelAndTerm, levels],
+    )
     const nodeLabelLinesByCode = useMemo(
-        () =>
-            new Map(
-                nodes.map((node) => [node.code, splitGraphLabel(node.name)]),
-            ),
+        () => new Map(nodes.map((node) => [node.code, splitGraphLabel(node.name)])),
         [nodes],
-    );
+    )
     const activeLinks = useMemo(
         () =>
             hoveredCourseCode
-                ? (linksByCourseCode.get(hoveredCourseCode) ??
-                  emptyCourseGraphLinks)
+                ? (linksByCourseCode.get(hoveredCourseCode) ?? emptyCourseGraphLinks)
                 : emptyCourseGraphLinks,
         [hoveredCourseCode, linksByCourseCode],
-    );
-    const activeLinkIds = useMemo(
-        () => new Set(activeLinks.map(({ id }) => id)),
-        [activeLinks],
-    );
-    const hasHoveredCourse = Boolean(hoveredCourseCode);
+    )
+    const activeLinkIds = useMemo(() => new Set(activeLinks.map(({ id }) => id)), [activeLinks])
+    const hasHoveredCourse = Boolean(hoveredCourseCode)
 
     return (
         <svg
@@ -207,18 +192,9 @@ const CourseGraphSvg = ({
                     markerHeight="6"
                     orient="auto-start-reverse"
                 >
-                    <path
-                        d="M 0 0 L 10 5 L 0 10 z"
-                        fill={`rgb(${activeEdgeAccent} / 0.92)`}
-                    />
+                    <path d="M 0 0 L 10 5 L 0 10 z" fill={`rgb(${activeEdgeAccent} / 0.92)`} />
                 </marker>
-                <filter
-                    id="course-node-shadow"
-                    x="-20%"
-                    y="-40%"
-                    width="140%"
-                    height="180%"
-                >
+                <filter id="course-node-shadow" x="-20%" y="-40%" width="140%" height="180%">
                     <feDropShadow
                         dx="0"
                         dy="10"
@@ -267,7 +243,7 @@ const CourseGraphSvg = ({
             ))}
 
             {courseGraphLinks.map((link) => {
-                const isActiveLink = activeLinkIds.has(link.id);
+                const isActiveLink = activeLinkIds.has(link.id)
 
                 return (
                     <path
@@ -277,17 +253,15 @@ const CourseGraphSvg = ({
                         stroke={courseGraphColors.edgeDefault}
                         strokeWidth="1.2"
                         markerEnd="url(#course-arrow)"
-                        opacity={
-                            hasHoveredCourse ? (isActiveLink ? 0.24 : 0.12) : 1
-                        }
+                        opacity={hasHoveredCourse ? (isActiveLink ? 0.24 : 0.12) : 1}
                         style={graphLinkTransitionStyle}
                     />
-                );
+                )
             })}
 
             {nodes.map((node) => {
-                const labelLines = nodeLabelLinesByCode.get(node.code) ?? [];
-                const isHovered = hoveredCourseCode === node.code;
+                const labelLines = nodeLabelLinesByCode.get(node.code) ?? []
+                const isHovered = hoveredCourseCode === node.code
 
                 return (
                     <a
@@ -336,6 +310,7 @@ const CourseGraphSvg = ({
                             >
                                 {node.code}
                             </text>
+                            {/* biome-ignore lint/a11y/noAriaHiddenOnFocusable: purely decorative hover icon inside the link; the link's own aria-label already provides the accessible name */}
                             <g
                                 aria-hidden="true"
                                 className="course-graph-node-link-icon"
@@ -355,6 +330,7 @@ const CourseGraphSvg = ({
                             </g>
                             {labelLines.map((line, lineIndex) => (
                                 <text
+                                    // biome-ignore lint/suspicious/noArrayIndexKey: wrapped lines are a static, non-reorderable sequence
                                     key={`${node.code}-${lineIndex}`}
                                     x="12"
                                     y={34 + lineIndex * 12}
@@ -367,7 +343,7 @@ const CourseGraphSvg = ({
                             ))}
                         </g>
                     </a>
-                );
+                )
             })}
 
             {activeLinks.map((link) => (
@@ -393,31 +369,18 @@ const CourseGraphSvg = ({
 
             {hoveredNode &&
                 (() => {
-                    const tooltipLines = splitGraphLabel(
-                        hoveredNode.learned,
-                        36,
-                        4,
-                    );
-                    const nameLines = splitGraphLabel(hoveredNode.name, 36, 3);
-                    const tooltipWidth = 286;
-                    const tooltipHeight =
-                        62 + nameLines.length * 14 + tooltipLines.length * 14;
+                    const tooltipLines = splitGraphLabel(hoveredNode.learned, 36, 4)
+                    const nameLines = splitGraphLabel(hoveredNode.name, 36, 3)
+                    const tooltipWidth = 286
+                    const tooltipHeight = 62 + nameLines.length * 14 + tooltipLines.length * 14
                     const tooltipX = Math.min(
-                        Math.max(
-                            12,
-                            hoveredNode.x +
-                                hoveredNode.width / 2 -
-                                tooltipWidth / 2,
-                        ),
+                        Math.max(12, hoveredNode.x + hoveredNode.width / 2 - tooltipWidth / 2),
                         graphWidth - tooltipWidth - 12,
-                    );
-                    const tooltipY = hoveredNode.y - tooltipHeight - 12;
+                    )
+                    const tooltipY = hoveredNode.y - tooltipHeight - 12
 
                     return (
-                        <g
-                            transform={`translate(${tooltipX}, ${tooltipY})`}
-                            pointerEvents="none"
-                        >
+                        <g transform={`translate(${tooltipX}, ${tooltipY})`} pointerEvents="none">
                             <rect
                                 width={tooltipWidth}
                                 height={tooltipHeight}
@@ -444,6 +407,7 @@ const CourseGraphSvg = ({
                             </text>
                             {nameLines.map((line, lineIndex) => (
                                 <text
+                                    // biome-ignore lint/suspicious/noArrayIndexKey: wrapped lines are a static, non-reorderable sequence
                                     key={`${hoveredNode.code}-name-${lineIndex}`}
                                     x="14"
                                     y={40 + lineIndex * 14}
@@ -456,13 +420,10 @@ const CourseGraphSvg = ({
                             ))}
                             {tooltipLines.map((line, lineIndex) => (
                                 <text
+                                    // biome-ignore lint/suspicious/noArrayIndexKey: wrapped lines are a static, non-reorderable sequence
                                     key={`${hoveredNode.code}-tooltip-${lineIndex}`}
                                     x="14"
-                                    y={
-                                        54 +
-                                        nameLines.length * 14 +
-                                        lineIndex * 14
-                                    }
+                                    y={54 + nameLines.length * 14 + lineIndex * 14}
                                     fill={courseGraphColors.tooltipBody}
                                     fontSize="11"
                                 >
@@ -470,10 +431,10 @@ const CourseGraphSvg = ({
                                 </text>
                             ))}
                         </g>
-                    );
+                    )
                 })()}
         </svg>
-    );
-};
+    )
+}
 
-export default CourseGraphSvg;
+export default CourseGraphSvg

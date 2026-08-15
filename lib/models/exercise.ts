@@ -1,4 +1,4 @@
-import { Schema, model, models } from "mongoose";
+import { model, models, Schema } from "mongoose"
 
 const exerciseSchema = new Schema(
     {
@@ -28,8 +28,8 @@ const exerciseSchema = new Schema(
         date: Date,
     },
     { versionKey: false },
-);
+)
 
-const Exercise = models["exercises"] || model("exercises", exerciseSchema);
+const Exercise = models.exercises || model("exercises", exerciseSchema)
 
-export default Exercise;
+export default Exercise

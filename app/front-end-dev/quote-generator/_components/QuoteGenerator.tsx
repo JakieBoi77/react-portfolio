@@ -1,12 +1,9 @@
-import styled from "styled-components";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react"
+import { FaQuoteLeft, FaQuoteRight, FaTumblrSquare, FaTwitterSquare } from "react-icons/fa"
+import styled from "styled-components"
+import { fortnite, regular } from "@/public/quotes"
 
-import { regular, fortnite } from "@/public/quotes";
-
-import { FaQuoteLeft, FaQuoteRight } from "react-icons/fa";
-import { FaTwitterSquare, FaTumblrSquare } from "react-icons/fa";
-
-type QuoteType = "regular" | "fortnite";
+type QuoteType = "regular" | "fortnite"
 
 const COLORS = [
     "#16a085",
@@ -21,34 +18,33 @@ const COLORS = [
     "#BDBB99",
     "#77B1A9",
     "#73A857",
-];
+]
 
 const getQuotesArray = (quoteType: QuoteType) =>
-    quoteType === "regular" ? regular.quotes : fortnite.quotes;
+    quoteType === "regular" ? regular.quotes : fortnite.quotes
 
 const getQuoteState = (quoteType: QuoteType, quoteIndex = 0, colorIndex = 0) => {
-    const quotesArray = getQuotesArray(quoteType);
-    const quoteObject = quotesArray[quoteIndex % quotesArray.length];
+    const quotesArray = getQuotesArray(quoteType)
+    const quoteObject = quotesArray[quoteIndex % quotesArray.length]
 
     return {
         color: COLORS[colorIndex % COLORS.length],
         quote: quoteObject.quote,
         author: quoteObject.author,
-    };
-};
+    }
+}
 
 const getRandomQuoteState = (quoteType: QuoteType) => {
-    const quotesArray = getQuotesArray(quoteType);
+    const quotesArray = getQuotesArray(quoteType)
 
     return getQuoteState(
         quoteType,
         Math.floor(Math.random() * quotesArray.length),
         Math.floor(Math.random() * COLORS.length),
-    );
-};
+    )
+}
 
-const getInitialQuoteState = (quoteType: QuoteType) =>
-    getQuoteState(quoteType);
+const getInitialQuoteState = (quoteType: QuoteType) => getQuoteState(quoteType)
 
 const StyledDiv = styled.div`
     #quote-generator {
@@ -184,39 +180,39 @@ const StyledDiv = styled.div`
         position: relative;
         top: 100px;
     }
-`;
+`
 
 export default function QuoteGenerator() {
     return (
         <StyledDiv>
             <UnstyledQuoteGenerator />
         </StyledDiv>
-    );
+    )
 }
 
 const UnstyledQuoteGenerator = () => {
-    const [quoteType, setQuoteType] = useState<QuoteType>("regular");
+    const [quoteType, setQuoteType] = useState<QuoteType>("regular")
     const [{ color: currentColor, quote: currentQuote, author: currentAuthor }, setQuoteState] =
-        useState(() => getInitialQuoteState("regular"));
+        useState(() => getInitialQuoteState("regular"))
 
     useEffect(() => {
         const timeout = setTimeout(() => {
-            setQuoteState(getRandomQuoteState("regular"));
-        }, 0);
+            setQuoteState(getRandomQuoteState("regular"))
+        }, 0)
 
-        return () => clearTimeout(timeout);
-    }, []);
+        return () => clearTimeout(timeout)
+    }, [])
 
     const displayNewQuote = (type = quoteType) => {
-        setQuoteState(getRandomQuoteState(type));
-    };
+        setQuoteState(getRandomQuoteState(type))
+    }
 
     const toggleQuoteType = () => {
-        const nextQuoteType = quoteType === "regular" ? "fortnite" : "regular";
+        const nextQuoteType = quoteType === "regular" ? "fortnite" : "regular"
 
-        setQuoteType(nextQuoteType);
-        displayNewQuote(nextQuoteType);
-    };
+        setQuoteType(nextQuoteType)
+        displayNewQuote(nextQuoteType)
+    }
 
     return (
         <div id="quote-generator" style={{ backgroundColor: currentColor }}>
@@ -255,6 +251,7 @@ const UnstyledQuoteGenerator = () => {
                         </a>
                     </div>
                     <button
+                        type="button"
                         id="new-quote"
                         className="button"
                         style={{ backgroundColor: currentColor }}
@@ -265,10 +262,11 @@ const UnstyledQuoteGenerator = () => {
                 </div>
             </div>
             <button
+                type="button"
                 id="fortnite"
                 style={{ color: currentColor }}
                 onClick={toggleQuoteType}
             >{`${quoteType === "regular" ? "Fortnite Mode" : "Back to Normal"}`}</button>
         </div>
-    );
-};
+    )
+}

@@ -1,14 +1,12 @@
-import styled from "styled-components";
-import React, { useState } from "react";
-
-import { FaMaximize, FaMinimize } from "react-icons/fa6";
-
-import { marked } from "marked";
-import DOMPurify from "isomorphic-dompurify";
+import DOMPurify from "isomorphic-dompurify"
+import { marked } from "marked"
+import { useState } from "react"
+import { FaMaximize, FaMinimize } from "react-icons/fa6"
+import styled from "styled-components"
 
 marked.setOptions({
     breaks: true,
-});
+})
 
 const defaultText = `# Welcome to my React Markdown Previewer
 
@@ -50,7 +48,7 @@ And don't forget about numbered lists:
 
 Last but not least, we got pictures:
 ![freeCodeCamp Logo](https://cdn.freecodecamp.org/testable-projects-fcc/images/fcc_secondary.svg)
-`;
+`
 
 const StyledDiv = styled.div`
     position: fixed;
@@ -127,6 +125,16 @@ const StyledDiv = styled.div`
         cursor: pointer;
     }
 
+    .icon button {
+        display: flex;
+        color: inherit;
+        font: inherit;
+        background: none;
+        border: none;
+        padding: 0;
+        cursor: pointer;
+    }
+
     .window-header {
         font: 20px fantasy;
         padding-left: 10px;
@@ -200,34 +208,34 @@ const StyledDiv = styled.div`
         margin-bottom: 1em;
         margin-left: 2em;
     }
-`;
+`
 
 export default function MarkdownPreviewer() {
     return (
         <StyledDiv>
             <UnstyledMarkdownPreviewer />
         </StyledDiv>
-    );
+    )
 }
 
 const UnstyledMarkdownPreviewer = () => {
-    const [editorContent, setEditorContent] = useState(defaultText);
-    const [editorMaximized, setEditorMaximized] = useState(false);
-    const [previewerMaximized, setPreviewerMaximized] = useState(false);
+    const [editorContent, setEditorContent] = useState(defaultText)
+    const [editorMaximized, setEditorMaximized] = useState(false)
+    const [previewerMaximized, setPreviewerMaximized] = useState(false)
 
-    const handleEditorChange = (event: any) => {
-        setEditorContent(event.target.value);
-    };
+    const handleEditorChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
+        setEditorContent(event.target.value)
+    }
 
     const handleEditorMaximize = () => {
-        setEditorMaximized(!editorMaximized);
-        setPreviewerMaximized(false);
-    };
+        setEditorMaximized(!editorMaximized)
+        setPreviewerMaximized(false)
+    }
 
     const handlePreviewerMaximize = () => {
-        setPreviewerMaximized(!previewerMaximized);
-        setEditorMaximized(false);
-    };
+        setPreviewerMaximized(!previewerMaximized)
+        setEditorMaximized(false)
+    }
 
     return (
         <div id="markdown-previewer">
@@ -249,15 +257,20 @@ const UnstyledMarkdownPreviewer = () => {
                 />
             )}
         </div>
-    );
-};
+    )
+}
 
-function Editor(props: any) {
+type EditorProps = {
+    windowName: string
+    content: string
+    onContentChange: (event: React.ChangeEvent<HTMLTextAreaElement>) => void
+    maximized: boolean
+    onMaximize: () => void
+}
+
+function Editor(props: EditorProps) {
     return (
-        <div
-            className={`box${props.maximized ? " maximized" : ""}`}
-            id="editor-box"
-        >
+        <div className={`box${props.maximized ? " maximized" : ""}`} id="editor-box">
             <Toolbar
                 name={props.windowName}
                 onMaximize={props.onMaximize}
@@ -266,20 +279,23 @@ function Editor(props: any) {
             <textarea
                 id="editor"
                 spellCheck="false"
-                autoFocus
                 defaultValue={props.content}
                 onChange={props.onContentChange}
             />
         </div>
-    );
+    )
 }
 
-function Previewer(props: any) {
+type PreviewerProps = {
+    windowName: string
+    content: string
+    maximized: boolean
+    onMaximize: () => void
+}
+
+function Previewer(props: PreviewerProps) {
     return (
-        <div
-            className={`box${props.maximized ? " maximized" : ""}`}
-            id="preview-box"
-        >
+        <div className={`box${props.maximized ? " maximized" : ""}`} id="preview-box">
             <Toolbar
                 name={props.windowName}
                 onMaximize={props.onMaximize}
@@ -287,37 +303,37 @@ function Previewer(props: any) {
             />
             <Markdown content={props.content} />
         </div>
-    );
+    )
 }
 
-function Markdown(props: any) {
-    const sanitizedContent = DOMPurify.sanitize(
-        marked.parse(props.content) as string,
-    );
-    return (
-        <div
-            dangerouslySetInnerHTML={{ __html: sanitizedContent }}
-            id="preview"
-        />
-    );
+function Markdown({ content }: { content: string }) {
+    const sanitizedContent = DOMPurify.sanitize(marked.parse(content) as string)
+    // biome-ignore lint/security/noDangerouslySetInnerHtml: content is sanitized via DOMPurify above
+    return <div dangerouslySetInnerHTML={{ __html: sanitizedContent }} id="preview" />
 }
 
-function Toolbar(props: any) {
+type ToolbarProps = {
+    name: string
+    maximized: boolean
+    onMaximize: () => void
+}
+
+function Toolbar(props: ToolbarProps) {
     return (
         <div className="toolbar">
             <p className="window-header">{props.name}</p>
             <div className="icon">
                 {!props.maximized && (
-                    <div onClick={props.onMaximize}>
+                    <button type="button" aria-label="Maximize" onClick={props.onMaximize}>
                         <FaMaximize />
-                    </div>
+                    </button>
                 )}
                 {props.maximized && (
-                    <div onClick={props.onMaximize}>
+                    <button type="button" aria-label="Restore" onClick={props.onMaximize}>
                         <FaMinimize />
-                    </div>
+                    </button>
                 )}
             </div>
         </div>
-    );
+    )
 }

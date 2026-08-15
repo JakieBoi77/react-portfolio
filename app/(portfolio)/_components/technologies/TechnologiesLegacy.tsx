@@ -1,10 +1,10 @@
-"use client";
+"use client"
 
-import { technologies } from "../../_data/portfolio";
-import { motion } from "framer-motion";
-import { textVariant } from "@/utils/motion";
-import { SectionWrapper, TypographyH2 } from "@components";
-import TechnologyBallCanvas from "@/components/three/technology-ball-canvas";
+import { SectionWrapper, TypographyH2 } from "@components"
+import { motion } from "framer-motion"
+import TechnologyBallCanvas from "@/components/three/technology-ball-canvas"
+import { textVariant } from "@/utils/motion"
+import { technologies } from "../../_data/portfolio"
 
 const TechnologiesLegacy = () => {
     return (
@@ -20,7 +20,7 @@ const TechnologiesLegacy = () => {
             </motion.div>
             <TechnologyBallCanvas technologies={technologies} />
         </div>
-    );
-};
+    )
+}
 
-export default SectionWrapper(TechnologiesLegacy, "technologies");
+export default SectionWrapper(TechnologiesLegacy, "technologies")

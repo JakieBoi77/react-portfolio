@@ -1,19 +1,14 @@
-import Link from "next/link";
-import type { IconType } from "react-icons";
+import Link from "next/link"
+import type { IconType } from "react-icons"
 
 type ProjectActionLinkProps = {
-    href: string;
-    label: string;
-    Icon: IconType;
-    accent: string;
-};
+    href: string
+    label: string
+    Icon: IconType
+    accent: string
+}
 
-const ProjectActionLink = ({
-    href,
-    label,
-    Icon,
-    accent,
-}: ProjectActionLinkProps) => {
+const ProjectActionLink = ({ href, label, Icon, accent }: ProjectActionLinkProps) => {
     return (
         <Link
             href={href}
@@ -25,7 +20,7 @@ const ProjectActionLink = ({
             <Icon aria-hidden="true" className="size-3.5 shrink-0" />
             <span>{label}</span>
         </Link>
-    );
-};
+    )
+}
 
-export default ProjectActionLink;
+export default ProjectActionLink

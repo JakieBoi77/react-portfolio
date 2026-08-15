@@ -1,20 +1,18 @@
-"use client";
+"use client"
 
-import React, { useMemo, useState } from "react";
-import { Canvas } from "@react-three/fiber";
-import {
-    View,
-    PerspectiveCamera,
-    OrbitControls,
-    useTexture,
-    Float,
-    Decal,
-} from "@react-three/drei";
-import { motion } from "framer-motion";
-import { zoomIn } from "@/utils/motion";
+import { Decal, Float, OrbitControls, PerspectiveCamera, useTexture, View } from "@react-three/drei"
+import { Canvas } from "@react-three/fiber"
+import { motion } from "framer-motion"
+import React, { useMemo, useState } from "react"
+import { zoomIn } from "@/utils/motion"
 
-const Ball = ({ decalTexture }: any) => {
-    const [decal] = useTexture([decalTexture]);
+type Technology = {
+    name: string
+    icon: string
+}
+
+const Ball = ({ decalTexture }: { decalTexture: string }) => {
+    const [decal] = useTexture([decalTexture])
 
     return (
         <Float speed={1.75}>
@@ -28,45 +26,53 @@ const Ball = ({ decalTexture }: any) => {
                     polygonOffsetFactor={-5}
                     flatShading
                 />
-                <Decal
-                    position={[0, 0, 1]}
-                    rotation={[2 * Math.PI, 0, 6.25]}
-                    map={decal}
-                />
+                <Decal position={[0, 0, 1]} rotation={[2 * Math.PI, 0, 6.25]} map={decal} />
             </mesh>
         </Float>
-    );
-};
+    )
+}
 
-const Views = ({ views, technologies }: any) => {
+type ViewsProps = {
+    views: React.RefObject<HTMLDivElement>[]
+    technologies: Technology[]
+}
+
+const Views = ({ views, technologies }: ViewsProps) => {
     return (
         <>
-            {views.map((view: any, i: any) => {
+            {views.map((view, i) => {
                 return (
-                    <View key={i} track={view}>
+                    <View
+                        key={technologies[i].name}
+                        track={view as React.MutableRefObject<HTMLElement>}
+                    >
                         <Ball decalTexture={technologies[i].icon} />
                         <PerspectiveCamera makeDefault position={[0, 0, 3]} />
                         <OrbitControls makeDefault enableZoom={false} />
                     </View>
-                );
+                )
             })}
         </>
-    );
-};
+    )
+}
 
-const TechnologyBallCanvas = ({ technologies }: any) => {
+type TechnologyBallCanvasProps = {
+    technologies: Technology[]
+}
+
+const TechnologyBallCanvas = ({ technologies }: TechnologyBallCanvasProps) => {
     const views = useMemo(
-        () => technologies.map(() => React.createRef()),
+        () => technologies.map(() => React.createRef<HTMLDivElement>()),
         [technologies],
-    );
-    const [eventSource, setEventSource] = useState<HTMLDivElement | null>(null);
+    )
+    const [eventSource, setEventSource] = useState<HTMLDivElement | null>(null)
 
     return (
         <div
             ref={setEventSource}
             className="relative max-w-[1200px] w-full flex flex-wrap gap-4 items-center justify-center overflow-auto m-4"
         >
-            {views.map((view: any, i: any) => {
+            {views.map((view, i) => {
                 return (
                     <motion.div
                         variants={zoomIn(0.1 * i, 0.75)}
@@ -74,7 +80,7 @@ const TechnologyBallCanvas = ({ technologies }: any) => {
                         ref={view}
                         className="basis-24 h-24 sm:basis-48 sm:h-48 overflow-hidden"
                     />
-                );
+                )
             })}
             {eventSource && (
                 <Canvas
@@ -93,7 +99,7 @@ const TechnologyBallCanvas = ({ technologies }: any) => {
                 </Canvas>
             )}
         </div>
-    );
-};
+    )
+}
 
-export default TechnologyBallCanvas;
+export default TechnologyBallCanvas

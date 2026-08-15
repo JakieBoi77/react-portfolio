@@ -1,23 +1,26 @@
-import { useEffect, useState } from "react";
-import { Spotlight, TextGenerateEffect } from "@components";
+import { Spotlight, TextGenerateEffect } from "@components"
+import { useEffect, useState } from "react"
 
 type IntroProps = {
-    skipAnimation?: boolean;
-};
+    skipAnimation?: boolean
+}
 
 const Intro = ({ skipAnimation = false }: IntroProps) => {
-    const [show, setShow] = useState(true);
+    const [show, setShow] = useState(true)
 
     useEffect(() => {
-        const timer = setTimeout(() => {
-            setShow(false);
-        }, skipAnimation ? 0 : 2000);
+        const timer = setTimeout(
+            () => {
+                setShow(false)
+            },
+            skipAnimation ? 0 : 2000,
+        )
 
-        return () => clearTimeout(timer);
-    }, [skipAnimation]);
+        return () => clearTimeout(timer)
+    }, [skipAnimation])
 
     if (skipAnimation && !show) {
-        return null;
+        return null
     }
 
     return (
@@ -29,14 +32,8 @@ const Intro = ({ skipAnimation = false }: IntroProps) => {
                     className="-top-40 -left-10 md:-left-32 md:-top-20 h-screen"
                     fill="white"
                 />
-                <Spotlight
-                    className="top-10 left-full h-[80vh] w-[50vw]"
-                    fill="purple"
-                />
-                <Spotlight
-                    className="top-28 left-80 h-[80vh] w-[50vw]"
-                    fill="blue"
-                />
+                <Spotlight className="top-10 left-full h-[80vh] w-[50vw]" fill="purple" />
+                <Spotlight className="top-28 left-80 h-[80vh] w-[50vw]" fill="blue" />
             </div>
             <div className="h-screen w-full bg-transparent bg-grid-white flex items-center justify-center absolute top-0 left-0">
                 <div className="absolute pointer-events-none inset-0 flex items-center justify-center bg-surface [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]"></div>
@@ -54,7 +51,7 @@ const Intro = ({ skipAnimation = false }: IntroProps) => {
                 </div>
             </div>
         </div>
-    );
-};
+    )
+}
 
-export default Intro;
+export default Intro

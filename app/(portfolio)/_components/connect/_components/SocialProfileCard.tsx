@@ -1,14 +1,14 @@
-import { FaArrowRight } from "react-icons/fa";
+import { FaArrowRight } from "react-icons/fa"
 
-import type { ContactProfile, CSSVariableStyle } from "../_lib/types";
+import type { ContactProfile, CSSVariableStyle } from "../_lib/types"
 
 type SocialProfileCardProps = {
-    profile: ContactProfile;
-    style: CSSVariableStyle;
-};
+    profile: ContactProfile
+    style: CSSVariableStyle
+}
 
 const SocialProfileCard = ({ profile, style }: SocialProfileCardProps) => {
-    const opensNewTab = !profile.link.startsWith("mailto:");
+    const opensNewTab = !profile.link.startsWith("mailto:")
 
     return (
         <a
@@ -19,12 +19,7 @@ const SocialProfileCard = ({ profile, style }: SocialProfileCardProps) => {
             style={style}
         >
             <span className="grid size-11 place-items-center rounded-lg border border-[rgb(var(--node-accent)/0.34)] bg-[rgb(var(--node-accent)/0.1)]">
-                <img
-                    src={profile.img}
-                    alt=""
-                    aria-hidden="true"
-                    className="size-5"
-                />
+                <img src={profile.img} alt="" aria-hidden="true" className="size-5" />
             </span>
             <span className="min-w-0">
                 <span className="block text-sm font-semibold leading-5 tracking-normal text-white">
@@ -41,7 +36,7 @@ const SocialProfileCard = ({ profile, style }: SocialProfileCardProps) => {
                 <FaArrowRight className="size-3" />
             </span>
         </a>
-    );
-};
+    )
+}
 
-export default SocialProfileCard;
+export default SocialProfileCard

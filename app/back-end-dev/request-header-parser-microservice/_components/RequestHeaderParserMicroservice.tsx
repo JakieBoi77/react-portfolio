@@ -1,37 +1,33 @@
-import React, { useState } from "react";
+import type React from "react"
+import { useState } from "react"
 
 const RequestHeaderParserMicroservice = () => {
-    const [response, setResponse] = useState<string | null>(null);
+    const [response, setResponse] = useState<string | null>(null)
 
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-        event.preventDefault();
+        event.preventDefault()
 
         try {
             const response = await fetch(`/api/whoami`, {
                 method: "GET",
-            });
+            })
 
             if (response.ok) {
-                const result = await response.json();
-                setResponse(result);
+                const result = await response.json()
+                setResponse(result)
             } else {
-                alert("Failed to submit.");
+                alert("Failed to submit.")
             }
         } catch (error) {
-            console.error("Error:", error);
-            alert("Error submitting data.");
+            console.error("Error:", error)
+            alert("Error submitting data.")
         }
-    };
+    }
     return (
         <div className="tw-class flex items-center justify-center flex-col h-screen w-screen bg-gray-100">
-            <h1 className="text-2xl font-bold text-center">
-                Request Header Parser Microservice
-            </h1>
+            <h1 className="text-2xl font-bold text-center">Request Header Parser Microservice</h1>
             <div className="mt-4 border p-5 w-[80%] min-w-64 max-w-[500px] bg-white rounded-lg shadow-md">
-                <form
-                    onSubmit={handleSubmit}
-                    className="flex flex-col items-center"
-                >
+                <form onSubmit={handleSubmit} className="flex flex-col items-center">
                     <label className="mb-2" htmlFor="button">
                         Click to send request:
                     </label>
@@ -55,7 +51,7 @@ const RequestHeaderParserMicroservice = () => {
                 )}
             </div>
         </div>
-    );
-};
+    )
+}
 
-export default RequestHeaderParserMicroservice;
+export default RequestHeaderParserMicroservice

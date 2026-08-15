@@ -1,8 +1,8 @@
-import type { Variants } from "framer-motion";
-import type { IconType } from "react-icons";
-import { FaBriefcase, FaGraduationCap } from "react-icons/fa";
+import type { Variants } from "framer-motion"
+import type { IconType } from "react-icons"
+import { FaBriefcase, FaGraduationCap } from "react-icons/fa"
 
-import type { CSSVariableStyle } from "./types";
+import type { CSSVariableStyle } from "./types"
 
 export const experienceTabs = [
     {
@@ -16,24 +16,24 @@ export const experienceTabs = [
         Icon: FaGraduationCap,
     },
 ] satisfies Array<{
-    id: string;
-    label: string;
-    Icon: IconType;
-}>;
+    id: string
+    label: string
+    Icon: IconType
+}>
 
-export type ExperienceTab = (typeof experienceTabs)[number]["id"];
+export type ExperienceTab = (typeof experienceTabs)[number]["id"]
 
-export const experienceShellAccent = "var(--accent-sky)";
-export const educationIconAccent = experienceShellAccent;
-export const educationPanelAccent = "var(--accent-slate)";
-export const educationStatusAccent = "var(--accent-green)";
+export const experienceShellAccent = "var(--accent-sky)"
+export const educationIconAccent = experienceShellAccent
+export const educationPanelAccent = "var(--accent-slate)"
+export const educationStatusAccent = "var(--accent-green)"
 
 export const timelineAccents = [
     "var(--accent-sky)",
     "var(--accent-green)",
     "var(--accent-rose)",
     "var(--accent-amber)",
-];
+]
 
 const timelineGlassTextures: CSSVariableStyle[] = [
     {
@@ -63,7 +63,7 @@ const timelineGlassTextures: CSSVariableStyle[] = [
         "--node-noise-size": "164px 164px",
         "--node-noise-position": "4px 34px",
     },
-];
+]
 
 export const floatInFromRightVariants: Variants = {
     hidden: {
@@ -80,7 +80,7 @@ export const floatInFromRightVariants: Variants = {
             delay: 0,
         },
     }),
-};
+}
 
 export const panelVariants: Variants = {
     hidden: {
@@ -103,12 +103,11 @@ export const panelVariants: Variants = {
             ease: "easeIn",
         },
     },
-};
+}
 
 export const getTimelineStyle = (index: number, preferredAccent?: string) => {
-    const accent =
-        preferredAccent ?? timelineAccents[index % timelineAccents.length];
-    const texture = timelineGlassTextures[index % timelineGlassTextures.length];
+    const accent = preferredAccent ?? timelineAccents[index % timelineAccents.length]
+    const texture = timelineGlassTextures[index % timelineGlassTextures.length]
 
     return {
         accent,
@@ -120,11 +119,11 @@ export const getTimelineStyle = (index: number, preferredAccent?: string) => {
             "--node-noise": "0.2",
             borderColor: `rgb(${accent} / 0.28)`,
         } as CSSVariableStyle,
-    };
-};
+    }
+}
 
 export const getGlassPanelStyle = (index: number) => {
-    const texture = timelineGlassTextures[index % timelineGlassTextures.length];
+    const texture = timelineGlassTextures[index % timelineGlassTextures.length]
 
     return {
         accent: experienceShellAccent,
@@ -136,13 +135,10 @@ export const getGlassPanelStyle = (index: number) => {
             "--node-noise": "0.2",
             borderColor: `rgb(${experienceShellAccent} / 0.24)`,
         } as CSSVariableStyle,
-    };
-};
+    }
+}
 
-export const getWorkPanelStyle = (
-    index: number,
-    preferredAccent?: string,
-) => {
+export const getWorkPanelStyle = (index: number, preferredAccent?: string) => {
     const texture =
         preferredAccent === "var(--accent-blue)"
             ? {
@@ -150,7 +146,7 @@ export const getWorkPanelStyle = (
                   "--node-accent-position": "88% 82%",
                   "--node-bg-angle": "138deg",
               }
-            : timelineGlassTextures[index % timelineGlassTextures.length];
+            : timelineGlassTextures[index % timelineGlassTextures.length]
 
     return {
         accent: experienceShellAccent,
@@ -162,11 +158,11 @@ export const getWorkPanelStyle = (
             "--node-noise": "0.2",
             borderColor: `rgb(${experienceShellAccent} / 0.24)`,
         } as CSSVariableStyle,
-    };
-};
+    }
+}
 
 export const getEducationPanelStyle = (index: number) => {
-    const texture = timelineGlassTextures[index % timelineGlassTextures.length];
+    const texture = timelineGlassTextures[index % timelineGlassTextures.length]
 
     return {
         accent: educationPanelAccent,
@@ -178,35 +174,30 @@ export const getEducationPanelStyle = (index: number) => {
             "--node-noise": "0.12",
             borderColor: `rgb(${educationPanelAccent} / 0.18)`,
         } as CSSVariableStyle,
-    };
-};
+    }
+}
 
-export const getCourseAccent = (index: number) =>
-    timelineAccents[index % timelineAccents.length];
+export const getCourseAccent = (index: number) => timelineAccents[index % timelineAccents.length]
 
-export const splitGraphLabel = (
-    label: string,
-    maxLineLength = 22,
-    maxLines = 2,
-) => {
-    const words = label.split(" ");
-    const lines: string[] = [];
-    let currentLine = "";
+export const splitGraphLabel = (label: string, maxLineLength = 22, maxLines = 2) => {
+    const words = label.split(" ")
+    const lines: string[] = []
+    let currentLine = ""
 
     words.forEach((word) => {
-        const nextLine = currentLine ? `${currentLine} ${word}` : word;
+        const nextLine = currentLine ? `${currentLine} ${word}` : word
 
         if (nextLine.length > maxLineLength && currentLine) {
-            lines.push(currentLine);
-            currentLine = word;
+            lines.push(currentLine)
+            currentLine = word
         } else {
-            currentLine = nextLine;
+            currentLine = nextLine
         }
-    });
+    })
 
     if (currentLine) {
-        lines.push(currentLine);
+        lines.push(currentLine)
     }
 
-    return lines.slice(0, maxLines);
-};
+    return lines.slice(0, maxLines)
+}

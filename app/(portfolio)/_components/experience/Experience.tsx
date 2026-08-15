@@ -1,24 +1,23 @@
-"use client";
+"use client"
 
-import { useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
-
-import { SectionHeading, SectionWrapper } from "@components";
-import { cn } from "@/lib/utils";
-import { fadeIn } from "@/utils/motion";
+import { SectionHeading, SectionWrapper } from "@components"
+import { AnimatePresence, motion } from "framer-motion"
+import { useState } from "react"
+import { cn } from "@/lib/utils"
+import { fadeIn } from "@/utils/motion"
+import EducationPanel from "./_components/EducationPanel"
+import WorkPanel from "./_components/WorkPanel"
 import {
+    type ExperienceTab,
     experienceTabs,
     getGlassPanelStyle,
     panelVariants,
-    type ExperienceTab,
-} from "./_lib/constants";
-import EducationPanel from "./_components/EducationPanel";
-import type { CSSVariableStyle } from "./_lib/types";
-import WorkPanel from "./_components/WorkPanel";
+} from "./_lib/constants"
+import type { CSSVariableStyle } from "./_lib/types"
 
 const Experience = () => {
-    const [activeTab, setActiveTab] = useState<ExperienceTab>("work");
-    const switcherShell = getGlassPanelStyle(0);
+    const [activeTab, setActiveTab] = useState<ExperienceTab>("work")
+    const switcherShell = getGlassPanelStyle(0)
 
     return (
         <div className="w-full">
@@ -46,7 +45,7 @@ const Experience = () => {
                         }
                     >
                         {experienceTabs.map(({ id, label, Icon }) => {
-                            const isActive = activeTab === id;
+                            const isActive = activeTab === id
 
                             return (
                                 <button
@@ -71,13 +70,10 @@ const Experience = () => {
                                             : undefined
                                     }
                                 >
-                                    <Icon
-                                        aria-hidden="true"
-                                        className="size-4"
-                                    />
+                                    <Icon aria-hidden="true" className="size-4" />
                                     {label}
                                 </button>
-                            );
+                            )
                         })}
                     </div>
                 </SectionHeading>
@@ -93,16 +89,12 @@ const Experience = () => {
                         animate="show"
                         exit="exit"
                     >
-                        {activeTab === "work" ? (
-                            <WorkPanel />
-                        ) : (
-                            <EducationPanel />
-                        )}
+                        {activeTab === "work" ? <WorkPanel /> : <EducationPanel />}
                     </motion.div>
                 </AnimatePresence>
             </motion.div>
         </div>
-    );
-};
+    )
+}
 
-export default SectionWrapper(Experience, "experience");
+export default SectionWrapper(Experience, "experience")

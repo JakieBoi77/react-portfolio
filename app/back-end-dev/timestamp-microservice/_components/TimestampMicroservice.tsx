@@ -1,45 +1,41 @@
-import React, { useState } from "react";
+import type React from "react"
+import { useState } from "react"
 
 const TimestampMicroservice = () => {
-    const [response, setResponse] = useState<string | null>(null);
+    const [response, setResponse] = useState<string | null>(null)
 
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-        event.preventDefault();
+        event.preventDefault()
 
-        const date = (event.target as HTMLFormElement).date.value;
+        const date = (event.target as HTMLFormElement).date.value
 
         if (!date) {
-            alert("Please enter a date first!");
-            return;
+            alert("Please enter a date first!")
+            return
         }
 
         try {
             const response = await fetch(`/api/timestamp/${date}`, {
                 method: "GET",
-            });
+            })
 
             if (response.ok) {
-                const result = await response.json();
-                setResponse(result);
+                const result = await response.json()
+                setResponse(result)
             } else {
-                alert("Failed to submit.");
+                alert("Failed to submit.")
             }
         } catch (error) {
-            console.error("Error:", error);
-            alert("Error submitting data.");
+            console.error("Error:", error)
+            alert("Error submitting data.")
         }
-    };
+    }
 
     return (
         <div className="tw-class flex items-center justify-center flex-col h-screen w-screen bg-gray-100">
-            <h1 className="text-2xl font-bold text-center">
-                Timestamp Microservice
-            </h1>
+            <h1 className="text-2xl font-bold text-center">Timestamp Microservice</h1>
             <div className="mt-4 border p-5 w-[80%] min-w-64 max-w-[500px] bg-white rounded-lg shadow-md">
-                <form
-                    onSubmit={handleSubmit}
-                    className="flex flex-col items-center"
-                >
+                <form onSubmit={handleSubmit} className="flex flex-col items-center">
                     <label className="mb-4 w-full" htmlFor="inputfield">
                         Enter a date below:
                         <ul className="list-disc ml-8">
@@ -74,7 +70,7 @@ const TimestampMicroservice = () => {
                 )}
             </div>
         </div>
-    );
-};
+    )
+}
 
-export default TimestampMicroservice;
+export default TimestampMicroservice

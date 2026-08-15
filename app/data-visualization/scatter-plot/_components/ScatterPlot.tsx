@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
-import * as d3 from "d3";
-import styled from "styled-components";
+import * as d3 from "d3"
+import { useEffect, useState } from "react"
+import styled from "styled-components"
 
 const StyledDiv = styled.div`
     min-height: 800px;
@@ -47,103 +47,98 @@ const StyledDiv = styled.div`
         overflow: visible;
         opacity: 0;
     }
-`;
+`
 
 interface BikerData {
-    Time: string;
-    Place: number;
-    Seconds: number;
-    Name: string;
-    Year: number;
-    Nationality: string;
-    Doping: string;
-    URL: string;
+    Time: string
+    Place: number
+    Seconds: number
+    Name: string
+    Year: number
+    Nationality: string
+    Doping: string
+    URL: string
 }
 
 const ScatterPlot = () => {
-    const [dataset, setDataset] = useState<BikerData[]>([]);
+    const [dataset, setDataset] = useState<BikerData[]>([])
     const dataURL =
-        "https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/master/cyclist-data.json";
+        "https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/master/cyclist-data.json"
 
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch(dataURL);
-                const json = await response.json();
-                setDataset(json);
+                const response = await fetch(dataURL)
+                const json = await response.json()
+                setDataset(json)
             } catch (err) {
-                console.error("Error fetching data:", err);
-                setDataset([]);
+                console.error("Error fetching data:", err)
+                setDataset([])
             }
-        };
-        fetchData();
-    }, []);
+        }
+        fetchData()
+    }, [])
 
     useEffect(() => {
-        if (dataset.length === 0) return;
+        if (dataset.length === 0) return
 
-        console.log(dataset);
+        console.log(dataset)
 
         // Chart Properties
-        const margin = { top: 50, right: 50, bottom: 80, left: 80 };
-        const fullWidth = 1000;
-        const fullHeight = 500;
-        const width = fullWidth - margin.right - margin.left;
-        const height = fullHeight - margin.top - margin.bottom;
+        const margin = { top: 50, right: 50, bottom: 80, left: 80 }
+        const fullWidth = 1000
+        const fullHeight = 500
+        const width = fullWidth - margin.right - margin.left
+        const height = fullHeight - margin.top - margin.bottom
 
         // Process Years
         const years = dataset.map((data) => {
-            return data.Year;
-        });
+            return data.Year
+        })
 
         // Find the min and max year
-        const minYear = d3.min(years) ?? 0;
-        const maxYear = d3.max(years) ?? 0;
+        const minYear = d3.min(years) ?? 0
+        const maxYear = d3.max(years) ?? 0
 
         // Define x-scale
         const xScale = d3
             .scaleLinear()
             .domain([minYear - 1, maxYear + 1])
-            .range([0, width]);
+            .range([0, width])
 
         // Define x-axis
-        const xAxis = d3.axisBottom(xScale).tickFormat(d3.format("d"));
+        const xAxis = d3.axisBottom(xScale).tickFormat(d3.format("d"))
 
         // Process Times
         const times = dataset.map((data) => {
-            let time = data.Time.split(":");
-            return new Date(1970, 0, 1, 0, +time[0], +time[1]);
-        });
+            const time = data.Time.split(":")
+            return new Date(1970, 0, 1, 0, +time[0], +time[1])
+        })
 
         // Find the min and max time
-        const minTime = d3.min(times) ?? new Date();
-        const maxTime = d3.max(times) ?? new Date();
+        const minTime = d3.min(times) ?? new Date()
+        const maxTime = d3.max(times) ?? new Date()
 
         // Define time format
-        const timeFormat = d3.timeFormat("%M:%S");
+        const timeFormat = d3.timeFormat("%M:%S")
 
         // Define y-scale
         const yScale = d3
             .scaleTime()
-            .domain([
-                d3.timeSecond.offset(minTime, -30),
-                d3.timeSecond.offset(maxTime, 30),
-            ])
-            .range([0, height]);
+            .domain([d3.timeSecond.offset(minTime, -30), d3.timeSecond.offset(maxTime, 30)])
+            .range([0, height])
 
         // Define y-axis
         const yAxis = d3
             .axisLeft(yScale)
-            .tickFormat((domainValue, _index) =>
-                timeFormat(domainValue as Date),
-            );
+            .tickFormat((domainValue, _index) => timeFormat(domainValue as Date))
 
         // Define Tooltip
         const tooltip = d3
             .select(".chart")
             .append("div")
             .attr("id", "tooltip")
-            .style("display", "hidden");
+            .style("display", "hidden")
 
         // Define SVG
         const svg = d3
@@ -152,26 +147,19 @@ const ScatterPlot = () => {
             .attr("width", width + margin.left + margin.right)
             .attr("height", height + margin.top + margin.bottom)
             .append("g")
-            .attr(
-                "transform",
-                "translate(" + margin.left + "," + margin.top + ")",
-            );
+            .attr("transform", `translate(${margin.left},${margin.top})`)
 
         // Add the x-axis
         svg.append("g")
             .attr("id", "x-axis")
-            .attr("transform", "translate(0, " + height + ")")
-            .call(xAxis);
+            .attr("transform", `translate(0, ${height})`)
+            .call(xAxis)
 
         // x-axis Label
-        svg.append("text")
-            .attr("class", "label")
-            .text("Year")
-            .attr("x", 450)
-            .attr("y", 425);
+        svg.append("text").attr("class", "label").text("Year").attr("x", 450).attr("y", 425)
 
         // Add the y-axis
-        svg.append("g").attr("id", "y-axis").call(yAxis);
+        svg.append("g").attr("id", "y-axis").call(yAxis)
 
         // y-axis Label
         svg.append("text")
@@ -179,7 +167,7 @@ const ScatterPlot = () => {
             .attr("transform", "rotate(-90)")
             .text("Time in Minutes")
             .attr("x", -220)
-            .attr("y", -50);
+            .attr("y", -50)
 
         // Add the dots
         svg.selectAll("circle")
@@ -189,8 +177,8 @@ const ScatterPlot = () => {
             .attr("class", "dot")
             .attr("data-xvalue", (d) => d.Year)
             .attr("data-yvalue", (d) => {
-                const [minutes, seconds] = d.Time.split(":");
-                return new Date(1970, 0, 1, 0, Number(minutes), Number(seconds)).getTime();
+                const [minutes, seconds] = d.Time.split(":")
+                return new Date(1970, 0, 1, 0, Number(minutes), Number(seconds)).getTime()
             })
             .attr("cx", (_d, i) => xScale(years[i]))
             .attr("cy", (_d, i) => yScale(times[i]))
@@ -199,19 +187,19 @@ const ScatterPlot = () => {
             .attr("stroke", "black")
             .attr("fill", (d) => {
                 if (d.Doping === "") {
-                    return "orange";
+                    return "orange"
                 } else {
-                    return "blue";
+                    return "blue"
                 }
             })
             .attr("opacity", 0.8)
             .on("mouseover", function (_event, d) {
-                let i = Number(this.getAttribute("index"));
+                const i = Number(this.getAttribute("index"))
                 tooltip
                     .attr("data-year", d.Year)
                     .style("opacity", 0.9)
-                    .style("left", xScale(years[i]) + 110 + "px")
-                    .style("top", yScale(times[i]) + 100 + "px")
+                    .style("left", `${xScale(years[i]) + 110}px`)
+                    .style("top", `${yScale(times[i]) + 100}px`)
                     .html(
                         d.Name +
                             ": " +
@@ -220,24 +208,24 @@ const ScatterPlot = () => {
                             d.Year +
                             ", Time: " +
                             d.Time +
-                            (d.Doping ? "<br/><br/>" + d.Doping : ""),
-                    );
+                            (d.Doping ? `<br/><br/>${d.Doping}` : ""),
+                    )
             })
-            .on("mouseout", function () {
-                tooltip.style("opacity", 0);
-            });
+            .on("mouseout", () => {
+                tooltip.style("opacity", 0)
+            })
 
         // Define Legend Data
         const legendData = [
             { label: "No Doping Allegations", color: "orange" },
             { label: "Doping Allegations", color: "blue" },
-        ];
+        ]
 
         // Add Legend
         const legend = svg
             .append("g")
             .attr("id", "legend")
-            .attr("transform", "translate(" + (width - 200) + "," + 100 + ")");
+            .attr("transform", `translate(${width - 200},${100})`)
 
         legend
             .selectAll("rect")
@@ -248,7 +236,7 @@ const ScatterPlot = () => {
             .attr("y", (_d, i) => i * 25)
             .attr("width", 18)
             .attr("height", 18)
-            .style("fill", (d) => d.color);
+            .style("fill", (d) => d.color)
 
         legend
             .selectAll("text")
@@ -258,13 +246,13 @@ const ScatterPlot = () => {
             .attr("x", 24)
             .attr("y", (_d, i) => i * 25 + 9)
             .attr("dy", ".35em")
-            .text((d) => d.label);
+            .text((d) => d.label)
 
         // Clean-up function to remove SVG and other D3 elements
         return () => {
-            d3.select(".chart").selectAll("*").remove();
-        };
-    }, [dataset]);
+            d3.select(".chart").selectAll("*").remove()
+        }
+    }, [dataset])
 
     return (
         <StyledDiv>
@@ -274,7 +262,7 @@ const ScatterPlot = () => {
                 <div className="chart"></div>
             </div>
         </StyledDiv>
-    );
-};
+    )
+}
 
-export default ScatterPlot;
+export default ScatterPlot

@@ -1,21 +1,18 @@
-import { motion } from "framer-motion";
+import { motion } from "framer-motion"
 
-import { cn } from "@/lib/utils";
-import {
-    floatInFromRightVariants,
-    getWorkPanelStyle,
-} from "../_lib/constants";
-import type { CSSVariableStyle, ExperienceItem } from "../_lib/types";
+import { cn } from "@/lib/utils"
+import { floatInFromRightVariants, getWorkPanelStyle } from "../_lib/constants"
+import type { CSSVariableStyle, ExperienceItem } from "../_lib/types"
 
 type ExperienceCardProps = {
-    experience: ExperienceItem;
-    index: number;
-    isLast: boolean;
-};
+    experience: ExperienceItem
+    index: number
+    isLast: boolean
+}
 
 const ExperienceCard = ({ experience, index, isLast }: ExperienceCardProps) => {
-    const accent = experience.timelineAccent;
-    const { style } = getWorkPanelStyle(index, accent);
+    const accent = experience.timelineAccent
+    const { style } = getWorkPanelStyle(index, accent)
 
     return (
         <motion.li
@@ -89,9 +86,9 @@ const ExperienceCard = ({ experience, index, isLast }: ExperienceCardProps) => {
                 </div>
 
                 <ul className="mt-4 space-y-3">
-                    {experience.points.map((point, pointIndex) => (
+                    {experience.points.map((point) => (
                         <li
-                            key={`experience-point-${index}-${pointIndex}`}
+                            key={point}
                             className="flex gap-3 text-sm leading-6 tracking-normal text-ink-muted"
                         >
                             <span
@@ -105,7 +102,7 @@ const ExperienceCard = ({ experience, index, isLast }: ExperienceCardProps) => {
                 </ul>
             </article>
         </motion.li>
-    );
-};
+    )
+}
 
-export default ExperienceCard;
+export default ExperienceCard

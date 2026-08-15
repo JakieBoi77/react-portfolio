@@ -1,16 +1,16 @@
-import { assets } from "./assets";
+import { assets } from "./assets"
 
-const { devIcons, fullstackPics, projectPics, socialIcons, workIcons } = assets;
+const { devIcons, fullstackPics, projectPics, socialIcons, workIcons } = assets
 
 const mcmasterSoftwareEngineeringProgramUrl =
-    "https://academiccalendars.romcmaster.ca/preview_program.php?catoid=65&poid=33033";
+    "https://academiccalendars.romcmaster.ca/preview_program.php?catoid=65&poid=33033"
 const mcmasterSoftwareEngineeringCoursesUrl =
-    "https://academiccalendars.romcmaster.ca/content.php?catoid=65&navoid=14802";
+    "https://academiccalendars.romcmaster.ca/content.php?catoid=65&navoid=14802"
 
 const mcmasterCourseDescriptionUrl = (courseId: number) =>
-    `https://academiccalendars.romcmaster.ca/preview_course_nopop.php?catoid=65&coid=${courseId}`;
+    `https://academiccalendars.romcmaster.ca/preview_course_nopop.php?catoid=65&coid=${courseId}`
 
-export const educationVisibleThroughSemester = "2026-winter";
+export const educationVisibleThroughSemester = "2026-winter"
 
 export const navItems = [
     { name: "Home", link: "/" },
@@ -18,15 +18,15 @@ export const navItems = [
     { name: "Tech", link: "#technologies" },
     { name: "Projects", link: "#projects" },
     { name: "Contact", link: "#contact" },
-];
+]
 
-export const availableToWork = false;
+export const availableToWork = false
 
 export const aboutParagraph = `
     I'm a software engineer building my career in the tech industry.
     I specialize in full stack development.
     I am currently working as a Software Design Engineer Intern at Evertz Microsystems.
-`;
+`
 
 export const fullStackProjects = [
     {
@@ -61,14 +61,9 @@ export const fullStackProjects = [
             fullstackPics.banklerTransactionHistory,
             fullstackPics.banklerSignIn,
         ],
-        iconList: [
-            devIcons.next,
-            devIcons.react,
-            devIcons.typescript,
-            devIcons.tailwind,
-        ],
+        iconList: [devIcons.next, devIcons.react, devIcons.typescript, devIcons.tailwind],
     },
-];
+]
 
 export const learningProjectCollections = [
     {
@@ -108,12 +103,7 @@ export const learningProjectCollections = [
                 pic: projectPics.pomodoroClock,
             },
         ],
-        iconLists: [
-            devIcons.react,
-            devIcons.javascript,
-            devIcons.html,
-            devIcons.css,
-        ],
+        iconLists: [devIcons.react, devIcons.javascript, devIcons.html, devIcons.css],
     },
     {
         id: 2,
@@ -238,7 +228,7 @@ export const learningProjectCollections = [
         ],
         iconLists: [devIcons.html, devIcons.css],
     },
-];
+]
 
 export const technologies = [
     {
@@ -379,7 +369,7 @@ export const technologies = [
         homepage: "https://www.kernel.org/",
         description: "Runs dev and server environments.",
     },
-];
+]
 
 export const technologySkillTree = {
     root: {
@@ -405,13 +395,7 @@ export const technologySkillTree = {
             id: "backend",
             title: "Backend",
             summary: "APIs, services, and storage.",
-            technologies: [
-                "GraphQL",
-                "Apollo GraphQL",
-                "Node JS",
-                "MongoDB",
-                "PostgreSQL",
-            ],
+            technologies: ["GraphQL", "Apollo GraphQL", "Node JS", "MongoDB", "PostgreSQL"],
         },
         {
             id: "tooling",
@@ -423,17 +407,10 @@ export const technologySkillTree = {
             id: "misc",
             title: "Misc",
             summary: "Additional experience.",
-            technologies: [
-                "Python",
-                "Java",
-                "C#",
-                "Three JS",
-                "D3",
-                "Framer Motion",
-            ],
+            technologies: ["Python", "Java", "C#", "Three JS", "D3", "Framer Motion"],
         },
     ],
-};
+}
 
 export const experiences = [
     {
@@ -479,7 +456,7 @@ export const experiences = [
             "Learned how to use Storis, the furniture inventory management system, in order to complete my assigned tasks while still maintaining inventory accuracy.",
         ],
     },
-];
+]
 
 export const education = [
     {
@@ -667,11 +644,7 @@ export const education = [
                                 code: "SFWRENG 2AA4",
                                 name: "Software Design I - Introduction to Software Development",
                                 href: mcmasterCourseDescriptionUrl(321598),
-                                prerequisites: [
-                                    "SFWRENG 2DM3",
-                                    "SFWRENG 2OP3",
-                                    "SFWRENG 2XC3",
-                                ],
+                                prerequisites: ["SFWRENG 2DM3", "SFWRENG 2OP3", "SFWRENG 2XC3"],
                                 learned:
                                     "Learned requirements, design patterns, interfaces, implementation reviews, and verification.",
                             },
@@ -871,11 +844,7 @@ export const education = [
                                 code: "SFWRENG 4AA4",
                                 name: "Real-Time Systems and Control Applications",
                                 href: mcmasterCourseDescriptionUrl(321616),
-                                prerequisites: [
-                                    "SFWRENG 3BB4",
-                                    "SFWRENG 3SH3",
-                                    "SFWRENG 3DX4",
-                                ],
+                                prerequisites: ["SFWRENG 3BB4", "SFWRENG 3SH3", "SFWRENG 3DX4"],
                                 learned:
                                     "Planned coursework in real-time scheduling, safety classification, hazard analysis, clock synchronization, data acquisition, and control applications.",
                             },
@@ -883,11 +852,7 @@ export const education = [
                                 code: "SFWRENG 4AL3",
                                 name: "Applications of Machine Learning",
                                 href: mcmasterCourseDescriptionUrl(323367),
-                                prerequisites: [
-                                    "SFWRENG 2C03",
-                                    "SFWRENG 2AA4",
-                                    "STATS 3Y03",
-                                ],
+                                prerequisites: ["SFWRENG 2C03", "SFWRENG 2AA4", "STATS 3Y03"],
                                 learned:
                                     "Planned coursework in data engineering, supervised and unsupervised learning, neural networks, topic modelling, and reinforcement learning.",
                             },
@@ -903,11 +868,7 @@ export const education = [
                                 code: "SFWRENG 4X03",
                                 name: "Scientific Computation",
                                 href: mcmasterCourseDescriptionUrl(321893),
-                                prerequisites: [
-                                    "MATH 1ZB3",
-                                    "MATH 1ZC3",
-                                    "SFWRENG 2C03",
-                                ],
+                                prerequisites: ["MATH 1ZB3", "MATH 1ZC3", "SFWRENG 2C03"],
                                 learned:
                                     "Planned coursework in numerical methods, roundoff error, interpolation, integration, linear and nonlinear systems, eigenvalues, SVD, and ODEs.",
                             },
@@ -940,7 +901,7 @@ export const education = [
             },
         ],
     },
-];
+]
 
 export const links = [
     {
@@ -967,4 +928,4 @@ export const links = [
         img: socialIcons.document,
         link: assets.resume,
     },
-];
+]

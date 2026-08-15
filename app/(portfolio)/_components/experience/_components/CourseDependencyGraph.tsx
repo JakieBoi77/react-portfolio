@@ -1,26 +1,21 @@
-import { useMemo, useState } from "react";
-import { motion } from "framer-motion";
-import type { CSSProperties } from "react";
-import { FaArrowsAltH } from "react-icons/fa";
+import { motion } from "framer-motion"
+import type { CSSProperties } from "react"
+import { useMemo, useState } from "react"
+import { FaArrowsAltH } from "react-icons/fa"
 
-import {
-    floatInFromRightVariants,
-    getEducationPanelStyle,
-} from "../_lib/constants";
-import { createCourseGraphLayout } from "../_lib/courseGraphLayout";
-import CourseGraphSvg from "./CourseGraphSvg";
-import type { EducationLevel } from "../_lib/types";
-import { useCourseGraphScroll } from "../_lib/useCourseGraphScroll";
+import { floatInFromRightVariants, getEducationPanelStyle } from "../_lib/constants"
+import { createCourseGraphLayout } from "../_lib/courseGraphLayout"
+import type { EducationLevel } from "../_lib/types"
+import { useCourseGraphScroll } from "../_lib/useCourseGraphScroll"
+import CourseGraphSvg from "./CourseGraphSvg"
 
 type CourseDependencyGraphProps = {
-    levels: EducationLevel[];
-};
+    levels: EducationLevel[]
+}
 
 const CourseDependencyGraph = ({ levels }: CourseDependencyGraphProps) => {
-    const [hoveredCourseCode, setHoveredCourseCode] = useState<string | null>(
-        null,
-    );
-    const layout = useMemo(() => createCourseGraphLayout(levels), [levels]);
+    const [hoveredCourseCode, setHoveredCourseCode] = useState<string | null>(null)
+    const layout = useMemo(() => createCourseGraphLayout(levels), [levels])
     const {
         handleGraphClickCapture,
         handleGraphPointerDown,
@@ -30,11 +25,11 @@ const CourseDependencyGraph = ({ levels }: CourseDependencyGraphProps) => {
         scrollHintRef,
         scrollThumbRef,
         scrollTrackRef,
-    } = useCourseGraphScroll(layout.graphWidth);
+    } = useCourseGraphScroll(layout.graphWidth)
     const graphSurfaceStyle: CSSProperties = {
         width: layout.graphWidth,
-    };
-    const { style } = getEducationPanelStyle(0);
+    }
+    const { style } = getEducationPanelStyle(0)
 
     return (
         <motion.div
@@ -91,7 +86,7 @@ const CourseDependencyGraph = ({ levels }: CourseDependencyGraphProps) => {
                 />
             </div>
         </motion.div>
-    );
-};
+    )
+}
 
-export default CourseDependencyGraph;
+export default CourseDependencyGraph

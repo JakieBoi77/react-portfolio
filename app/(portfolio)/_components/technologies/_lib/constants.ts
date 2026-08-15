@@ -1,7 +1,6 @@
-import type { IconType } from "react-icons";
-import { FaCode, FaPuzzlePiece, FaServer, FaTerminal } from "react-icons/fa";
-
-import type { CSSVariableStyle } from "@components";
+import type { CSSVariableStyle } from "@components"
+import type { IconType } from "react-icons"
+import { FaCode, FaPuzzlePiece, FaServer, FaTerminal } from "react-icons/fa"
 
 export const rootGlassStyle: CSSVariableStyle = {
     "--node-accent": "var(--accent-violet)",
@@ -15,7 +14,7 @@ export const rootGlassStyle: CSSVariableStyle = {
     "--node-rim-angle": "128deg",
     "--node-noise-size": "176px 176px",
     "--node-noise-position": "12px 18px",
-};
+}
 
 export const branchGlassStyle: CSSVariableStyle = {
     "--node-bg": "rgb(var(--glass-panel) / 0.72)",
@@ -23,21 +22,21 @@ export const branchGlassStyle: CSSVariableStyle = {
     "--node-noise": "0.19",
     "--node-shadow":
         "inset 0 1px 0 rgba(255, 255, 255, 0.045), 0 1px 3px rgba(0, 0, 0, 0.16), 0 12px 30px rgba(0, 0, 0, 0.3)",
-};
+}
 
 export const branchIcons = {
     frontend: FaCode,
     backend: FaServer,
     tooling: FaTerminal,
     misc: FaPuzzlePiece,
-} satisfies Record<string, IconType>;
+} satisfies Record<string, IconType>
 
 export const branchAccents = {
     frontend: "var(--accent-sky)",
     backend: "var(--accent-rose)",
     tooling: "var(--accent-green)",
     misc: "var(--accent-purple)",
-} satisfies Record<string, string>;
+} satisfies Record<string, string>
 
 export const branchGlassTextures: Record<string, CSSVariableStyle> = {
     frontend: {
@@ -76,7 +75,7 @@ export const branchGlassTextures: Record<string, CSSVariableStyle> = {
         "--node-noise-size": "188px 188px",
         "--node-noise-position": "38px 16px",
     },
-};
+}
 
 export const technologyGlassTextures: CSSVariableStyle[] = [
     {
@@ -111,4 +110,4 @@ export const technologyGlassTextures: CSSVariableStyle[] = [
         "--tech-noise-size": "168px 168px",
         "--tech-noise-position": "42px 18px",
     },
-];
+]

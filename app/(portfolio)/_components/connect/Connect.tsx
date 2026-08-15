@@ -1,17 +1,17 @@
-"use client";
+"use client"
 
-import { SectionHeading, SectionWrapper, TypographyMuted } from "@components";
-import { motion } from "framer-motion";
-import { fadeIn } from "@/utils/motion";
+import { SectionHeading, SectionWrapper, TypographyMuted } from "@components"
+import { motion } from "framer-motion"
+import { fadeIn } from "@/utils/motion"
 
-import PrimaryContactCard from "./_components/PrimaryContactCard";
-import SocialProfileCard from "./_components/SocialProfileCard";
+import PrimaryContactCard from "./_components/PrimaryContactCard"
+import SocialProfileCard from "./_components/SocialProfileCard"
 import {
     connectPrimaryStyle,
     getConnectCardStyle,
     primaryContactProfile,
     secondaryContactProfiles,
-} from "./_lib/constants";
+} from "./_lib/constants"
 
 const Connect = () => {
     return (
@@ -38,10 +38,7 @@ const Connect = () => {
                             <SocialProfileCard
                                 key={profile.id}
                                 profile={profile}
-                                style={getConnectCardStyle(
-                                    index + 1,
-                                    profile.accent,
-                                )}
+                                style={getConnectCardStyle(index + 1, profile.accent)}
                             />
                         ))}
                     </div>
@@ -54,7 +51,7 @@ const Connect = () => {
                 </TypographyMuted>
             </div>
         </footer>
-    );
-};
+    )
+}
 
-export default SectionWrapper(Connect, "contact");
+export default SectionWrapper(Connect, "contact")

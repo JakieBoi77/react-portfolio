@@ -1,4 +1,4 @@
-import React from "react";
+import type React from "react"
 
 const MagicButton = ({
     title,
@@ -7,14 +7,15 @@ const MagicButton = ({
     handleClick,
     otherClasses,
 }: {
-    title: string;
-    icon: React.ReactNode;
-    position: string;
-    handleClick?: () => void;
-    otherClasses?: string;
+    title: string
+    icon: React.ReactNode
+    position: string
+    handleClick?: () => void
+    otherClasses?: string
 }) => {
     return (
         <button
+            type="button"
             className="relative inline-flex h-12 overflow-hidden rounded-lg p-[1px]"
             onClick={handleClick}
         >
@@ -27,7 +28,7 @@ const MagicButton = ({
                 {position === "right" && icon}
             </div>
         </button>
-    );
-};
+    )
+}
 
-export default MagicButton;
+export default MagicButton

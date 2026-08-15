@@ -1,20 +1,13 @@
-"use client";
+"use client"
 
-import {
-    useCallback,
-    useEffect,
-    useMemo,
-    useRef,
-    useState,
-} from "react";
-import { motion } from "framer-motion";
-import { FaExternalLinkAlt, FaLayerGroup } from "react-icons/fa";
-
-import { SectionHeading, SectionWrapper } from "@components";
-import type { CSSVariableStyle } from "@components";
-import { technologies, technologySkillTree } from "../../_data/portfolio";
-import { fadeIn } from "@/utils/motion";
-import { cn } from "@/lib/utils";
+import type { CSSVariableStyle } from "@components"
+import { SectionHeading, SectionWrapper } from "@components"
+import { motion } from "framer-motion"
+import { useCallback, useEffect, useMemo, useRef, useState } from "react"
+import { FaExternalLinkAlt, FaLayerGroup } from "react-icons/fa"
+import { cn } from "@/lib/utils"
+import { fadeIn } from "@/utils/motion"
+import { technologies, technologySkillTree } from "../../_data/portfolio"
 import {
     branchAccents,
     branchGlassStyle,
@@ -22,111 +15,102 @@ import {
     branchIcons,
     rootGlassStyle,
     technologyGlassTextures,
-} from "./_lib/constants";
+} from "./_lib/constants"
 
 const Technologies = () => {
-    const treeRef = useRef<HTMLDivElement | null>(null);
-    const rootRef = useRef<HTMLDivElement | null>(null);
-    const branchRefs = useRef<Record<string, HTMLButtonElement | null>>({});
-    const connectorRefs = useRef<Record<string, SVGPathElement | null>>({});
+    const treeRef = useRef<HTMLDivElement | null>(null)
+    const rootRef = useRef<HTMLDivElement | null>(null)
+    const branchRefs = useRef<Record<string, HTMLButtonElement | null>>({})
+    const connectorRefs = useRef<Record<string, SVGPathElement | null>>({})
 
-    const [selectedBranchId, setSelectedBranchId] = useState(
-        technologySkillTree.branches[0].id,
-    );
+    const [selectedBranchId, setSelectedBranchId] = useState(technologySkillTree.branches[0].id)
 
     const selectedBranch =
-        technologySkillTree.branches.find(
-            (branch) => branch.id === selectedBranchId,
-        ) ?? technologySkillTree.branches[0];
+        technologySkillTree.branches.find((branch) => branch.id === selectedBranchId) ??
+        technologySkillTree.branches[0]
 
     const selectedTechnologies = useMemo(
         () =>
             selectedBranch.technologies
                 .map((technologyName) =>
-                    technologies.find(
-                        (technology) => technology.name === technologyName,
-                    ),
+                    technologies.find((technology) => technology.name === technologyName),
                 )
-                .filter(
-                    (technology): technology is (typeof technologies)[number] =>
-                        Boolean(technology),
+                .filter((technology): technology is (typeof technologies)[number] =>
+                    Boolean(technology),
                 ),
         [selectedBranch],
-    );
+    )
 
     const setBranchRef = useCallback(
         (branchId: string) => (node: HTMLButtonElement | null) => {
-            branchRefs.current[branchId] = node;
+            branchRefs.current[branchId] = node
         },
         [],
-    );
+    )
 
     const setConnectorRef = useCallback(
         (branchId: string) => (node: SVGPathElement | null) => {
-            connectorRefs.current[branchId] = node;
+            connectorRefs.current[branchId] = node
         },
         [],
-    );
+    )
 
     useEffect(() => {
-        let animationFrame = 0;
+        let animationFrame = 0
 
         const updateConnectors = () => {
-            const tree = treeRef.current;
-            const root = rootRef.current;
+            const tree = treeRef.current
+            const root = rootRef.current
 
             if (!tree || !root) {
-                return;
+                return
             }
 
-            const treeRect = tree.getBoundingClientRect();
-            const rootRect = root.getBoundingClientRect();
-            const startX = rootRect.left + rootRect.width / 2 - treeRect.left;
-            const startY = rootRect.bottom - treeRect.top;
+            const treeRect = tree.getBoundingClientRect()
+            const rootRect = root.getBoundingClientRect()
+            const startX = rootRect.left + rootRect.width / 2 - treeRect.left
+            const startY = rootRect.bottom - treeRect.top
 
             technologySkillTree.branches.forEach((branch) => {
-                const branchNode = branchRefs.current[branch.id];
-                const connector = connectorRefs.current[branch.id];
+                const branchNode = branchRefs.current[branch.id]
+                const connector = connectorRefs.current[branch.id]
 
                 if (!branchNode || !connector) {
-                    return;
+                    return
                 }
 
-                const branchRect = branchNode.getBoundingClientRect();
-                const endX =
-                    branchRect.left + branchRect.width / 2 - treeRect.left;
-                const endY = branchRect.top - treeRect.top;
-                const distanceY = Math.max(48, endY - startY);
-                const controlY = startY + distanceY * 0.55;
+                const branchRect = branchNode.getBoundingClientRect()
+                const endX = branchRect.left + branchRect.width / 2 - treeRect.left
+                const endY = branchRect.top - treeRect.top
+                const distanceY = Math.max(48, endY - startY)
+                const controlY = startY + distanceY * 0.55
                 const accent =
-                    branchAccents[branch.id as keyof typeof branchAccents] ??
-                    "var(--accent-violet)";
+                    branchAccents[branch.id as keyof typeof branchAccents] ?? "var(--accent-violet)"
 
                 connector.setAttribute(
                     "d",
                     `M ${startX} ${startY} C ${startX} ${controlY}, ${endX} ${controlY}, ${endX} ${endY}`,
-                );
-                connector.style.setProperty("--branch-accent", accent);
-            });
-        };
+                )
+                connector.style.setProperty("--branch-accent", accent)
+            })
+        }
 
         const scheduleUpdate = () => {
-            cancelAnimationFrame(animationFrame);
-            animationFrame = requestAnimationFrame(updateConnectors);
-        };
+            cancelAnimationFrame(animationFrame)
+            animationFrame = requestAnimationFrame(updateConnectors)
+        }
 
-        scheduleUpdate();
-        window.addEventListener("resize", scheduleUpdate);
+        scheduleUpdate()
+        window.addEventListener("resize", scheduleUpdate)
 
         return () => {
-            cancelAnimationFrame(animationFrame);
-            window.removeEventListener("resize", scheduleUpdate);
-        };
-    }, []);
+            cancelAnimationFrame(animationFrame)
+            window.removeEventListener("resize", scheduleUpdate)
+        }
+    }, [])
 
     const selectedAccent =
-        branchAccents[selectedBranch.id as keyof typeof branchAccents] ??
-        "var(--accent-violet)";
+        branchAccents[selectedBranch.id as keyof typeof branchAccents] ?? "var(--accent-violet)"
 
     return (
         <div className="w-full">
@@ -160,15 +144,11 @@ const Technologies = () => {
                                 }
                                 className={cn(
                                     "transition-opacity duration-300",
-                                    branch.id === selectedBranchId
-                                        ? "opacity-100"
-                                        : "opacity-35",
+                                    branch.id === selectedBranchId ? "opacity-100" : "opacity-35",
                                 )}
                                 fill="none"
                                 stroke="rgb(var(--branch-accent) / 0.72)"
-                                strokeWidth={
-                                    branch.id === selectedBranchId ? 1.6 : 1.1
-                                }
+                                strokeWidth={branch.id === selectedBranchId ? 1.6 : 1.1}
                                 strokeLinecap="round"
                             />
                         ))}
@@ -199,24 +179,18 @@ const Technologies = () => {
 
                     <div className="relative z-10 grid gap-3 pt-14 sm:grid-cols-2 lg:grid-cols-4">
                         {technologySkillTree.branches.map((branch) => {
-                            const isSelected = branch.id === selectedBranch.id;
-                            const BranchIcon =
-                                branchIcons[
-                                    branch.id as keyof typeof branchIcons
-                                ];
+                            const isSelected = branch.id === selectedBranch.id
+                            const BranchIcon = branchIcons[branch.id as keyof typeof branchIcons]
                             const branchAccent =
-                                branchAccents[
-                                    branch.id as keyof typeof branchAccents
-                                ] ?? "var(--accent-violet)";
+                                branchAccents[branch.id as keyof typeof branchAccents] ??
+                                "var(--accent-violet)"
 
                             return (
                                 <button
                                     key={branch.id}
                                     ref={setBranchRef(branch.id)}
                                     type="button"
-                                    onClick={() =>
-                                        setSelectedBranchId(branch.id)
-                                    }
+                                    onClick={() => setSelectedBranchId(branch.id)}
                                     className={cn(
                                         "glassy-node min-h-24 text-left transition duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300",
                                         isSelected
@@ -238,10 +212,7 @@ const Technologies = () => {
                                 >
                                     <span className="flex gap-3 py-2.5 pl-3.5 pr-2.5">
                                         <span className="grid size-11 shrink-0 place-items-center rounded-lg border border-[rgb(var(--node-accent)/0.34)] bg-[rgb(var(--node-accent)/0.1)] text-[rgb(var(--node-accent))]">
-                                            <BranchIcon
-                                                aria-hidden="true"
-                                                className="size-6"
-                                            />
+                                            <BranchIcon aria-hidden="true" className="size-6" />
                                         </span>
                                         <span className="min-w-0">
                                             <span className="block text-sm font-semibold leading-5 tracking-normal text-white">
@@ -253,7 +224,7 @@ const Technologies = () => {
                                         </span>
                                     </span>
                                 </button>
-                            );
+                            )
                         })}
                     </div>
                 </div>
@@ -276,9 +247,7 @@ const Technologies = () => {
                     <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
                         {selectedTechnologies.map((technology, index) => {
                             const texture =
-                                technologyGlassTextures[
-                                    index % technologyGlassTextures.length
-                                ];
+                                technologyGlassTextures[index % technologyGlassTextures.length]
 
                             return (
                                 <a
@@ -314,13 +283,13 @@ const Technologies = () => {
                                         <FaExternalLinkAlt className="size-3" />
                                     </span>
                                 </a>
-                            );
+                            )
                         })}
                     </div>
                 </div>
             </motion.div>
         </div>
-    );
-};
+    )
+}
 
-export default SectionWrapper(Technologies, "technologies");
+export default SectionWrapper(Technologies, "technologies")

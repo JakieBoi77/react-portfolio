@@ -409,7 +409,7 @@ export const regular = {
             author: "Zig Ziglar",
         },
     ],
-};
+}
 
 export const fortnite = {
     quotes: [
@@ -598,4 +598,4 @@ export const fortnite = {
             author: "Nik Eh 15",
         },
     ],
-};
+}

@@ -1,6 +1,6 @@
-import React, { useEffect, useMemo, useState } from "react";
-import * as d3 from "d3";
-import styled from "styled-components";
+import * as d3 from "d3"
+import { useEffect, useMemo, useState } from "react"
+import styled from "styled-components"
 
 const StyledDiv = styled.div`
     min-height: 1500px;
@@ -62,7 +62,14 @@ const StyledDiv = styled.div`
         white-space: nowrap;
         color: white;
     }
-`;
+`
+
+type TreemapDatum = {
+    name: string
+    category?: string
+    value?: number
+    children?: TreemapDatum[]
+}
 
 const TreemapDiagram = () => {
     const datasets = useMemo(
@@ -70,15 +77,13 @@ const TreemapDiagram = () => {
             {
                 name: "videogames",
                 title: "Video Game Sales",
-                description:
-                    "Top 100 Most Sold Video Games Grouped by Platform",
+                description: "Top 100 Most Sold Video Games Grouped by Platform",
                 url: "https://cdn.freecodecamp.org/testable-projects-fcc/data/tree_map/video-game-sales-data.json",
             },
             {
                 name: "kickstarter",
                 title: "Kickstarter Pledges",
-                description:
-                    "Top 100 Most Pledged Kickstarter Campaigns Grouped By Category",
+                description: "Top 100 Most Pledged Kickstarter Campaigns Grouped By Category",
                 url: "https://cdn.freecodecamp.org/testable-projects-fcc/data/tree_map/kickstarter-funding-data.json",
             },
             {
@@ -89,29 +94,29 @@ const TreemapDiagram = () => {
             },
         ],
         [],
-    );
+    )
 
-    const [currentDataset, setCurrentDataset] = useState<number>(0);
-    const [dataset, setDataset] = useState<any>(null);
+    const [currentDataset, setCurrentDataset] = useState<number>(0)
+    const [dataset, setDataset] = useState<TreemapDatum | null>(null)
 
     // Fetch the new dataset when the current dataset is switched
     useEffect(() => {
         const fetchData = async (datasetIndex: number) => {
             try {
-                const response = await fetch(datasets[datasetIndex].url);
-                const json = await response.json();
-                setDataset(json);
+                const response = await fetch(datasets[datasetIndex].url)
+                const json = await response.json()
+                setDataset(json)
             } catch (err) {
-                console.error("Error fetching data:", err);
-                setDataset(null);
+                console.error("Error fetching data:", err)
+                setDataset(null)
             }
-        };
-        fetchData(currentDataset);
-    }, [currentDataset, datasets]);
+        }
+        fetchData(currentDataset)
+    }, [currentDataset, datasets])
 
     // Render the new dataset when the current dataset is switched
     useEffect(() => {
-        if (!dataset) return;
+        if (!dataset) return
 
         // Colors
         const colors = [
@@ -135,28 +140,25 @@ const TreemapDiagram = () => {
             "#dbdb8d",
             "#17becf",
             "#9edae5",
-        ];
+        ]
 
-        const colorScale = d3.scaleOrdinal<string>().range(colors);
+        const colorScale = d3.scaleOrdinal<string>().range(colors)
 
         // Title
-        d3.select(".chart")
-            .append("h1")
-            .attr("id", "title")
-            .text(datasets[currentDataset].title);
+        d3.select(".chart").append("h1").attr("id", "title").text(datasets[currentDataset].title)
 
         // Description
         d3.select(".chart")
             .append("h4")
             .attr("id", "description")
-            .text(datasets[currentDataset].description);
+            .text(datasets[currentDataset].description)
 
         // Define SVG
-        const margin = { top: 30, right: 50, bottom: 50, left: 50 };
-        const fullWidth = 2000;
-        const fullHeight = 1000;
-        const width = fullWidth - margin.right - margin.left;
-        const height = fullHeight - margin.top - margin.bottom;
+        const margin = { top: 30, right: 50, bottom: 50, left: 50 }
+        const fullWidth = 2000
+        const fullHeight = 1000
+        const width = fullWidth - margin.right - margin.left
+        const height = fullHeight - margin.top - margin.bottom
 
         // Define SVG
         const svg = d3
@@ -165,61 +167,51 @@ const TreemapDiagram = () => {
             .attr("width", fullWidth)
             .attr("height", fullHeight)
             .append("g")
-            .attr(
-                "transform",
-                "translate(" + margin.left + "," + margin.top + ")",
-            );
+            .attr("transform", `translate(${margin.left},${margin.top})`)
 
         // Hierarchy
-        function sumBySize(d: any) {
-            return d.value;
+        function sumBySize(d: TreemapDatum) {
+            return d.value ?? 0
         }
 
         const root = d3
-            .hierarchy<any>(dataset)
+            .hierarchy<TreemapDatum>(dataset)
             .sum(sumBySize)
-            .sort((a: any, b: any) => b.height - a.height || b.value - a.value);
+            .sort((a, b) => (b.height ?? 0) - (a.height ?? 0) || (b.value ?? 0) - (a.value ?? 0))
 
         // Treemap
-        const treemap = d3.treemap().size([width, height]).paddingInner(1);
+        const treemap = d3.treemap<TreemapDatum>().size([width, height]).paddingInner(1)
 
-        treemap(root);
+        const layoutRoot = treemap(root)
 
         // Cells
         const cell = svg
             .selectAll("g")
-            .data(root.leaves())
+            .data(layoutRoot.leaves())
             .enter()
             .append("g")
-            .attr(
-                "transform",
-                (d: any) => "translate(" + d.x0 + ", " + d.y0 + ")",
-            );
+            .attr("transform", (d) => `translate(${d.x0}, ${d.y0})`)
 
         // Cell Data, Color, and Tooltip
-        const tooltip = d3
-            .select(".chart")
-            .append("div")
-            .attr("id", "tooltip")
-            .style("opacity", 0);
+        const tooltip = d3.select(".chart").append("div").attr("id", "tooltip").style("opacity", 0)
 
         cell.append("rect")
             .attr("class", "tile")
-            .attr("width", (d: any) => d.x1 - d.x0)
-            .attr("height", (d: any) => d.y1 - d.y0)
+            .attr("width", (d) => d.x1 - d.x0)
+            .attr("height", (d) => d.y1 - d.y0)
             .attr("data-name", (d) => d.data.name)
-            .attr("data-category", (d) => d.data.category)
-            .attr("data-value", (d) => d.data.value)
-            .attr("fill", (d) => colorScale(d.data.category))
-            .on("mousemove", function (event, d) {
-                const container = document.querySelector(".chart");
-                if (!container) return;
-                const containerRect = container.getBoundingClientRect();
-                const tooltipX = event.clientX - containerRect.left;
-                const tooltipY = event.clientY - containerRect.top;
+            .attr("data-category", (d) => d.data.category ?? "")
+            .attr("data-value", (d) => d.data.value ?? 0)
+            .attr("fill", (d) => colorScale(d.data.category ?? ""))
+            .on("mousemove", (event, d) => {
+                const container = document.querySelector(".chart")
+                if (!container) return
+                const containerRect = container.getBoundingClientRect()
+                const tooltipX = event.clientX - containerRect.left
+                const tooltipY = event.clientY - containerRect.top
                 tooltip
                     .style("opacity", 0.9)
-                    .attr("data-value", d.data.value)
+                    .attr("data-value", d.data.value ?? 0)
                     .html(
                         "Name: " +
                             d.data.name +
@@ -228,50 +220,48 @@ const TreemapDiagram = () => {
                             "<br>Value: " +
                             d.data.value,
                     )
-                    .style("left", tooltipX + 40 + "px")
-                    .style("top", tooltipY + "px");
+                    .style("left", `${tooltipX + 40}px`)
+                    .style("top", `${tooltipY}px`)
             })
-            .on("mouseout", function () {
-                tooltip.style("opacity", 0);
-            });
+            .on("mouseout", () => {
+                tooltip.style("opacity", 0)
+            })
 
         cell.append("foreignObject")
             .style("pointer-events", "none")
             .attr("x", 0)
             .attr("y", 0)
-            .attr("width", (d: any) => d.x1 - d.x0)
-            .attr("height", (d: any) => d.y1 - d.y0)
+            .attr("width", (d) => d.x1 - d.x0)
+            .attr("height", (d) => d.y1 - d.y0)
             .append("xhtml:div")
             .attr("class", "text-box")
-            .text((d) => d.data.name);
+            .text((d) => d.data.name)
 
         // Legend
-        const categories = root
+        const categories = layoutRoot
             .leaves()
-            .map((nodes) => nodes.data.category)
-            .filter(
-                (category, index, self) => self.indexOf(category) === index,
-            );
+            .map((node) => node.data.category ?? "")
+            .filter((category, index, self) => self.indexOf(category) === index)
 
-        const legendWidth = 1200;
-        const legendOffset = 10;
-        const legendRectSize = 30;
-        const legendSpacingX = 150;
-        const legendSpacingY = 10;
-        const legendTextOffsetX = 5;
-        const legendTextOffsetY = -8;
+        const legendWidth = 1200
+        const legendOffset = 10
+        const legendRectSize = 30
+        const legendSpacingX = 150
+        const legendSpacingY = 10
+        const legendTextOffsetX = 5
+        const legendTextOffsetY = -8
 
-        const legendElementsPerRow = Math.floor(legendWidth / legendSpacingX);
+        const legendElementsPerRow = Math.floor(legendWidth / legendSpacingX)
 
         const legend = d3
             .select(".chart")
             .append("svg")
             .attr("width", legendWidth)
-            .attr("id", "legend");
+            .attr("id", "legend")
 
         const legendElement = legend
             .append("g")
-            .attr("transform", "translate(60, " + legendOffset + ")")
+            .attr("transform", `translate(60, ${legendOffset})`)
             .selectAll("g")
             .data(categories)
             .enter()
@@ -284,31 +274,31 @@ const TreemapDiagram = () => {
                     (Math.floor(i / legendElementsPerRow) * legendRectSize +
                         legendSpacingY * Math.floor(i / legendElementsPerRow)) +
                     ")"
-                );
-            });
+                )
+            })
 
         legendElement
             .append("rect")
             .attr("class", "legend-item")
             .attr("width", legendRectSize)
             .attr("height", legendRectSize)
-            .attr("fill", (d) => colorScale(d));
+            .attr("fill", (d) => colorScale(d))
 
         legendElement
             .append("text")
             .attr("x", legendRectSize + legendTextOffsetX)
             .attr("y", legendRectSize + legendTextOffsetY)
-            .text((d) => d);
+            .text((d) => d)
 
         return () => {
-            d3.select(".chart").selectAll("*").remove();
-        };
-    }, [dataset, currentDataset, datasets]);
+            d3.select(".chart").selectAll("*").remove()
+        }
+    }, [dataset, currentDataset, datasets])
 
     // Handle the switching datasets
-    const handleChange = (event: any) => {
-        setCurrentDataset(event.target.value);
-    };
+    const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+        setCurrentDataset(Number(event.target.value))
+    }
 
     return (
         <StyledDiv>
@@ -316,16 +306,16 @@ const TreemapDiagram = () => {
                 <select value={currentDataset} onChange={handleChange}>
                     {datasets.map((dataset, index) => {
                         return (
-                            <option key={index} value={index}>
+                            <option key={dataset.title} value={index}>
                                 {dataset.title}
                             </option>
-                        );
+                        )
                     })}
                 </select>
                 <div className="chart"></div>
             </div>
         </StyledDiv>
-    );
-};
+    )
+}
 
-export default TreemapDiagram;
+export default TreemapDiagram

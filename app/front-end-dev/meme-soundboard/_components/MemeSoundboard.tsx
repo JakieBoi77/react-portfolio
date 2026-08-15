@@ -1,10 +1,10 @@
-import styled from "styled-components";
-import React, { useState, useEffect } from "react";
+import { useEffect, useState } from "react"
+import styled from "styled-components"
 
 interface Sound {
-    desc: string;
-    id: string;
-    path: string;
+    desc: string
+    id: string
+    path: string
 }
 
 const sounds: Record<string, Sound> = {
@@ -53,7 +53,7 @@ const sounds: Record<string, Sound> = {
         id: "lego-yoda-death",
         path: "/sounds/lego-yoda-death.mp3",
     },
-};
+}
 
 const StyledDiv = styled.div`
     position: fixed;
@@ -109,6 +109,10 @@ const StyledDiv = styled.div`
         align-items: center;
         cursor: pointer;
         box-shadow: 3px 3px 2px;
+        background: none;
+        font: inherit;
+        color: inherit;
+        padding: 0;
     }
 
     .drum-pad:hover {
@@ -152,61 +156,57 @@ const StyledDiv = styled.div`
     #volume {
         margin: 5px;
     }
-`;
+`
 
 export default function MemeSoundboard() {
     return (
         <StyledDiv>
             <UnstyledMemeSoundboard />
         </StyledDiv>
-    );
+    )
 }
 
 const UnstyledMemeSoundboard = () => {
-    const [soundDesc, setSoundDesc] = useState("");
-    const [soundVolume, setVolume] = useState(0.5);
+    const [soundDesc, setSoundDesc] = useState("")
+    const [soundVolume, setVolume] = useState(0.5)
 
     // Handle Keyboard Input
     useEffect(() => {
-        const handleKeyDown = (event: any) => {
-            const key = event.key.toUpperCase();
-            const sound = sounds[key];
+        const handleKeyDown = (event: KeyboardEvent) => {
+            const key = event.key.toUpperCase()
+            const sound = sounds[key]
             if (sound) {
-                const audioElement = document.getElementById(
-                    key,
-                ) as HTMLAudioElement;
+                const audioElement = document.getElementById(key) as HTMLAudioElement
                 if (audioElement) {
-                    audioElement.volume = soundVolume;
-                    audioElement.play();
-                    setSoundDesc(sound.desc);
+                    audioElement.volume = soundVolume
+                    audioElement.play()
+                    setSoundDesc(sound.desc)
                 }
             }
-        };
-        document.addEventListener("keydown", handleKeyDown);
+        }
+        document.addEventListener("keydown", handleKeyDown)
         return () => {
-            document.removeEventListener("keydown", handleKeyDown);
-        };
-    }, [soundVolume]);
+            document.removeEventListener("keydown", handleKeyDown)
+        }
+    }, [soundVolume])
 
     // Handle Mouse Input
-    const handleClick = (letter: any) => {
-        const sound = sounds[letter];
+    const handleClick = (letter: string) => {
+        const sound = sounds[letter]
         if (sound) {
-            const audioElement = document.getElementById(
-                letter,
-            ) as HTMLAudioElement;
+            const audioElement = document.getElementById(letter) as HTMLAudioElement
             if (audioElement) {
-                audioElement.volume = soundVolume;
-                audioElement.play();
-                setSoundDesc(sound.desc);
+                audioElement.volume = soundVolume
+                audioElement.play()
+                setSoundDesc(sound.desc)
             }
         }
-    };
+    }
 
     // Handle Volume Change
-    const handleVolumeChange = (event: any) => {
-        setVolume(event.target.value);
-    };
+    const handleVolumeChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setVolume(Number(event.target.value))
+    }
 
     return (
         <div id="meme-soundboard">
@@ -220,68 +220,95 @@ const UnstyledMemeSoundboard = () => {
                 />
             </div>
         </div>
-    );
-};
+    )
+}
 
-function SoundPanel(props: any) {
+type SoundPanelProps = {
+    click: (letter: string) => void
+}
+
+function SoundPanel(props: SoundPanelProps) {
     return (
         <div id="sound-container">
             {Object.keys(sounds).map((key) => (
                 <Sound key={key} letter={key} click={props.click} />
             ))}
         </div>
-    );
+    )
 }
 
-function Sound(props: any) {
+type SoundProps = {
+    letter: string
+    click: (letter: string) => void
+}
+
+function Sound(props: SoundProps) {
     return (
-        <div
+        <button
+            type="button"
             className="drum-pad"
             id={sounds[props.letter].id}
             onClick={() => props.click(props.letter)}
         >
             <p className="sound-letter">{props.letter}</p>
-            <audio
-                className="clip"
-                id={props.letter}
-                src={sounds[props.letter].path}
-            ></audio>
-        </div>
-    );
+            {/* biome-ignore lint/a11y/useMediaCaption: short sound-effect clip, not spoken dialogue */}
+            <audio className="clip" id={props.letter} src={sounds[props.letter].path}></audio>
+        </button>
+    )
 }
 
-function SidePanel(props: any) {
+type SidePanelProps = {
+    desc: string
+    volume: number
+    volumeChange: (event: React.ChangeEvent<HTMLInputElement>) => void
+}
+
+function SidePanel(props: SidePanelProps) {
     return (
         <div id="side-panel">
             <Display desc={props.desc} />
             <Controls volume={props.volume} volumeChange={props.volumeChange} />
         </div>
-    );
+    )
 }
 
-function Display(props: any) {
+type DisplayProps = {
+    desc: string
+}
+
+function Display(props: DisplayProps) {
     return (
         <div id="display-box">
             <p id="display">{props.desc}</p>
         </div>
-    );
+    )
 }
 
-function Controls(props: any) {
+type ControlsProps = {
+    volume: number
+    volumeChange: (event: React.ChangeEvent<HTMLInputElement>) => void
+}
+
+function Controls(props: ControlsProps) {
     return (
         <div id="controls-box">
             <Switch />
             <Switch />
             <Slider volume={props.volume} volumeChange={props.volumeChange} />
         </div>
-    );
+    )
 }
 
 function Switch() {
-    return <div className="switch-box"></div>;
+    return <div className="switch-box"></div>
 }
 
-function Slider(props: any) {
+type SliderProps = {
+    volume: number
+    volumeChange: (event: React.ChangeEvent<HTMLInputElement>) => void
+}
+
+function Slider(props: SliderProps) {
     return (
         <div className="slider-box">
             <input
@@ -295,5 +322,5 @@ function Slider(props: any) {
             />
             <span id="volume">Volume: {Math.round(props.volume * 100)}</span>
         </div>
-    );
+    )
 }

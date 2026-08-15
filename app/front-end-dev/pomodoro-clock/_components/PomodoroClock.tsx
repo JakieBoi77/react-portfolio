@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import React, { useState, useRef, useEffect } from "react";
+import { useEffect, useRef, useState } from "react"
+import styled from "styled-components"
 
 const StyledDiv = styled.div`
     position: fixed;
@@ -51,7 +51,8 @@ const StyledDiv = styled.div`
         margin: 5px;
     }
 
-    .selector-box p {
+    .selector-box p,
+    .selector-box button {
         display: flex;
         align-items: center;
         justify-content: center;
@@ -63,6 +64,9 @@ const StyledDiv = styled.div`
     }
 
     .clickable {
+        border: none;
+        font: inherit;
+        padding: 0;
         cursor: pointer;
     }
 
@@ -97,116 +101,116 @@ const StyledDiv = styled.div`
         background-color: white;
         color: #80d981;
         border-radius: 5px;
+        border: none;
+        font: inherit;
+        padding: 0;
     }
 
     .control-box:hover {
         cursor: pointer;
     }
-`;
+`
+
+type TimerType = "break" | "session"
 
 export default function PomodoroClock() {
     return (
         <StyledDiv>
             <UnstyledPomodoroClock />
         </StyledDiv>
-    );
+    )
 }
 
 const UnstyledPomodoroClock = () => {
-    const [breakValue, setBreakValue] = useState(5);
-    const [sessionValue, setSessionValue] = useState(25);
-    const [timerType, setTimerType] = useState("Session");
-    const [minutesLeft, setMinutesLeft] = useState(25);
-    const [secondsLeft, setSecondsLeft] = useState(0);
-    const [isActive, setIsActive] = useState(false);
-    const [isEnd, setIsEnd] = useState(false);
+    const [breakValue, setBreakValue] = useState(5)
+    const [sessionValue, setSessionValue] = useState(25)
+    const [timerType, setTimerType] = useState("Session")
+    const [minutesLeft, setMinutesLeft] = useState(25)
+    const [secondsLeft, setSecondsLeft] = useState(0)
+    const [isActive, setIsActive] = useState(false)
+    const [isEnd, setIsEnd] = useState(false)
 
-    const audioRef = useRef<HTMLAudioElement | null>(null);
+    const audioRef = useRef<HTMLAudioElement | null>(null)
 
     const handleReset = () => {
-        setBreakValue(5);
-        setSessionValue(25);
-        setTimerType("Session");
-        setMinutesLeft(25);
-        setSecondsLeft(0);
-        setIsActive(false);
-        audioRef.current!.pause();
-        audioRef.current!.currentTime = 0;
-        setIsEnd(false);
-    };
+        setBreakValue(5)
+        setSessionValue(25)
+        setTimerType("Session")
+        setMinutesLeft(25)
+        setSecondsLeft(0)
+        setIsActive(false)
+        audioRef.current?.pause()
+        if (audioRef.current) {
+            audioRef.current.currentTime = 0
+        }
+        setIsEnd(false)
+    }
 
     const handleStartStop = () => {
-        setIsActive(!isActive);
-    };
+        setIsActive(!isActive)
+    }
 
     useEffect(() => {
-        let interval: any;
+        let interval: ReturnType<typeof setInterval> | undefined
         if (isActive) {
             interval = setInterval(() => {
                 if (isEnd) {
-                    setIsEnd(false);
+                    setIsEnd(false)
                     if (timerType === "Session") {
-                        setTimerType("Break");
-                        setMinutesLeft(breakValue);
-                        setSecondsLeft(0);
+                        setTimerType("Break")
+                        setMinutesLeft(breakValue)
+                        setSecondsLeft(0)
                     } else if (timerType === "Break") {
-                        setTimerType("Session");
-                        setMinutesLeft(sessionValue);
-                        setSecondsLeft(0);
+                        setTimerType("Session")
+                        setMinutesLeft(sessionValue)
+                        setSecondsLeft(0)
                     }
                 } else if (secondsLeft === 0) {
                     if (minutesLeft === 0) {
-                        setIsEnd(true);
+                        setIsEnd(true)
                     } else {
-                        setMinutesLeft(minutesLeft - 1);
-                        setSecondsLeft(59);
+                        setMinutesLeft(minutesLeft - 1)
+                        setSecondsLeft(59)
                     }
                 } else {
-                    setSecondsLeft(secondsLeft - 1);
+                    setSecondsLeft(secondsLeft - 1)
                     if (minutesLeft === 0 && secondsLeft - 1 === 0) {
-                        audioRef.current!.play();
+                        audioRef.current?.play()
                     }
                 }
-            }, 1000);
+            }, 1000)
         } else {
-            clearInterval(interval);
+            clearInterval(interval)
         }
-        return () => clearInterval(interval);
-    }, [
-        isActive,
-        secondsLeft,
-        minutesLeft,
-        timerType,
-        breakValue,
-        sessionValue,
-        isEnd,
-    ]);
+        return () => clearInterval(interval)
+    }, [isActive, secondsLeft, minutesLeft, timerType, breakValue, sessionValue, isEnd])
 
-    const handleIncrement = (type: any) => {
+    const handleIncrement = (type: TimerType) => {
         if (type === "break" && breakValue < 60) {
-            setBreakValue(breakValue + 1);
+            setBreakValue(breakValue + 1)
         } else if (type === "session" && sessionValue < 60) {
             if (!isActive) {
-                setMinutesLeft(sessionValue + 1);
+                setMinutesLeft(sessionValue + 1)
             }
-            setSessionValue(sessionValue + 1);
+            setSessionValue(sessionValue + 1)
         }
-    };
+    }
 
-    const handleDecrement = (type: any) => {
+    const handleDecrement = (type: TimerType) => {
         if (type === "break" && breakValue > 1) {
-            setBreakValue(breakValue - 1);
+            setBreakValue(breakValue - 1)
         } else if (type === "session" && sessionValue > 1) {
             if (!isActive) {
-                setMinutesLeft(sessionValue - 1);
+                setMinutesLeft(sessionValue - 1)
             }
-            setSessionValue(sessionValue - 1);
+            setSessionValue(sessionValue - 1)
         }
-    };
+    }
 
     return (
         <div id="pomodoro-clock">
             <h1 id="title">25 + 5 Clock</h1>
+            {/* biome-ignore lint/a11y/useMediaCaption: short sound-effect clip, not spoken dialogue */}
             <audio ref={audioRef} id="beep" src="/sounds/vine-boom.mp3"></audio>
             <SelectorPanel
                 breakValue={breakValue}
@@ -214,21 +218,20 @@ const UnstyledPomodoroClock = () => {
                 increment={handleIncrement}
                 decrement={handleDecrement}
             />
-            <Timer
-                timerType={timerType}
-                minutesLeft={minutesLeft}
-                secondsLeft={secondsLeft}
-            />
-            <Controls
-                reset={handleReset}
-                startStop={handleStartStop}
-                isActive={isActive}
-            />
+            <Timer timerType={timerType} minutesLeft={minutesLeft} secondsLeft={secondsLeft} />
+            <Controls reset={handleReset} startStop={handleStartStop} isActive={isActive} />
         </div>
-    );
-};
+    )
+}
 
-function SelectorPanel(props: any) {
+type SelectorPanelProps = {
+    breakValue: number
+    sessionValue: number
+    increment: (type: TimerType) => void
+    decrement: (type: TimerType) => void
+}
+
+function SelectorPanel(props: SelectorPanelProps) {
     return (
         <div id="selector-panel">
             <TimeSelector
@@ -246,10 +249,18 @@ function SelectorPanel(props: any) {
                 decrement={props.decrement}
             />
         </div>
-    );
+    )
 }
 
-function TimeSelector(props: any) {
+type TimeSelectorProps = {
+    type: TimerType
+    name: string
+    value: number
+    increment: (type: TimerType) => void
+    decrement: (type: TimerType) => void
+}
+
+function TimeSelector(props: TimeSelectorProps) {
     return (
         <div className="time-selector-box">
             <h2 id={`${props.type}-label`}>{props.name}</h2>
@@ -260,43 +271,64 @@ function TimeSelector(props: any) {
                 decrement={props.decrement}
             />
         </div>
-    );
+    )
 }
 
-function Selector(props: any) {
+type SelectorProps = {
+    type: TimerType
+    value: number
+    increment: (type: TimerType) => void
+    decrement: (type: TimerType) => void
+}
+
+function Selector(props: SelectorProps) {
     return (
         <div className="selector-box">
-            <p
+            <button
+                type="button"
                 className="clickable"
                 id={`${props.type}-decrement`}
                 onClick={() => props.decrement(props.type)}
             >
                 -
-            </p>
+            </button>
             <p id={`${props.type}-length`}>{props.value}</p>
-            <p
+            <button
+                type="button"
                 className="clickable"
                 id={`${props.type}-increment`}
                 onClick={() => props.increment(props.type)}
             >
                 +
-            </p>
+            </button>
         </div>
-    );
+    )
 }
 
-function Timer(props: any) {
+type TimerProps = {
+    timerType: string
+    minutesLeft: number
+    secondsLeft: number
+}
+
+function Timer(props: TimerProps) {
     return (
         <div id="timer-box">
             <h2 id="timer-label">{props.timerType}</h2>
             <p id="time-left">
-                {`${props.minutesLeft < 10 ? "0" + props.minutesLeft : props.minutesLeft}:${props.secondsLeft < 10 ? "0" + props.secondsLeft : props.secondsLeft}`}
+                {`${props.minutesLeft < 10 ? `0${props.minutesLeft}` : props.minutesLeft}:${props.secondsLeft < 10 ? `0${props.secondsLeft}` : props.secondsLeft}`}
             </p>
         </div>
-    );
+    )
 }
 
-function Controls(props: any) {
+type ControlsProps = {
+    reset: () => void
+    startStop: () => void
+    isActive: boolean
+}
+
+function Controls(props: ControlsProps) {
     return (
         <div id="controls-box">
             <Control
@@ -306,13 +338,19 @@ function Controls(props: any) {
             />
             <Control type="reset" name="Reset" click={props.reset} />
         </div>
-    );
+    )
 }
 
-function Control(props: any) {
+type ControlProps = {
+    type: string
+    name: string
+    click: () => void
+}
+
+function Control(props: ControlProps) {
     return (
-        <div className="control-box" onClick={props.click}>
+        <button type="button" className="control-box" onClick={props.click}>
             <p id={props.type}>{props.name}</p>
-        </div>
-    );
+        </button>
+    )
 }
