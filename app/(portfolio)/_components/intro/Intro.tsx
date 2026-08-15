@@ -1,5 +1,6 @@
 import { Spotlight, TextGenerateEffect } from "@components"
 import { useEffect, useState } from "react"
+import { ACTIVE_THEME } from "../../_styles/theme"
 
 type IntroProps = {
     skipAnimation?: boolean
@@ -27,14 +28,16 @@ const Intro = ({ skipAnimation = false }: IntroProps) => {
         <div
             className={`z-20 bg-surface fixed inset-0 h-screen flex items-center justify-center transition-all ${skipAnimation ? "duration-0" : "duration-1000 ease-in-out"} ${show ? "opacity-100" : "pointer-events-none -translate-y-full opacity-0"}`}
         >
-            <div>
-                <Spotlight
-                    className="-top-40 -left-10 md:-left-32 md:-top-20 h-screen"
-                    fill="white"
-                />
-                <Spotlight className="top-10 left-full h-[80vh] w-[50vw]" fill="purple" />
-                <Spotlight className="top-28 left-80 h-[80vh] w-[50vw]" fill="blue" />
-            </div>
+            {ACTIVE_THEME.flags.spotlights && (
+                <div>
+                    <Spotlight
+                        className="-top-40 -left-10 md:-left-32 md:-top-20 h-screen"
+                        fill="white"
+                    />
+                    <Spotlight className="top-10 left-full h-[80vh] w-[50vw]" fill="purple" />
+                    <Spotlight className="top-28 left-80 h-[80vh] w-[50vw]" fill="blue" />
+                </div>
+            )}
             <div className="h-screen w-full bg-transparent bg-grid-white flex items-center justify-center absolute top-0 left-0">
                 <div className="absolute pointer-events-none inset-0 flex items-center justify-center bg-surface [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]"></div>
             </div>

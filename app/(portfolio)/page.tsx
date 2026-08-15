@@ -37,7 +37,11 @@ const AppContent = () => {
     const mobilePerformanceMode = useMobilePerformanceMode()
 
     return (
-        <MotionConfig reducedMotion={mobilePerformanceMode ? "always" : "user"}>
+        <MotionConfig
+            reducedMotion={
+                mobilePerformanceMode || !ACTIVE_THEME.flags.animations ? "always" : "user"
+            }
+        >
             <div
                 id="root"
                 className={inter.className}
@@ -58,7 +62,11 @@ const AppContent = () => {
                         )}
                     </div>
                     <div className="max-w-4xl w-full flex flex-col gap-12">
-                        <Intro skipAnimation={mobilePerformanceMode} />
+                        <Intro
+                            skipAnimation={
+                                mobilePerformanceMode || !ACTIVE_THEME.flags.introAnimation
+                            }
+                        />
                         <Header />
                         <Hero />
                         <Experience />
