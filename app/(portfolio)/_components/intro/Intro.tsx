@@ -1,12 +1,13 @@
 import { Spotlight, TextGenerateEffect } from "@components"
 import { useEffect, useState } from "react"
-import { ACTIVE_THEME } from "../../_styles/theme"
+import { useTheme } from "../../_styles/ThemeProvider"
 
 type IntroProps = {
     skipAnimation?: boolean
 }
 
 const Intro = ({ skipAnimation = false }: IntroProps) => {
+    const { theme } = useTheme()
     const [show, setShow] = useState(true)
 
     useEffect(() => {
@@ -28,7 +29,7 @@ const Intro = ({ skipAnimation = false }: IntroProps) => {
         <div
             className={`z-20 bg-surface fixed inset-0 h-screen flex items-center justify-center transition-all ${skipAnimation ? "duration-0" : "duration-1000 ease-in-out"} ${show ? "opacity-100" : "pointer-events-none -translate-y-full opacity-0"}`}
         >
-            {ACTIVE_THEME.flags.spotlights && (
+            {theme.flags.spotlights && (
                 <div>
                     <Spotlight
                         className="-top-40 -left-10 md:-left-32 md:-top-20 h-screen"

@@ -14,7 +14,7 @@
         --glass-accent-secondary: 96 165 250;
         --glass-bg: rgb(var(--glass-panel) / 0.62);
         --glass-bg-strong: rgb(var(--glass-panel-strong) / 0.78);
-        --glass-noise: 0.18;
+        --glass-noise: var(--theme-noise, 0.18);
         --glass-shadow:
             inset 0 1px 0 rgba(255, 255, 255, 0.052), 0 2px 6px rgba(0, 0, 0, 0.18),
             0 18px 36px rgba(0, 0, 0, 0.32), 0 36px 90px rgba(0, 0, 0, 0.38);
@@ -102,7 +102,7 @@
         --node-accent: var(--brand);
         --node-bg: rgb(var(--glass-panel) / 0.72);
         --node-bg-strong: rgb(var(--glass-panel-strong) / 0.82);
-        --node-noise: 0.19;
+        --node-noise: var(--theme-noise, 0.19);
         --node-shadow:
             inset 0 1px 0 rgba(255, 255, 255, 0.045),
             inset 0 -14px 28px rgb(var(--node-accent) / 0.018), 0 10px 32px rgba(0, 0, 0, 0.28);

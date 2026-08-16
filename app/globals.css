@@ -25,12 +25,6 @@
     }
 }
 
-/*
- * Theme tokens. Everything the site renders resolves to a variable defined
- * here. To retint the whole site, edit this block (or add a sibling
- * `[data-theme="name"]` block with its own values and point `ACTIVE_THEME`
- * in app/layout.tsx at it — see that file for the switch).
- */
 :root,
 [data-theme="default"] {
     /* brand + surface + text tiers */
@@ -56,6 +50,22 @@
     /* glass/panel surface pair, shared by every frosted-glass card */
     --glass-panel: 10 15 31;
     --glass-panel-strong: 12 18 38;
+
+    /* Showcase accents used by the Projects and Connect cards. Standardized
+       to --brand by default so every card reads as one coherent colour;
+       a theme can override these 5 slots with distinct hues to opt into a
+       multicolour look (see [data-theme="nebula"] below). */
+    --accent-showcase-1: var(--brand);
+    --accent-showcase-2: var(--brand);
+    --accent-showcase-3: var(--brand);
+    --accent-showcase-4: var(--brand);
+    --accent-showcase-5: var(--brand);
+
+    /* Structural style tokens. Every theme falls back to these values
+       unless it overrides them below, so the default theme needs none of
+       this set explicitly. */
+    --glass-radius: 0.75rem;
+    --node-radius: 1rem;
 
     /* shadcn/ui semantic tokens (used by a handful of shadcn primitives) */
     --background: var(--surface);
@@ -83,6 +93,149 @@
     --chart-3: hsl(197 37% 24%);
     --chart-4: hsl(43 74% 66%);
     --chart-5: hsl(27 87% 67%);
+}
+
+[data-theme="aurora"] {
+    --surface: #04120f;
+    --ink: #eafff6;
+    --ink-muted: #9fd7c4;
+    --ink-subtle: #bfe4d6;
+    --brand: 94 234 212;
+
+    --accent-sky: 56 189 248;
+    --accent-green: 52 211 153;
+    --accent-rose: 251 113 133;
+    --accent-amber: 251 191 36;
+    --accent-slate: 148 197 184;
+    --accent-violet: var(--brand);
+    --accent-purple: 167 139 250;
+    --accent-blue: 45 165 200;
+    --accent-yellow: 240 220 90;
+
+    --glass-panel: 6 32 27;
+    --glass-panel-strong: 8 40 34;
+
+    /* Crisp technical look: tight corners, geometric display font, light grain. */
+    --glass-radius: 0.5rem;
+    --node-radius: 0.625rem;
+    --theme-noise: 0.12;
+    --font-display: "Century Gothic", "Futura", ui-sans-serif, sans-serif;
+}
+
+[data-theme="sunset"] {
+    --surface: #1a0f14;
+    --ink: #fff3e9;
+    --ink-muted: #d9b3a6;
+    --ink-subtle: #e3c4b8;
+    --brand: 251 146 60;
+
+    --accent-sky: 96 165 250;
+    --accent-green: 74 222 128;
+    --accent-rose: 251 113 133;
+    --accent-amber: 250 204 21;
+    --accent-slate: 190 154 150;
+    --accent-violet: var(--brand);
+    --accent-purple: 217 110 160;
+    --accent-blue: 96 130 220;
+    --accent-yellow: 253 224 71;
+
+    --glass-panel: 28 16 21;
+    --glass-panel-strong: 35 19 25;
+
+    /* Warm editorial look: generous rounding, serif display font. */
+    --glass-radius: 1.25rem;
+    --node-radius: 1.5rem;
+    --theme-noise: 0.16;
+    --font-display: Georgia, "Iowan Old Style", "Times New Roman", serif;
+}
+
+[data-theme="nebula"] {
+    --surface: #05010f;
+    --ink: #f3ecff;
+    --ink-muted: #b3a3e0;
+    --ink-subtle: #c9bdea;
+    --brand: 244 114 236;
+
+    --accent-sky: 34 211 238;
+    --accent-green: 74 222 128;
+    --accent-rose: 251 113 133;
+    --accent-amber: 250 204 21;
+    --accent-slate: 148 163 184;
+    --accent-violet: var(--brand);
+    --accent-purple: 192 132 252;
+    --accent-blue: 96 165 250;
+    --accent-yellow: 253 224 71;
+
+    --glass-panel: 14 7 32;
+    --glass-panel-strong: 18 9 40;
+
+    /* Cyberpunk HUD look: near-sharp corners, heavy grain, uppercase headings. */
+    --glass-radius: 0.25rem;
+    --node-radius: 0.375rem;
+    --theme-noise: 0.26;
+    --heading-transform: uppercase;
+
+    /* Opts into a multicolour spread for Projects/Connect cards instead of
+       the standardized single-accent default (see :root above). */
+    --accent-showcase-1: var(--accent-sky);
+    --accent-showcase-2: var(--accent-green);
+    --accent-showcase-3: var(--accent-rose);
+    --accent-showcase-4: var(--accent-amber);
+    --accent-showcase-5: var(--accent-purple);
+}
+
+[data-theme="forest"] {
+    --surface: #06120a;
+    --ink: #eef7ec;
+    --ink-muted: #a3c2a6;
+    --ink-subtle: #bcd0bd;
+    --brand: 163 209 112;
+
+    --accent-sky: 56 189 248;
+    --accent-green: 74 222 128;
+    --accent-rose: 244 63 94;
+    --accent-amber: 217 160 62;
+    --accent-slate: 148 184 163;
+    --accent-violet: var(--brand);
+    --accent-purple: 168 138 247;
+    --accent-blue: 59 130 246;
+    --accent-yellow: 202 184 62;
+
+    --glass-panel: 8 28 16;
+    --glass-panel-strong: 10 34 20;
+
+    /* Organic, friendly look: soft rounding, humanist display font, light grain. */
+    --glass-radius: 1rem;
+    --node-radius: 1.25rem;
+    --theme-noise: 0.1;
+    --font-display: "Trebuchet MS", "Segoe UI", Verdana, sans-serif;
+}
+
+[data-theme="mono"] {
+    --surface: #0a0a0c;
+    --ink: #f5f5f7;
+    --ink-muted: #a8a8b3;
+    --ink-subtle: #c2c2c9;
+    --brand: 203 213 225;
+
+    --accent-sky: 125 178 214;
+    --accent-green: 134 187 155;
+    --accent-rose: 214 133 148;
+    --accent-amber: 214 189 138;
+    --accent-slate: 148 163 184;
+    --accent-violet: var(--brand);
+    --accent-purple: 176 156 214;
+    --accent-blue: 125 150 214;
+    --accent-yellow: 214 205 138;
+
+    --glass-panel: 20 20 24;
+    --glass-panel-strong: 26 26 31;
+
+    /* Brutalist/terminal look: near-square corners, monospace display font, no grain. */
+    --glass-radius: 0.125rem;
+    --node-radius: 0.1875rem;
+    --theme-noise: 0.04;
+    --font-display: ui-monospace, "SFMono-Regular", "JetBrains Mono", "Cascadia Code", monospace;
 }
 
 @theme inline {
@@ -181,6 +334,18 @@
     button {
         @apply active:outline-none;
     }
+
+    /* Per-theme heading identity. Falls back to the inherited body font and
+       normal case, so the default theme is unaffected. */
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        font-family: var(--font-display, inherit);
+        text-transform: var(--heading-transform, none);
+    }
 }
 
 @layer utilities {
@@ -191,6 +356,11 @@
     .bg-grid-white {
         background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' width='100' height='100' fill='none' stroke='rgba(255,255,255,0.03)'%3E%3Cpath d='M0 .5H31.5V32'/%3E%3C/svg%3E");
     }
+}
+
+/* THEME_FLAGS.grid toggle (app/(portfolio)/_styles/theme.ts). */
+[data-fx-grid="false"] .bg-grid-white {
+    background-image: none;
 }
 
 @layer base {

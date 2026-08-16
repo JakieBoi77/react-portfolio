@@ -17,7 +17,7 @@
         isolation: isolate;
         overflow: hidden;
         border: 1px solid rgba(255, 255, 255, 0.1);
-        border-radius: 0.75rem;
+        border-radius: var(--glass-radius, 0.75rem);
         background:
             radial-gradient(
                 circle at var(--tech-sheen-position),

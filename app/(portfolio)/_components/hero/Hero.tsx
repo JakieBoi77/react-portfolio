@@ -5,12 +5,14 @@ import { motion } from "framer-motion"
 import { fadeIn } from "@/utils/motion"
 import { assets } from "../../_data/assets"
 import { aboutParagraph, availableToWork, links } from "../../_data/portfolio"
-import { ACTIVE_THEME } from "../../_styles/theme"
+import { useTheme } from "../../_styles/ThemeProvider"
 
 const Hero = () => {
+    const { theme } = useTheme()
+
     return (
         <div className="relative flex items-center justify-center">
-            {ACTIVE_THEME.flags.spotlights && (
+            {theme.flags.spotlights && (
                 <div>
                     <Spotlight
                         className="-top-40 -left-10 md:-left-32 md:-top-20 h-screen"

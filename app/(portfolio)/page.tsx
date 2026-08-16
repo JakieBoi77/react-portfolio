@@ -11,7 +11,7 @@ import Hero from "./_components/hero"
 import Intro from "./_components/intro"
 import Projects from "./_components/projects"
 import Technologies from "./_components/technologies"
-import { ACTIVE_THEME } from "./_styles/theme"
+import { useTheme } from "./_styles/ThemeProvider"
 
 const inter = Inter({ subsets: ["latin"] })
 const mobilePerformanceQuery =
@@ -35,12 +35,11 @@ const useMobilePerformanceMode = () => {
 
 const AppContent = () => {
     const mobilePerformanceMode = useMobilePerformanceMode()
+    const { theme } = useTheme()
 
     return (
         <MotionConfig
-            reducedMotion={
-                mobilePerformanceMode || !ACTIVE_THEME.flags.animations ? "always" : "user"
-            }
+            reducedMotion={mobilePerformanceMode || !theme.flags.animations ? "always" : "user"}
         >
             <div
                 id="root"
@@ -49,7 +48,7 @@ const AppContent = () => {
             >
                 <main className="relative bg-surface flex justify-center items-center flex-col mx-auto sm:px-10 px-5 overflow-clip text-white tw-class">
                     <div className="w-full absolute inset-0">
-                        {ACTIVE_THEME.flags.sparkles && !mobilePerformanceMode && (
+                        {theme.flags.sparkles && !mobilePerformanceMode && (
                             <SparklesCore
                                 id="tsparticlesfullpage"
                                 background="transparent"
@@ -57,15 +56,13 @@ const AppContent = () => {
                                 maxSize={1.4}
                                 particleDensity={5}
                                 className="w-full h-full"
-                                particleColor="#FFFFFF"
+                                particleColor={theme.sparkleColor}
                             />
                         )}
                     </div>
                     <div className="max-w-4xl w-full flex flex-col gap-12">
                         <Intro
-                            skipAnimation={
-                                mobilePerformanceMode || !ACTIVE_THEME.flags.introAnimation
-                            }
+                            skipAnimation={mobilePerformanceMode || !theme.flags.introAnimation}
                         />
                         <Header />
                         <Hero />

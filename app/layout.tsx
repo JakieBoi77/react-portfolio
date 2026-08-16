@@ -1,4 +1,6 @@
 import type { Metadata } from "next"
+import DevThemeSwitcher from "./(portfolio)/_components/dev-theme-switcher"
+import { ThemeProvider } from "./(portfolio)/_styles/ThemeProvider"
 import { themeAttributes } from "./(portfolio)/_styles/theme"
 import "./globals.css"
 
@@ -14,7 +16,12 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="en" {...themeAttributes}>
-            <body>{children}</body>
+            <body>
+                <ThemeProvider>
+                    {children}
+                    {process.env.NODE_ENV === "development" && <DevThemeSwitcher />}
+                </ThemeProvider>
+            </body>
         </html>
     )
 }

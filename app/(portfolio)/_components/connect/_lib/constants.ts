@@ -1,27 +1,30 @@
 import { links } from "../../../_data/portfolio"
 import type { ContactProfile, CSSVariableStyle } from "./types"
 
-export const connectAccent = "var(--accent-sky)"
+// Standardized to the same --accent-showcase-1..5 tokens the Projects cards
+// use (see app/globals.css), so both sections share one coherent colour by
+// default and stay in sync if a theme opts into a multicolour spread.
+export const connectAccent = "var(--accent-showcase-1)"
 
 const profileMeta = {
-    GitHub: {
-        accent: "var(--accent-violet)",
-        cta: "View code",
-        description: "Browse active projects, experiments, and source code.",
-    },
     Email: {
         accent: connectAccent,
         cta: "Send email",
         description:
             "Feel free to send me a message about projects, software roles, collaboration ideas, or anything else worth talking about.",
     },
+    GitHub: {
+        accent: "var(--accent-showcase-2)",
+        cta: "View code",
+        description: "Browse active projects, experiments, and source code.",
+    },
     LinkedIn: {
-        accent: "var(--accent-green)",
+        accent: "var(--accent-showcase-3)",
         cta: "Connect",
         description: "Follow career updates and connect through my LinkedIn profile.",
     },
     Resume: {
-        accent: "var(--accent-amber)",
+        accent: "var(--accent-showcase-4)",
         cta: "Open PDF",
         description: "View a concise summary of my experience and skills.",
     },
@@ -35,7 +38,7 @@ const profileMeta = {
 >
 
 const fallbackProfileMeta = {
-    accent: "var(--accent-slate)",
+    accent: "var(--accent-showcase-5)",
     cta: "Open link",
     description: "Open this profile link.",
 }

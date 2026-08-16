@@ -28,12 +28,16 @@ export const projectTabs = [
 
 export type ProjectTab = (typeof projectTabs)[number]["id"]
 
+// Standardized to a single accent by default so every card reads as one
+// coherent colour (see --accent-showcase-1..5 in app/globals.css); a theme
+// can override those 5 CSS custom properties to opt into a multicolour
+// spread instead (e.g. [data-theme="nebula"]).
 export const projectAccents = [
-    projectShellAccent,
-    "var(--accent-green)",
-    "var(--accent-rose)",
-    "var(--accent-amber)",
-    "var(--accent-purple)",
+    "var(--accent-showcase-1)",
+    "var(--accent-showcase-2)",
+    "var(--accent-showcase-3)",
+    "var(--accent-showcase-4)",
+    "var(--accent-showcase-5)",
 ]
 
 const projectGlassTextures: CSSVariableStyle[] = [
