@@ -65,7 +65,7 @@ const Hero = () => {
                                                 as="p"
                                                 className="text-xs text-ink-muted sm:text-sm"
                                             >
-                                                Hamilton, ON
+                                                ON, Canada
                                             </TypographySmall>
                                         </div>
                                         {availableToWork && (

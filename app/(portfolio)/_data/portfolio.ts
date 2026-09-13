@@ -23,7 +23,8 @@ export const navItems = [
 export const availableToWork = false
 
 export const aboutParagraph = `
-    I'm a software developer based in Ontario, Canada. I specialize in full stack development and I like to build things.
+    I'm a software developer based in Ontario, Canada.
+    I can do frontend, backend, dev-ops, and everything in between.
 `
 
 export const fullStackProjects = [
@@ -84,7 +85,7 @@ export const learningProjectCollections = [
         id: 1,
         collectionTitle: "Front End Development Projects",
         folder: "front-end-dev",
-        des: "Explore some of my recent front-end projects. In making these projects, I learned component-based architecture, state management, and responsive design techniques.",
+        des: "Explore some of my front-end projects. In making these projects, I learned component-based architecture, state management, and responsive design techniques.",
         projects: [
             {
                 title: "Quote Generator",
@@ -123,7 +124,7 @@ export const learningProjectCollections = [
         id: 2,
         collectionTitle: "Back End Development Projects",
         folder: "back-end-dev",
-        des: "Interact with some of my recent back-end projects and APIs. While making these projects, I learned package management, RESTful API design, and database integration.",
+        des: "Interact with some of my back-end projects and APIs. While making these projects, I learned package management, RESTful API design, and database integration.",
         projects: [
             {
                 title: "URL Shortener",
