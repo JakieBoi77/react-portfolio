@@ -3,6 +3,7 @@
 import type { CSSVariableStyle } from "@components"
 import { SectionHeading, SectionWrapper } from "@components"
 import { motion } from "framer-motion"
+import type { KeyboardEvent } from "react"
 import { useCallback, useEffect, useMemo, useRef, useState } from "react"
 import { FaExternalLinkAlt, FaLayerGroup } from "react-icons/fa"
 import { cn } from "@/lib/utils"
@@ -109,6 +110,31 @@ const Technologies = () => {
         }
     }, [])
 
+    const handleBranchKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
+        const branches = technologySkillTree.branches
+        const currentIndex = branches.findIndex((branch) => branch.id === selectedBranchId)
+        let nextIndex: number | null = null
+
+        if (event.key === "ArrowRight" || event.key === "ArrowDown") {
+            nextIndex = (currentIndex + 1) % branches.length
+        } else if (event.key === "ArrowLeft" || event.key === "ArrowUp") {
+            nextIndex = (currentIndex - 1 + branches.length) % branches.length
+        } else if (event.key === "Home") {
+            nextIndex = 0
+        } else if (event.key === "End") {
+            nextIndex = branches.length - 1
+        }
+
+        if (nextIndex === null) {
+            return
+        }
+
+        event.preventDefault()
+        const nextId = branches[nextIndex].id
+        setSelectedBranchId(nextId)
+        branchRefs.current[nextId]?.focus()
+    }
+
     const selectedAccent =
         branchAccents[selectedBranch.id as keyof typeof branchAccents] ?? "var(--accent-violet)"
 
@@ -177,7 +203,13 @@ const Technologies = () => {
                         </p>
                     </div>
 
-                    <div className="relative z-10 grid gap-3 pt-14 sm:grid-cols-2 lg:grid-cols-4">
+                    <div
+                        role="tablist"
+                        aria-label="Technology branches"
+                        aria-orientation="horizontal"
+                        onKeyDown={handleBranchKeyDown}
+                        className="relative z-10 grid gap-3 pt-14 sm:grid-cols-2 lg:grid-cols-4"
+                    >
                         {technologySkillTree.branches.map((branch) => {
                             const isSelected = branch.id === selectedBranch.id
                             const BranchIcon = branchIcons[branch.id as keyof typeof branchIcons]
@@ -190,12 +222,17 @@ const Technologies = () => {
                                     key={branch.id}
                                     ref={setBranchRef(branch.id)}
                                     type="button"
+                                    role="tab"
+                                    aria-selected={isSelected}
+                                    aria-controls="technologies-branch-panel"
+                                    id={`technologies-branch-tab-${branch.id}`}
+                                    tabIndex={isSelected ? 0 : -1}
                                     onClick={() => setSelectedBranchId(branch.id)}
                                     className={cn(
-                                        "glassy-node min-h-24 text-left transition duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300",
+                                        "glassy-node flex min-h-24 items-center gap-3 py-2.5 pl-3.5 pr-2.5 text-left transition duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300",
                                         isSelected
                                             ? "border-white/15"
-                                            : "opacity-80 hover:opacity-100",
+                                            : "opacity-80 hover:-translate-y-0.5 hover:border-white/20 hover:opacity-100",
                                     )}
                                     style={
                                         {
@@ -210,18 +247,29 @@ const Technologies = () => {
                                         } as CSSVariableStyle
                                     }
                                 >
-                                    <span className="flex gap-3 py-2.5 pl-3.5 pr-2.5">
-                                        <span className="grid size-11 shrink-0 place-items-center rounded-lg border border-[rgb(var(--node-accent)/0.34)] bg-[rgb(var(--node-accent)/0.1)] text-[rgb(var(--node-accent))]">
-                                            <BranchIcon aria-hidden="true" className="size-6" />
+                                    <span className="grid size-11 shrink-0 place-items-center rounded-lg border border-[rgb(var(--node-accent)/0.34)] bg-[rgb(var(--node-accent)/0.1)] text-[rgb(var(--node-accent))]">
+                                        <BranchIcon aria-hidden="true" className="size-6" />
+                                    </span>
+                                    <span className="min-w-0 flex-1">
+                                        <span className="block text-sm font-semibold leading-5 tracking-normal text-white">
+                                            {branch.title}
                                         </span>
-                                        <span className="min-w-0">
-                                            <span className="block text-sm font-semibold leading-5 tracking-normal text-white">
-                                                {branch.title}
-                                            </span>
-                                            <span className="mt-0.5 block text-xs leading-5 tracking-normal text-ink-muted">
-                                                {branch.summary}
-                                            </span>
+                                        <span className="mt-0.5 block text-xs leading-5 tracking-normal text-ink-muted">
+                                            {branch.summary}
                                         </span>
+                                    </span>
+                                    <span
+                                        aria-hidden="true"
+                                        className={cn(
+                                            "grid size-4 shrink-0 place-items-center rounded-full border transition",
+                                            isSelected
+                                                ? "border-[rgb(var(--node-accent))]"
+                                                : "border-white/30",
+                                        )}
+                                    >
+                                        {isSelected && (
+                                            <span className="size-2 rounded-full bg-[rgb(var(--node-accent))]" />
+                                        )}
                                     </span>
                                 </button>
                             )
@@ -229,7 +277,12 @@ const Technologies = () => {
                     </div>
                 </div>
 
-                <div className="mx-auto mt-6 max-w-4xl">
+                <div
+                    id="technologies-branch-panel"
+                    role="tabpanel"
+                    aria-labelledby={`technologies-branch-tab-${selectedBranch.id}`}
+                    className="mx-auto mt-6 max-w-4xl"
+                >
                     <div className="mb-3 flex flex-wrap items-end justify-between gap-3">
                         <div>
                             <p

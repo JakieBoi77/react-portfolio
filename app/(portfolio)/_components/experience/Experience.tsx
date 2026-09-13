@@ -1,9 +1,8 @@
 "use client"
 
-import { SectionHeading, SectionWrapper } from "@components"
+import { SectionHeading, SectionWrapper, TabSwitcher } from "@components"
 import { AnimatePresence, motion } from "framer-motion"
 import { useState } from "react"
-import { cn } from "@/lib/utils"
 import { fadeIn } from "@/utils/motion"
 import EducationPanel from "./_components/EducationPanel"
 import WorkPanel from "./_components/WorkPanel"
@@ -31,10 +30,13 @@ const Experience = () => {
                     title="Experience"
                     description="A collection of my work history and education."
                 >
-                    <div
-                        role="tablist"
-                        aria-label="Experience sections"
-                        className="glassy-node mt-5 flex w-full p-1"
+                    <TabSwitcher
+                        options={experienceTabs}
+                        value={activeTab}
+                        onChange={setActiveTab}
+                        idPrefix="experience"
+                        label="Experience sections"
+                        accent={switcherShell.accent}
                         style={
                             {
                                 ...switcherShell.style,
@@ -43,39 +45,7 @@ const Experience = () => {
                                 "--node-radius": "0.75rem",
                             } as CSSVariableStyle
                         }
-                    >
-                        {experienceTabs.map(({ id, label, Icon }) => {
-                            const isActive = activeTab === id
-
-                            return (
-                                <button
-                                    key={id}
-                                    type="button"
-                                    role="tab"
-                                    aria-selected={isActive}
-                                    aria-controls={`experience-panel-${id}`}
-                                    id={`experience-tab-${id}`}
-                                    onClick={() => setActiveTab(id)}
-                                    className={cn(
-                                        "inline-flex h-10 flex-1 items-center justify-center gap-2 rounded-lg px-3 text-center text-sm font-semibold leading-none tracking-normal transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300",
-                                        isActive
-                                            ? "border border-white/10 bg-white/[0.08] text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.06)]"
-                                            : "text-ink-muted hover:bg-white/[0.035] hover:text-white",
-                                    )}
-                                    style={
-                                        isActive
-                                            ? {
-                                                  color: `rgb(${switcherShell.accent})`,
-                                              }
-                                            : undefined
-                                    }
-                                >
-                                    <Icon aria-hidden="true" className="size-4" />
-                                    {label}
-                                </button>
-                            )
-                        })}
-                    </div>
+                    />
                 </SectionHeading>
 
                 <AnimatePresence mode="wait">

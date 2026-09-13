@@ -23,18 +23,31 @@ export const navItems = [
 export const availableToWork = false
 
 export const aboutParagraph = `
-    I'm a software engineer building my career in the tech industry.
-    I specialize in full stack development.
-    I am currently working as a Software Design Engineer Intern at Evertz Microsystems.
+    I'm a software developer based in Ontario, Canada. I specialize in full stack development and I like to build things.
 `
 
 export const fullStackProjects = [
     {
         id: 1,
+        projectTitle: "Deal Check",
+        link: null,
+        github: "https://github.com/JakieBoi77/deal-check",
+        des: "A mobile app that helps people decide whether a car listing is a good deal.",
+        orientation: "portrait",
+        picList: [
+            fullstackPics.dealCheckHome,
+            fullstackPics.dealCheckDealValuation,
+            fullstackPics.dealCheckRecommendations,
+        ],
+        iconList: [devIcons.expo, devIcons.reactNative, devIcons.typescript, devIcons.python],
+    },
+    {
+        id: 2,
         projectTitle: "Link Ripple",
         link: "https://link-ripple-nextjs.vercel.app",
         github: "https://github.com/JakieBoi77/link-ripple-nextjs",
         des: "An application for managing personalized landing pages with links to social profiles and online resources. Check out my link ripple at https://link-ripple-nextjs.vercel.app/JakieBoi77.",
+        orientation: "landscape",
         picList: [
             fullstackPics.linkRippleLanding,
             fullstackPics.linkRippleDashboard,
@@ -49,11 +62,12 @@ export const fullStackProjects = [
         ],
     },
     {
-        id: 2,
+        id: 3,
         projectTitle: "Bankler",
         link: "https://banking.finlaytech.ca",
         github: "https://github.com/JakieBoi77/banking-app",
         des: "A modern banking platform with support for accounts, transactions, and real-time updates.",
+        orientation: "landscape",
         picList: [
             fullstackPics.banklerDashboard,
             fullstackPics.banklerMyBanks,
@@ -371,6 +385,20 @@ export const technologies = [
     },
 ]
 
+const supportingIconNames: Record<string, string> = {
+    [devIcons.expo]: "Expo",
+    [devIcons.express]: "Express",
+    [devIcons.mongoose]: "Mongoose",
+    [devIcons.next]: "Next JS",
+    [devIcons.npm]: "npm",
+    [devIcons.reactNative]: "React Native",
+}
+
+export const technologyNamesByIcon: Record<string, string> = {
+    ...supportingIconNames,
+    ...Object.fromEntries(technologies.map(({ icon, name }) => [icon, name])),
+}
+
 export const technologySkillTree = {
     root: {
         title: "Fullstack Development",
@@ -400,7 +428,7 @@ export const technologySkillTree = {
         {
             id: "tooling",
             title: "Tooling",
-            summary: "Git, scripts, packages, and Linux.",
+            summary: "Git, packages, and Linux.",
             technologies: ["Git", "Nx", "pnpm", "Bash", "Linux"],
         },
         {
@@ -419,12 +447,14 @@ export const experiences = [
         icon: workIcons.evertz,
         iconBg: "var(--ink)",
         timelineAccent: "var(--accent-yellow)",
-        date: "May 2025 - Present",
+        date: "May 2025 - August 2026",
         points: [
-            "Currently working on MAGNUM OS, a full stack software that provides control, orchestration, monitoring, and analytics for customer's Evertz equipment.",
-            "Developed a maintainable, scalable UI library for use in Evertz frontend monorepo by designing reusable components with TypeScript and Tailwind CSS.",
-            "Resolved a large number bugfix and improvement tickets by collaborating with my team using Jira and GitHub.",
-            "Collobarated with the validation team to confirm that ticket requirements were aligned with customer expecations while ensuring fixes and improvements met standard for our product.",
+            "Worked on MAGNUM OS, a full stack application that provides control, orchestration, monitoring, and analytics for customer's Evertz equipment.",
+            "Worked in Evertz's frontend monorepo, a code repository implemented using HTML, CSS, JavaScript, TypeScript, React, REST APIs, GraphQL, JSON-RPC, and Nx for monorepo management.",
+            "Built a new design system and created a shared component library using TypeScript, React, Tailwind CSS, and Storybook with the goal of improving UI/UX for users.",
+            "Migrated a large portion of Evertz's frontend code to the new design system by using the shared component library that I had developed previously. Worked with the design team to make sure that the migration aligned with other Evertz apps.",
+            "Resolved 100+ Jira tickets in Evertz's frontend monorepo by using Git / GitHub to ship bug fixes and improvements that customers actually needed. Worked with the validation team to make sure that I was fulfilling customer/product requirements.",
+            "Caught bugs, improved code quality, and enforced repository standards in many new features as a trusted code reviewer of Evertz's frontend monorepo.",
         ],
     },
     {
@@ -435,10 +465,11 @@ export const experiences = [
         timelineAccent: "var(--accent-green)",
         date: "May 2023 - August 2023",
         points: [
-            "My first co-op position where I was responsible for providing IT support and maintaining IT infrastructure.",
-            "Implemented IT support strategies to resolve user technical issues, utilizing M365 Exchange Servers and PowerShell scripts.",
-            "Managed Active Directory accounts for a team of 100 employees and reduced account setup time through streamlined GPO management.",
-            "Collaborated with my team to implement security protocols and improve system efficiency.",
+            "Resolved computer and email issues across Windows Server, Active Directory, Microsoft 365, and PowerShell to get staff back to work quickly.",
+            "Managed company accounts for 100+ employees, using Active Directory and PowerShell to cut down new-hire setup time.",
+            "Made sure company computers were up to date by managing Windows updates and pushing security fixes through Windows Server Update Services (WSUS).",
+            "Helped staff spot scams before they caused damage by running internal phishing tests in Outlook.",
+            "Kept staff online by maintaining on-premises server infrastructure. This included troubleshooting virtual machines, storage servers, routers, switches, firewalls, and battery backups.",
         ],
     },
     {
@@ -449,11 +480,10 @@ export const experiences = [
         timelineAccent: "var(--accent-blue)",
         date: "July 2020 - September 2022",
         points: [
-            "A weekend job where I was responsible for fulfilling customer pick-ups, organizing furniture for delivery, and keeping the warehouse clean.",
-            "Gained valuable experience working with my co-workers to deliver the best possible experience for customers picking up furniture from the warehouse.",
-            "Became certified on a Class 2 Forklift (also known as an Orderpicker) to access furniture stored within the racks of the warehouse.",
+            "Led the student team by delegating the day's work across customer pick-ups, furniture assembly, delivery organization, and warehouse upkeep.",
+            "Became certified on a Class 2 Forklift (also known as an order picker) to access furniture stored within the racks of the warehouse.",
             "Operated various compactors to control the waste created from opening products in the warehouse.",
-            "Learned how to use Storis, the furniture inventory management system, in order to complete my assigned tasks while still maintaining inventory accuracy.",
+            "Learned how to use Storis, the furniture inventory management system, so that I could complete my assigned tasks while still maintaining inventory accuracy.",
         ],
     },
 ]

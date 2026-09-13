@@ -1,9 +1,8 @@
 "use client"
 
-import { SectionHeading, SectionWrapper } from "@components"
+import { SectionHeading, SectionWrapper, TabSwitcher } from "@components"
 import { AnimatePresence, motion } from "framer-motion"
 import { useState } from "react"
-import { cn } from "@/lib/utils"
 import { fadeIn } from "@/utils/motion"
 import FeaturedProjectsPanel from "./_components/FeaturedProjectsPanel"
 import LearningProjectsPanel from "./_components/LearningProjectsPanel"
@@ -32,10 +31,13 @@ const Projects = () => {
                     title="Projects"
                     description="Featured full-stack builds and smaller projects from my learning path."
                 >
-                    <div
-                        role="tablist"
-                        aria-label="Project sections"
-                        className="glassy-node mt-5 flex w-full p-1"
+                    <TabSwitcher
+                        options={projectTabs}
+                        value={activeTab}
+                        onChange={setActiveTab}
+                        idPrefix="projects"
+                        label="Project sections"
+                        accent={projectShellAccent}
                         style={
                             {
                                 ...switcherShell.style,
@@ -44,39 +46,7 @@ const Projects = () => {
                                 "--node-radius": "0.75rem",
                             } as CSSVariableStyle
                         }
-                    >
-                        {projectTabs.map(({ id, label, Icon, accent }) => {
-                            const isActive = activeTab === id
-
-                            return (
-                                <button
-                                    key={id}
-                                    type="button"
-                                    role="tab"
-                                    aria-selected={isActive}
-                                    aria-controls={`projects-panel-${id}`}
-                                    id={`projects-tab-${id}`}
-                                    onClick={() => setActiveTab(id)}
-                                    className={cn(
-                                        "inline-flex h-10 flex-1 items-center justify-center gap-2 rounded-lg px-3 text-center text-sm font-semibold leading-none tracking-normal transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300",
-                                        isActive
-                                            ? "border border-white/10 bg-white/[0.08] text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.06)]"
-                                            : "text-ink-muted hover:bg-white/[0.035] hover:text-white",
-                                    )}
-                                    style={
-                                        isActive
-                                            ? {
-                                                  color: `rgb(${accent})`,
-                                              }
-                                            : undefined
-                                    }
-                                >
-                                    <Icon aria-hidden="true" className="size-4" />
-                                    {label}
-                                </button>
-                            )
-                        })}
-                    </div>
+                    />
                 </SectionHeading>
 
                 <AnimatePresence mode="wait">

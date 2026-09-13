@@ -1,11 +1,11 @@
-import type * as React from "react"
+import type { ReactNode } from "react"
 
 import { cn } from "@/lib/utils"
 
 type SectionHeadingProps = {
-    title: React.ReactNode
-    description?: React.ReactNode
-    children?: React.ReactNode
+    title: ReactNode
+    description?: ReactNode
+    children?: ReactNode
     className?: string
     descriptionClassName?: string
 }

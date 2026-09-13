@@ -7,6 +7,7 @@ export { SectionWrapper } from "./layout/section-wrapper"
 export { default as HyperText } from "./magic-ui/hyper-text"
 export { IconButton } from "./ui/icon-button"
 export { SectionHeading } from "./ui/section-heading"
+export { TabSwitcher, type TabSwitcherOption } from "./ui/tab-switcher"
 export type { CSSVariableStyle } from "./ui/types"
 export {
     TypographyBlockquote,

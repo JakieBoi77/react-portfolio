@@ -14,6 +14,7 @@ type FeaturedProjectCardProps = {
 const FeaturedProjectCard = ({ project, index }: FeaturedProjectCardProps) => {
     const accent = getProjectAccent(index)
     const { style } = getProjectGlassStyle(index, accent)
+    const isPortrait = project.orientation === "portrait"
     const [primaryImage, ...supportingImages] = project.picList
 
     return (
@@ -29,38 +30,62 @@ const FeaturedProjectCard = ({ project, index }: FeaturedProjectCardProps) => {
                 style={style}
             >
                 <div className="overflow-hidden rounded-xl border border-white/10 bg-surface/45">
-                    <div className="aspect-[16/10] w-full overflow-hidden bg-surface">
-                        <img
-                            src={primaryImage}
-                            alt={`${project.projectTitle} screen`}
-                            className="size-full object-cover"
-                        />
-                    </div>
-
-                    {supportingImages.length > 0 && (
+                    {isPortrait ? (
                         <div
-                            className="grid gap-px border-t border-white/10 bg-white/10"
+                            className="grid gap-px bg-white/10"
                             style={{
-                                gridTemplateColumns: `repeat(${Math.min(
-                                    supportingImages.length,
-                                    4,
-                                )}, minmax(0, 1fr))`,
+                                gridTemplateColumns: `repeat(${project.picList.length}, minmax(0, 1fr))`,
                             }}
                         >
-                            {supportingImages.map((image) => (
+                            {project.picList.map((image) => (
                                 <div
                                     key={image}
-                                    className="aspect-[16/10] overflow-hidden bg-surface"
+                                    className="aspect-[9/19.5] overflow-hidden bg-surface"
                                 >
                                     <img
                                         src={image}
-                                        alt=""
-                                        aria-hidden="true"
-                                        className="size-full object-cover opacity-80"
+                                        alt={`${project.projectTitle} screen`}
+                                        className="size-full object-cover object-top"
                                     />
                                 </div>
                             ))}
                         </div>
+                    ) : (
+                        <>
+                            <div className="aspect-[16/10] w-full overflow-hidden bg-surface">
+                                <img
+                                    src={primaryImage}
+                                    alt={`${project.projectTitle} screen`}
+                                    className="size-full object-cover"
+                                />
+                            </div>
+
+                            {supportingImages.length > 0 && (
+                                <div
+                                    className="grid gap-px border-t border-white/10 bg-white/10"
+                                    style={{
+                                        gridTemplateColumns: `repeat(${Math.min(
+                                            supportingImages.length,
+                                            4,
+                                        )}, minmax(0, 1fr))`,
+                                    }}
+                                >
+                                    {supportingImages.map((image) => (
+                                        <div
+                                            key={image}
+                                            className="aspect-[16/10] overflow-hidden bg-surface"
+                                        >
+                                            <img
+                                                src={image}
+                                                alt=""
+                                                aria-hidden="true"
+                                                className="size-full object-cover opacity-80"
+                                            />
+                                        </div>
+                                    ))}
+                                </div>
+                            )}
+                        </>
                     )}
                 </div>
 
@@ -88,12 +113,14 @@ const FeaturedProjectCard = ({ project, index }: FeaturedProjectCardProps) => {
                         />
 
                         <div className="flex flex-col gap-2 sm:flex-row">
-                            <ProjectActionLink
-                                href={project.link}
-                                label="Visit"
-                                Icon={FaExternalLinkAlt}
-                                accent={accent}
-                            />
+                            {project.link && (
+                                <ProjectActionLink
+                                    href={project.link}
+                                    label="Visit"
+                                    Icon={FaExternalLinkAlt}
+                                    accent={accent}
+                                />
+                            )}
                             <ProjectActionLink
                                 href={project.github}
                                 label="GitHub"
